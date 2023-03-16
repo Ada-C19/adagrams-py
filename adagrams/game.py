@@ -30,15 +30,17 @@ def draw_letters():
     'Z': 1
 }
     MAX_LETTERS = 10
-    LETTER_POOL_LIST = []
+    letter_pool_list = []
     for letter in LETTER_POOL:
         temp = [letter] * LETTER_POOL[letter]
-        LETTER_POOL_LIST.extend(temp)
+        letter_pool_list.extend(temp)
     
     letters = []
     for _ in range(MAX_LETTERS):
-        letters.append(choice(LETTER_POOL_LIST))
-    
+        rand_letter = choice(letter_pool_list)
+        letters.append(rand_letter)
+        letter_pool_list.remove(rand_letter)
+
     return letters
 
 
