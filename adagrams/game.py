@@ -69,8 +69,6 @@ def uses_available_letters(word, letter_bank):
         letter = word[i].lower()
         word_dict[letter] = word_dict.get(letter, 0) + 1
 
-    #print(letter_dict.keys())
-
     #Compare to verify word letters are in bank AND there aren't too many
     for letter, count in word_dict.items():
         if letter not in list(letter_dict.keys()):
