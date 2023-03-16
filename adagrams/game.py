@@ -1,5 +1,9 @@
+import random 
 def draw_letters():
-    pass
+    letter_list=['A','A','A','A','A','A','A','A','A','A']
+    #print(letter_list)
+    #print (type(letter_list))
+    return letter_list
 
 def uses_available_letters(word, letter_bank):
     pass
