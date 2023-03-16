@@ -1,9 +1,11 @@
+
 def draw_letters():
     pass
 
 def uses_available_letters(word, letter_bank):
     pass
 
+# This function takes the word created by the user and scores it.
 def score_word(word):
     pass
 
