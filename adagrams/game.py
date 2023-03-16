@@ -70,7 +70,36 @@ def uses_available_letters(word, letter_bank):
         return False
 
 def score_word(word):
-    pass
+    score = 0
+    word = word.upper()
+    one_point_letters = ["A","E","I","O","U","L","N","R","S","T"]
+    two_point_letters = ["D","G"]
+    three_point_letters = ["B","C","M","P"]
+    four_point_letters = ["F","H","V","W","Y"]
+    five_point_letters = ["K"]
+    eight_point_letters = ["J","X"]
+    ten_point_letters = ["Q","Z"]
+
+    for letter in word:
+        if letter in one_point_letters:
+            score +=1
+        elif letter in two_point_letters:
+            score+=2
+        elif letter in three_point_letters:
+            score+=3
+        elif letter in four_point_letters:
+            score+=4
+        elif letter in five_point_letters:
+            score+=5
+        elif letter in eight_point_letters:
+            score+=8
+        else:
+            score += 10
+    
+    if len(word) >= 7:
+        score += 8
+    
+    return score
 
 def get_highest_word_score(word_list):
     pass
