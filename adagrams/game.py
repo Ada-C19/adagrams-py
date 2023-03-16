@@ -49,9 +49,9 @@ def draw_letters():
     hand = []
 
     for _ in range(10):
-        letter_index = r.randint(0, len(letter_list) - 1)
-        hand.append(letter_list[letter_index])
-        letter_list.pop(letter_index)
+        chosen_letter = r.choice(letter_list)
+        hand.append(chosen_letter)
+        letter_list.remove(chosen_letter)
 
     return hand
 
