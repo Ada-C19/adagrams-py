@@ -1,6 +1,6 @@
 def draw_letters():
-    hand = []   
-    
+    hand = [A, C, F, O, Y, E] 
+
 
 def uses_available_letters(word, letter_bank):
     pass
