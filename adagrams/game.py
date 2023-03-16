@@ -52,7 +52,27 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    #Create dict of hand with letter as key and count as value
+    letter_dict = {}
+    for letter in letter_bank:
+        letter = letter.lower()
+        letter_dict[letter] = letter_dict.get(letter, 0) + 1
+
+    #Create dict of word with letter as key and count as value
+    word_dict = {}
+    for i in range(len(word)):
+        letter = word[i].lower()
+        word_dict[letter] = word_dict.get(letter, 0) + 1
+
+    #print(letter_dict.keys())
+
+    #Compare to verify word letters are in bank AND there aren't too many
+    for letter, count in word_dict.items():
+        if letter not in list(letter_dict.keys()):
+            return False
+        elif count > letter_dict[letter]:
+            return False
+    return True
 
 def score_word(word):
     pass
