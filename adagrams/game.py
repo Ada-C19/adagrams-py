@@ -39,13 +39,18 @@ def draw_letters():
     for _ in range(MAX_LETTERS):
         rand_letter = choice(letter_pool_list)
         letters.append(rand_letter)
-        letter_pool_list.remove(rand_letter)
+        letter_pool_list.remove(rand_letter) #could do conditionals to avoid removing letters? 
+        #e.g. if count(letter) > letter_pool_list[letter], draw again?
 
     return letters
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word = word.upper() #forces the input to be case insensitive
+    for letter in word:
+        if letter not in letter_bank or word.count(letter) > letter_bank.count(letter):
+            return False
+    return True
 
 def score_word(word):
     pass
