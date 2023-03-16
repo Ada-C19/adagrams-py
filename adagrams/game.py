@@ -1,6 +1,7 @@
 import random as r
 
 def make_letter_list():
+    #Define the frequencies of each letter
     LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -30,6 +31,8 @@ def make_letter_list():
     'Z': 1
     }
 
+    #Turn dict into list where each letter appears a number of times
+    #equal to its frequency
     letter_list = []
     for letter, count in LETTER_POOL.items():
         for _ in range(count):
