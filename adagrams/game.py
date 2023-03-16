@@ -41,13 +41,13 @@ def draw_letters():
 
     hand = []
 
+    # Loop until hand is full
     while int(len(hand)) < 10:
-        # Selects a random letter with consideration for weight
-        # draw is a list containing 1 letter
+        # Select a random letter with consideration for weight, returns a list
         draw = random.choices(letters, weights=weights, k=1)
         l = draw[0]
         idx = letters.index(l)
-        #
+        # Redraw if letter is not available
         if weights[idx] == 0:
             continue
         else:
@@ -57,11 +57,29 @@ def draw_letters():
     return hand
 
 
-
-
-
 def uses_available_letters(word, letter_bank):
-    pass
+    """
+    Returns a boolean.
+    Checks if an input word is valid based on available letters in hand (i.e., letter_bank).
+    Does not mutate the hand.
+    Allows for lowercase letters.
+    """
+    # Ensure original hand remains unmutated
+    copy_bank = list(letter_bank)
+    # Ensure lower case letters are valid
+    word = word.upper()
+    
+    # Loop through each character in word
+    for char in word:
+        # Remove letter from hand if present
+        if char in copy_bank:
+            copy_bank.remove(char)
+        # Return False if letter is not present in hand
+        else:
+            return False
+    # If the for loop finishes without returning False, 
+    # every character in word was present in hand
+    return True
 
 def score_word(word):
     pass
