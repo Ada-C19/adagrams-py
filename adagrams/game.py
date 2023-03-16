@@ -44,6 +44,8 @@ def make_letter_list():
 def draw_letters():
     letter_list = make_letter_list()
 
+    #Create an empty hand, then add 10 random letters from letter list.
+    #Letters are removed from list as they are added to hand.
     hand = []
 
     for _ in range(10):
