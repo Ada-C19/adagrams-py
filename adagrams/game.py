@@ -121,4 +121,16 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    #Set initial score tuple to ("word", -1) so first word will always overwrite
+    high_score = ("word", -1)
+    #Iterate through word_list and check score of each word
+    for word in word_list:
+        score = score_word(word)
+        #Check if score is higher than high score (incl. tiebreaker rules)
+        #If score is higher than high score, update high score
+        if (score == high_score[1] and len(word) == 10 and len(high_score[0]) != 10) \
+        or (score == high_score[1] and len(word) < len(high_score[0]) and len(high_score[0]) != 10) \
+        or (score > high_score[1]):
+            high_score = (word, score)
+
+    return high_score
