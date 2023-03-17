@@ -1,7 +1,7 @@
 # AdaGrams
-Project Source Credit: Ada Developers Academy
-Psuedo-author: Linh Huynh
-Date: March 16, 2023
+Project Source Credit: Ada Developers Academy <br />
+Psuedo-author: Linh Huynh <br />
+Date: March 16, 2023 <br />
 
 ## Skills Assessed
 
