@@ -36,10 +36,26 @@ def draw_letters():
 
     return random_letter_set
 
+def frequency_maker(list):
+    pass
+
 def uses_available_letters(word, letter_bank):
+    letter_frequency = {}
     for letter in word:
+        if letter in letter_frequency.keys():
+            letter_frequency[letter] += 1
+        else:
+            letter_frequency[letter] = 1
+
         if letter not in letter_bank:
             return False
+    
+    for character in letter_bank:
+        if character in letter_frequency.keys():
+            if letter_frequency[character] != letter_bank.count(character):
+                return False
+        
+        
 
 
 def score_word(word):
