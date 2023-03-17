@@ -97,7 +97,7 @@ def score_word(word):
     word = word.upper()
     for letter in word:
         score += LETTER_INFO[letter]['value']
-    if 7 <= len(word) <= 10:
+    if 7 <= len(word) <= TOTAL_TILES_PER_HAND:
         score += 8
     return score
 
@@ -108,21 +108,17 @@ def get_highest_word_score(word_list):
     best_score = 0
 
     for word in word_list:
-        word_score = 0
-        for letter in word:
-            word_score += LETTER_INFO[letter]['value']
-        if 7 <= len(word) <= 10:
-            word_score += 8
+        word_score = score_word(word)
         all_scores[word] = word_score
 
     for word, score in all_scores.items():
         if len(word) == TOTAL_TILES_PER_HAND:
-            best_score = score
             best_word = word
+            best_score = score
             break
         if score > best_score:
-            best_score = score
             best_word = word
+            best_score = score
         if score == best_score:
             if len(word) < len(best_word):
                 best_word = word
