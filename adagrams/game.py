@@ -130,4 +130,76 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    """
+    Returns a tuple of the winning word and its score.
+    In case of a tie, prioritize the word with 10 letters, 
+    then the word with the fewest letters, then the first element in the list
+    """
+    word_scores = []
+
+    for word in word_list:
+        score = score_word(word)
+        word_scores.append((word, score))
+
+
+    # Sort list of word_scores in descending order of scores
+    word_scores.sort(reverse=True, key=lambda x:x[1])
+
+    max_score = word_scores[0][1]
+    # List of tied scores
+    ties = [word_scores[0]]
+
+    for w_s in word_scores[1:]:
+        if w_s[1] == max_score:
+            ties.append(w_s)
+    
+    # If no ties, return word with max_score
+    if len(ties) == 1:
+        return ties[0]
+    
+    # Sort list of ties in ascending order of word length
+    ties.sort(key=lambda x: len(x[0]))
+
+    # If one of the ties has word length 10, that is winner
+    if len(ties[-1][0]) == 10:
+        return ties[-1]
+    
+
+    min_length = len(ties[0][0])
+    # Eliminate ties if they do not have fewest letters
+    for w_s in ties:
+        word = w_s[0]
+        if len(word) != min_length:
+            ties.remove(w_s)
+    
+    # If no more ties, return word with fewest letters
+    if len(ties) == 1:
+        return ties[0]
+    
+    # Initialize baseline word_list index for later comparison
+    min_idx = word_list.index(ties[0][0])
+    first_w_s = ties[0]
+
+    # Loop through each word_score tuple in ties
+    for w_s in ties[1:]:
+        word = w_s[0]
+        # Replace min_idx and first_w_s if index is smaller than previous min_idx
+        if word_list.index(word) < min_idx:
+            min_idx = word_list.index(word)
+            first_w_s = w_s
+    
+    return first_w_s
+
+    
+        
+    
+
+
+        
+
+
+
+
+        
+
+    
