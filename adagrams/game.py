@@ -32,9 +32,11 @@ LETTER_POOL = {
 def draw_letters():
     hand = []
     letter = random.choice(list(LETTER_POOL))
+
     while hand.count(letter) < LETTER_POOL[letter] and len(hand) < 10:
             hand.append(letter)
             letter = random.choice(list(LETTER_POOL))
+            
     return hand
 
 def uses_available_letters(word, letter_bank):
