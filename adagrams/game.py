@@ -72,6 +72,9 @@ def uses_available_letters(word, letter_bank):
     for character in word:
         if character not in letter_bank:
             result = False
+            break
+        else:
+            letter_bank.remove(character)
     
     return result
 
