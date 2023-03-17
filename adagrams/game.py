@@ -1,6 +1,6 @@
 import random
 
-LETTER_BANK = (
+POOL_OF_LETTERS = (
     'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
     'B', 'B',
     'C', 'C',
@@ -58,25 +58,25 @@ LETTER_INFO = {
     'Z': {'frequency': 1, 'value': 10}
 }
 
-LENGTH_OF_HAND = 10
+TOTAL_TILES_PER_HAND = 10
 
 def draw_letters():
-    hand = []
+    player_hand = []
 
-    while len(hand) < LENGTH_OF_HAND:
-        i = random.randint(0, len(LETTER_BANK)-1)
-        current_letter = LETTER_BANK[i]
-        letter_occurs = 0
+    while len(player_hand) < TOTAL_TILES_PER_HAND:
+        i = random.randint(0, len(POOL_OF_LETTERS)-1)
+        current_letter = POOL_OF_LETTERS[i]
+        letter_occurences = 0
         
-        if current_letter in hand:
-            for current_letter in hand:
-                letter_occurs += 1
-            if LETTER_INFO[current_letter]['frequency'] <= letter_occurs:
+        if current_letter in player_hand:
+            for current_letter in player_hand:
+                letter_occurences += 1
+            if letter_occurences >= LETTER_INFO[current_letter]['frequency']:
                 continue
 
-        hand.append(current_letter)
+        player_hand.append(current_letter)
 
-    return hand
+    return player_hand
 
 def uses_available_letters(word, letter_bank):
     letter_bank_copy = []
@@ -115,7 +115,7 @@ def get_highest_word_score(word_list):
         all_scores[word] = word_score
 
     for word, score in all_scores.items():
-        if len(word) == LENGTH_OF_HAND:
+        if len(word) == TOTAL_TILES_PER_HAND:
             best_score = score
             best_word = word
             break
