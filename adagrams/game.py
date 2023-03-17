@@ -52,7 +52,46 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    SCORE_CHART = {
+        1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+        2: ["D", "G"],
+        3: ["B", "C", "M", "P"],
+        4: ["F", "H", "V", "W", "Y"],
+        5: ["K"],
+        8: ["J", "X"],
+        10: ["Q", "Z"]
+    }
+
+    score = 0
+    score_chart_letters = list(SCORE_CHART.values())
+    word_letters = list(word.upper())
+    index_to_points = []
+
+    for i in range(len(score_chart_letters)):
+        for letter in score_chart_letters[i]:
+            for j in range(len(word_letters)):
+                if word_letters[j] == letter:
+                    index_to_points.append(i)
+
+    for each in index_to_points:
+        if each == 0:
+            score += 1
+        elif each == 1:
+            score += 2
+        elif each == 2:
+            score += 3
+        elif each == 3:
+            score += 4
+        elif each == 4:
+            score += 5
+        elif each == 5:
+            score += 8
+        else:
+            score += 10
+
+    if len(word) >= 7:
+        score += 8
+    return score
 
 def get_highest_word_score(word_list):
     pass
