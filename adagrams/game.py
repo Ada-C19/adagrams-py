@@ -29,10 +29,13 @@ LETTER_POOL = {
 
 def draw_letters():
     import random
-    single_letter = LETTER_POOL.keys()
-    weight_letter = LETTER_POOL.values()
+    list_of_letters = list(LETTER_POOL.keys())
+    # weight_letters = list(LETTER_POOL.values())
     letters = []
-    letters.append(random.choices(single_letter, weight_letter))
+    for i in range(10):
+        letters.append(random.choice(list_of_letters) )
+                    #    weights = weight_letters))
+    return letters
 
 def uses_available_letters(word, letter_bank):
     pass
