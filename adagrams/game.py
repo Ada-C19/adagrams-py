@@ -62,10 +62,9 @@ def uses_available_letters(word, letter_bank):
         letter_bank_copy.append(letter)
 
     for letter in word:
-        if letter in letter_bank_copy:
-            letter_bank_copy.remove(letter)
-        else:
+        if letter not in letter_bank_copy:
             return False
+        letter_bank_copy.remove(letter)
     return True
 
 def score_word(word):
