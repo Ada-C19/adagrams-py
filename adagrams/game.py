@@ -74,13 +74,13 @@ def uses_available_letters(word, letter_bank):
     for letter in letter_bank:
         letter_bank_copy.append(letter)
 
-    for character in word:
-        character = character.upper()
-        if character not in letter_bank_copy:
+    for letter in word:
+        letter = letter.upper()
+        if letter not in letter_bank_copy:
             result = False
             break
         else:
-            letter_bank_copy.remove(character)
+            letter_bank_copy.remove(letter)
     
     return result
 
@@ -96,6 +96,7 @@ def score_word(word):
     LEN_FOR_BONUS = [7, 8, 9, 10]
 
     for letter in word:
+        letter = letter.upper()
         if letter in VALUE_1:
             score += 1
         elif letter in VALUE_2:
