@@ -75,6 +75,7 @@ def uses_available_letters(word, letter_bank):
         letter_bank_copy.append(letter)
 
     for character in word:
+        character = character.upper()
         if character not in letter_bank_copy:
             result = False
             break
