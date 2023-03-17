@@ -29,13 +29,27 @@ LETTER_POOL = {
 
 def draw_letters():
     import random
-    list_of_letters = list(LETTER_POOL.keys())
+    list_of_letters = list(LETTER_POOL.keys()) 
     # weight_letters = list(LETTER_POOL.values())
-    letters = []
-    for i in range(10):
-        letters.append(random.choice(list_of_letters) )
-                    #    weights = weight_letters))
-    return letters
+    ten_letters = []
+    letter_freq = {}
+    used_lists = []
+
+    while len(ten_letters) <10:
+        letter_drawn = random.choice(list_of_letters)
+        if letter_drawn in letter_freq:
+            if letter_freq[letter_drawn] < LETTER_POOL[letter_drawn]:
+                letter_freq[letter_drawn] +=1
+            else:
+                continue
+        else:
+            letter_freq[letter_drawn] = 1
+
+        ten_letters.append(letter_drawn)
+
+
+    return ten_letters        
+
 
 def uses_available_letters(word, letter_bank):
     pass
