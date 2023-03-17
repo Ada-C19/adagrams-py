@@ -30,16 +30,24 @@ LETTER_POOL = {
 }
 
 def draw_letters():
-    alphabet = []
+    alphabet = list(LETTER_POOL.keys())
     drawn_letters = []
 
-    for letter in LETTER_POOL:
-        frequency = LETTER_POOL[letter]
-        for i in range(frequency):
-            alphabet.append(letter)
+    while True:
+        # Ensure return list does not have more than 10 elems
+        if len(drawn_letters) == 10:
+            break
 
-    for i in range(10):
-        drawn_letters.append(alphabet[random.randint(0, len(alphabet)-1)])
+        random_letter = alphabet[random.randint(0, len(alphabet)-1)]
+        quantity = LETTER_POOL[random_letter]
+        counter = 0
+        
+        # Letter should not be in return list more than its quantity in the pool
+        for i in range(len(drawn_letters)):
+            if drawn_letters[i] == random_letter:
+                counter += 1
+        if counter < quantity:
+            drawn_letters.append(random_letter)
 
     return drawn_letters
 
