@@ -1,40 +1,40 @@
 import random as r
 
-def make_letter_list():
-    #Define the frequencies of each letter
-    LETTER_POOL = {
-    'A': 9, 
-    'B': 2, 
-    'C': 2, 
-    'D': 4, 
-    'E': 12, 
-    'F': 2, 
-    'G': 3, 
-    'H': 2, 
-    'I': 9, 
-    'J': 1, 
-    'K': 1, 
-    'L': 4, 
-    'M': 2, 
-    'N': 6, 
-    'O': 8, 
-    'P': 2, 
-    'Q': 1, 
-    'R': 6, 
-    'S': 4, 
-    'T': 6, 
-    'U': 4, 
-    'V': 2, 
-    'W': 2, 
-    'X': 1, 
-    'Y': 2, 
-    'Z': 1
-    }
+#Define the frequencies of each letter
+LETTER_POOL = {
+'A': 9, 
+'B': 2, 
+'C': 2, 
+'D': 4, 
+'E': 12, 
+'F': 2, 
+'G': 3, 
+'H': 2, 
+'I': 9, 
+'J': 1, 
+'K': 1, 
+'L': 4, 
+'M': 2, 
+'N': 6, 
+'O': 8, 
+'P': 2, 
+'Q': 1, 
+'R': 6, 
+'S': 4, 
+'T': 6, 
+'U': 4, 
+'V': 2, 
+'W': 2, 
+'X': 1, 
+'Y': 2, 
+'Z': 1
+}
 
+def make_letter_list(dict):
     #Turn dict into list where each letter appears a number of times
     #equal to its frequency
     letter_list = []
-    for letter, count in LETTER_POOL.items():
+    for letter, count in dict.items():
         for _ in range(count):
             letter_list.append(letter)
 
@@ -42,7 +42,7 @@ def make_letter_list():
 
 
 def draw_letters():
-    letter_list = make_letter_list()
+    letter_list = make_letter_list(LETTER_POOL)
 
     #Create an empty hand, then add 10 random letters from letter list.
     #Letters are removed from list as they are added to hand.
