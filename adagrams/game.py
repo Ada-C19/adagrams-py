@@ -167,7 +167,7 @@ def get_highest_word_score(word_list):
 
     min_length = len(ties[0][0])
     # Eliminate ties if they do not have fewest letters
-    for w_s in ties:
+    for w_s in list(ties):
         word = w_s[0]
         if len(word) != min_length:
             ties.remove(w_s)
@@ -183,6 +183,7 @@ def get_highest_word_score(word_list):
     # Loop through each word_score tuple in ties
     for w_s in ties[1:]:
         word = w_s[0]
+
         # Replace min_idx and first_w_s if index is smaller than previous min_idx
         if word_list.index(word) < min_idx:
             min_idx = word_list.index(word)
