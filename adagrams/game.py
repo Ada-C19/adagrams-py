@@ -80,6 +80,7 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     letter_bank_copy = []
+    word = word.upper()
     for letter in letter_bank:
         letter_bank_copy.append(letter)
 
