@@ -85,7 +85,15 @@ def uses_available_letters(word, letter_bank):
     return result
 
 def score_word(word):
-    pass
+    score = 0
+    VALUE_1 = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
+    VALUE_2 = ["D", "G"]
+    VALUE_3 = ["B", "C", "M", "P"]
+    VALUE_4 = ["F", "H", "V", "W", "Y"]
+    VALUE_5 = ["K"]
+    VALUE_8 = ["J", "X"]
+    VALUE_10 = ["Q", "Z"]
+
 
 def get_highest_word_score(word_list):
     pass
