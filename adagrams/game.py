@@ -22,6 +22,7 @@
 
 def score_word(word):
     score = 0
+    uniform_case_word = word.upper()
     one_pointers = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
     two_pointers = ["D", "G"]
     three_pointers = ["B", "C", "M", "P"]
@@ -30,7 +31,7 @@ def score_word(word):
     eight_pointers = ["J", "X"]
     ten_pointers = ["Q", "Z"]
 
-    for letter in word:
+    for letter in uniform_case_word:
         if letter in one_pointers:
             score += 1
         if letter in two_pointers:
@@ -45,6 +46,12 @@ def score_word(word):
             score += 8
         if letter in ten_pointers:
             score += 10
+        
+    if len(word) >= 7:
+            score += 8
+
+
+
     return score 
 
 def get_highest_word_score(word_list):
