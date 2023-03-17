@@ -36,13 +36,14 @@ def draw_letters():
     for key in LETTER_POOL.keys():
         letter_pool.append(key)
 
+    # print(f"letter_pool is {letter_pool}")
     # random.randint() as to append a random index from letter_pool list
     for i in range(10):
-        hand.append(letter_pool[random.randint(0, 26)])
+        hand.append(letter_pool[random.randint(0, 25)])
     
     return hand
     
-
+draw_letters()
 
 def uses_available_letters(word, letter_bank):
     pass
