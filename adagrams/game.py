@@ -15,20 +15,21 @@ def draw_letters():
    return letter_hand
    
 def uses_available_letters(word, letter_bank):
-   
+   flag = True
+   letter_bank_copy = letter_bank.copy()
    
    for char in word:
        
-       if char.upper() in letter_bank:
+       if char.upper() in letter_bank_copy:
            
-           letter_bank.remove(char.upper())
-           return True
+           letter_bank_copy.pop(letter_bank_copy.index(char.upper()))
+           
        else:
-           return False
+           flag = False
        
 
 
-   return Flag
+   return flag
            
            
 def score_word(word):
