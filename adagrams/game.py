@@ -19,7 +19,33 @@ def draw_letters():
     return letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    # for i in word:
+    #     if i not in letter_bank:
+    #         return False
+    #     else:
+    #         # letter_bank.remove(i)
+    #         return True
+    word_ =  []
+    letter_bank_ = []
+
+    for i in word:
+        word_.append(i)
+    for i in letter_bank:
+        letter_bank_.append(i)
+
+    counter = 0
+    for i in word_:
+        for j in letter_bank_:
+            if i == j:
+                counter += 1
+                letter_bank_.remove(j)
+    if counter == len(word):
+        return True
+    else:
+        return False
+        
+            
+
 
 def score_word(word):
     pass
