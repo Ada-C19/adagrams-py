@@ -61,9 +61,12 @@ def test_letter_not_selected_too_many_times():
                 letter_freq[letter] += 1
             else:
                 letter_freq[letter] = 1
-        
+        # print("letters: ", letters)
+        # print("letter freq: ", letter_freq)
         # Assert
         for letter in letters:
+            # print("letter freq: ", letter_freq[letter])
+            # print("letter pool: ", LETTER_POOL[letter])
             assert letter_freq[letter] <= LETTER_POOL[letter]
 
 def test_draw_letters_returns_different_hands():
