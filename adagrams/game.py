@@ -48,7 +48,24 @@ def draw_letters():
     return hand
 
 def uses_available_letters(word, letter_bank):
-    
+    word = word.upper() # Avoid errors due to case sensitivity
+    temp_letter_bank = letter_bank.copy() # Copy of letter_bank to avoid changing the original list
+
+    # Check availability of each letter in word
+    for i in range(len(word)):
+        user_letter = word[i]
+        available = False
+
+        for letter in temp_letter_bank:
+            if user_letter == letter:
+                available = True
+                temp_letter_bank.remove(letter) # Remove the letter from temp_letter_bank if it's already used in word
+        
+        # Return False if a letter in word not in temp_letter_bank
+        if available == False:
+            return False
+
+    return True
 
 def score_word(word):
     pass
