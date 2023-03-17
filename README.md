@@ -171,7 +171,7 @@ If, after you have taken some time to think through the problem and would like d
 Your first task is to build a hand of 10 letters for the user. To do so, implement the function `draw_letters` in `game.py`. This method should have the following properties:
 
 - No parameters
-- Returns an array of ten strings
+- Returns an list of ten strings
   - Each string should contain exactly one letter
   - These represent the hand of letters that the player has drawn
 - The letters should be randomly drawn from a pool of letters
