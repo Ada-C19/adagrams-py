@@ -40,29 +40,50 @@ def draw_letters():
     return hand[:10]
 
 def uses_available_letters(word, letter_bank):
-    check_letters = []
+    check_letters = {}
+    word1 = word.upper()
 
-# check if an input from user found in hand
-    for letter in word:
-        # return false if letter not in letter bank used
-        if letter not in letter_bank:
+    for letter in letter_bank:
+        if letter not in check_letters:
+            check_letters[letter] = 1
+        else:
+            check_letters[letter] +=1 
+
+    # if letter in bank then add by 1
+
+    # check if an input from user found in hand
+    for char in word1:
+    # # return false if letter not in letter bank used
+        if char not in letter_bank or check_letters[char] == 0:
             return False
-        # return true if every letter in input in letter bank
-        elif letter in word in letter_bank:
-            check_letters.append(letter)
-    if letter in check_letters > letter in letter_bank:
-        return False
-    return True
+        else:
+            check_letters[char] -= 1
             
 
+    return True
+    # return true if every letter in input in letter bank
+    # elif letter in word in letter_bank:
+    #     check_letters[letter] -= 1
+    
+    
 
 #check if input is some or alll of hand
 # return false if input has too much of a letter compared to letter_bank
-    pass
+
 
 
 def score_word(word):
-    pass
-
+    # passes in a string
+    # returns an int representing total score
+    # if len of word 7-10 than +8 points
+# |Letter                        | Value|
+# |:----------------------------:|:----:|
+# |A, E, I, O, U, L, N, R, S, T  |   1  |
+# |D, G                          |   2  |
+# |B, C, M, P                    |   3  |
+# |F, H, V, W, Y                 |   4  |
+# |K                             |   5  |
+# |J, X                          |   8  |
+# |Q, Z                          |   10 |
 def get_highest_word_score(word_list):
     pass
