@@ -1,6 +1,13 @@
+import string
+import random
+
 def draw_letters():
-    #pass
-    return ["a", "b", "c", "d", "a", "b", "c", "d", "g", "h"]
+    hand = []
+    random_letter = ""
+    for i in range(10):
+        random_letter = random.choice(string.ascii_letters).upper()
+        hand.append(random_letter)
+    return hand
 
 def uses_available_letters(word, letter_bank):
     pass
