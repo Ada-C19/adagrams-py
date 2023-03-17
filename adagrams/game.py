@@ -30,6 +30,15 @@ LETTER_POOL = {
 }
 ONLY_LETTERS = [letter for letter in LETTER_POOL.keys()]
 ONLY_WEIGHTS = [num for num in LETTER_POOL.values()]
+LETTER_VALUE = {
+    1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+    2: ['D', 'G'],
+    3: ['B', 'C', 'M', 'P'],
+    4: ['F', 'H', 'V', 'W', 'Y'],
+    5: ['K'],
+    8: ['J', 'X'],
+    10: ['Q', 'Z'],
+}
 
 
 def draw_letters():
@@ -52,7 +61,14 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    total_score = 0
+    for element in word.upper():
+        for value, letters in LETTER_VALUE.items():
+            if element in letters:
+                total_score += value
+    if len(word) > 6 and len(word) < 11:
+        total_score += 8
+    return total_score
 
 def get_highest_word_score(word_list):
     pass
