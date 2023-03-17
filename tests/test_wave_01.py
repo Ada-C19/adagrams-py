@@ -31,7 +31,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
-@pytest.mark.skip(reason="no way of currently testing this")
+#@pytest.mark.skip(reason="no way of currently testing this")
 def test_draw_letters_draws_ten():
     # Arrange/Act
     letters = draw_letters()

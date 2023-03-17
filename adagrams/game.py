@@ -30,7 +30,6 @@ def draw_letters():
         'Z': 1
     }
     final_letter_choice = []
-    print(letter_pool)
     for number in range(0,10):
         while True:
             chosen_letter = random.choice(list(letter_pool.keys()))
@@ -46,9 +45,8 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     letter_bank_new = letter_bank.copy()
     for characters in word:
-        chosen_character = characters.upper()
         try:
-            letter_bank_new.remove(chosen_character)
+            letter_bank_new.remove(characters.upper())
         except:
             return False
     return True
