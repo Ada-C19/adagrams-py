@@ -40,6 +40,7 @@ def frequency_maker(list):
     pass
 
 def uses_available_letters(word, letter_bank):
+    word = word.upper()
     letter_frequency = {}
     for letter in word:
         if letter in letter_frequency.keys():
@@ -54,7 +55,7 @@ def uses_available_letters(word, letter_bank):
         if character in letter_frequency.keys():
             if letter_frequency[character] != letter_bank.count(character):
                 return False
-        
+    return True
         
 
 
