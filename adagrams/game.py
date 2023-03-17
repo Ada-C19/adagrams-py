@@ -96,6 +96,8 @@ def score_word(word):
     word = word.upper()
     for letter in word:
         score += LETTER_INFO[letter]['value']
+    if 7 <= len(word) <= 10:
+        score += 8
     return score
 
 
