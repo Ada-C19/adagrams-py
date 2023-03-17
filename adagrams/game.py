@@ -36,37 +36,29 @@ def draw_letters():
     arr_of_str = []
     letters = ['A', 'B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
     probability = []
+    counter = 0
     for key in LETTER_POOL:
         p = LETTER_POOL[key]
         probability.append(p)
     probs = np.array(probability)
     probs_scaled = probs / probs.sum()
-    arr_of_str.append(np.random.choice(letters, 10, p=probs_scaled))
+    while counter < 10:
+        random_letter = str(np.random.choice(letters, 1, p=probs_scaled)[0])
+        if str(random_letter) in arr_of_str:
+            continue
+        else:
+            arr_of_str.append(random_letter)
+            counter += 1
+    print(arr_of_str)
 
-    result = []
-    str_arr = arr_of_str[0]
-    for char in str_arr:
-        result.append(str(char))
-    return result
-
-    # for i in range(10):
-# The letters should be randomly drawn from a pool of letters: random.
-# This letter pool should reflect the distribution of letters as described in the table below
-# There are only 2 available C letters, so draw_letters cannot ever return more than 2 Cs
-# Since there are 12 Es but only 1 Z, it should be 12 times as likely for the user to draw an E as a Z
-# Invoking this function should not change the pool of letters
-        # random_letter = LETTER_POOL
-        # arr_of_str.append(random_letter)
+    # result = []
+    # str_arr = arr_of_str
+    # for char in str_arr:
+    #     result.append(str(char))
+    return arr_of_str
 
 
-
-    # Returns an array of ten strings
-
-
-
-
-
-
+# draw_letters()
 
 
     
