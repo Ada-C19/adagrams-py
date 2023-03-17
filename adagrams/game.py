@@ -1,5 +1,12 @@
+LENGTH_OF_HAND = 10
+
 def draw_letters():
-    pass
+    hand = []
+
+    while len(hand) < LENGTH_OF_HAND:
+        hand.append("A")
+
+    return hand
 
 def uses_available_letters(word, letter_bank):
     pass
