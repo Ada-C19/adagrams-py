@@ -40,14 +40,106 @@ def draw_letters():
         letter_pool_list.remove(random_tile)
         letter_bank.append(random_tile)
     
-    
     return letter_bank
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_casefolded = []
+    used_letters = []
+
+    for letter in letter_bank:
+        letter_bank_casefolded.append(letter.casefold())
+    
+    for index in range(0, len(word)):
+        current_letter = word[index].casefold()
+        if current_letter in letter_bank_casefolded and current_letter not in used_letters:
+            used_letters.append(current_letter)
+        else:
+            return False
+    
+    return True
 
 def score_word(word):
-    pass
+    point_values = {
+    'A': 1, 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
+    }
 
+    score = 0
+    if len(word) >= 7 and len(word) <= 10:
+        score += 8
+    for letter in word:
+        score += point_values[letter.upper()]
+    
+    return score
+    
+        
 def get_highest_word_score(word_list):
-    pass
+    scores = {}
+    potential_winning_word = ""
+    second_potential_winning_word = ""
+    potential_highest_score = 0
+    second_potential_highest_score = 0
+
+    for word in word_list:
+        scores[word] = score_word(word)
+
+    potential_winning_word, potential_highest_score = find_top_word_and_score(scores)
+        
+    scores.pop(potential_winning_word)
+
+    second_potential_winning_word, second_potential_winning_score = find_top_word_and_score(scores)
+
+    top_two_words = {
+        potential_winning_word : potential_highest_score,
+        second_potential_winning_word : second_potential_winning_score
+    }
+
+    winning_word_and_score = find_top_word_and_score(top_two_words)
+
+    return winning_word_and_score
+
+def find_top_word_and_score(scores):
+    top_word = ''
+    top_score = 0
+
+    for word, score in scores.items():
+        if score > top_score:
+            top_word = word
+            top_score = score
+        elif score == top_score:
+            if len(word) == 10 and len(top_word) != 10:
+                top_word = word
+                top_score = score
+            elif len(top_word) == 10:
+                continue
+            elif len(word) < len(top_word):
+                top_word = word
+                top_score = score
+    
+    return top_word, top_score
+
+    
