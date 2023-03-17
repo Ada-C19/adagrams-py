@@ -1,35 +1,6 @@
 import random
 
-POOL_OF_LETTERS = (
-    'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
-    'B', 'B',
-    'C', 'C',
-    'D', 'D',
-    'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E',
-    'F', 'F',
-    'G', 'G', 'G',
-    'H', 'H',
-    'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I',
-    'J',
-    'K',
-    'L', 'L', 'L', 'L',
-    'M', 'M',
-    'N', 'N', 'N', 'N', 'N', 'N',
-    'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O',
-    'P', 'P',
-    'Q',
-    'R', 'R', 'R', 'R', 'R', 'R',
-    'S', 'S', 'S', 'S',
-    'T', 'T', 'T', 'T', 'T', 'T',
-    'U', 'U', 'U', 'U',
-    'V', 'V',
-    'W', 'W',
-    'X',
-    'Y', 'Y',
-    'Z'
-)
-
-LETTER_INFO = {
+LETTER_TILES = {
     'A': {'frequency': 9, 'value': 1},
     'B': {'frequency': 2, 'value': 3},
     'C': {'frequency': 2, 'value': 3}, 
@@ -61,18 +32,24 @@ LETTER_INFO = {
 TOTAL_TILES_PER_HAND = 10
 
 def draw_letters():
+    letter_bank = []
+
+    for letter in LETTER_TILES:
+        for i in range(LETTER_TILES[letter]['frequency']):
+            letter_bank.append(letter)
+
     player_hand = []
 
     while len(player_hand) < TOTAL_TILES_PER_HAND:
-        i = random.randint(0, len(POOL_OF_LETTERS)-1)
-        current_letter = POOL_OF_LETTERS[i]
+        i = random.randint(0, len(letter_bank)-1)
+        current_letter = letter_bank[i]
         letter_occurences = 0
         
         if current_letter in player_hand:
             for current_letter in player_hand:
                 letter_occurences += 1
         
-        if letter_occurences >= LETTER_INFO[current_letter]['frequency']:
+        if letter_occurences >= LETTER_TILES[current_letter]['frequency']:
                 continue
 
         player_hand.append(current_letter)
@@ -96,7 +73,7 @@ def score_word(word):
     score = 0
     word = word.upper()
     for letter in word:
-        score += LETTER_INFO[letter]['value']
+        score += LETTER_TILES[letter]['value']
     if 7 <= len(word) <= TOTAL_TILES_PER_HAND:
         score += 8
     return score
