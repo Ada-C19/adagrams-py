@@ -38,10 +38,39 @@ def draw_letters():
     return hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    # Iterate through each letter in the word
+    for letter in word:
+        # Check if letter is present in letter_bank
+        if letter not in letter_bank:
+            # Return False if letter is not present
+            return False
+        else:
+            # Decrement the count of letter_bank for each letter in the word
+            letter_bank.remove(letter)
+    # Return True if all the letters in the word are present in the letter_bank and have the correct quantity
+    return True
 
 def score_word(word):
-    pass
+    score = 0
+    for letter in word:
+        if letter in "AEIOULNRST":
+            score += 1
+        elif letter in "DG":
+            score += 2
+        elif letter in "BCMP":
+            score += 3
+        elif letter in "FHVWY":
+            score += 4
+        elif letter == "K":
+            score += 5
+        elif letter in "JX":
+            score += 8
+        elif letter in "QZ":
+            score += 10
+        if len(word) >= 7 and len(word) <= 10:
+            score += 8
+
+    return score
 
 def get_highest_word_score(word_list):
     pass
