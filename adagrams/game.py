@@ -135,63 +135,70 @@ def get_highest_word_score(word_list):
     In case of a tie, prioritize the word with 10 letters, 
     then the word with the fewest letters, then the first element in the list
     """
+    
+    def find_lowest_indexed(word_list, ties_list):
+        """
+        Helper function.
+        Given a word list and a list of (word, score) with tied scores.
+        Returns the (word, score) of the word that appears first in the word_list
+        """
+        first_word, first_score = ties_list[0]
+        min_idx = word_list.index(first_word)
+        for word, score in ties_list:
+            new_idx = word_list.index(word)
+            if new_idx < min_idx:
+                min_idx = new_idx
+                first_word, first_score = word, score
+        return first_word, first_score
+        
+    # word_scores = [(word, score_word(word)) for word in word_list]
     word_scores = []
-
     for word in word_list:
         score = score_word(word)
         word_scores.append((word, score))
-
 
     # Sort list of word_scores in descending order of scores
     word_scores.sort(reverse=True, key=lambda x:x[1])
 
     max_score = word_scores[0][1]
-    # List of tied scores
+    # List of words with tied scores
     ties = [word_scores[0]]
 
-    for w_s in word_scores[1:]:
-        if w_s[1] == max_score:
-            ties.append(w_s)
+    for word, score in word_scores[1:]:
+        if score == max_score:
+            ties.append((word, score))
     
     # If no ties, return word with max_score
     if len(ties) == 1:
         return ties[0]
     
+
     # Sort list of ties in ascending order of word length
     ties.sort(key=lambda x: len(x[0]))
 
-    # If one of the ties has word length 10, that is winner
+    # If one of the ties has word length 10, remove all other words that have fewer letters
     if len(ties[-1][0]) == 10:
-        return ties[-1]
-    
+        for word, score in list(ties):
+            if len(word) != 10:
+                ties.remove((word, score))
+        # If only one of the words has length 10, that is the winner
+        if len(ties) == 1:
+            return ties[0]
+        # If multiple words have length 10, find the first one that shows up in word_list
+        else:
+            winner = find_lowest_indexed(word_list, ties)
+    # Else if none of the ties has word length 10, look for word with fewest letters
+    else:
+        min_length = len(ties[0][0])
+        # Modify ties so that it only contains words with fewest letters
+        ties = [(word, score) for word, score in ties if len(word) == min_length]
+        if len(ties) == 1:
+            return ties[0]
+        else:
+            winner = find_lowest_indexed(word_list, ties)
 
-    min_length = len(ties[0][0])
-    # Eliminate ties if they do not have fewest letters
-    for w_s in list(ties):
-        word = w_s[0]
-        if len(word) != min_length:
-            ties.remove(w_s)
-    
-    # If no more ties, return word with fewest letters
-    if len(ties) == 1:
-        return ties[0]
-    
-    # Initialize baseline word_list index for later comparison
-    min_idx = word_list.index(ties[0][0])
-    first_w_s = ties[0]
+    return winner
 
-    # Loop through each word_score tuple in ties
-    for w_s in ties[1:]:
-        word = w_s[0]
-
-        # Replace min_idx and first_w_s if index is smaller than previous min_idx
-        if word_list.index(word) < min_idx:
-            min_idx = word_list.index(word)
-            first_w_s = w_s
-    
-    return first_w_s
-
-    
         
     
 
