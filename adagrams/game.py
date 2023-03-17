@@ -102,4 +102,50 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    word_attributes = []
+    word_scores = []
+    winning_word = ""
+    winning_score = 0
+    
+    for word in word_list:
+        word_attributes.append({"word":word,"score":score_word(word),"length":len(word)})
+        word_scores.append(score_word(word))
+
+    
+
+    high_score = max(word_scores)
+
+    words_with_high_score = []
+    
+    
+    #remove any entries that don't have the high score 
+    for i in range(0,len(word_attributes)):
+        if word_attributes[i]["score"] == high_score:
+            words_with_high_score.append(word_attributes[i])
+    
+ 
+    
+    #no tie
+    if len(words_with_high_score) == 1:
+        winning_word = words_with_high_score[0]["word"]
+        winning_score = words_with_high_score[0]["score"]
+    #tie 
+    elif len(words_with_high_score) > 1:
+        word_lengths = []
+        for i in range(0,len(words_with_high_score)):
+            word_lengths.append(words_with_high_score[i]["length"])
+        
+        max_length = max(word_lengths)
+        min_length = min(word_lengths)
+        print(max_length)
+        print(min_length)
+
+        if max_length == 10:
+            index = word_lengths.index(10)
+        else:
+            index = word_lengths.index(min_length)
+       
+        winning_word = words_with_high_score[index]["word"]
+        winning_score = words_with_high_score[index]["score"]
+
+    return winning_word, winning_score

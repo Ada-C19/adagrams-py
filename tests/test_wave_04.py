@@ -44,7 +44,7 @@ def test_get_highest_word_tie_prefers_shorter_word_unsorted_list():
 
     # Act
     best_word = get_highest_word_score(words)
-
+    
     # Assert
     assert score_word(words[0]) == 12
     assert score_word(words[1]) == 12
