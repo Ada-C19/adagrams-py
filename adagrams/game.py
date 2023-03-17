@@ -104,6 +104,7 @@ def score_word(word):
 def get_highest_word_score(word_list):
     all_scores = {}
     best_word = []
+    best_score = 0
 
     for word in word_list:
         word_score = 0
@@ -114,7 +115,6 @@ def get_highest_word_score(word_list):
         all_scores[word] = word_score
 
     for word, score in all_scores.items():
-        best_score = 0
         if score > best_score:
             best_score = score
             if len(best_word) > 0:
