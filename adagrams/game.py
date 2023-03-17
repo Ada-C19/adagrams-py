@@ -92,7 +92,11 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    score = 0
+    for letter in word:
+        score += LETTER_INFO[letter]['value']
+    return score
+
 
 def get_highest_word_score(word_list):
     pass
