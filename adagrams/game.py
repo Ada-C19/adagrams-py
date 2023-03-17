@@ -1,5 +1,9 @@
-def draw_letters():
-    pass
+import random
+
+def draw_letters(LETTER_POOL):
+    letter_list = list(LETTER_POOL.key())
+    random_letter = random.choice(letter_list)
+    print(random_letter)
 
 def uses_available_letters(word, letter_bank):
     pass
