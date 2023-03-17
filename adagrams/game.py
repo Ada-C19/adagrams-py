@@ -38,7 +38,17 @@ def uses_available_letters(word, letter_bank):
     return True 
 
 def score_word(word):
-    pass
+
+    #input: word-string of cheracters
+    #output: int with points scored  
+    value_of_letters_dic={1:['A','E','I','O','U','L','N','R','S','T'],2:['D','G'],3:['B','C','M','P'],4:['F','H','V','W','Y'],5:['K'],8:['J','X'],10:['Q','Z']}
+    total_score = 0 
+    for letter in word:
+        for score in value_of_letters_dic.keys():
+                if letter.upper() in value_of_letters_dic[score]:
+                    total_score+=score
+                    break
+    return total_score
 
 def get_highest_word_score(word_list):
     pass
