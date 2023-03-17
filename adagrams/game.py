@@ -73,13 +73,16 @@ def draw_letters():
                 occurences += 1
             if LETTER_FREQUENCY[current_letter] <= occurences:
                 continue
-            
+
         hand.append(current_letter)
 
     return hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    for letter in word:
+        if letter not in letter_bank:
+            return False
+    return True
 
 def score_word(word):
     pass
