@@ -1,32 +1,32 @@
 import random
 
 LETTER_BANK = (
-    "A", "A", "A", "A", "A", "A", "A", "A", "A",
-    "B", "B",
-    "C", "C",
-    "D", "D",
-    "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E",
-    "F", "F",
-    "G", "G", "G",
-    "H", "H",
-    "I", "I", "I", "I", "I", "I", "I", "I", "I",
-    "J",
-    "K",
-    "L", "L", "L", "L",
-    "M", "M",
-    "N", "N", "N", "N", "N", "N",
-    "O", "O", "O", "O", "O", "O", "O", "O",
-    "P", "P",
-    "Q",
-    "R", "R", "R", "R", "R", "R",
-    "S", "S", "S", "S",
-    "T", "T", "T", "T", "T", "T",
-    "U", "U", "U", "U",
-    "V", "V",
-    "W", "W",
-    "X",
-    "Y", "Y",
-    "Z"
+    'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
+    'B', 'B',
+    'C', 'C',
+    'D', 'D',
+    'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E',
+    'F', 'F',
+    'G', 'G', 'G',
+    'H', 'H',
+    'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I',
+    'J',
+    'K',
+    'L', 'L', 'L', 'L',
+    'M', 'M',
+    'N', 'N', 'N', 'N', 'N', 'N',
+    'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O',
+    'P', 'P',
+    'Q',
+    'R', 'R', 'R', 'R', 'R', 'R',
+    'S', 'S', 'S', 'S',
+    'T', 'T', 'T', 'T', 'T', 'T',
+    'U', 'U', 'U', 'U',
+    'V', 'V',
+    'W', 'W',
+    'X',
+    'Y', 'Y',
+    'Z'
 )
 
 LETTER_INFO = {
@@ -102,4 +102,24 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    all_scores = {}
+    best_word = []
+
+    for word in word_list:
+        word_score = 0
+        for letter in word:
+            word_score += LETTER_INFO[letter]['value']
+        if 7 <= len(word) <= 10:
+            word_score += 8
+        all_scores[word] = word_score
+
+    for word, score in all_scores.items():
+        best_score = 0
+        if score > best_score:
+            best_score = score
+            if len(best_word) > 0:
+                del best_word[-2:]
+            best_word.append(word)
+            best_word.append(score)
+
+    return best_word
