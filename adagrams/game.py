@@ -37,7 +37,9 @@ def draw_letters():
     return random_letter_set
 
 def uses_available_letters(word, letter_bank):
-    pass
+    for letter in word:
+        if letter in letter_bank:
+            return True
 
 def score_word(word):
     pass
