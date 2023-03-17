@@ -31,24 +31,15 @@ def draw_letters():
     'Z': 1
 }
     available_letters = []
-    letters =  []
-    letter_freq = {}
-
-    for letter, number in LETTER_POOL.items():
-        available_letters.append(letter)
 
 
-    while len(letters) <= 9:
-        random_letter = random.choice(available_letters)
-        print(random_letter)
-        letters.append(random_letter)
-        print(letters)
+    for letter in LETTER_POOL.keys():
+        for num in range(LETTER_POOL[letter]):
+            available_letters.append(letter)
 
-    return letters
+    chosen_letters = random.sample(available_letters,k=10)  
 
-
-
-
+    return chosen_letters
 
 
 
