@@ -31,10 +31,12 @@ LETTER_POOL = {
 
 def draw_letters():
     get_letters = []
-    for letters in range(10):
+    for letter, number in LETTER_POOL.items():
         random_letter = random.choice(list(LETTER_POOL.keys()))
         get_letters.append(random_letter)
     return get_letters
+    #  create a list with letters available
+    # from that list get random letters til you have 10
 
 def uses_available_letters(word, letter_bank):
     pass
