@@ -15,7 +15,7 @@ LETTER_VALUES = {
 }
 
 def draw_letters():
-    
+    pass
 
 def uses_available_letters(word, letter_bank):
     pass

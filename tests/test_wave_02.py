@@ -2,6 +2,7 @@ import pytest
 
 from adagrams.game import uses_available_letters
 
+
 def test_uses_available_letters_true_word_in_letter_bank():
     # Arrange
     letters = ["D", "O", "G", "X", "X", "X", "X", "X", "X", "X"]
