@@ -67,7 +67,8 @@ def uses_available_letters(word, letter_bank):
     return True
 
     # Check how many times a letter occurs in the user input word and compare that against the letter_bank
-    #if count_letter_frequency(word) 
+    for letter in word:
+        count_letter_frequency(word)
 
 
 def score_word(word):
