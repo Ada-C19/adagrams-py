@@ -30,20 +30,41 @@ LETTER_POOL = {
 }
 
 def draw_letters():
-    letter_pool = []
+    letter_pool_list = []
+    letter_pool_dict = {}
     hand = []
+    i = 0
+
     # append LETTER_POOL keys into a list
     for key in LETTER_POOL.keys():
-        letter_pool.append(key)
-
-    # print(f"letter_pool is {letter_pool}")
-    # random.randint() as to append a random index from letter_pool list
-    for i in range(10):
-        hand.append(letter_pool[random.randint(0, 25)])
+        letter_pool_list.append(key)
     
+    # copy LETTER_POOL dict
+    for key, value in LETTER_POOL.items():
+        letter_pool_dict[key] = value
+
+    # debug info
+    # print(f"letter_pool is {letter_pool}")
+
+    # random.randint() as to append a random index from letter_pool list
+    while i < 10:
+        letter = letter_pool_list[random.randint(0, 25)] 
+
+        #check if letter is available in letter_pool_dict
+
+        #debug info
+        # print(f"letter to check is {letter}")
+        # print(f"letter_pool_dict[letter] is {letter_pool_dict[letter]}")
+        if letter_pool_dict[letter] > 0:
+            hand.append(letter)
+            print(f"hand is {hand}")
+            letter_pool_dict[letter] -= 1
+            i += 1
+
     return hand
     
-draw_letters()
+hand = draw_letters()
+print(hand)
 
 def uses_available_letters(word, letter_bank):
     pass
