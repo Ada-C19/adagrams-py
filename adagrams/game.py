@@ -41,7 +41,15 @@ def draw_letters():
     return ten_letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_count = {}
+    for letter in letter_bank:
+        letter_bank_count[letter] = letter_bank.count(letter)
+    for letter in word.upper():
+        if letter in letter_bank and letter_bank_count[letter] > 0:
+            letter_bank_count[letter] -= 1
+        else:
+            return False
+    return True
 
 def score_word(word):
     pass
