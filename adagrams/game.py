@@ -43,8 +43,17 @@ def draw_letters():
     
 
 def uses_available_letters(word, letter_bank):
-    pass
+    
+    letters = ["A", "X", "X", "X", "X", "X", "X", "X", "X", "X"]
+    word = "AAA"
+    # Iterate through the letters in the word to check if they're in the letter bank
+    for letter in word:
+        if letter not in letter_bank:
+            return False
+    return True
 
+    # Check how many times a letter occurs in the user input word and compare that against the letter_bank, set up helper function
+    #
 def score_word(word):
     pass
 
