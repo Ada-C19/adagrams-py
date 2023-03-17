@@ -53,7 +53,30 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    word = word.upper()
+    
+    letter_values = {
+        'AEIOULNRST': 1,
+        'DG': 2,
+        'BCMP': 3,
+        'FHVWY': 4,
+        'K': 5,
+        'JX': 8,
+        'QZ': 10
+    }
+    
+    score = 0
+    if word:
+        if len(word) >= 7:
+            score += 8
+        for letter in word:
+            for tier in letter_values:
+                if letter in tier:
+                    score += letter_values[tier]
+        return score
+    return score
+
+
 
 def get_highest_word_score(word_list):
     pass
