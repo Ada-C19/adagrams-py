@@ -48,28 +48,20 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    word_list = []
-    for letter in word:
-        word_list.append(letter.upper())
-
     letter_list = []
     for letters in letter_bank:
         letter_list.append(letters)
 
-
-    for letter in word_list:
-        if letter in letter_list:
-            letter_list.remove(letter)
+    for letter in word:
+        upper_letter = letter.upper()
+        if upper_letter in letter_list:
+            letter_list.remove(upper_letter)
         else:
             return False
     return True
 
 def score_word(word):
-    # word is a string of characters
-    # return integer represening the number of points
-    # each letter within word has a point value. The number of points 
-    # is summed up to represent the total score of word
-    # ***if len of word is 7, 8, 9, or 10 then word gets additional 8 points
+
     score_chart = {
         1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
         2: ["D", "G"],
@@ -89,14 +81,14 @@ def score_word(word):
     
     if len(word) in range(7,11):
         score += 8
-    # print(score)
+
     return score
 
 # def get_highest_word_score(word_list):
-#     # word list is a list of strings
-#     # must return a tuple that represents the data of winning word
-#     # and its score: tuple should = ("word", score)
-#     # if there is a tie, prefer word with fewest letters 
-#     # unless one word has 10 letters.
-#     # if there are multiple words that are same score
-#     # and same length, pick the first one in supplied list
+    # word list is a list of strings
+    # must return a tuple that represents the data of winning word
+    # and its score: tuple should = ("word", score)
+    # if there is a tie, prefer word with fewest letters 
+    # unless one word has 10 letters.
+    # if there are multiple words that are same score
+    # and same length, pick the first one in supplied list
