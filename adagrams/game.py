@@ -87,6 +87,51 @@ def score_word(word):
 # - Each letter within `word` has a point value. The number of points of each letter is summed up to represent the total score of `word`
 # - Each letter's point value is described in the table below
 # - If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
+# |Letter                        | Value|
+# |:----------------------------:|:----:|
+# |A, E, I, O, U, L, N, R, S, T  |   1  |
+# |D, G                          |   2  |
+# |B, C, M, P                    |   3  |
+# |F, H, V, W, Y                 |   4  |
+# |K                             |   5  |
+# |J, X                          |   8  |
+# |Q, Z                          |   10 |
+ 
+    point_system ={
+    "A": 1, 
+    "E": 1,
+    "I" : 1, 
+    "O": 1, 
+    "U" :1,
+    "L" : 1,
+    "N": 1,
+    "R" : 1,
+    "S" : 1,
+    "T" : 1,
+    "D": 2, 
+    "G" : 2,
+    "B": 3, 
+    "C": 3, 
+    "M": 3, 
+    "P":3,
+    "F": 4, "H": 4, "V": 4, "W":4, "Y": 4,
+    "K": 5,
+    "J": 8, "X":8 ,
+    "Q": 10,"Z": 10
+    }
+# FUNCTION BODY
+    word_capital = word.upper()
+    points = 0
+    for letter in word_capital:
+        points += point_system.get(letter)
+    if len(word_capital) in [7,8,9,10]:
+        points += 8
+    return points
+
+
+
+
+
 
 
 
