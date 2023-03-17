@@ -71,4 +71,33 @@ def score_word(word):
     return total_score
 
 def get_highest_word_score(word_list):
-    pass
+    words_and_scores = {}
+    for word in word_list:
+        words_and_scores[word] = score_word(word)
+
+    print(words_and_scores)
+    
+    highest_score = 0
+    highest_scoring_word = []
+    for item in words_and_scores:
+        if words_and_scores[item] > highest_score:
+            highest_score = words_and_scores[item]
+            highest_scoring_word.clear()
+            highest_scoring_word.append(item)
+        elif words_and_scores[item] == highest_score:
+            highest_scoring_word.append(item)
+        else:
+            continue
+
+    print(highest_scoring_word)
+        
+    if len(highest_scoring_word) > 1:
+        winning_word = ""
+        for item in highest_scoring_word:
+            if len(item) == 10:
+                winning_word = item
+                return item, highest_score    
+        if not winning_word:
+            return min((word for word in highest_scoring_word if word), key=len), highest_score
+    else:
+        return highest_scoring_word[0], highest_score
