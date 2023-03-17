@@ -93,6 +93,7 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
     score = 0
+    word = word.upper()
     for letter in word:
         score += LETTER_INFO[letter]['value']
     return score
