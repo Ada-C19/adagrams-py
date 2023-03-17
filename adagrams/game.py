@@ -52,10 +52,20 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     #ensures user's word only uses letters from drawn_hand
     #loops through each character in the word and checks if it is in drawn_hand
-    #for char in word:
-    #   if char not in letter_bank:
+    
+    #also need to return false if a character is used too many times...
+    #make a dictionary for drawn_hand that has letter and frequency to compare? 
+    #use a new data type like set or tuple? 
+    valid_word = False
+    valid_frequency = False
+    for char in word:
+        if char not in letter_bank:
+            valid_word = False
+            break
+        elif char in letter_bank:
+            valid_word = True
 
-    pass
+    return valid_word
 
 def score_word(word):
     pass
