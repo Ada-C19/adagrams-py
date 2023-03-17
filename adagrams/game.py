@@ -18,13 +18,24 @@ def make_list():
 
 def draw_letters():
     #Inputs:List with letter pool
-    #Outputs:
+    #Outputs: Hand of 10 letters randomly choosen 
     letter_pool= make_list()
     letter_choices=random.sample(letter_pool,k=10)
     return letter_choices
 
 def uses_available_letters(word, letter_bank):
-    pass
+    #Inputs:Word-string with letters  letter_bank- array of letters
+    #Outputs:Boolean stating if the letters used for the word are contained in list letter bank
+
+    available_letters= letter_bank.copy()
+    for letter in word.upper(): 
+        print (letter)
+        if letter in available_letters: 
+            available_letters.remove(letter)
+            continue
+        else: 
+            return False
+    return True 
 
 def score_word(word):
     pass
