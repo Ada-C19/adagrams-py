@@ -51,7 +51,6 @@ def draw_letters():
     }
     letter_bank = []
     freq = 10
-
     while freq > 0:
         letter = random.choice(list(letter_pool.keys()))
         if letter_pool[letter] == 0:
@@ -75,7 +74,6 @@ def uses_available_letters(word, letter_bank):
     """
 
     letter_bank_copy = letter_bank[:]
-
     for letter in word:
         if letter.upper() not in letter_bank_copy:
             return False
@@ -96,7 +94,6 @@ def score_word(word):
     """
 
     score = 0
-
     for letter in word:
         for key in SCORE_DICT:
             if letter.upper() in key:
@@ -122,10 +119,8 @@ def get_highest_word_score(word_list):
 
     highest_word = ""
     highest_score = 0
-
     for word in word_list:
         score = score_word(word)
-
         if score > highest_score:
             highest_word = word
             highest_score = score
