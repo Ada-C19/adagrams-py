@@ -94,4 +94,39 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    words_and_scores = {}
+    highest_score = 0
+    ties = 0
+
+    for word in word_list:
+        words_and_scores[word] = score_word(word)
+    
+    for score in words_and_scores.values():
+        if score > highest_score:
+            highest_score = score
+        elif score == highest_score:
+            ties += 1
+
+    if ties == 0:
+        for word, score in words_and_scores.items():
+            if score == highest_score:
+                return (word, score)
+    else:
+        tied_words = []
+        for word, score in words_and_scores.items():
+            if score == highest_score:
+                tied_words.append(word)
+
+        for word in tied_words:
+            if len(word) < 10:
+                continue
+            else:
+                return (word, words_and_scores[word])
+
+        shortest_length = 10
+        shortest_word = ""
+        for i in range(len(tied_words)):
+            if len(tied_words[i]) < shortest_length:
+                shortest_length = len(tied_words[i])
+                shortest_word = tied_words[i]
+        return (shortest_word, words_and_scores[shortest_word])
