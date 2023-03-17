@@ -30,7 +30,7 @@ LETTER_POOL = {
 def draw_letters():
     import random
     list_of_letters = list(LETTER_POOL.keys()) 
-    # weight_letters = list(LETTER_POOL.values())
+    weight_letters = list(LETTER_POOL.values())
     ten_letters = []
     letter_freq = {}
     used_lists = []
@@ -52,10 +52,43 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+#  """Has two parameters:
+#    - `word`, the first parameter, describes some input word, and is a string
+#    - `letter_bank`, the second parameter, describes an array of drawn letters in a hand. You can expect this to be an array of ten strings, with each string representing a letter
+#     - Returns either `True` or `False`
+#     - Returns `True` if every letter in the `input` word is available (in the right quantities) in the `letter_bank`
+#     - Returns `False` if not; if there is a letter in `input` that is not present in the `letter_bank` or has too much of compared to the `letter_bank`
+# """ 
+    letter_bank_count = {}
+
+    for letters in letter_bank:
+        if letters in letter_bank_count:
+            letter_bank_count[letters] +=1
+        else:
+            letter_bank_count[letters] = 1
+
+    word_capital = word.upper()
+    for letter in word_capital:
+        if letter in letter_bank:
+            if letter_bank_count[letter]>=1:
+                letter_bank_count[letter] -=1  
+            else:
+                return False
+        else:
+            return False
+    return True
+             
+
+            
 
 def score_word(word):
-    pass
+# - Has one parameter: `word`, which is a string of characters
+# - Returns an integer representing the number of points
+# - Each letter within `word` has a point value. The number of points of each letter is summed up to represent the total score of `word`
+# - Each letter's point value is described in the table below
+# - If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
+
+
 
 def get_highest_word_score(word_list):
     pass
