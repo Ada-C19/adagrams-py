@@ -29,12 +29,15 @@ def draw_letters():
     'Y': 2, 
     'Z': 1
 }
-    random_letter_set = set()
-    while len(random_letter_set) < 10:
-        random_letter = random.choice(list(pool.keys()))
-        random_letter_set.add(random_letter)
+    frequency_list = []
+    for letter, frequency in pool.items():
+        frequency_list += letter * frequency
+    random_letter_list = []
+    while len(random_letter_list) < 10:
+        random_letter = random.choice(frequency_list)
+        random_letter_list.append(random_letter)
 
-    return random_letter_set
+    return random_letter_list
 
 def frequency_maker(list):
     pass
