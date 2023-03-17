@@ -93,6 +93,28 @@ def score_word(word):
     VALUE_5 = ["K"]
     VALUE_8 = ["J", "X"]
     VALUE_10 = ["Q", "Z"]
+    LEN_FOR_BONUS = [7, 8, 9, 10]
+
+    for letter in word:
+        if letter in VALUE_1:
+            score += 1
+        elif letter in VALUE_2:
+            score += 2
+        elif letter in VALUE_3:
+            score += 3
+        elif letter in VALUE_4:
+            score += 4
+        elif letter in VALUE_5:
+            score += 5
+        elif letter in VALUE_8:
+            score += 8
+        elif letter in VALUE_10:
+            score += 10
+    
+    if len(word) in LEN_FOR_BONUS:
+        score += 8
+    
+    return score
 
 
 def get_highest_word_score(word_list):
