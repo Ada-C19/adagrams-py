@@ -67,7 +67,13 @@ hand = draw_letters()
 print(hand)
 
 def uses_available_letters(word, letter_bank):
-    pass
+    result = True
+
+    for character in word:
+        if character not in letter_bank:
+            result = False
+    
+    return result
 
 def score_word(word):
     pass
