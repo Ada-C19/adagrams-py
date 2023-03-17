@@ -77,9 +77,5 @@ def score_word(word):
     return score
 
 
-
 def get_highest_word_score(word_list):
     pass
-
-test = draw_letters()
-print(test)
