@@ -38,11 +38,15 @@ def draw_letters():
         if LETTER_POOL.get(letter_to_add) > 0:
             ten_letters.append(letter_to_add)
             LETTER_POOL[letter_to_add] -= 1
-            
+
     return ten_letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    for letter in word:
+        if not letter in letter_bank:
+            return False
+    
+    return True
 
 def score_word(word):
     pass
