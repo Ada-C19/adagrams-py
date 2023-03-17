@@ -66,12 +66,12 @@ def draw_letters():
     while len(hand) < LENGTH_OF_HAND:
         i = random.randint(0, len(LETTER_BANK)-1)
         current_letter = LETTER_BANK[i]
-
+        letter_occurs = 0
+        
         if current_letter in hand:
-            occurences = 0
             for current_letter in hand:
-                occurences += 1
-            if LETTER_INFO[current_letter]['frequency'] <= occurences:
+                letter_occurs += 1
+            if LETTER_INFO[current_letter]['frequency'] <= letter_occurs:
                 continue
 
         hand.append(current_letter)
@@ -115,6 +115,12 @@ def get_highest_word_score(word_list):
         all_scores[word] = word_score
 
     for word, score in all_scores.items():
+        if len(word) == LENGTH_OF_HAND:
+            best_score = score
+            del best_word[-2:]
+            best_word.append(word)
+            best_word.append(score)
+            break
         if score > best_score:
             best_score = score
             if len(best_word) > 0:
