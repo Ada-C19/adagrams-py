@@ -29,8 +29,6 @@ LETTER_POOL = {
     'Z': 1
 }
 
-# Comment for testing git push
-
 def draw_letters():
     alphabet = list(LETTER_POOL.keys())
     drawn_letters = []

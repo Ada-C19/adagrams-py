@@ -31,6 +31,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
+#@pytest.mark.skip()
 def test_draw_letters_draws_ten():
     # Arrange/Act
     letters = draw_letters()
@@ -68,7 +69,7 @@ def test_letter_not_selected_too_many_times():
         for letter in letters:
             assert letter_freq[letter] <= LETTER_POOL[letter]
 
-@pytest.mark.skip()
+#@pytest.mark.skip()
 def test_draw_letters_returns_different_hands():
     # Arrange/Act
     hand1 = draw_letters()
