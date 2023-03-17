@@ -1,6 +1,6 @@
 # import numpy
 import numpy as np
-# letter pool copied from test_wave_01
+# letter pool copied from test_wave_01. using for probability calculations.
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -29,21 +29,24 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1
 }
-def draw_letters():
-    
-# Each string should contain exactly one letter
-    # Imagine that the user returns their hand to the pool before drawing new letters; array should be within the loop
+# draw_letters_function
+def draw_letters():   
+    # array for taking in the strings after calculation, letters array, probability array
     arr_of_str = []
     letters = ['A', 'B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
     probability = []
     counter = 0
+    # calculating probability - makes a numpy array
     for key in LETTER_POOL:
         p = LETTER_POOL[key]
         probability.append(p)
+    # this below 2 lines is honestly from stockoverflow - it turns the probability array into an np array and makes the sum closer to 1 without altering the rates (didn't come up with it but I understood it when I saw it)
     probs = np.array(probability)
     probs_scaled = probs / probs.sum()
+    # adding letters to the arr_of_str(the array to be returned) as strings. numpy nests results...
     while counter < 10:
         random_letter = str(np.random.choice(letters, 1, p=probs_scaled)[0])
+        # if the letter already exists, skip iteration
         if str(random_letter) in arr_of_str:
             continue
         else:
