@@ -33,8 +33,13 @@ def draw_letters():
 
     ten_letters = [] # List for 10 random letters
 
+    # While list length < 10, pick random letter from dictionary for list
     while len(ten_letters) < 10:
         letter_to_add = random.choice(list(LETTER_POOL))
+
+        # Check that letter is still available in LETTER_POOL
+        # Add available letter to ten_letters
+        # Decrement count of letter by 1 after use
         if LETTER_POOL.get(letter_to_add) > 0:
             ten_letters.append(letter_to_add)
             LETTER_POOL[letter_to_add] -= 1
@@ -53,7 +58,7 @@ def uses_available_letters(word, letter_bank):
 
     for letter in word:
         if not letter in letter_bank_dict or letter_bank_dict[letter] == 0:
-            return False
+            return False # Not an anagram of letters in letter_bank
         
         letter_bank_dict[letter] -= 1 # Decrement key's value by 1
     
