@@ -75,7 +75,15 @@ def uses_available_letters(word, letter_bank):
         word - a word to search 
         letter_bank - a list of 10 letters
     """
-    pass
+    letter_list = [letter.lower() for letter in letter_bank]
+
+    for letter in word.lower():
+        if letter in letter_list:
+            letter_index = letter_list.index(letter)
+            letter_list.pop(letter_index)
+        else:
+            return False
+    return True
 
 def score_word(word):
     """
@@ -88,6 +96,6 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     """
-    
+
     """
     pass
