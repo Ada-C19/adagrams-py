@@ -67,14 +67,19 @@ hand = draw_letters()
 print(hand)
 
 def uses_available_letters(word, letter_bank):
+    letter_bank_copy = []
     result = True
 
+    #copy letter_bank
+    for letter in letter_bank:
+        letter_bank_copy.append(letter)
+
     for character in word:
-        if character not in letter_bank:
+        if character not in letter_bank_copy:
             result = False
             break
         else:
-            letter_bank.remove(character)
+            letter_bank_copy.remove(character)
     
     return result
 
