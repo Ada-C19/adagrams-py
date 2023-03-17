@@ -73,6 +73,7 @@ def draw_letters():
                 occurences += 1
             if LETTER_FREQUENCY[current_letter] <= occurences:
                 continue
+            
         hand.append(current_letter)
 
     return hand
