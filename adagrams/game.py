@@ -29,8 +29,9 @@ LETTER_POOL = {
     'Z': 1
     }
 
+
 def draw_letters():   
-    # Store the quantity of each letter in the pool in the counts list
+    # Store the quantity of each letter in the pool and the count of each letter in these 2 lists
     counts = []
     letters = []
     # Get the letters and how many of each letter there are in the pool
@@ -42,6 +43,18 @@ def draw_letters():
 
     return hand
     
+# Helper function
+def count_letter_frequency(sequence):
+    letter_frequency = {}
+
+    for letter in sequence:
+        if letter in letter_frequency:
+            letter_frequency[letter] += 1
+        else:
+            letter_frequency[letter] = 1
+    
+    return letter_frequency
+
 
 def uses_available_letters(word, letter_bank):
     
@@ -53,8 +66,10 @@ def uses_available_letters(word, letter_bank):
             return False
     return True
 
-    # Check how many times a letter occurs in the user input word and compare that against the letter_bank, set up helper function
-    #
+    # Check how many times a letter occurs in the user input word and compare that against the letter_bank
+    #if count_letter_frequency(word) 
+
+
 def score_word(word):
     pass
 
