@@ -35,6 +35,7 @@ def draw_letters():
     random_letter_list = []
     while len(random_letter_list) < 10:
         random_letter = random.choice(frequency_list)
+        frequency_list.remove(random_letter)
         random_letter_list.append(random_letter)
 
     return random_letter_list
