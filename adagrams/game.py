@@ -71,7 +71,8 @@ def draw_letters():
         if current_letter in player_hand:
             for current_letter in player_hand:
                 letter_occurences += 1
-            if letter_occurences >= LETTER_INFO[current_letter]['frequency']:
+        
+        if letter_occurences >= LETTER_INFO[current_letter]['frequency']:
                 continue
 
         player_hand.append(current_letter)
