@@ -38,8 +38,9 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     for letter in word:
-        if letter in letter_bank:
-            return True
+        if letter not in letter_bank:
+            return False
+
 
 def score_word(word):
     pass
