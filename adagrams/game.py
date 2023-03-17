@@ -83,7 +83,7 @@ def score_word(word):
     final_score = 0
     for characters in word:
         final_score += letter_score[characters.upper()]
-    if len(word) >= 7:
+    if len(word) in range(7, 11):
         final_score += 8
     return final_score
 
