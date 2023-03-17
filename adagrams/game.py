@@ -121,5 +121,8 @@ def get_highest_word_score(word_list):
                 del best_word[-2:]
             best_word.append(word)
             best_word.append(score)
+        if score == best_score:
+            if len(word) < len(best_word[0]):
+                best_word[0] = word
 
     return best_word
