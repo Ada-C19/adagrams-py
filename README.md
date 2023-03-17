@@ -1,4 +1,4 @@
-# AdaGrams Lyuda
+# AdaGrams 
 
 ## Skills Assessed
 
