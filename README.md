@@ -1,4 +1,4 @@
-# Hi! Jessie will start the very first project!
+
 # AdaGrams
 
 ## Skills Assessed
