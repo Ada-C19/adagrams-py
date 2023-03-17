@@ -41,8 +41,7 @@ def draw_letters():
     player_hand = []
 
     while len(player_hand) < TOTAL_TILES_PER_HAND:
-        i = random.randint(0, len(letter_bank)-1)
-        current_letter = letter_bank[i]
+        current_letter = random.choice(letter_bank)
         letter_occurences = 0
         
         if current_letter in player_hand:
