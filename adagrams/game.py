@@ -42,9 +42,20 @@ def draw_letters():
     return ten_letters
 
 def uses_available_letters(word, letter_bank):
+    letter_bank_dict = {}
+    word = word.upper()
+
+    for letter in letter_bank:
+        if letter in letter_bank_dict:
+            letter_bank_dict[letter] += 1 # Increment count of letter by 1
+        else:
+            letter_bank_dict[letter] = 1 # Add new pair with letter and 1
+
     for letter in word:
-        if not letter in letter_bank:
+        if not letter in letter_bank_dict or letter_bank_dict[letter] == 0:
             return False
+        
+        letter_bank_dict[letter] -= 1 # Decrement key's value by 1
     
     return True
 
