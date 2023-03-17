@@ -1,7 +1,6 @@
 import random
 
-def draw_letters():   
-    LETTER_POOL = {
+LETTER_POOL = {
     'A': 9, 
     'B': 2, 
     'C': 2, 
@@ -29,6 +28,8 @@ def draw_letters():
     'Y': 2, 
     'Z': 1
     }
+
+def draw_letters():   
     # Store the quantity of each letter in the pool in the counts list
     counts = []
     letters = []
