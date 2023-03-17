@@ -66,9 +66,9 @@ def draw_letters():
     while len(hand) < LENGTH_OF_HAND:
         i = random.randint(0, len(LETTER_BANK)-1)
         current_letter = LETTER_BANK[i]
-        occurences = 0
 
         if current_letter in hand:
+            occurences = 0
             for current_letter in hand:
                 occurences += 1
             if LETTER_FREQUENCY[current_letter] <= occurences:
@@ -80,7 +80,9 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     for letter in word:
-        if letter not in letter_bank:
+        if letter in letter_bank:
+            letter_bank.remove(letter)
+        else:
             return False
     return True
 
