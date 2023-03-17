@@ -103,7 +103,7 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     all_scores = {}
-    best_word = []
+    best_word = None
     best_score = 0
 
     for word in word_list:
@@ -117,18 +117,13 @@ def get_highest_word_score(word_list):
     for word, score in all_scores.items():
         if len(word) == LENGTH_OF_HAND:
             best_score = score
-            del best_word[-2:]
-            best_word.append(word)
-            best_word.append(score)
+            best_word = word
             break
         if score > best_score:
             best_score = score
-            if len(best_word) > 0:
-                del best_word[-2:]
-            best_word.append(word)
-            best_word.append(score)
+            best_word = word
         if score == best_score:
-            if len(word) < len(best_word[0]):
-                best_word[0] = word
+            if len(word) < len(best_word):
+                best_word = word
 
-    return best_word
+    return best_word, best_score
