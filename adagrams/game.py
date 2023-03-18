@@ -108,4 +108,19 @@ def get_highest_word_score(word_list):
     args:
         word_list - a list of guessed words to score
     """
-    pass
+    score_dict = {word : score_word(word) for word in word_list}
+    highest_score = 0
+    highest = ()
+
+    for word, score in score_dict.items():
+        print(f"word: {word} | score: {score}")
+        if score > highest_score:
+            highest = (word, score)
+            highest_score = score
+        elif score == highest_score:
+            if len(word) == 10 and len(highest[0]) != 10:
+                highest = (word, score)
+            elif len(word) < len(highest[0]) and len(highest[0]) != 10:
+                highest = (word, score)
+
+    return highest
