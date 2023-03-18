@@ -141,34 +141,44 @@ def get_highest_word_score(word_list):
         if word not in word_dict:
             word_dict[word] = [len(word), score_word(word)]
     print(word_dict)
-    length = word_dict[word][0]
-    score = word_dict[word][1]
 
     # Get a list of all the scores 
-    scores = [score for word in word_dict]
+    scores = []
+    for value in word_dict.values():
+        scores.append(value[1])
     print(scores)
 
     # Find the highest score 
     highest_score = max(scores)
     print(highest_score)
 
-    # Find the shortest words with the highest score 
-    lengths_with_highest_scores = [length for word in word_dict if score == highest_score]
+    # Find the lengths of with the the highest score 
+    lengths_with_highest_scores = []
+
+    for value in word_dict.values():
+        if value[1] == highest_score:
+            lengths_with_highest_scores.append(value[0])
+
     print(lengths_with_highest_scores)
 
+    # Find the shortest word with the highest score
     shortest_highest = min(lengths_with_highest_scores)
     print(f"Shortest and highest: {shortest_highest}")
 
-    # for word in word_dict:
-    #     if score == highest_score and length == 10:
-    #         winner.append(word)
-    #         winner.append(score)
-        
-    #     elif score == highest_score and length == shortest_word:
-    #         winner.append(word)
-    #         winner.append(score)
+    for word, len_and_score in word_dict.items():
+        length = len_and_score[0]
+        score = len_and_score[1]
 
-    # return winner
+        if score == highest_score and length == 10:
+            winner.append(word)
+            winner.append(score)
+        
+        elif score == highest_score and length == shortest_highest:
+            winner.append(word)
+            winner.append(score)
+    
+    print(f"Winner: {winner}")
+    return winner
 
 
         # elif multiple words have the same score:
