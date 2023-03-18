@@ -31,28 +31,23 @@ LETTER_POOL = {
 
 def draw_letters():
     """
-    Returns the player's "hand", an array of ten strings, each containing only one letter
-    Letters are randomly drawn from a pool of letters without replacement. 
-    Calling this function does not mutate LETTER_POOL
+    Returns the player's "hand", an array of ten strings, each containing only one letter.
+    Letters are randomly drawn from LETTER_POOL without replacement. 
+    Calling this function does not mutate LETTER_POOL.
     """
-    copy_pool = dict(LETTER_POOL)
-    letters = list(copy_pool.keys())
-    weights = list(copy_pool.values())
+    letters = list(LETTER_POOL.keys())
+    weights = list(LETTER_POOL.values())
 
     hand = []
-
-    # Loop until hand is full
-    while int(len(hand)) < 10:
-        # Select a random letter with consideration for weight, returns a list
-        draw = random.choices(letters, weights=weights, k=1)
-        l = draw[0]
-        idx = letters.index(l)
-        # Redraw if letter is not available
-        if weights[idx] == 0:
-            continue
-        else:
-            hand.append(l)
-            weights[idx] -= 1
+    # Draw 10 letters without replacement
+    for _ in range(10):
+        # Select a random letter with consideration for the odds of drawing it
+        letter = random.choices(letters, weights=weights, k=1)[0]
+        idx = letters.index(letter)
+        # Letter with weight 0 should have no chance of being drawn
+        assert weights[idx] > 0
+        hand.append(letter)
+        weights[idx] -= 1
 
     return hand
 
@@ -64,24 +59,18 @@ def uses_available_letters(word, letter_bank):
     Does not mutate the hand.
     Allows for lowercase letters.
     """
-    # Ensure original hand remains unmutated
-    copy_bank = list(letter_bank)
-    # Ensure lower case letters are valid
+
+    copy_bank = [a.upper() for a in letter_bank]
     word = word.upper()
     
-    # Loop through each character in word
     for char in word:
-        # Remove letter from hand if present
-        if char in copy_bank:
-            copy_bank.remove(char)
-        # Return False if letter is not present in hand
-        else:
+        if char not in copy_bank:
             return False
-    # If the for loop finishes without returning False, 
-    # every character in word was present in hand
+        copy_bank.remove(char)
+
     return True
 
-SCORE_CHART = LETTER_POOL = {
+SCORE_CHART = {
 'A': 1, 
 'B': 3, 
 'C': 3, 
@@ -114,17 +103,14 @@ def score_word(word):
     Returns an integer representing the number of points.
     A word with length greater than 6 gets an additional 8 points.
     """
-    # Ensure lower case words are valid
     word = word.upper()
     score = 0
-    
-    # Loop through characters in word
+
     for char in word:
-        # Add character score to score
         score += SCORE_CHART[char]
     
     # Give bonus for words longer than 6 letters
-    if int(len(word)) > 6:
+    if len(word) > 6:
         score += 8
 
     return score
@@ -136,68 +122,53 @@ def get_highest_word_score(word_list):
     then the word with the fewest letters, then the first element in the list
     """
     
-    def find_lowest_indexed(word_list, ties_list):
-        """
-        Helper function.
-        Given a word list and a list of (word, score) with tied scores.
-        Returns the (word, score) of the word that appears first in the word_list
-        """
-        first_word, first_score = ties_list[0]
-        min_idx = word_list.index(first_word)
-        for word, score in ties_list:
-            new_idx = word_list.index(word)
-            if new_idx < min_idx:
-                min_idx = new_idx
-                first_word, first_score = word, score
-        return first_word, first_score
-        
-    # word_scores = [(word, score_word(word)) for word in word_list]
     word_scores = []
-    for word in word_list:
+    max_score = 0
+    
+    for idx, word in enumerate(word_list):
         score = score_word(word)
-        word_scores.append((word, score))
+        if score > max_score:
+            max_score = score
+        word_scores.append((word, score, idx))
 
-    # Sort list of word_scores in descending order of scores
-    word_scores.sort(reverse=True, key=lambda x:x[1])
+    # Sort word_scores in descending order of scores
+    word_scores.sort(reverse=True, key=lambda x: x[1])
 
-    max_score = word_scores[0][1]
-    # List of words with tied scores
-    ties = [word_scores[0]]
+    ties = [] # List of words with tied scores
 
-    for word, score in word_scores[1:]:
+    for word, score, idx in word_scores:
         if score == max_score:
-            ties.append((word, score))
+            # No need to track scores anymore, because we know winner has max_score
+            ties.append((word, idx))
     
-    # If no ties, return word with max_score
+    # Handle the case of a clear winner
     if len(ties) == 1:
-        return ties[0]
-    
+        winner = ties[0][0]
+        return winner, max_score
 
     # Sort list of ties in ascending order of word length
-    ties.sort(key=lambda x: len(x[0]))
+    ties.sort(key=lambda x:len(x[0]))
 
-    # If one of the ties has word length 10, remove all other words that have fewer letters
+    # Prioritize words with length 10 as winners
     if len(ties[-1][0]) == 10:
-        for word, score in list(ties):
-            if len(word) != 10:
-                ties.remove((word, score))
-        # If only one of the words has length 10, that is the winner
-        if len(ties) == 1:
-            return ties[0]
-        # If multiple words have length 10, find the first one that shows up in word_list
-        else:
-            winner = find_lowest_indexed(word_list, ties)
-    # Else if none of the ties has word length 10, look for word with fewest letters
+        # Mutate ties to only contain words with length 10
+        ties = [(word, idx) for word, idx in ties if len(word) == 10]
+        # Select the word with lowest index if there's more than one option for winner
+        if len(ties) != 1:
+            ties.sort(key=lambda x:x[1])
+        winner = ties[0][0]
+    
+    # Secondary win condition: words with fewest letters
     else:
         min_length = len(ties[0][0])
-        # Modify ties so that it only contains words with fewest letters
-        ties = [(word, score) for word, score in ties if len(word) == min_length]
-        if len(ties) == 1:
-            return ties[0]
-        else:
-            winner = find_lowest_indexed(word_list, ties)
+        # Mutate ties to only contain words with fewest letters
+        ties = [(word, idx) for word, idx in ties if len(word) == min_length]
+        # Select the word with lowest index if there's more than one option for winner
+        if len(ties) != 1:
+            ties.sort(key=lambda x:x[1])
+        winner = ties[0][0]
 
-    return winner
+    return winner, max_score
 
         
     
