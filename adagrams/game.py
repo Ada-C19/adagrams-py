@@ -111,10 +111,21 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    # Create dictionary of each word and its corresponding score
-    # Write tie breaker rules
+    # Dictionary for each word and its corresponding score
     word_scores = {}
 
     for word in word_list:
         score = score_word(word)
         word_scores[word] = score
+
+    max_score = max(word_scores.values())
+
+    # Doctionary for highest-scoring words
+    max_score_words = {}
+    for word, score in word_scores.items():
+        if score == max_score:
+            max_score_words[word] = score
+
+    # if len(max_score_words) == 1:
+    #     return max_score_words[]
+
