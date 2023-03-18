@@ -130,67 +130,39 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    # Input: list of strings, diff words
-    # Output: list or tuple with word and the score
-
     word_dict = {}
-    winner = []
 
     for word in word_list:
         # Check if word isn't in the dict already, add its length and score to dict 
         if word not in word_dict:
             word_dict[word] = [len(word), score_word(word)]
-    print(word_dict)
 
     # Get a list of all the scores 
-    scores = []
-    for value in word_dict.values():
-        scores.append(value[1])
-    print(scores)
+    scores = [len_score[1] for len_score in word_dict.values()]
 
     # Find the highest score 
     highest_score = max(scores)
-    print(highest_score)
 
     # Find the lengths of with the the highest score 
     lengths_with_highest_scores = []
 
-    for value in word_dict.values():
-        if value[1] == highest_score:
-            lengths_with_highest_scores.append(value[0])
+    for len_score in word_dict.values():
+        if len_score[1] == highest_score:
+            lengths_with_highest_scores.append(len_score[0])
 
-    print(lengths_with_highest_scores)
-
-    # Find the shortest word with the highest score
+    # Find the shortest word length with the highest score
     shortest_highest = min(lengths_with_highest_scores)
-    print(f"Shortest and highest: {shortest_highest}")
 
-    for word, len_and_score in word_dict.items():
-        length = len_and_score[0]
-        score = len_and_score[1]
+    for word, value in word_dict.items():
+        length = value[0]
+        score = value[1]
 
         if score == highest_score and length == 10:
-            winner.append(word)
-            winner.append(score)
+            return word, score
         
-        elif score == highest_score and length == shortest_highest:
-            winner.append(word)
-            winner.append(score)
-    
-    print(f"Winner: {winner}")
-    return winner
-
-
-        # elif multiple words have the same score:
-            # if there is a 10-letter word:
-                # the 10-letter word wins
-            # elif there is a word with fewer letter:
-                # shorter word wins
-
-
-    # In the case of tie in scores, use these tie-breaking rules:
-        # prefer the word with the fewest letters...
-        # ...unless one word has 10 letters. If the top score is tied between multiple words and one is 10 letters long, choose the one with 10 letters over the one with fewer tiles
-        # If the there are multiple words that are the same score and the same length, pick the first one in the supplied list
-
-get_highest_word_score(["WWW", "MMMM", "BBBBBB", "AAAAAAAAD", "JQ", "KFHK"])
+    for word, value in word_dict.items():
+        length = value[0]
+        score = value[1]
+        
+        if score == highest_score and length == shortest_highest:
+            return word, score
