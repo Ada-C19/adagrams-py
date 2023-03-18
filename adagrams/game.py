@@ -1,3 +1,4 @@
+
 def draw_letters():
     pass
 # Your first task is to build a hand of 10 letters for the user. To do so, implement the function draw_letters in game.py. This method should have the following properties:
