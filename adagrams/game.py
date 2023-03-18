@@ -92,10 +92,20 @@ def score_word(word):
     args:
         word - a word to score
     """
-    pass
+    total_score = 0 if len(word) < 7 else 8
+    
+    for letter in word.upper():
+        for score, letters in LETTER_SCORES.items():
+            if letter in letters:
+                total_score += score
+
+    return total_score
 
 def get_highest_word_score(word_list):
     """
+    Returns the word with the highest score
 
+    args:
+        word_list - a list of guessed words to score
     """
     pass
