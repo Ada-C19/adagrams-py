@@ -119,15 +119,21 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    best_word = ["W", 0]
+    best_word = ["A", 1]
 
     for word in word_list:
         word_score = score_word(word)
-        if word_score == best_word[1] and len(word) < len(best_word[0]):
+        if word_score > best_word[1]:
             best_word[0] = word
-            best_word[1] = word_score
-        elif word_score > best_word[1]:
-            best_word[0] = word
-            best_word[1] = word_score
-    
+            best_word[1] = word_score        
+        elif word_score == best_word[1]:
+            if len(word) == 10:
+                best_word[0] = word
+                best_word[1] = word_score
+            elif len(best_word[0]) == 10:
+                continue
+            elif len(word) < len(best_word[0]) and len(word) != 10:
+                best_word[0] = word
+                best_word[1] = word_score
+
     return best_word
