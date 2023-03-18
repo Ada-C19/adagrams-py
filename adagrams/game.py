@@ -59,7 +59,7 @@ def count_letter_frequency(sequence):
 def convert_case(sequence):
     converted_sequence = ""
     for letter in sequence:
-        converted_sequence += letter.casefold()
+        converted_sequence += letter.upper()
     
     return converted_sequence
 
@@ -84,12 +84,56 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    points_total = 0
+    # score_chart = {
+    #     ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T"): 1,
+    #     ("D", "G"): 2,
+    #     ("B", "C", "M", "P"): 3,
+    #     ("F", "H", "V", "W", "Y"): 4,
+    #     ("K"): 5,
+    #     ("J", "X"): 8,
+    #     ("Q", "Z"): 10,
+    # }
+    # # Get the value of "A"
+    
+    word = convert_case(word)
+
+    for letter in word:
+        if not word:
+            return 0
+        
+        if letter == "A" or letter == "E" or letter == "I" or letter ==  "O" or letter == "U" or letter == "L" or letter == "N" or letter == "R" or letter == "S" or letter == "T":
+            points_total += 1
+
+        if letter == "D" or letter == "G":
+            points_total += 2
+
+        if letter == "B" or letter == "C" or letter == "M" or letter == "P":
+            points_total += 3
+
+        if letter == "F" or letter == "H" or letter == "V" or letter == "W" or letter == "Y":
+            points_total += 4
+
+        if letter == "K":
+            points_total += 5
+
+        if letter == "J" or letter == "X":
+            points_total += 8
+
+        if letter == "Q" or letter == "Z":
+            points_total += 10
+
+    if len(word) > 6:
+        points_total += 8
+
+    return points_total
+
 
 def get_highest_word_score(word_list):
     pass
 
-hand = draw_letters()
+# hand = draw_letters()
 # print(hand)
-print(uses_available_letters("Dog", ["d", 'O', "g", "A", "t"]))
+# print(uses_available_letters("Dog", ["d", 'O', "g", "A", "t"]))
 # print(convert_case("Dog", ["d", 'O', "g", "A", "t"]))
+score_word("XXXXXXX")
