@@ -60,7 +60,7 @@ def uses_available_letters(word, letter_bank):
         if not letter in letter_bank_dict or letter_bank_dict[letter] == 0:
             return False # Not an anagram of letters in letter_bank
         
-        letter_bank_dict[letter] -= 1 # Decrement key's value by 1
+        letter_bank_dict[letter] -= 1 # One less available usage of the letter
     
     return True
 
@@ -111,4 +111,10 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    # Create dictionary of each word and its corresponding score
+    # Write tie breaker rules
+    word_scores = {}
+
+    for word in word_list:
+        score = score_word(word)
+        word_scores[word] = score
