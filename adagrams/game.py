@@ -37,10 +37,42 @@ def draw_letters():
     return letter_bank
 
 def uses_available_letters(word, letter_bank):
+    ### determines whether letters used are from letter_bank
     for letter in word:
         if letter not in letter_bank:
             return False
+    
+    ### determines whether letters are used in appropriate quantities
+    ### creates dict with letters as keys and quantities for letter_bank
+    letter_bank_num_dict = {}
+    letter_bank_set = set(letter_bank)
+    for item in letter_bank_set:
+        letter_bank_count = 0
+        for val in letter_bank:
+            if item == val:
+                letter_bank_count += 1
+        letter_bank_num_dict[item] = letter_bank_count
+    
+    ### creates dict with letters as keys and quantities for user word
+    word_set = set()
+    word_num_dict = {}
+    for letter in word:
+        word_set.add(letter)
+    for item in word_set:
+        word_set_count = 0
+        for letter in word:
+            if item == letter:
+                word_set_count += 1
+        word_num_dict[item] = word_set_count
+
+    ### determines whether quantity of letters in user guess exceeds
+    ### available quantity of letters in letter_bank, if so returns false
+    for key in letter_bank_num_dict:
+        if key in word_num_dict.keys():
+            if letter_bank_num_dict[key] < word_num_dict[key]:
+                return False
     return True
+
 
 def score_word(word):
     pass
