@@ -27,13 +27,20 @@ def draw_letters():
     return hand
 
 def uses_available_letters(word, letter_bank):
+    #valid variable to check whether the letter is in letter_bank or not
     valid = False
-    cant = 0
-    
-    for elem in word:
-        if elem in letter_bank and cant < letter_bank.count(elem):
+    #new list to store all elements in letter_bank but ignoring case
+    letters_ignore_case = []
+    #for loop to append every element from letter_bank into letter_ignore_case but ignoring case
+    for letter in letter_bank:
+        letters_ignore_case.append(letter.casefold())
+    #variable to store string from word variable but ignoring case
+    word_ignore_case = word.casefold()
+    #for loop to loop through word_ignore_case string and check whether the letters are in letter_ignore_case
+    #or not and in case the quantity of that letter exceeds the quantity in the list it returns False
+    for elem in word_ignore_case:
+        if elem in letters_ignore_case and word_ignore_case.count(elem) <= letters_ignore_case.count(elem):
             valid = True
-            cant += 1
         else:
             valid = False
             
