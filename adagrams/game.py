@@ -76,12 +76,34 @@ def score_word(word):
         10: ['Q', 'Z']
         }
     word_score = 0
+
     for letter in word:
         letter = letter.upper()
         for score, letters in scoring_system.items():
             if letter in letters:
                 word_score += score
+
+    #bonus if word is between 7 to 10 characters
+    if 7 <= len(word) <=10:
+        word_score += 8
+    
     return word_score
 
 def get_highest_word_score(word_list):
-    pass
+    words_with_scores = []
+
+    for word in word_list:
+        word_score = score_word(word)
+        words_with_scores.append({word:word_score})
+
+    highest_score = 0
+    highest_score_word = ""
+    
+    for pair in words_with_scores:
+        for word, word_score in pair.items():
+            if word_score > highest_score:
+                highest_score_word = word
+                highest_score = word_score
+
+    return (highest_score_word, highest_score)
+
