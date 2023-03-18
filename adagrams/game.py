@@ -31,6 +31,19 @@ LETTER_POOL = {
     'Z': 1
 }
 
+POINTS = {
+    1:["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+    2:["D","G"],
+    3:["B", "C", "M", "P"],
+    4:["F", "H", "V", "W", "Y" ],
+    5:["K"],
+    8:["J","X"],
+    10:["Q","Z"],
+}
+
+ADD_EIGHT_IF_LENGHT = [7, 8, 9, 10]
+
+
 def build_pile_of_letters(dictionary):
     pile = []
     if dictionary == []:
@@ -61,7 +74,15 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    points = 0
+    for i in word.upper():
+        for x,y in POINTS.items():
+            if i in y:
+                points += x
+    if len(word) in ADD_EIGHT_IF_LENGHT:
+        points += 8
+    
+    return points
 
 def get_highest_word_score(word_list):
     pass
