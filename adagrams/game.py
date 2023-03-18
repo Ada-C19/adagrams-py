@@ -127,7 +127,7 @@ def get_highest_word_score(word_list):
         score_list.append(score) 
         word_score_list.append((word,score)) 
     
-    # Find the maximum score
+    # Find the maximum score value
     max_score = max(score_list)
 
     # Find tuples of words with the highest score and add it to the highest score word list
@@ -155,7 +155,7 @@ def get_highest_word_score(word_list):
         for i in range(len(highest_score_word) - 1):
             word_score = highest_score_word[i]
             next_word_score = highest_score_word[i+1]
-            
+
             if len(word_score[0]) > len(next_word_score[0]):
                 highest_score_word.remove(word_score)
     
