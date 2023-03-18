@@ -49,8 +49,27 @@ def draw_letters():
     
 
 def uses_available_letters(word, letter_bank):
-    pass
-
+    word_dict = {}
+    letter_bank_dict = {}
+    for letter in word:
+        letter = letter.capitalize()
+        if letter in word_dict:
+            word_dict[letter] += 1
+        else:
+            word_dict[letter] = 1
+            
+    for letter in letter_bank:
+        if letter in letter_bank_dict:
+            letter_bank_dict[letter] += 1
+        else:
+            letter_bank_dict[letter] = 1
+            
+    for key in word_dict:
+        if key in letter_bank_dict and word_dict[key] <= letter_bank_dict[key]:
+            continue 
+        return False
+    return True 
+            
 def score_word(word):
     pass
 
