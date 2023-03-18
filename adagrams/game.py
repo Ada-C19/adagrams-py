@@ -48,7 +48,6 @@ def uses_available_letters(word, letter_bank):
             copy_letter_bank.remove(letter)
         else:
             return False
-        
     return True
 
 def score_word(word):
@@ -73,18 +72,18 @@ def score_word(word):
                 if word_letters[j] == letter:
                     index_to_points.append(i)
 
-    for each in index_to_points:
-        if each == 0:
+    for index in index_to_points:
+        if index == 0:
             score += 1
-        elif each == 1:
+        elif index == 1:
             score += 2
-        elif each == 2:
+        elif index == 2:
             score += 3
-        elif each == 3:
+        elif index == 3:
             score += 4
-        elif each == 4:
+        elif index == 4:
             score += 5
-        elif each == 5:
+        elif index == 5:
             score += 8
         else:
             score += 10
