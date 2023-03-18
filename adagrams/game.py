@@ -78,4 +78,34 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    MAX_LETTERS = 10  
+    word_scores = {}
+    high_score = 0
+
+    for word in word_list:
+        score = score_word(word)
+        word_scores[word] = score #e.g. {'X': 8, 'XX': 16, 'XXX': 24, 'XXXX': 32}
+        if score > high_score:
+            high_score = score
+
+    highest_scoring_words = {key:value for key,value in word_scores.items() if word_scores[key] >= high_score}
+
+    if len(highest_scoring_words) > 1:
+
+        words = [word for word in highest_scoring_words]
+        biggest_word = max(words, key=lambda word: len(word))
+        smallest_word = min(words, key=lambda word: len(word))
+
+        if len(biggest_word) == MAX_LETTERS:
+            return (biggest_word, highest_scoring_words[biggest_word])
+        elif len(biggest_word) < MAX_LETTERS:
+            return (smallest_word, highest_scoring_words[smallest_word])
+    else:
+        l = list(highest_scoring_words.items())
+        winning_word = l[0]
+        return winning_word
+
+
+
+
+    
