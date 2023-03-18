@@ -92,6 +92,8 @@ def score_word(word):
 
     for letter in word_in_caps:
         score+= score_values[letter]
+    if len(word) >= 7:
+        score+= 8
 
     return score
 
