@@ -31,7 +31,28 @@ LETTER_POOL = {
     'Z': 1
 }
 
+def build_pile_of_letters(dictionary):
+    pile = []
+    for x,y in dictionary.items():
+        for i in range(0,y):
+            pile.append(x)
+    return pile
 
+def draw_letters():
+    hand = random.sample(build_pile_of_letters(LETTER_POOL),10)
+    print(hand)
+    return hand
+
+def uses_available_letters(word, letter_bank):
+    pass
+
+def score_word(word):
+    pass
+
+def get_highest_word_score(word_list):
+    pass
+
+"""
 def build_probabilities_of_ocurrence(dictionary):
     total_letters = 0
     probability_dictionary = {}
@@ -56,19 +77,9 @@ def draw_letters():
     print(hand)
 
     return hand
-    
-
-def uses_available_letters(word, letter_bank):
-    pass
-
-def score_word(word):
-    pass
-
-def get_highest_word_score(word_list):
-    pass
-
-
+"""
     
 #build_probabilities_of_ocurrence(LETTER_POOL)
-draw_letters()
+#draw_letters()
 #pruebachoices()
+#build_pile_of_letters(LETTER_POOL)
