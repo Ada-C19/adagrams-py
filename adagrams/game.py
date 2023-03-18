@@ -131,27 +131,95 @@ def get_highest_word_score(word_list):
     # for i in tuple_list:
 
     best_word_list = sorted(tuple_list, key=lambda t: t[1], reverse = True)
+    highest_score = best_word_list[0][1]
+
     
-    tie_breaker_list = []
-
+    best_word_list_2 = []
     for i in best_word_list:
-        if i[1] == best_word_list[0][1]:
-            tie_breaker_list.append(i)
+        if i[1] == highest_score:
+            best_word_list_2.append(i)
+            
+    best_word_list_3 = sorted(best_word_list_2, key=lambda x: len(x[0]))
+    best_word_list_4 = []
 
-    tie_breaker_list_sorted = sorted(tie_breaker_list, key=lambda x: len(x[0]))
+    for i in tuple_list:
+        if i in best_word_list_3:
+            best_word_list_4.append(i)
 
-    for i in tie_breaker_list_sorted:
-        if len(tie_breaker_list_sorted[0][0]) == len(tie_breaker_list_sorted[1][0]):
-            if tie_breaker_list_sorted[0][0] == word_list[0]:
-                best_word = tie_breaker_list_sorted[0]
-            else:
-                best_word = tie_breaker_list_sorted[1]
+    best_word_list_over_ten = []
+
+    for i in best_word_list_4:
+        if len(i[0]) == 10:
+            best_word_list_over_ten.append(i)
+
+    if len(best_word_list_4) == 1:
+        best_word = best_word_list_4[0]
+    elif len(best_word_list_over_ten) > 0:
+        best_word = best_word_list_over_ten[0]
+    else:
+        best_word = best_word_list_3[0]
+    
+
+
+    # for i in best_word_list_3:
+    #     if len(i[0]) == 10:
+    #         best_word = i
+    #     else:
+    #         best_word = best_word_list_3[0]
+    
+    # if len(best_word_list_4) == 1:
+    #     best_word = best_word_list_4[0]
+    # elif len(best_word_list_4) > 1:
+    #     if len(best_word_list_4[0][0]) == len(best_word_list_4[1][0]):
+    #         best_word = best_word_list_4[0]
+    #     # if best_word_list_4[0][1] == best_word_list_4[1][1]:
+    #     #     best_word = best_word_list_over_ten[0]
+    #     elif len(i[0]) == 10:
+    #         best_word = i
+    #     else:
+    #         best_word = best_word_list_3[0]
+
+    # for i in best_word_list_3:
+    #     if len(i[0]) == 10:
+    #         best_word = i
+    #     elif len(best_word_list_4[0][0]) == len(best_word_list_4[1][0]):
+    #         best_word = best_word_list_4[0]
+    #     else:
+    #         best_word = best_word_list_3[0]
+        
+    # for i in best_word_list_3:
+    #     if len(best_word_list_4) == 1:
+    #         best_word = best_word_list_4[0]
+    #     elif len(best_word_list_4) > 1:
+    #         if len(i[0]) == len(i[1]):
+    #             best_word = best_word_list_4[0]
+    #         elif len(i[0]) == 10:
+    #             best_word = i
+    #         else:
+    #             best_word = best_word_list_3[0]
+
+            
+
+    # tie_breaker_list = []
+
+    # for i in best_word_list:
+    #     if i[1] == best_word_list[0][1]:
+    #         tie_breaker_list.append(i)
+
+    # tie_breaker_list_sorted = sorted(tie_breaker_list, key=lambda x: len(x[0]))
+
+    # for i in tie_breaker_list_sorted:
+    #     if len(tie_breaker_list_sorted[0][0]) == len(tie_breaker_list_sorted[1][0]):
+    #         if tie_breaker_list_sorted[0][0] == word_list[0]:
+    #             best_word = tie_breaker_list_sorted[0]
+    #         else:
+    #             best_word = tie_breaker_list_sorted[1]
 
                 
-        elif len(i[0]) == 10:
-            best_word = i
-        else:
-            best_word = tie_breaker_list_sorted[0]
+    #     elif len(i[0]) == 10:
+    #         best_word = i
+    #     else:
+    #         best_word = tie_breaker_list_sorted[0]
 
     return best_word
     
@@ -171,4 +239,4 @@ def get_highest_word_score(word_list):
 
 
 
-    return best_word
+    # return best_word
