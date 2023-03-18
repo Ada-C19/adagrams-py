@@ -119,11 +119,14 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    best_word = ["WORD", 0]
+    best_word = ["W", 0]
 
     for word in word_list:
         word_score = score_word(word)
-        if word_score > best_word[1]:
+        if word_score == best_word[1] and len(word) < len(best_word[0]):
+            best_word[0] = word
+            best_word[1] = word_score
+        elif word_score > best_word[1]:
             best_word[0] = word
             best_word[1] = word_score
     
