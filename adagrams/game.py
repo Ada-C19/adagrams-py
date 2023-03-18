@@ -15,13 +15,45 @@ LETTER_VALUES = {
 }
 
 def draw_letters():
-    pass
+    letters = []
+    for letter, frequency in LETTER_POOL.items():
+        for i in range(frequency):
+            letters.append(letter)
+    selected_letters = random.sample(letters, k = 10)
+    return selected_letters 
+        
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letters = letter_bank.copy()
+    for letter in word.upper():
+        if letter not in letters:
+            return False
+        letters.remove(letter)
+    return True
+
 
 def score_word(word):
-    pass
+    score = 0
+    for letter in word.upper():
+        score += LETTER_VALUES[letter]
+    if len(word) >= 7:
+        score += 8
+    return score 
+
 
 def get_highest_word_score(word_list):
-    pass
+    highest_score = 0
+    highest_word = ""
+    for word in word_list:
+        score = score_word(word)
+        if score > highest_score:
+            highest_score = score
+            highest_word = word
+        elif score == highest_score:
+            if len(word) == 10:
+                highest_word = word
+            elif len(word) < len(highest_score) and len(highest_score) < 10:
+                highest_score = word
+    return (highest_word, highest_score)
+
+

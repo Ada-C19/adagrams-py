@@ -31,7 +31,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
-@pytest.mark.skip
+# @pytest.mark.skip
 
 def test_draw_letters_draws_ten():
     # Arrange/Act
