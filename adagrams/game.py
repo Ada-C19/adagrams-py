@@ -15,7 +15,9 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
   word = word.upper()
   for letter in word:
-    if not letter in letter_bank:
+    letter_bank_count = letter_bank.count(letter)
+    word_letter_count = word.count(letter)
+    if not letter in letter_bank or word_letter_count > letter_bank_count:
         return False
   return True
 
