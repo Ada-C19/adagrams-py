@@ -30,9 +30,11 @@ def draw_letters():
     'Z': 1
 }
     frequency_list = []
+    random_letter_list = []
+# adds letter to frequency_list based on the desired frequency
     for letter, frequency in pool.items():
         frequency_list += letter * frequency
-    random_letter_list = []
+
     while len(random_letter_list) < 10:
         random_letter = random.choice(frequency_list)
         frequency_list.remove(random_letter)
@@ -64,7 +66,22 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    scoring_system = {
+        1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'], 
+        2: ['D', 'G'],
+        3: ['B', 'C', 'M', 'P'],
+        4: ['F', 'H', 'V', 'W', 'Y'],
+        5: ['K'],
+        8: ['J', 'X'],
+        10: ['Q', 'Z']
+        }
+    word_score = 0
+    for letter in word:
+        letter = letter.upper()
+        for score, letters in scoring_system.items():
+            if letter in letters:
+                word_score += score
+    return word_score
 
 def get_highest_word_score(word_list):
     pass
