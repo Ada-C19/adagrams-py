@@ -42,25 +42,24 @@ def draw_letters():
 
     return random_letter_list
 
-def frequency_maker(list):
-    pass
-
 def uses_available_letters(word, letter_bank):
     word = word.upper()
-    letter_frequency = {}
-    for letter in word:
-        if letter in letter_frequency.keys():
-            letter_frequency[letter] += 1
-        else:
-            letter_frequency[letter] = 1
+    letter_bank_letter_frequency = {}
 
+    for letter in word:
         if letter not in letter_bank:
             return False
+        
+        if letter in letter_bank_letter_frequency.keys():
+            letter_bank_letter_frequency[letter] += 1
+        else:
+            letter_bank_letter_frequency[letter] = 1
     
-    for character in letter_bank:
-        if character in letter_frequency.keys():
-            if letter_frequency[character] != letter_bank.count(character):
+    for character in word:
+        if character in letter_bank_letter_frequency.keys():
+            if letter_bank_letter_frequency[character] != letter_bank.count(character):
                 return False
+    
     return True
         
 
@@ -75,6 +74,7 @@ def score_word(word):
         8: ['J', 'X'],
         10: ['Q', 'Z']
         }
+    
     word_score = 0
 
     for letter in word:
