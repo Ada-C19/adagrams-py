@@ -44,7 +44,6 @@ def score_word(word):
 def get_highest_word_score(word_list):
     highest_score = 0
     highest_word = ""
-    same_highest_word_list = []
     for word in word_list:
         score = score_word(word)
         if score > highest_score:
@@ -53,11 +52,9 @@ def get_highest_word_score(word_list):
         elif score == highest_score:
             if len(word) == 10:
                 highest_word = word
-                same_highest_word_list.append(highest_word)
+                break     
             elif len(word) < len(highest_word) and len(highest_word) < 10:
                 highest_word = word
-
-    print(same_highest_word_list)
     print(highest_word, highest_score)
     return (highest_word, highest_score)
 
