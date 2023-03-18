@@ -10,7 +10,7 @@ def draw_letters():
     hand = []
     random_letter = ""
     letters_alphabet = LETTERS_ALPHABET
-    
+
     #cant_letter is a counter to make sure we don't exceed the maximum allowed per letter
     cant_letter = 0
 
@@ -26,10 +26,18 @@ def draw_letters():
 
     return hand
 
-    for i in range(10):
-        random_letter = random_letter()
 def uses_available_letters(word, letter_bank):
-    pass
+    valid = False
+    cant = 0
+    
+    for elem in word:
+        if elem in letter_bank and cant < letter_bank.count(elem):
+            valid = True
+            cant += 1
+        else:
+            valid = False
+            
+    return valid
 
 def score_word(word):
     pass
