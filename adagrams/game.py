@@ -11,11 +11,10 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    word = input()
-    letter_bank = draw_letters()
-    if word in draw_letters:
+  for letter in word:
+    if letter in letter_bank:
         return True
-    else:
+    if not letter in letter_bank:
         return False
 
 def score_word(word):
