@@ -36,7 +36,8 @@ def draw_letters():
     used_lists = []
 
     while len(ten_letters) <10:
-        letter_drawn = random.choice(list_of_letters)
+        list_letter_drawn = random.choices(list_of_letters, weights = weight_letters, k=1)
+        letter_drawn = list_letter_drawn[0]
         if letter_drawn in letter_freq:
             if letter_freq[letter_drawn] < LETTER_POOL[letter_drawn]:
                 letter_freq[letter_drawn] +=1
