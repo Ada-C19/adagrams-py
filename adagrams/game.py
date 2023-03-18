@@ -53,7 +53,86 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    word = word.upper()
+    score = 0
+    letter_scores = {
+        'A': 1,
+        'E': 1,
+        'I': 1,
+        'O': 1,
+        'U': 1,
+        'L': 1,
+        'N': 1,
+        'R': 1,
+        'S': 1,
+        'R': 1,
+        'T': 1,
+        'D': 2,
+        'G': 2,
+        'B': 3,
+        'C': 3,
+        'M': 3,
+        'P': 3,
+        'F': 4,
+        'H': 4,
+        'V': 4,
+        'W': 4,
+        'Y': 4,
+        'K': 5,
+        'J': 8,
+        'X': 8,
+        'Q': 10,
+        'Z': 10,
+    }
+    
+    if len(word) >= 7:
+        score += 8
+    
+    if word == '':
+        return False
+    else:
+        for letter in word:
+            score += letter_scores[letter]
+    
+    return score
+
 
 def get_highest_word_score(word_list):
-    pass
+    list_of_scores = []
+    length_of_words = []
+
+    for word in word_list:
+        get_scores = score_word(word)
+        list_of_scores.append(get_scores)
+        word_length = len(word)
+        length_of_words.append(word_length)
+    
+    highest_score = max(list_of_scores)
+    index_of_highscore = list_of_scores.index(highest_score)
+    right_word = word_list[index_of_highscore]
+
+    count_of_highscore = list_of_scores.count(highest_score)
+    smallest_number = min(length_of_words)
+
+    if count_of_highscore == 1:
+        winner = (right_word, highest_score)
+        return winner
+    elif count_of_highscore > 1:
+        for number in length_of_words:
+            if number == 10:
+                index_of_ten_letter_word = length_of_words.index(number)
+                another_right_word = word_list[index_of_ten_letter_word]
+                return (another_right_word, highest_score)
+        for word in word_list:
+            if len(word) == 10:
+                return (word, highest_score)
+            elif len(word) == smallest_number:
+                return (word, highest_score)
+            
+        shortest_word = min(word_list)
+        winner = (shortest_word, highest_score)
+        return winner
+
+
+
+
