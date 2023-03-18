@@ -59,7 +59,8 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    score = 0 
+    score = 0
+    word_in_caps = word.upper() 
     score_values = {
     'A': 1, 
     'B': 3, 
@@ -89,7 +90,7 @@ def score_word(word):
     'Z': 10 
     }
 
-    for letter in word:
+    for letter in word_in_caps:
         score+= score_values[letter]
 
     return score
