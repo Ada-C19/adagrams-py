@@ -1,6 +1,7 @@
 
 import random
 
+
 def draw_letters(): 
     LETTER_POOL = {
     'A': 9, 
@@ -32,7 +33,6 @@ def draw_letters():
 }
     available_letters = []
 
-
     for letter in LETTER_POOL.keys():
         for num in range(LETTER_POOL[letter]):
             available_letters.append(letter)
@@ -44,7 +44,19 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+
+    word_in_caps = word.upper()
+    letter_bank_copy = letter_bank.copy()
+
+    for letter in word_in_caps:
+        if letter in letter_bank_copy:
+            letter_bank_copy.remove(letter)
+            is_valid = True
+            continue
+        else:
+            is_valid = False
+    return is_valid
+
 
 def score_word(word):
     pass
