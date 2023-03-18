@@ -43,10 +43,10 @@ def draw_letters():
 
     return hand
     
+
 # Helper functions
 def count_letter_frequency(sequence):
     letter_frequency = {}
-
     for letter in sequence:
         if letter in letter_frequency:
             letter_frequency[letter] += 1
@@ -56,37 +56,30 @@ def count_letter_frequency(sequence):
     return letter_frequency
 
 
-def convert_case(word, letter_bank):
-    converted_word = ""
-    converted_letter_bank = []
-
-    for letter in word:
-        converted_word += letter.casefold()
-
-    for letter in letter_bank:
-        converted_letter_bank.append(letter.casefold())
-    print(converted_word)
-    print(converted_letter_bank)
-    return converted_word, converted_letter_bank
+def convert_case(sequence):
+    converted_sequence = ""
+    for letter in sequence:
+        converted_sequence += letter.casefold()
+    
+    return converted_sequence
 
 
 def uses_available_letters(word, letter_bank):
-    print(word)
-    print(letter_bank)
-    # word = word.upper()
+    # Convert case on the word string and the letter bank list
+    word = convert_case(word)
+    letter_bank = convert_case(letter_bank)
     # Iterate through the letters in the word to check if they're in the letter bank
     for letter in word:
-        if letter.upper() not in letter_bank:
+        if letter not in letter_bank:
             return False
-    # Check how many times a letter occurs in the user input word and compare that against the letter_bank
+    # Check how many times a letter occurs in the word and letter bank
     frequency_word = count_letter_frequency(word)
     frequency_bank = count_letter_frequency(letter_bank)
-    print(frequency_word)
-    print(frequency_bank)
+    # Compare the word frequency in the word and letter bank
     for letter in word:
-        if not (frequency_word[letter.upper()] <= frequency_bank[letter.upper()]):
-            print(f"{frequency_word[letter.upper()]} '<=' {frequency_bank[letter.upper()]}")
+        if not (frequency_word[letter] <= frequency_bank[letter]):
             return False  
+    
     return True
 
 
@@ -96,7 +89,7 @@ def score_word(word):
 def get_highest_word_score(word_list):
     pass
 
-# hand = draw_letters()
+hand = draw_letters()
 # print(hand)
 print(uses_available_letters("Dog", ["d", 'O', "g", "A", "t"]))
-print(convert_case("Dog", ["d", 'O', "g", "A", "t"]))
+# print(convert_case("Dog", ["d", 'O', "g", "A", "t"]))
