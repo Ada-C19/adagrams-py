@@ -52,7 +52,34 @@ def draw_letters():
     return letter_list
 
 def uses_available_letters(word, letter_bank):
-    pass
+    
+    # letter_list = []
+    # word_len = len(word)
+    # letter_len = len(letter_list)
+
+    # word = word.lower()
+
+# create an empty dictionary
+    letter_frequency = {}
+
+    #lloop through the letter_bank
+    for each_letter in letter_bank:
+        #get the currrent count of each letter as value increments by 1 and and defaults 0 if non-existent
+        letter_frequency[each_letter.lower()] = letter_frequency.get(
+            each_letter.lower(), 0) + 1
+        
+    for each_letter in word:
+        #if both conditions arre met, return False
+        if each_letter.lower() not in letter_frequency:
+            return False
+        if letter_frequency[each_letter.lower()] <= 0:
+            return False
+# prevents from overuse -- signals that letter has been used up, minus 1
+        letter_frequency[each_letter.lower()] -= 1
+
+
+    return True
+
 
 def score_word(word):
     pass
