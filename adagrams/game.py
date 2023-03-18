@@ -3,14 +3,17 @@ letter_pool_list = ['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A','B','B', 'C', 'C
 
 
 def draw_letters():
+    letter_pool_list_copy = list(letter_pool_list)
     one_list = []
     for i in range(10):
-        random_letter = random.choice(letter_pool_list)
+        random_letter = random.choice(letter_pool_list_copy)
         one_list.append(random_letter)
+        letter_pool_list_copy.remove(random_letter)
     return one_list
 
 
 def uses_available_letters(word, letter_bank):
+  word = word.upper()
   for letter in word:
     if not letter in letter_bank:
         return False
