@@ -148,10 +148,12 @@ def get_highest_word_score(word_list):
     for word in word_list:
         score = score_word(word)
         if score > top_score:
+            if len(word) == 10:
+                count_ten_words +=1
             top_score = score
             top_word = word
         elif score == top_score:
-            if len(word) ==10 and count_ten_words<0:
+            if len(word) ==10 and count_ten_words <= 0:
                 top_word = word
                 count_ten_words +=1
             elif len(word) < len(top_word) and len(top_word) != 10:
