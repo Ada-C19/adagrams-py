@@ -32,7 +32,7 @@ LETTER_POOL = {
 # draw_letters_function
 def draw_letters():   
     # array for taking in the strings after calculation, letters array, probability array
-    arr_of_str = []
+    drawn_letters = []
     letters = ['A', 'B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
     probability = []
     counter = 0
@@ -43,22 +43,22 @@ def draw_letters():
     # this below 2 lines is honestly from stockoverflow - it turns the probability array into an np array and makes the sum closer to 1 without altering the rates (didn't come up with it but I understood it when I saw it)
     probs = np.array(probability)
     probs_scaled = probs / probs.sum()
-    # adding letters to the arr_of_str(the array to be returned) as strings. numpy nests results...
+    # adding letters to the drawn_letters(the array to be returned) as strings. numpy nests results...
     while counter < 10:
         random_letter = str(np.random.choice(letters, 1, p=probs_scaled)[0])
         # if the letter already exists, skip iteration
-        if str(random_letter) in arr_of_str:
+        if str(random_letter) in drawn_letters:
             continue
         else:
-            arr_of_str.append(random_letter)
+            drawn_letters.append(random_letter)
             counter += 1
-    print(arr_of_str)
+    print(drawn_letters)
 
     # result = []
-    # str_arr = arr_of_str
+    # str_arr = drawn_letters
     # for char in str_arr:
     #     result.append(str(char))
-    return arr_of_str
+    return drawn_letters
 
 
 # draw_letters()
