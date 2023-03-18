@@ -67,8 +67,7 @@ def uses_available_letters(word, letter_bank):
 
     return True
 
-def score_word(word):
-    LETTER_POINT = {
+LETTER_POINT = {
     'A': 1, 
     'B': 3, 
     'C': 3, 
@@ -96,6 +95,8 @@ def score_word(word):
     'Y': 4, 
     'Z': 10
     }
+
+def score_word(word):
     word = word.upper()
 
     # Calculate total points
@@ -117,4 +118,46 @@ def score_word(word):
     return points
 
 def get_highest_word_score(word_list):
+    word_score_list = [] # List of tuples of words and scores
+    score_list = [] # List of scores only
+
+    # Calculate each word's score and add to word_score_list of tuples and score_list
+    for word in word_list:
+        score = score_word(word)
+        score_list.append(score) 
+        word_score_list.append((word,score)) 
     
+    # Find the maximum score
+    max_score = max(score_list)
+
+    # Find tuples of words with the highest score and add it to the highest score word list
+    highest_score_word = []
+
+    for word_score in word_score_list:
+        if word_score[1] == max_score:
+            highest_score_word.append(word_score)
+    
+    # Find THE highest score word from the list of highest score words
+
+    # if there is only one tuple in the list, return the tuple, otherwise
+    if len(highest_score_word) == 1:
+        return highest_score_word[0]
+    
+    # If there are more than 1, apply the rules to choose the highest score word
+    # Return the first word that has 10 letters, if any
+    for word_score in highest_score_word:
+        if len(word_score[0]) == 10:
+            return word_score
+        
+    # Filter out the list to contain only word(s) with the least letters
+    while len(highest_score_word) > 1:
+
+        for i in range(len(highest_score_word) - 1):
+            word_score = highest_score_word[i]
+            next_word_score = highest_score_word[i+1]
+            
+            if len(word_score[0]) > len(next_word_score[0]):
+                highest_score_word.remove(word_score)
+    
+    # Return the first tuple in the list
+    return highest_score_word[0]

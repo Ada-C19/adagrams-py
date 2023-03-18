@@ -72,7 +72,7 @@ def test_get_highest_word_tie_prefers_ten_letters_unsorted_list():
     # Assert
     assert best_word[0] == "AAAAAAAAAA"
     assert best_word[1] == 18
-@pytest.mark.skip
+
 def test_get_highest_word_tie_same_length_prefers_first():
     # Arrange
     words = ["AAAAAAAAAA", "EEEEEEEEEE"]
@@ -85,7 +85,7 @@ def test_get_highest_word_tie_same_length_prefers_first():
     assert score_word(words[1]) == 18
     assert best_word[0] == words[0]
     assert best_word[1] == 18
-@pytest.mark.skip
+
 def test_get_highest_word_many_ties_pick_first_ten_letters():
     # Arrange
     words = ["JQ", "FHQ", "AAAAAAAAAA", "BBBBBB", "TTTTTTTTTT"]
@@ -96,7 +96,7 @@ def test_get_highest_word_many_ties_pick_first_ten_letters():
     # Assert
     assert best_word[0] == "AAAAAAAAAA"
     assert best_word[1] == 18
-@pytest.mark.skip
+
 def test_get_highest_word_many_ties_pick_shortest():
     # Arrange
     words = ["BBBBBB", "AAAAAAAAD", "JQ", "KFHK"]
@@ -107,7 +107,7 @@ def test_get_highest_word_many_ties_pick_shortest():
     # Assert
     assert best_word[0] == "JQ"
     assert best_word[1] == 18
-@pytest.mark.skip
+
 def test_get_highest_word_does_not_return_early_after_first_tiebreaker():
     # Arrange
     words = ["WWW", "MMMM", "BBBBBB", "AAAAAAAAD", "JQ", "KFHK"]
