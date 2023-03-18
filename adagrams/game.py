@@ -57,7 +57,7 @@ def uses_available_letters(word, letter_bank):
     
     for character in word:
         if character in letter_bank_letter_frequency.keys():
-            if letter_bank_letter_frequency[character] != letter_bank.count(character):
+            if letter_bank_letter_frequency[character] > letter_bank.count(character):
                 return False
     
     return True
