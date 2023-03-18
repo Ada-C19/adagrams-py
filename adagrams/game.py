@@ -57,9 +57,6 @@ def count_letter_frequency(sequence):
 
 
 def uses_available_letters(word, letter_bank):
-    
-    letters = ["A", "X", "X", "X", "X", "X", "X", "X", "X", "X"]
-    word = "AAA"
     # Iterate through the letters in the word to check if they're in the letter bank
     for letter in word:
         if letter not in letter_bank:
@@ -67,8 +64,8 @@ def uses_available_letters(word, letter_bank):
     return True
 
     # Check how many times a letter occurs in the user input word and compare that against the letter_bank
-    for letter in word:
-        count_letter_frequency(word)
+    letter_frequency_word = 
+    letter_frequency_letter_bank
 
 
 def score_word(word):
