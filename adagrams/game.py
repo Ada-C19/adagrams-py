@@ -118,9 +118,7 @@ def get_highest_word_score(word_list):
                 tied_words.append(word)
 
         for word in tied_words:
-            if len(word) < 10:
-                continue
-            else:
+            if len(word) == 10:
                 return (word, words_and_scores[word])
 
         shortest_length = 10
