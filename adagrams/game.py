@@ -33,6 +33,8 @@ LETTER_POOL = {
 
 def build_pile_of_letters(dictionary):
     pile = []
+    if dictionary == []:
+        return None
     for x,y in dictionary.items():
         for i in range(0,y):
             pile.append(x)
@@ -40,11 +42,23 @@ def build_pile_of_letters(dictionary):
 
 def draw_letters():
     hand = random.sample(build_pile_of_letters(LETTER_POOL),10)
-    print(hand)
     return hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    new_bank = list(letter_bank)
+    remainders = list(word.upper())
+    print(remainders)
+    
+    for i in word.upper(): 
+        if i in new_bank:
+            remainders.remove(i)
+            new_bank.remove(i)
+
+    if remainders == []:
+        return True
+    else: 
+        return False
+
 
 def score_word(word):
     pass
@@ -52,34 +66,3 @@ def score_word(word):
 def get_highest_word_score(word_list):
     pass
 
-"""
-def build_probabilities_of_ocurrence(dictionary):
-    total_letters = 0
-    probability_dictionary = {}
-    
-    if dictionary == {}:
-        return None
-    else: 
-        for i in dictionary.values():
-            total_letters += i
-    
-        for i,j in dictionary.items():
-            probability_dictionary[i]=j/total_letters
-    
-    return probability_dictionary
-
-def draw_letters():
-    probabilities = build_probabilities_of_ocurrence(LETTER_POOL)
-    weights = list(probabilities.values())
-    population = list(probabilities.keys())
-    
-    hand = choices(population,weights,k = 10)
-    print(hand)
-
-    return hand
-"""
-    
-#build_probabilities_of_ocurrence(LETTER_POOL)
-#draw_letters()
-#pruebachoices()
-#build_pile_of_letters(LETTER_POOL)
