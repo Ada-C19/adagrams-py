@@ -101,15 +101,10 @@ def get_highest_word_score(word_list):
     
     word_scores_dict = {}
     highest_score_list = []
-    
-    
-   
-
-
 
     for word in word_list:
         score = score_word(word)
-        if score in word_list:
+        if score in word_scores_dict:
             word_scores_dict.setdefault(score, [])
             word_scores_dict[score].append(word)
         else:
@@ -119,8 +114,8 @@ def get_highest_word_score(word_list):
     shortest_word = min(word_scores_dict[highest_score])
 
     highest_score_list.append(shortest_word)
-    highest_score_list.append(word_scores_dict[highest_score])
+    highest_score_list.append(highest_score)
 
     
 
-    return highest_score_list
+    return highest_score_list 
