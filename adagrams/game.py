@@ -138,11 +138,6 @@ def get_highest_word_score(word_list):
             highest_score_word.append(word_score)
     
     # Find THE highest score word from the list of highest score words
-
-    # if there is only one tuple in the list, return the tuple, otherwise
-    if len(highest_score_word) == 1:
-        return highest_score_word[0]
-    
     # If there are more than 1, apply the rules to choose the highest score word
     # Return the first word that has 10 letters, if any
     for word_score in highest_score_word:
