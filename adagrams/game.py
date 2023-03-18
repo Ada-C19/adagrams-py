@@ -150,14 +150,15 @@ def get_highest_word_score(word_list):
             return word_score
         
     # Filter out the list to contain only word(s) with the least letters
+    #highest_score_word_copy = list(highest_score_word)
     while len(highest_score_word) > 1:
+        word_score = highest_score_word[0]
+        next_word_score = highest_score_word[1]
 
-        for i in range(len(highest_score_word) - 1):
-            word_score = highest_score_word[i]
-            next_word_score = highest_score_word[i+1]
+        if len(word_score[0]) > len(next_word_score[0]):
+            highest_score_word.remove(word_score)
+        elif len(word_score[0]) < len(next_word_score[0]):
+            highest_score_word.remove(next_word_score)
 
-            if len(word_score[0]) > len(next_word_score[0]):
-                highest_score_word.remove(word_score)
-    
     # Return the first tuple in the list
     return highest_score_word[0]
