@@ -38,7 +38,7 @@ def draw_letters():
     for letter, count in LETTER_POOL.items():
         letters.append(letter)
         counts.append(count)
-
+    # Draw a hand of 10 letters from the letter pool
     hand = random.sample(letters, counts=counts, k=10)
 
     return hand
@@ -72,10 +72,10 @@ def uses_available_letters(word, letter_bank):
     for letter in word:
         if letter not in letter_bank:
             return False
-    # Check how many times a letter occurs in the word and letter bank
+    # Check how many times a letter occurs in the word and the letter bank
     frequency_word = count_letter_frequency(word)
     frequency_bank = count_letter_frequency(letter_bank)
-    # Compare the word frequency in the word and letter bank
+    # Compare the word frequency in the word and the letter bank
     for letter in word:
         if not (frequency_word[letter] <= frequency_bank[letter]):
             return False  
@@ -102,7 +102,7 @@ def score_word(word):
         if not word:
             return 0
         
-        if letter == "A" or letter == "E" or letter == "I" or letter ==  "O" or letter == "U" or letter == "L" or letter == "N" or letter == "R" or letter == "S" or letter == "T":
+        if letter == "A" or letter == "E" or letter == "I" or letter == "O" or letter == "U" or letter == "L" or letter == "N" or letter == "R" or letter == "S" or letter == "T":
             points_total += 1
 
         if letter == "D" or letter == "G":
@@ -130,10 +130,52 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    # Input: list of strings, diff words
+    # Output: list or tuple with word and the score
 
-# hand = draw_letters()
-# print(hand)
-# print(uses_available_letters("Dog", ["d", 'O', "g", "A", "t"]))
-# print(convert_case("Dog", ["d", 'O', "g", "A", "t"]))
-score_word("XXXXXXX")
+    # While we haven't traversed the whole list:
+        # calculate each word's length and score
+
+    word_dict = {}
+
+    for word in word_list:
+        # Check if word isn't in the dict already, add its length and score to dict 
+        if word not in word_dict:
+            word_dict[word] = [len(word), score_word(word)]
+    print(word_dict)
+
+    highest_score = 0
+
+    # Now iterate through the word dict to determine the winning word
+    for word in word_dict:
+        # which one has the highest score?
+        # which one has fewest words?
+        # which one(s) have exactly 10 words?
+
+        # if two words have the same score and length:
+            # the word that occurs in the list first wins
+
+        # elif two words have the same score and their lengths are different:
+            # the word with fewer letters wins
+
+            # if one word's length is exactly 10:
+                # the 10-letter word wins
+        
+
+        # elif multiple words have the same score:
+            # if there is a 10-letter word:
+                # the 10-letter word wins
+            # elif there is a word with fewer letter:
+                # shorter word wins
+
+
+    # Returns a tuple that represents the data of a winning word and it's score. The tuple must contain the following elements:
+    # index 0 ([0]): a string of a word
+    # index 1 ([1]): the score of that word
+
+    # In the case of tie in scores, use these tie-breaking rules:
+        # prefer the word with the fewest letters...
+        # ...unless one word has 10 letters. If the top score is tied between multiple words and one is 10 letters long, choose the one with 10 letters over the one with fewer tiles
+        # If the there are multiple words that are the same score and the same length, pick the first one in the supplied list
+
+get_highest_word_score(["WWW", "MMMM", "BBBBBB", "AAAAAAAAD", "JQ", "KFHK"])
