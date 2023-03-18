@@ -12,6 +12,7 @@ POOL_OF_LETTERS = {
 def draw_letters():
     picked_letters = []
     random_letter = ""
+    
     while len(picked_letters) < 10:
         random_letter = random.choice(string.ascii_uppercase)
         if POOL_OF_LETTERS[random_letter] > 0:
