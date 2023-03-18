@@ -112,10 +112,10 @@ def get_highest_word_score(word_list):
             word_scores_dict[score] = [word]
             
 
-    print(word_scores_dict)
-    highest_score = max(word_scores_dict, key=word_scores_dict.get)
-    print("highest score:", highest_score)
-    print("words with highest score:", word_scores_dict[highest_score])
+    #print("word_scores_dict:", word_scores_dict)
+    highest_score = max(word_scores_dict.keys())
+    #print("highest score:", highest_score)
+    #print("words with highest score:", word_scores_dict[highest_score])
     
     #for ties, shortest word should win unless one word's len is equal to 10.
     shortest_word = min(word_scores_dict[highest_score], key = lambda i: len(i))
@@ -123,7 +123,7 @@ def get_highest_word_score(word_list):
     for word in word_scores_dict[highest_score]:
         if len(word) == 10:
             best_word = word
-            print("***** word with 10:", best_word)
+            #print("***** word with 10:", best_word)
             break
         else:
             best_word = shortest_word
