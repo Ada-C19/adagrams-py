@@ -42,7 +42,10 @@ def score_word(word):
     #input: word-string of cheracters
     #output: int with points scored  
     value_of_letters_dic={1:['A','E','I','O','U','L','N','R','S','T'],2:['D','G'],3:['B','C','M','P'],4:['F','H','V','W','Y'],5:['K'],8:['J','X'],10:['Q','Z']}
-    total_score = 0 
+    if len(word)>=7:
+        total_score = 8 
+    else:
+        total_score =0
     for letter in word:
         for score in value_of_letters_dic.keys():
                 if letter.upper() in value_of_letters_dic[score]:
@@ -51,4 +54,14 @@ def score_word(word):
     return total_score
 
 def get_highest_word_score(word_list):
-    pass
+    #input: word_list - list with string of words 
+    #Output: winner_tuple- winner word string, score of word (int)
+    winner_score: 0
+    winner_word= ""
+    for word in word_list:
+        score=score_word(word)
+        if score >= winner_score:
+            winner_score=score
+            winner_word=word
+            
+    return tup(winner_word,winner_score)
