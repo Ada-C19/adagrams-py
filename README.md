@@ -1,4 +1,7 @@
 # AdaGrams
+Project Credit: Ada Developers Academy <br /> 
+Name: Linh Huynh <br /> 
+Date: March 16, 2023 <br /> 
 
 ## Skills Assessed
 
