@@ -29,12 +29,24 @@ LETTER_POOL = {
     'Z': 1
 }
 
+
 def draw_letters():
-    get_letters = []
+    available_letters = []
+    ten_random_letters = []
+
+    # I am iterating through each letter and number in the dictionary so that I can
+    # get a list (available_letters) showing all available letters. 
     for letter, number in LETTER_POOL.items():
-        random_letter = random.choice(list(LETTER_POOL.keys()))
-        get_letters.append(random_letter)
-    return get_letters
+        available_letters.append(letter)
+    print(available_letters)
+
+    while len(ten_random_letters) < 10:
+        one_random_letter = random.choice(available_letters)
+        ten_random_letters.append(one_random_letter)
+        available_letters.remove(one_random_letter)
+    return ten_random_letters
+
+
     #  create a list with letters available
     # from that list get random letters til you have 10
 
