@@ -30,17 +30,17 @@ LETTER_POOL = {
 
 
 def draw_letters():
+
     hand = []
     letter = random.choice(list(LETTER_POOL))
 
     while hand.count(letter) < LETTER_POOL[letter] and len(hand) < 10:
             hand.append(letter)
             letter = random.choice(list(LETTER_POOL))
-
     return hand
 
 def uses_available_letters(word, letter_bank):
-    
+
     letter_freq_in_word = {}
     letter_freq_in_bank = {}
 
@@ -61,7 +61,38 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+
+    score_board = {
+        1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+        2: ["D", "G"],
+        3: ["B", "C", "M", "P"],
+        4: ["F", "H", "V", "W", "Y"],
+        5: ["K"],
+        8: ["J", "X"],
+        10: ["Q", "Z"]
+    }
+
+    word = word.upper()
+
+    score = 0
+    extra_points = 8
+    extra_points_min_length = 7
+    extra_points_max_length = 10
+
+    key_list = list(score_board.keys())
+    value_list = list(score_board.values())
+
+    for letter in word:
+        index = 0
+        for i in range(len(value_list)):
+            if letter in value_list[i]:
+                index = i
+                score += key_list[index]
+
+    if len(word) >= extra_points_min_length and len(word) <= extra_points_max_length:
+        score += 8
+    return score
+
 
 def get_highest_word_score(word_list):
     pass
