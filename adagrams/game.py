@@ -36,11 +36,29 @@ def draw_letters():
     while hand.count(letter) < LETTER_POOL[letter] and len(hand) < 10:
             hand.append(letter)
             letter = random.choice(list(LETTER_POOL))
-            
+
     return hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    
+    letter_freq_in_word = {}
+    letter_freq_in_bank = {}
+
+    word = word.upper()
+
+    for i in range(len(word)):
+        if word[i] not in letter_freq_in_word:
+            letter_freq_in_word[word[i]] = 0
+        letter_freq_in_word[word[i]] += 1
+
+        occurrence = letter_bank.count(word[i])
+        if word[i] not in letter_freq_in_bank:
+            letter_freq_in_bank[word[i]] = occurrence
+
+    for letter in word:
+        if letter_freq_in_word[letter] > letter_freq_in_bank[letter]:
+            return False
+    return True
 
 def score_word(word):
     pass
