@@ -95,4 +95,33 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+
+    dict_scores = {}
+    list_ties = []
+    highest_score = 0
+    
+
+    # Get total score for each word in word_list
+    for word in word_list:
+        score = score_word(word)
+        dict_scores[word] = score
+
+    # Find highest score 
+    for key, value in dict_scores.items():
+        if value > highest_score:
+            highest_score = value
+
+    # Find other words with same highest score
+    for key, value in dict_scores.items():
+        if value == highest_score:
+            list_ties.append(key)
+
+    # Find word with highest score (lowest tiles or word with length of 10)
+    top_word = list_ties[0]
+    for tie_word in list_ties:
+        if len(tie_word) == 10:
+            top_word = tie_word
+            break
+        elif len(tie_word) < len(top_word):
+            top_word = tie_word
+    return top_word, highest_score
