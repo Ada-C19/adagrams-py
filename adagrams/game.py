@@ -56,12 +56,22 @@ def score_word(word):
 def get_highest_word_score(word_list):
     #input: word_list - list with string of words 
     #Output: winner_tuple- winner word string, score of word (int)
-    winner_score: 0
-    winner_word= ""
+    winner_score= 0
+    winner_word= " "
     for word in word_list:
         score=score_word(word)
-        if score >= winner_score:
+        #Tie Breaker
+        if score== winner_score:
+            #choose 10 letter word in tie
+            if len(word)==10:
+                winner_score=score
+                winner_word=word                
+            #find shortes word
+            elif len(word)< len(winner_word):
+                winner_score=score
+                winner_word=word
+        if score > winner_score:
             winner_score=score
             winner_word=word
             
-    return tup(winner_word,winner_score)
+    return (winner_word,winner_score)
