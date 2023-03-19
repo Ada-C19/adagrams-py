@@ -1,3 +1,5 @@
+import random
+
 def draw_letters():
     
     LETTER_POOL = {
