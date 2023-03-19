@@ -39,11 +39,12 @@ def draw_letters():
     return hand[:10]
 
 def uses_available_letters(word, letter_bank):
+    letters = letter_bank[:]
     for letter in word:
-        if letter not in letter_bank:
+        if letter not in letters:
             return False
         else:
-            letter_bank.remove(letter)
+            letters.remove(letter)
     return True
 
 def score_word(word):
