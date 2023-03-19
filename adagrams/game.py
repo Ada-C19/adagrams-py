@@ -41,6 +41,10 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     
+    letter_bank_dict = {}
+    for letter in letter_bank:
+        letter_bank_dict[letter] = letter_bank_dict.get(letter, 0) + 1
+        
     if len(word) > len(letter_bank) or not word.isalpha():
         return False
     
@@ -48,7 +52,9 @@ def uses_available_letters(word, letter_bank):
         if letter not in letter_bank:
             return False
         else:
-            letter_bank.remove(letter)
+            if letter_bank_dict[letter] == 0:
+                return False
+            letter_bank_dict[letter] -= 1
 
     return True
 
