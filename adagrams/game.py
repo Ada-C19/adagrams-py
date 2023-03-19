@@ -45,13 +45,14 @@ def uses_available_letters(word, letter_bank):
         if letter not in letters:
             return False
         else:
-            #removes the letter from the 'letters' list and continues looping
+            #removes the letter from the 'letters' list and continue looping
             letters.remove(letter)
     #If all the letters in the word are present in the letter_bank list, return True
     return True
 
 def score_word(word):
     score = 0
+    word = word.upper()
     for letter in word:
         if letter in "AEIOULNRST":
             score += 1
