@@ -44,7 +44,11 @@ def uses_available_letters(word, letter_bank):
     if len(word) > len(letter_bank) or not word.isalpha():
         return False
     
-    pass
+    for letter in word:
+        if letter not in letter_bank:
+            return False
+            
+    return True
 
 def score_word(word):
     pass
