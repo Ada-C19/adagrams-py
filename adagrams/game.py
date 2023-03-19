@@ -1,6 +1,5 @@
 import random
 def draw_letters():
-    # Create a dictionary of letters
     LETTER_POOL = {
         'A' : 9,	
         'B' : 2,	
@@ -30,12 +29,14 @@ def draw_letters():
         'Z' : 1
     }
     hand = []
-    while len(hand) < 10:
-        letter = random.choice(list(LETTER_POOL.keys()))
-        if LETTER_POOL[(letter)] > 0:
-            hand.append(letter)
-
-    return hand
+    for key in LETTER_POOL:
+        #For each key, the loop runs a nested for loop that adds the letter key to the hand list the number of times specified by the value.
+        for i in range(LETTER_POOL[key]):
+            hand.append(key)
+    #Once all the letters are added to the hand list, the list is shuffled
+    random.shuffle(hand)
+    #first 10 elements in the list are returned
+    return hand[:10]
 
 def uses_available_letters(word, letter_bank):
     for letter in word:
