@@ -40,7 +40,6 @@ LETTER_COST = (
         )
 
 def draw_letters():
-    
     letters = ''
     for letter, count in LETTER_POOL.items():
         letters += ''.join(letter*count)
@@ -50,7 +49,6 @@ def draw_letters():
     return letter_bank
 
 def uses_available_letters(word, letter_bank):
-    
     letter_bank_dict = {}
     for letter in letter_bank:
         letter_bank_dict[letter] = letter_bank_dict.get(letter, 0) + 1
@@ -65,16 +63,17 @@ def uses_available_letters(word, letter_bank):
 
     return True
 
-def score_word(word):
-    
-    cost = 0
-    
-    for letter in word.upper().strip():
-        for i in range(len(LETTER_COST)):
-            if letter in LETTER_COST[i][0]:
-                cost += LETTER_COST[i][1]
+def get_letter_cost(letter):
+    for letters, points in LETTER_COST:
+        if letter in letters:
+            return points
             
-    return cost
+def score_word(word):
+    score = 0
+    for letter in word.upper().strip():
+        score += get_letter_cost(letter)
+            
+    return score
 
 def get_highest_word_score(word_list):
     pass
