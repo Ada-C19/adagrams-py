@@ -40,6 +40,10 @@ def draw_letters():
     return letter_bank
 
 def uses_available_letters(word, letter_bank):
+    
+    if len(word) > 10 or not word.isalpha():
+        return False
+    
     pass
 
 def score_word(word):
