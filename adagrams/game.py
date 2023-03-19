@@ -30,6 +30,8 @@ def draw_letters():
     AUX_POOL_OF_LETTERS = POOL_OF_LETTERS.copy()
     
     #Crear lista vacia
+    list =[]
+    
     #Recorrer 10 veces y guardar una letra DISPONIBLE en la lista
         #Para ver que este disponible revisemoas el valor de la llave de la letra a entregar
         #Una vez entregada, debemos disminuir en 1 la cantidad de esa letra
