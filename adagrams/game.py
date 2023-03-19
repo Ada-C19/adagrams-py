@@ -31,11 +31,8 @@ def score_word(word):
         "Y": 4, "K": 5, "J": 8, "X": 8, "Q": 10, 
         "Z": 10 
     }
-    
-    if len(word) >= 7 and len(word) <=10:
-        score = 8 
-    else:
-        score = 0
+
+    score = 8 if 7 <= len(word) <= 10 else 0
 
     for char in word:
         score += letter_points[char.upper()]
