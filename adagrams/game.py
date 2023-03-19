@@ -30,6 +30,35 @@ LETTER_POOL = {
     'Z': 1
 }
 
+LETTER_SCORES = {
+    'A': 10, 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
+}
+
 def draw_letters():
     """""""""
     input: no parameters
@@ -48,31 +77,30 @@ def draw_letters():
                 continue
     return letter_list
     
-
-def cap_converter(original_word):
-    return original_word.upper()
-
-# def uses_available_letters(word, letter_bank):
-#     letter_set = set(letter_bank)
-#     cap_word_set = set(list(cap_converter(word)))
-#     if cap_word_set <= letter_set:
-#         return True
-#     else:
-#         return False
 def uses_available_letters(word, letter_bank):
     letter_dict = Counter(letter_bank)
     cap_word_dict = Counter(list(word.upper()))
     for char, char_count in cap_word_dict.items():
         if cap_word_dict[char] <= letter_dict[char]:
             print(letter_dict[char])
-            # print("Yup")
         else:
             return False
     return True
     
 
 def score_word(word):
-    pass
+    scores = []
+    total = 0
+    for char in list(word.upper()):
+        scores.append(LETTER_SCORES[char])
+    if len(scores) >= 7 and len(scores) <= 10:
+        total += 8
+        for value in scores:
+            total += value
+    else:
+        for value in scores:
+            total += value
+    return total
 
 def get_highest_word_score(word_list):
     pass
