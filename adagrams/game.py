@@ -48,11 +48,13 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     word = [elem.upper() for elem in word]     # convert input word to upper case
-    # if len(word) > len(letter_bank):        # too much letter than letter_bank return F
-    #     return False
-    # if set(word).issubset(set(letter_bank)) == False:  # if a letter is not in letter_bank return F
-    #     return False
-    # else:
+    '''    
+    if len(word) > len(letter_bank):        # too much letter than letter_bank return F
+        return False
+    if set(word).issubset(set(letter_bank)) == False:  # if a letter is not in letter_bank return F
+        return False
+    else:
+    '''
     word_count = Counter(word)
     bank_count = Counter(letter_bank)
     return all(word_count[i] <= bank_count[i] for i in word_count)
@@ -61,7 +63,42 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    score_chart = {
+        "A" : 1,
+        "E" : 1,
+        "I" : 1,
+        "O" : 1,
+        "U" : 1,
+        "L" : 1,
+        "N" : 1,
+        "R" : 1,
+        "S" : 1,
+        "T" : 1,
+        "D" : 2,
+        "G" : 2,
+        "B" : 3,
+        "C" : 3,
+        "M" : 3,
+        "P" : 3,
+        "F" : 4,
+        "H" : 4,
+        "V" : 4,
+        "W" : 4,
+        "Y" : 4,
+        "K" : 5,
+        "J" : 8,
+        "X" : 8,
+        "Q" : 10,
+        "Z" : 10
+    }
+    sum = 0
+    word = [elem.upper() for elem in word]     # convert input word to upper case
+
+    for letter in word:
+        sum = sum + score_chart[letter]
+    if len(word) >= 7:
+        sum += 8
+    return sum
 
 def get_highest_word_score(word_list):
     pass
