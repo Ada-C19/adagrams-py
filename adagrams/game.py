@@ -61,11 +61,13 @@ def score_word(word):
 #Esta f(x) va a tomar 2 tuples y devuelve la de mayor puntaje.
 #Con el valor que devuelve get_highest_word_score la va a comparar contra el ELEMENTO que tiene en el for en ese momento y retorna
 def find_max_of_2_tuples(tuple1, tuple2):
+    if tuple1 == None:
+        return tuple2
+    
     score_tuple1 = tuple1[1]
     score_tuple2 = tuple2[1]
     len_tuple1 = len(tuple1[0])
     len_tuple2 = len(tuple2[0])
-
     if score_tuple1 == score_tuple2 and len_tuple1 == 10:
         return tuple1
     elif score_tuple1 == score_tuple2 and len_tuple2 == 10:
@@ -78,7 +80,6 @@ def find_max_of_2_tuples(tuple1, tuple2):
         return tuple1
     else: 
         return tuple2
-print(find_max_of_2_tuples(('ww', 32), ('wz', 32)))
 
 def get_highest_word_score(word_list):
     compare_scores = {}
@@ -87,10 +88,10 @@ def get_highest_word_score(word_list):
         compare_scores[word] = score_per_word
     
     sorted_tuple_scores = sorted(compare_scores.items(), key=lambda x:x[1])
-    highest_score = []
-    # for pair in sorted_tuple_scores:
+    highest_score = None
+    for i in range(len(sorted_tuple_scores)):
+        tuple_element = sorted_tuple_scores[i]
+        check_higher_score = find_max_of_2_tuples(highest_score, tuple_element)
+        highest_score = check_higher_score
 
-
-    return compare_scores
-
-# print(get_highest_word_score(["XXX", "XXXX", "XX", "X"]))
+    return highest_score
