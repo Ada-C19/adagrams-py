@@ -29,31 +29,31 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1
 }
+
 # draw_letters_function
 def draw_letters():   
-    # array for taking in the strings after calculation, letters array, probability array
+    # array for taking in the strings after calculation(drawn_letters), letters array, probability array
     drawn_letters = []
     letters = ['A', 'B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
     probability = []
     counter = 0
-    # calculating probability - makes a numpy array
+    # calculating probability
     for key in LETTER_POOL:
         p = LETTER_POOL[key]
         probability.append(p)
-    # this below 2 lines is honestly from stockoverflow - it turns the probability array into an np array and makes the sum closer to 1 without altering the rates (didn't come up with it but I understood it when I saw it)
+    # this below 2 lines are honestly from stockoverflow - it turns the probability array into an np array and makes the sum closer to 1 without altering the rates (didn't come up with it but I sort of understand it...ish)
     probs = np.array(probability)
     probs_scaled = probs / probs.sum()
-    # adding letters to the drawn_letters(the array to be returned) as strings. numpy nests results...
+    # adding letters to the drawn_letters(the array to be returned) as strings. didn't know that numpy nests all results (first time using numpy, not a fan of their doucmentation style)
     while counter < 10:
         random_letter = str(np.random.choice(letters, 1, p=probs_scaled)[0])
-        # if the letter already exists, skip iteration
+        # if the letter already exists, skip iteration for no dupes. else continue on until there are 10 letters
         if str(random_letter) in drawn_letters:
             continue
         else:
             drawn_letters.append(random_letter)
             counter += 1
-    print(drawn_letters)
-
+    # print(drawn_letters)
     # result = []
     # str_arr = drawn_letters
     # for char in str_arr:
@@ -67,7 +67,31 @@ def draw_letters():
     
 
 def uses_available_letters(word, letter_bank):
-    pass
+    # an array for determining whether letters of word exists in letter_bank
+    true_false = []
+    # copy of letter_bank since direct modification is discouraged according to test_wave_02
+    letter_bank_copy = []
+    # since letter_bank uses capital letters
+    word = word.upper()
+    # copy the content of letter_bank
+    for letter in letter_bank:
+        letter_bank_copy.append(letter)
+    # check if letter in word are in letter_bank_copy
+    for char in word:
+        if char in letter_bank_copy:
+        # if it does exist, append 'true' and remove letter from letter_bank_copy to avoid using that letter multiple times
+            true_false.append('true')
+            letter_bank_copy.remove(char)
+        else:
+        # if it doesn't exist, append 'false'
+            true_false.append('false')
+    # if any instance of 'false' is in the true_false list, return False
+    if 'false' in true_false:
+        return False
+    # or else, if all that exist in the true_false array is 'true', return True
+    return True        
+
+    
 
 def score_word(word):
     pass
