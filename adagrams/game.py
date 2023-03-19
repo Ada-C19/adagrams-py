@@ -41,7 +41,7 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     
-    if len(word) > 10 or not word.isalpha():
+    if len(word) > len(letter_bank) or not word.isalpha():
         return False
     
     pass
