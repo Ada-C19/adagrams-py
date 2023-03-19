@@ -32,7 +32,10 @@ def draw_letters():
     
     for letter, count in LETTER_POOL.items():
         letters += ''.join(letter*count)
-    pass
+    
+    letter_bank = random.choices(letters, k=10)
+    
+    return letter_bank
 
 def uses_available_letters(word, letter_bank):
     pass
