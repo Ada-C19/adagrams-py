@@ -83,3 +83,18 @@ def get_highest_word_score(word_list):
             winner = [word_list[i][0], word_list[i][1]]
         elif word_list[i][1] == winner[0][1]:
             winner.append([word_list[1][0], word_list[i][1]])
+            
+    if len(winner) == 1:
+        return winner
+    
+    if len(winner) > 1:
+        winner_word = [None, 0]
+        for i in range(len(winner)):
+            if len(winner[i][0] == 10):
+                winner = [winner[i][0], winner[i][1]]
+                return winner
+            if winner_word[0] != None:
+                if len(winner[i][0]) < len(winner_word[0]):
+                    winner_word = [winner[i][0], winner[i][1]]
+                    continue
+            return winner_word[0]
