@@ -29,24 +29,30 @@ def draw_letters():
     'Y': 2, 
     'Z': 1
 }
-    MAX_LETTERS = 10
+    MAX_LETTER_LENGTHS = 10
+
+    #Creating a letter pool list w/ each letter multiplied by its frequency in LETTER_POOL
     letter_pool_list = []
     for letter in LETTER_POOL:
         temp = [letter] * LETTER_POOL[letter]
         letter_pool_list.extend(temp)
     
+    #Creating the player's "hand" and putting it into a letters list
     letters = []
-    for _ in range(MAX_LETTERS):
+    while len(letters) < 10:
         rand_letter = choice(letter_pool_list)
-        letters.append(rand_letter)
-        letter_pool_list.remove(rand_letter) #could do conditionals to avoid removing letters? 
-        #e.g. if count(letter) > letter_pool_list[letter], draw again?
+        if letters.count(rand_letter) >= LETTER_POOL[letter]:
+            continue
+        else:
+            letters.append(rand_letter)
 
     return letters
 
 
 def uses_available_letters(word, letter_bank):
     word = word.upper() #forces the input to be case insensitive
+
+    #to ensure each letter is in letter_bank and does not occur too frequently:
     for letter in word:
         if letter not in letter_bank or word.count(letter) > letter_bank.count(letter):
             return False
@@ -78,7 +84,7 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    MAX_LETTERS = 10  
+    MAX_LETTER_LENGTH = 10  
     word_scores = {}
     high_score = 0
 
@@ -88,7 +94,7 @@ def get_highest_word_score(word_list):
         if score > high_score:
             high_score = score
 
-    highest_scoring_words = {key:value for key,value in word_scores.items() if word_scores[key] >= high_score}
+    highest_scoring_words = {key:value for key,value in word_scores.items() if word_scores[key] == high_score}
 
     if len(highest_scoring_words) > 1:
 
@@ -96,16 +102,11 @@ def get_highest_word_score(word_list):
         biggest_word = max(words, key=lambda word: len(word))
         smallest_word = min(words, key=lambda word: len(word))
 
-        if len(biggest_word) == MAX_LETTERS:
+        if len(biggest_word) == MAX_LETTER_LENGTH:
             return (biggest_word, highest_scoring_words[biggest_word])
-        elif len(biggest_word) < MAX_LETTERS:
+        elif len(biggest_word) < MAX_LETTER_LENGTH:
             return (smallest_word, highest_scoring_words[smallest_word])
     else:
         l = list(highest_scoring_words.items())
         winning_word = l[0]
         return winning_word
-
-
-
-
-    
