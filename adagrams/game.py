@@ -76,4 +76,10 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    winner = [None, 0]
+    
+    for i in range(len(word_list)):
+        if word_list[i][1] > winner[0][1]:
+            winner = [word_list[i][0], word_list[i][1]]
+        elif word_list[i][1] == winner[0][1]:
+            winner.append([word_list[1][0], word_list[i][1]])
