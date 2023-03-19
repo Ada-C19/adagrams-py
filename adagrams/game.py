@@ -40,22 +40,29 @@ def score_word(word):
         score += 8
     return score 
 
-
+# [ee, a, bb, ccc]
 def get_highest_word_score(word_list):
     highest_score = 0
-    highest_word = ""
+    # highest_word = ""
+    highest_word_list = []
     for word in word_list:
         score = score_word(word)
         if score > highest_score:
             highest_score = score
-            highest_word = word
+            highest_word_list.clear()
+            highest_word_list.append(word)
+        
         elif score == highest_score:
-            if len(word) == 10:
-                highest_word = word
-                break     
-            elif len(word) < len(highest_word) and len(highest_word) < 10:
-                highest_word = word
-    print(highest_word, highest_score)
-    return (highest_word, highest_score)
+            highest_word_list.append(word)
+
+    min_word = highest_word_list[0]
+    min_len = len(min_word)
+    for word in highest_word_list:
+        if len(word) == 10:
+            return (word, highest_score)
+        elif len(word) < min_len:
+            min_len = len(word)
+            min_word = word                 
+    return (min_word, highest_score) 
 
 
