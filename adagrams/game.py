@@ -38,16 +38,11 @@ def draw_letters():
     return hand
 
 def uses_available_letters(word, letter_bank):
-    # Iterate through each letter in the word
     for letter in word:
-        # Check if letter is present in letter_bank
         if letter not in letter_bank:
-            # Return False if letter is not present
             return False
         else:
-            # Decrement the count of letter_bank for each letter in the word
             letter_bank.remove(letter)
-    # Return True if all the letters in the word are present in the letter_bank and have the correct quantity
     return True
 
 def score_word(word):
@@ -73,4 +68,16 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    highest_score = 0
+    winning_word = ''
+    for word in word_list:
+        score = score_word(word)
+    if score > highest_score:
+        highest_score = score
+        winning_word = word
+    if score == highest_score:
+        if len(word) == 10:
+            highest_score = score
+            winning_word = word
+
+    return ([winning_word, highest_score])
