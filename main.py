@@ -31,7 +31,7 @@ def wave_2_run_game():
         display_game_instructions()
         user_input_word = input()
 
-        while not uses_available_letters(user_input_word, letter_bank)):
+        while not uses_available_letters(user_input_word, letter_bank):
             display_needs_valid_input_message()
             user_input_word = input()
 
@@ -53,7 +53,7 @@ def wave_3_run_game():
         display_game_instructions()
         user_input_word = input()
 
-        while not uses_available_letters(user_input_word, letter_bank)):
+        while not uses_available_letters(user_input_word, letter_bank):
             display_needs_valid_input_message()
             user_input_word = input()
         
@@ -79,7 +79,7 @@ def wave_4_run_game():
         display_game_instructions()
         user_input_word = input()
 
-        while not uses_available_letters(user_input_word, letter_bank)):
+        while not uses_available_letters(user_input_word, letter_bank):
             display_needs_valid_input_message()
             user_input_word = input()
         
