@@ -68,8 +68,8 @@ def score_word(word):
             score += 8
         elif letter in "QZ":
             score += 10
-        if len(word) >= 7 and len(word) <= 10:
-            score += 8
+    if len(word) >= 7 and len(word) <= 10:
+        score += 8
 
     return score
 
