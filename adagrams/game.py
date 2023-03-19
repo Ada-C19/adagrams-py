@@ -1,8 +1,10 @@
 import random
 
+
+
 def draw_letters():
     # Letters to choose from
-    LETTER_POOL = {
+    letter_pool = {
         'A': 9, 
         'B': 2, 
         'C': 2, 
@@ -31,20 +33,19 @@ def draw_letters():
         'Z': 1
     }
 
-    ten_letters = [] # List for 10 random letters
+    letters = [] # List for random letters
 
-    # While list length < 10, pick random letter from dictionary for list
-    while len(ten_letters) < 10:
-        letter_to_add = random.choice(list(LETTER_POOL))
+    # Pick random letter from dictionary for list until we have enough.
+    while len(letters) < 10:
+        letter = random.choice(list(letter_pool))
 
         # Check that letter is still available in LETTER_POOL
-        # Add available letter to ten_letters
-        # Decrement count of letter by 1 after use
-        if LETTER_POOL.get(letter_to_add) > 0:
-            ten_letters.append(letter_to_add)
-            LETTER_POOL[letter_to_add] -= 1
+        # Add available letter to letters, and decrement the available count
+        if letter_pool.get(letter) > 0:
+            letters.append(letter)
+            letter_pool[letter] -= 1
 
-    return ten_letters
+    return letters
 
 def uses_available_letters(word, letter_bank):
     letter_bank_dict = {}
@@ -111,31 +112,16 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    # Dictionary for each word and its corresponding score
+    # Dictionary tracks each word with its score.
     word_scores = {}
 
     for word in word_list:
         score = score_word(word)
         word_scores[word] = score
 
-    # Everything beyond this line should be redone, with a different approach.
-    """
-    prefer the word with the fewest letters...
-    ...unless one word has 10 letters. If the top score is tied between multiple words and one is 10 letters long,
-    choose the one with 10 letters over the one with fewer tiles
-    If the there are multiple words that are the same score and the same length, pick the first one in the supplied list
-    """
-
-    '''
-    word_scores = {
-        'MMM' = 12
-        'WWWW' = 12
-        'CAT' = 8
-    }
-    '''
-
+    # Find best word
     best_word = None
-
+    
     for word, score in word_scores.items():
         if best_word is None or word_scores[best_word] < score:
             best_word = word
