@@ -94,11 +94,42 @@ def score_word(word):
     sum = 0
     word = [elem.upper() for elem in word]     # convert input word to upper case
 
-    for letter in word:
+    for letter in word:                        # sum each letter's point
         sum = sum + score_chart[letter]
-    if len(word) >= 7:
+    if len(word) >= 7:                         # chech if the word gets addtional 8 points
         sum += 8
     return sum
 
 def get_highest_word_score(word_list):
-    pass
+    score_list = []
+    for i in range(len(word_list)):
+        score_list.append(score_word(word_list[i]))         # list of the score of every word
+    word_score_dict = dict(zip(word_list,score_list))
+    max_score = max(word_score_dict.values())             # get the max score
+    all_max_words = [k for k,v in word_score_dict.items() if v == max_score]  # list of all max score words
+
+
+    # check how many winning words
+    count_win = len(all_max_words)
+    # conditional statements
+    # if only one winning return winning
+    if count_win == 1:
+        return (all_max_words, max_score)
+    else:                                      # if have multiple max score
+        # check len10 when count_win > 1
+        len_10_str = [string for string in all_max_words if len(string) == 10]
+        # count how many len10 words
+        count_len_10 = len(len_10_str)
+        # no len10
+        # check min len, if multi min, return first one
+        if count_len_10 == 0:
+            min_len = len(all_max_words[0])
+            min_index = 0
+            for i in range(1, len(all_max_words)):
+                if len(all_max_words[i]) < min_len:
+                    min_len = len(all_max_words[i])
+                    min_index = i
+                    return (all_max_words[min_index], max_score)
+        # have len10
+        else:
+            return (len_10_str[0], max_score)
