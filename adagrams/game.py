@@ -1,16 +1,46 @@
 import random
+from random import shuffle
 
 def draw_letters():
-    letter_list = ["A", "B", "C" ,"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    letter_weight =[9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1,
-     4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1]
-    letter_pool = []
-    for letter in letter_list:
-        for weight in letter_weight:
-            for i in range(weight):
-                letter_pool.append(letter)
-    user_drawn_letters = random.choices(letter_pool, None, k = 10)
-    return user_drawn_letters
+    letters_pool = {
+        "A" : 9,
+        "B" : 2,
+        "C" : 2,
+        "D" : 4,
+        "E" : 12,
+        "F" : 2,
+        "G" : 3,
+        "H" : 2,
+        "I" : 9,
+        "J" : 1,
+        "K" : 1,
+        "L" : 4,
+        "M" : 2,
+        "N" : 6,
+        "O" : 8,
+        "P" : 2,
+        "Q" : 1,
+        "R" : 6,
+        "S" : 4,
+        "T" : 6,
+        "U" : 4,
+        "V" : 2,
+        "W" : 2,
+        "X" : 1,
+        "Y" : 2,
+        "Z" : 1
+    }
+# append letters into list
+    letters_pool_list = []
+    i = 0
+    for key, value in letters_pool.items():
+        while i < value:
+            letters_pool_list.append(key)
+            i += 1
+        i = 0                                   # reset counter
+        continue
+    letters_pool_list = random.sample(letters_pool_list, len(letters_pool_list))            #shuffle the pool list
+    return(letters_pool_list[:10])               # user draw 10 letters
 
 
 
