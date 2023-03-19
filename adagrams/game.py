@@ -128,7 +128,7 @@ def get_highest_word_score(word_list):
                 if len(all_max_words[i]) < min_len:
                     min_len = len(all_max_words[i])
                     min_index = i
-            return (all_max_words[min_index], max_score)
+            return (all_max_words[min_index], max_score)            # mistake: DO NOT put a return inside a for LOOP here!!!
         # have len10
         else:
             return (len_10_str[0], max_score)
