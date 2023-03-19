@@ -28,7 +28,10 @@ def draw_letters():
     'Y': 2, 
     'Z': 1
 }
-
+    letters = ''
+    
+    for letter, count in LETTER_POOL.items():
+        letters += ''.join(letter*count)
     pass
 
 def uses_available_letters(word, letter_bank):
