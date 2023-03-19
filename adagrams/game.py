@@ -52,13 +52,23 @@ def draw_letters():
 def cap_converter(original_word):
     return original_word.upper()
 
+# def uses_available_letters(word, letter_bank):
+#     letter_set = set(letter_bank)
+#     cap_word_set = set(list(cap_converter(word)))
+#     if cap_word_set <= letter_set:
+#         return True
+#     else:
+#         return False
 def uses_available_letters(word, letter_bank):
-    letter_set = set(letter_bank)
-    cap_word_set = set(list(cap_converter(word)))
-    if cap_word_set <= letter_set:
-        return True
-    else:
-        return False
+    letter_dict = Counter(letter_bank)
+    cap_word_dict = Counter(list(word.upper()))
+    for char, char_count in cap_word_dict.items():
+        if cap_word_dict[char] <= letter_dict[char]:
+            print(letter_dict[char])
+            # print("Yup")
+        else:
+            return False
+    return True
     
 
 def score_word(word):
