@@ -19,27 +19,27 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     uniform_word = word.upper()
-    uniform_letter_bank = [string.upper() for string in letter_bank]
+    uniform_letter_bank = [letter.upper() for letter in letter_bank]
     word_dict = {}
     letter_bank_dict = {}
-    for char in uniform_word:
-        if char not in word_dict:
-            word_dict[char] = 0
-        elif char in word_dict:
-            word_dict[char] += 1
     
     for letter in uniform_letter_bank:
         if letter not in letter_bank_dict:
-            letter_bank_dict[letter] = 0
+            letter_bank_dict[letter] = 1
         elif letter in letter_bank_dict:
             letter_bank_dict[letter] += 1
-    
-    for char in word_dict:
-        if char not in letter_bank_dict:
-            return False
-        elif word_dict[char] > letter_bank_dict[char]:
-            return False
 
+    
+    for letter in uniform_word:
+        if letter not in word_dict:
+            word_dict[letter] = 1
+        elif letter in word_dict:
+            word_dict[letter] += 1
+        
+        if letter not in letter_bank_dict or word_dict[letter] > letter_bank_dict[letter]:
+            return False
+        
+  
     return True 
 
 
