@@ -91,10 +91,28 @@ def uses_available_letters(word, letter_bank):
     # or else, if all that exist in the true_false array is 'true', return True
     return True        
 
-    
+# Score Chart from README
+score_chart = {
+    ('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'): 1,
+    ('D', 'G'): 2,
+    ('B', 'C', 'M', 'P'): 3,
+    ('F', 'H', 'V', 'W', 'Y'): 4, 
+    ('K'): 5,
+    ('J', 'X'): 8,
+    ('Q', 'Z'): 10
+}
 
 def score_word(word):
     pass
+# tester snippet (worked in replit)
+
+# total = 0
+# word = 'ZION'
+# for letter in word:
+#   for key, val in score_chart.items():
+#     if letter in key:
+#       total += val
+# print(total)
 
 def get_highest_word_score(word_list):
     pass
