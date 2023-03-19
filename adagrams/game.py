@@ -1,11 +1,12 @@
 import random
 import string
 import copy
+import collections
 
 
 def draw_letters():
     
-    POOL_OF_LETTERS = {
+    pool_of_letters = {
     
     
     "A" : 9, "N" : 6, "B" : 2, "O" : 8, "C" : 2, "P" : 2, "D" : 4, "Q" : 1, 
@@ -17,20 +18,29 @@ def draw_letters():
     
     
     
-    picked_letters = []
+    player_letters = []
     random_letter = ""
     
-    while len(picked_letters) < 10:
+    while len(player_letters) < 10:
         random_letter = random.choice(string.ascii_uppercase)
-        if POOL_OF_LETTERS[random_letter] > 0:
-            POOL_OF_LETTERS[random_letter] -= 1
-            picked_letters.append(random_letter)
+        if pool_of_letters[random_letter] > 0:
+            pool_of_letters[random_letter] -= 1
+            player_letters .append(random_letter)
         
-    return picked_letters
+    return player_letters 
         
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word = word.upper()
+    letter = letter_bank[0]
+    for letter in word:
+        if letter not in letter_bank:
+            return False
+        if word.count(letter) != letter_bank.count(letter):
+            return False
+    return True    
+        
+            
 
 def score_word(word):
     pass
