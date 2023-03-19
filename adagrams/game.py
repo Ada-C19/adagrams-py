@@ -85,5 +85,47 @@ def score_word(word):
     return points
 
 def get_highest_word_score(word_list):
-    pass
+    pair_word_points= {}
+    max_score = 0
+    semifinalist = {}
+    winner = ()
+
+    for i in word_list:
+        pair_word_points[i]=score_word(i)
+   
+    max_score= max(pair_word_points.values())
+
+    for i in pair_word_points:
+        if pair_word_points[i] == max_score:
+            semifinalist[i]=pair_word_points[i]
+
+    for x,y in semifinalist.items():
+        if len(x) == 10:
+            winner = (x,y)
+            return winner
+
+    if len(semifinalist) == 1:
+        winner = (list(semifinalist.keys())[0],list(semifinalist.values())[0])
+    else:
+        winner = (min(semifinalist.keys(),key=len),semifinalist[min(semifinalist.keys(),key=len)])
+    
+    return winner
+    
+        
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
 
