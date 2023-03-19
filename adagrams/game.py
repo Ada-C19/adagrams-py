@@ -1,8 +1,6 @@
 import random
 
-def draw_letters():
-    
-    LETTER_POOL = {
+LETTER_POOL = {
     'A': 9, 
     'B': 2, 
     'C': 2, 
@@ -29,9 +27,21 @@ def draw_letters():
     'X': 1, 
     'Y': 2, 
     'Z': 1
-}
-    letters = ''
+    }
+
+LETTER_COST = (
+        (('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T '), 1),
+        (('D', 'G'), 2),
+        (('B', 'C', 'M', 'P'), 3),
+        (('F', 'H', 'V', 'W', 'Y'), 4),
+        (('K'), 5),
+        (('J', 'X'), 8),
+        (('Q', 'Z'), 10)
+        )
+
+def draw_letters():
     
+    letters = ''
     for letter, count in LETTER_POOL.items():
         letters += ''.join(letter*count)
     
@@ -49,26 +59,14 @@ def uses_available_letters(word, letter_bank):
         return False
     
     for letter in word.upper().strip():
-        if letter not in letter_bank:
+        if not letter_bank_dict.get(letter, 0):
             return False
-        else:
-            if letter_bank_dict[letter] == 0:
-                return False
-            letter_bank_dict[letter] -= 1
+        letter_bank_dict[letter] -= 1
 
     return True
 
 def score_word(word):
     
-    LETTER_COST = (
-        (('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T '), 1),
-        (('D', 'G'), 2),
-        (('B', 'C', 'M', 'P'), 3),
-        (('F', 'H', 'V', 'W', 'Y'), 4),
-        (('K'), 5),
-        (('J', 'X'), 8),
-        (('Q', 'Z'), 10)
-        )
     cost = 0
     
     for letter in word.upper().strip():
