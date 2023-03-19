@@ -76,14 +76,46 @@ def score_word(word):
     # passes in a string
     # returns an int representing total score
     # if len of word 7-10 than +8 points
-# |Letter                        | Value|
-# |:----------------------------:|:----:|
-# |A, E, I, O, U, L, N, R, S, T  |   1  |
-# |D, G                          |   2  |
-# |B, C, M, P                    |   3  |
-# |F, H, V, W, Y                 |   4  |
-# |K                             |   5  |
-# |J, X                          |   8  |
-# |Q, Z                          |   10 |
+
+    letter_value = {
+    ('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'): 1,
+    ('D', 'G'): 2,
+    ('B', 'C', 'M', 'P'): 3,
+    ('F', 'H', 'V', 'W', 'Y'): 4,
+    ('K',): 5,
+    ('J', 'X'): 8,
+    ('Q', 'Z'): 10
+    }
+    score = []
+    
+    for letter, point in letter_value.items():
+        for char in word:
+            if char.upper() in letter:
+                score.append(point)
+    
+    if len(word) in range(7, 10):
+        score.append(8)
+            
+    return sum(score)
+
+
 def get_highest_word_score(word_list):
-    pass
+# return a tuple with("word", int(score))
+    winning_score = 0
+    winning_word = ""
+    # calculate score of each word in list
+    for word in word_list:
+        words_score = score_word(word)
+        #wining word with less words or = 10
+        # if score is tied of words  or are same length,
+        #  winning word is first from list
+        if words_score > winning_score:
+            winning_score = words_score
+            winning_word = word
+        
+        if words_score == winning_score:
+            if len(word) < len(winning_word) or len(word) > len(winning_word) and len(word) == 10:
+                winning_word = word
+                winning_score = words_score
+    final_word = (winning_word, winning_score)
+    return final_word
