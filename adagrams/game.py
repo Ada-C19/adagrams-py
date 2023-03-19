@@ -134,13 +134,10 @@ def get_highest_word_score(word_list):
     # Sort word_scores in descending order of scores
     word_scores.sort(reverse=True, key=lambda x: x[1])
 
-    ties = [] # List of words with tied scores
+  
+    # Create list of words and their indices with tied scores
+    ties = [(word, idx) for word, score, idx in word_scores if score == max_score]
 
-    for word, score, idx in word_scores:
-        if score == max_score:
-            # No need to track scores anymore, because we know winner has max_score
-            ties.append((word, idx))
-    
     # Handle the case of a clear winner
     if len(ties) == 1:
         winner = ties[0][0]
