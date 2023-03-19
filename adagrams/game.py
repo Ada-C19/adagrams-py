@@ -68,6 +68,7 @@ def score_word(word):
             score += 8
         elif letter in "QZ":
             score += 10
+    #check the length of the word and add 8 points if the word is between 7 and 10 characters in length. Not sure if checking upper limit length of word is necessary...
     if len(word) >= 7 and len(word) <= 10:
         score += 8
 
