@@ -1,5 +1,6 @@
 import random
 from random import shuffle
+from collections import Counter
 
 def draw_letters():
     letters_pool = {
@@ -40,12 +41,24 @@ def draw_letters():
         i = 0                                   # reset counter
         continue
     letters_pool_list = random.sample(letters_pool_list, len(letters_pool_list))            #shuffle the pool list
-    return(letters_pool_list[:10])               # user draw 10 letters
+    letter_bank = letters_pool_list[:10]
+    return(letter_bank)               # user draw 10 letters
 
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word = [elem.upper() for elem in word]     # convert input word to upper case
+    # if len(word) > len(letter_bank):        # too much letter than letter_bank return F
+    #     return False
+    # if set(word).issubset(set(letter_bank)) == False:  # if a letter is not in letter_bank return F
+    #     return False
+    # else:
+    word_count = Counter(word)
+    bank_count = Counter(letter_bank)
+    return all(word_count[i] <= bank_count[i] for i in word_count)
+
+        
+
 
 def score_word(word):
     pass
