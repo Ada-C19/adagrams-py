@@ -51,6 +51,7 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
+    #set initial value of score to zero
     score = 0
     word = word.upper()
     for letter in word:
@@ -77,14 +78,12 @@ def score_word(word):
 def get_highest_word_score(word_list):
     highest_score = 0
     winning_word = ''
-    for word in word_list:
+    #sorted() function returns a sorted list of the specified iterable object - sorted(iterable=sequence to sort, list, dictionary, tuple etc., key=Function to execute to decide the order. Default is None, reverse=False to sort ascending, True to sort descending. Default is False)
+    sorted_list = sorted(word_list, key = len, reverse = True)
+    for word in sorted_list:
         score = score_word(word)
-    if score > highest_score:
-        highest_score = score
-        winning_word = word
-    if score == highest_score:
-        if len(word) == 10:
+        if score >= highest_score:
             highest_score = score
             winning_word = word
-
+            
     return ([winning_word, highest_score])
