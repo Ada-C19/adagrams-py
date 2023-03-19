@@ -44,10 +44,12 @@ def uses_available_letters(word, letter_bank):
     if len(word) > len(letter_bank) or not word.isalpha():
         return False
     
-    for letter in word:
+    for letter in word.upper().strip():
         if letter not in letter_bank:
             return False
-            
+        else:
+            letter_bank.remove(letter)
+
     return True
 
 def score_word(word):
