@@ -49,10 +49,17 @@ def draw_letters():
     return letter_list
     
 
-
+def cap_converter(original_word):
+    return original_word.upper()
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_set = set(letter_bank)
+    cap_word_set = set(list(cap_converter(word)))
+    if cap_word_set <= letter_set:
+        return True
+    else:
+        return False
+    
 
 def score_word(word):
     pass
