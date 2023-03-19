@@ -50,12 +50,20 @@ def draw_letters():
   #print(random.sample(LETTER_POOL_LIST, hand_quantity))
 
 def uses_available_letters(word, letter_bank):
+  word_verification = []
   for letter in word:
     if letter in letter_bank:
-      return True
+      #print("True")
+      word_verification.append("True")
     else:
-      return False
+      #print("False")
+      word_verification.append("False")
+    #print(word_verification)
     
+  if "False" in word_verification:
+    return False
+  else:
+    return True
        
        
 
