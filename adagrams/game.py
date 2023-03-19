@@ -29,6 +29,35 @@ LETTER_POOL = {
 'Z': 1
 }
 
+SCORE_CHART = {
+'A': 1, 
+'B': 3, 
+'C': 3, 
+'D': 2, 
+'E': 1, 
+'F': 4, 
+'G': 2, 
+'H': 4, 
+'I': 1, 
+'J': 8, 
+'K': 5, 
+'L': 1, 
+'M': 3, 
+'N': 1, 
+'O': 1, 
+'P': 3, 
+'Q': 10, 
+'R': 1, 
+'S': 1, 
+'T': 1, 
+'U': 1, 
+'V': 4, 
+'W': 4, 
+'X': 8, 
+'Y': 4, 
+'Z': 10
+}
+
 def draw_letters():
     """
     Returns the player's "hand", an array of ten strings, each containing only one letter.
@@ -62,7 +91,7 @@ def uses_available_letters(word, letter_bank):
 
     copy_bank = [a.upper() for a in letter_bank]
     word = word.upper()
-    
+
     for char in word:
         if char not in copy_bank:
             return False
@@ -70,44 +99,15 @@ def uses_available_letters(word, letter_bank):
 
     return True
 
-SCORE_CHART = {
-'A': 1, 
-'B': 3, 
-'C': 3, 
-'D': 2, 
-'E': 1, 
-'F': 4, 
-'G': 2, 
-'H': 4, 
-'I': 1, 
-'J': 8, 
-'K': 5, 
-'L': 1, 
-'M': 3, 
-'N': 1, 
-'O': 1, 
-'P': 3, 
-'Q': 10, 
-'R': 1, 
-'S': 1, 
-'T': 1, 
-'U': 1, 
-'V': 4, 
-'W': 4, 
-'X': 8, 
-'Y': 4, 
-'Z': 10
-}
+
 def score_word(word):
     """
     Returns an integer representing the number of points.
     A word with length greater than 6 gets an additional 8 points.
     """
     word = word.upper()
-    score = 0
 
-    for char in word:
-        score += SCORE_CHART[char]
+    score = sum([SCORE_CHART[char] for char in word])
     
     # Give bonus for words longer than 6 letters
     if len(word) > 6:
