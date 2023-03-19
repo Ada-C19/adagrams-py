@@ -40,11 +40,14 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     letters = letter_bank[:]
-    for letter in word:
+    #loop through all the letters in the word, .upper() returns a string where all characters are in upper case
+    for letter in word.upper():
         if letter not in letters:
             return False
         else:
+            #removes the letter from the 'letters' list and continues looping
             letters.remove(letter)
+    #If all the letters in the word are present in the letter_bank list, return True
     return True
 
 def score_word(word):
