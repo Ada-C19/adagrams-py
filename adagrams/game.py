@@ -29,7 +29,6 @@ LETTER_POOL = {
     'Z': 1
 }
 
-
 def draw_letters():
     available_letters = []
     ten_random_letters = []
@@ -38,23 +37,77 @@ def draw_letters():
     # get a list (available_letters) showing all available letters. 
     for letter, number in LETTER_POOL.items():
         available_letters.append(letter)
-    print(available_letters)
+    # print(available_letters)
+    
 
     while len(ten_random_letters) < 10:
         one_random_letter = random.choice(available_letters)
         ten_random_letters.append(one_random_letter)
         available_letters.remove(one_random_letter)
-    return ten_random_letters
+    return ten_random_letters, available_letters[:]
+    
 
-
-    #  create a list with letters available
-    # from that list get random letters til you have 10
+# def uses_available_letters(word, letter_bank):
+#     word = word.lower() 
+#     letter_bank_list = list(letter_bank)
+#     for letter in word:
+#             if letter in letter_bank_list:
+#                 letter_bank_list.remove(letter)
+#             else:
+#                 return False
+#     return True
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_copy = list(letter_bank)
+    word = word.upper()
+    for letter in word:
+        if letter in letter_bank_copy:
+            letter_bank_copy.remove(letter)
+        else:
+            return False
+    return True
 
+    
 def score_word(word):
-    pass
+    letter_score = {
+    'A': 1, 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
+    }
+
+    word_score = 0
+
+    for letter in word:
+        for alphabet, score in letter_score.items():
+            if letter.upper() == alphabet:
+                word_score += score 
+    if len(word) >= 7:
+            word_score += 8 
+    return word_score
+
 
 def get_highest_word_score(word_list):
     pass
