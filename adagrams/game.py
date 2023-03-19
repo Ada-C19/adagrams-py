@@ -37,12 +37,14 @@ def draw_letters():
     while len(hand) < 10:
         # get random letter from letter pool
         random_letter = random.choice(list(LETTER_POOL.keys()))
-        # conditional to check that letter frequency does not exceed number in pool
+
+        # conditional to check for letter frequency and add to letter frequency dict
         if random_letter in letter_freq:
             letter_freq[random_letter] += 1
         elif not random_letter in letter_freq:
             letter_freq[random_letter] = 1
 
+        # conditional to check that letter frequency does not exceed number in pool
         # append letter to hand list
         if letter_freq[random_letter] < LETTER_POOL[random_letter]:
             hand.append(random_letter)
