@@ -53,11 +53,6 @@ def draw_letters():
         else:
             drawn_letters.append(random_letter)
             counter += 1
-    # print(drawn_letters)
-    # result = []
-    # str_arr = drawn_letters
-    # for char in str_arr:
-    #     result.append(str(char))
     return drawn_letters
 
 
@@ -103,8 +98,6 @@ score_chart = {
 }
 
 def score_word(word):
-
-# tester snippet (worked in replit)
     total = 0
     word = word.upper()
     if len(word) >= 7:
