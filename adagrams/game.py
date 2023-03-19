@@ -71,7 +71,12 @@ def score_word(word):
         )
     cost = 0
     
-    pass
+    for letter in word.upper().strip():
+        for i in range(len(LETTER_COST)):
+            if letter in LETTER_COST[i][0]:
+                cost += LETTER_COST[i][1]
+            
+    return cost
 
 def get_highest_word_score(word_list):
     pass
