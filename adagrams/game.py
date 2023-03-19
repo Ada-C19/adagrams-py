@@ -103,16 +103,17 @@ score_chart = {
 }
 
 def score_word(word):
-    pass
-# tester snippet (worked in replit)
 
-# total = 0
-# word = 'ZION'
-# for letter in word:
-#   for key, val in score_chart.items():
-#     if letter in key:
-#       total += val
-# print(total)
+# tester snippet (worked in replit)
+    total = 0
+    word = word.upper()
+    if len(word) >= 7:
+        total += 8
+    for letter in word:
+        for key, val in score_chart.items():
+            if letter in key:
+                total += val
+    return total
 
 def get_highest_word_score(word_list):
     pass
