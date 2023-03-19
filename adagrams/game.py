@@ -78,12 +78,10 @@ def score_word(word):
 def get_highest_word_score(word_list):
     highest_score = 0
     winning_word = ''
-    #sorted() function returns a sorted list of the specified iterable object - sorted(iterable=sequence to sort, list, dictionary, tuple etc., key=Function to execute to decide the order. Default is None, reverse=False to sort ascending, True to sort descending. Default is False)
-    sorted_list = sorted(word_list, key = len, reverse = True)
+    sorted_list = sorted(word_list, key = len)
     for word in sorted_list:
         score = score_word(word)
-        if score >= highest_score:
+        if score > highest_score or (score == highest_score and len(word) < len(winning_word)):
             highest_score = score
             winning_word = word
-            
-    return ([winning_word, highest_score])
+    return (winning_word, highest_score)
