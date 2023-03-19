@@ -54,10 +54,32 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    letter_list = list(word)
+    # create variables to hold data structures
+    letter_list = list(word.upper())
+    letter_bank_freq = {}
+    letter_list_freq = {}
+
+    # loop through letter bank to count frequencies
+    for letter in letter_bank:
+        if letter in letter_bank_freq:
+            letter_bank_freq[letter] += 1
+        else:
+            letter_bank_freq[letter] = 1
+
+    # loop through letter list to check if letter is in bank and count frequences
     for letter in letter_list:
         if letter not in letter_bank:
             return False
+        elif letter in letter_list_freq:
+            letter_list_freq[letter] += 1
+        elif not letter in letter_list_freq:
+            letter_list_freq[letter] = 1
+
+    # Check if letter is used more than avaiable times than in letter bank
+    if letter_list_freq[letter] > letter_bank_freq[letter]:
+        return False
+
+    # Return True if inputted word is valid given letter bank
     return True
 
 def score_word(word):
