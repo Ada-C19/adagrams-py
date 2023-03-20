@@ -42,8 +42,24 @@ letter_dict = {
 "Z": 1,
 }
 
+def draw_letters():
+    #each letter in the list appears as many times as its value 
+    letters = []
+    #count/value - how many the letter should appear
+    #letter/key
+    for letter, count in letter_dict.items():
+        #adds to end by amount of value
+        letters.extend([letter] * count)
 
-    pass
+    return letters
+#prints as many letters as its value, to test    
+letter_list = draw_letters()
+print(letter_list)
+
+
+    
+
+    
 
 def uses_available_letters(word, letter_bank):
     pass
