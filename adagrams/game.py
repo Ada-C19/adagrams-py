@@ -48,15 +48,18 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    #Si el len(letter_bank) < len (input) --- retorna Falso
-    #Si no, ejecutar lo de abajo
-    #Crear una letter_bank_aux
-    #Comprobar que el letter_bank contengan las letras que tiene el input (word)
-        #Iterar cada letra en input 
-        #Eliminar la letra en letter_bak si esa letra se encuentra en el input
-        #Retornar falso si la letra en input no esta en el letter_bank
+    
+    if len(letter_bank) < len(word):
+        return False
+    aux_letter_bank = letter_bank.copy()
+    for letter in word:
+        if letter in aux_letter_bank:
+            aux_letter_bank.remove(letter)
+        else:
+            return False
+            
+    return True
 
-    #Retorne True si itera en todas las letras de el input
 
 def score_word(word):
     pass
@@ -64,4 +67,8 @@ def score_word(word):
 def get_highest_word_score(word_list):
     pass
 
-print(draw_letters())
+
+word = "pasa"
+letter_bank = ["c","a","s", "a", "s"]
+#print(draw_letters())
+print(uses_available_letters(word, letter_bank))
