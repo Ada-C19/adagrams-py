@@ -137,9 +137,23 @@ def get_highest_word_score(word_list):
     scores = all_words_dict.values()
     score_list = list(scores)
     score_list.sort()
-    best_word = ""
+    best_word_list = []
     for word in all_words_dict:
         if all_words_dict[word] == score_list[-1]:
-            best_word = word
+            best_word_list.append(word)
     
-    return best_word, score_list[-1]
+    best_word_list.sort()
+    best_word_lengths = []
+
+    for word in best_word_list:
+        best_word_lengths.append(len(word))
+
+    best_word_lengths.sort()
+
+    for word in best_word_list:
+        if len(word) >= 10:
+            return best_word_list[0], score_list[-1]
+        elif best_word_lengths[0] == len(word):
+            return word, score_list[-1]
+
+    return best_word_list[-1], score_list[-1]
