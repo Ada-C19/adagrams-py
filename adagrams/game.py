@@ -30,7 +30,7 @@ LETTER_POOL = {
     }
 
 LETTER_COST = (
-        (('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T '), 1),
+        (('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'), 1),
         (('D', 'G'), 2),
         (('B', 'C', 'M', 'P'), 3),
         (('F', 'H', 'V', 'W', 'Y'), 4),
@@ -76,25 +76,31 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    winner = [None, 0]
+    winner = [None]
+    score_list = [0]
     
-    for i in range(len(word_list)):
-        if word_list[i][1] > winner[0][1]:
-            winner = [word_list[i][0], word_list[i][1]]
-        elif word_list[i][1] == winner[0][1]:
-            winner.append([word_list[1][0], word_list[i][1]])
+    for word in word_list:
+        score = score_word(word)
+        if score > score_list[-1]:
+            winner = [word]
+            score_list = [score]
+        elif score == score_list[-1]:
+            winner.append(word)
+            score_list.append(score)
             
-    if len(winner) == 1:
-        return winner
+    winner_score = list(zip(winner, score_list))
+
+    if len(winner_score) == 2:
+        return winner_score[0], winner_score[1]
     
-    if len(winner) > 1:
-        winner_word = [None, 0]
-        for i in range(len(winner)):
-            if len(winner[i][0] == 10):
-                winner = [winner[i][0], winner[i][1]]
-                return winner
-            if winner_word[0] != None:
-                if len(winner[i][0]) < len(winner_word[0]):
-                    winner_word = [winner[i][0], winner[i][1]]
-                    continue
-            return winner_word[0]
+    winner_word = ''
+    for word, score in winner_score:
+        if len(word) == 10:
+            return word, score
+        if not winner_word:
+            winner_word = word
+        else:
+            if len(word) < len (winner_word):
+                winner_word = word
+                print(winner_word)
+    return winner_word, winner[1]
