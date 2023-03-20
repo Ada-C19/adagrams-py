@@ -1,6 +1,8 @@
 import random 
 
-LETTER_POOL = {
+def draw_letters():
+
+    LETTER_POOL = {
     'A': 9, 
     'B': 2, 
     'C': 2, 
@@ -28,22 +30,25 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1
 }
-
-def draw_letters():
     # create a list that will eventually be filled with 10 different letters
     hand = []
     length_of_hand = 10
-    counter = 0  
+    
 
     # based on the desired length of the hand (in this case, 10), 
     # the loop will simulate a player 'picking' 10 random letters 
     # for their hand
     
-    for draw_letter in range(length_of_hand): 
-        # random letter generator
-        random_upper_case_letter = chr(random.randint(ord('A'), ord('Z')))
+    while len(hand) < length_of_hand: 
+        # random letter generator (upper case)
+        random_letter = chr(random.randint(ord('A'), ord('Z')))
 
-        hand.append(random_upper_case_letter)
+        if LETTER_POOL[random_letter] == 0: 
+            continue
+        
+        else: 
+            LETTER_POOL[random_letter] -= 1
+            hand.append(random_letter)
 
     return hand 
 
