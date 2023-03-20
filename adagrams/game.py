@@ -17,58 +17,53 @@ LETTER_VALUES = {
 def draw_letters():
     letters = [] 
     for letter, frequency in LETTER_POOL.items():
-        for i in range(frequency): # loop through the frequency of each letter to make sure no over drawing
-            letters.append(letter) # add into the list 
+        for i in range(frequency): 
+            letters.append(letter) 
     selected_letters = []
     for i in range(10):
         letter = random.choice(letters)
         selected_letters.append(letter)
-        letters.remove(letter) # use remove method to avoid over drawing letters from letters list
+        letters.remove(letter) # remove letter to avoid over drawing 
     return selected_letters 
         
 
 def uses_available_letters(word, letter_bank):
-    letters = list(letter_bank) # make another copy of the letter_bank to avoid modify original letter bank  
-    for letter in word.upper(): # use .upper() to handle lower case letters
-        if letter not in letters: # if any letter from the word is not in the letter_bank, just return False
+    letters = list(letter_bank) # made another cophy to avoid modify original letter bank  
+    for letter in word.upper(): 
+        if letter not in letters: 
             return False
-        letters.remove(letter) # removed the letter is being used to keep track of which letters are used to form the given word
+        letters.remove(letter) 
     return True
 
 
 def score_word(word):
     score = 0
-    for letter in word.upper(): # handle the lower case letters
-        score += LETTER_VALUES[letter] # adding up the letter values 
-    if len(word) >= 7: # extra 8 points if the word length is >= 7
+    for letter in word.upper(): 
+        score += LETTER_VALUES[letter] 
+    if len(word) >= 7: 
         score += 8
     return score 
 
 
 def get_highest_word_score(word_list):
-    # step 1: find highest words
-
     highest_score = 0
-    highest_word_list = [] # create a list to store only the highest socre word
+    highest_word_list = [] 
     for word in word_list:
-        score = score_word(word) # call score_word function and assigned to score
+        score = score_word(word) 
         if score > highest_score:
             highest_score = score
-            highest_word_list = [word] # replace the position in the list with highest score word each time 
-        elif score == highest_score: # if there are multiple same highest score word, just add them into the list
+            highest_word_list = [word] 
+        elif score == highest_score: 
             highest_word_list.append(word)
 
-
-    # step 2: find the winner word from highest_word_list
-
-    min_word = highest_word_list[0] # set the first word in the list and assume it's the shortest word 
+    min_word = highest_word_list[0] # set the first word & assume it's the shortest word 
     min_len = len(min_word) 
     for word in highest_word_list:
-        if len(word) == 10: # if the word length is 10, directly return it 
+        if len(word) == 10: 
             return (word, highest_score)
-        elif len(word) < min_len: # if the word is shorter than the first one in the list, replace the position 
-            min_len = len(word)   # update the length
-            min_word = word       # update the word to the shortest word      
+        elif len(word) < min_len:
+            min_len = len(word)   
+            min_word = word           
     return (min_word, highest_score) 
 
 
