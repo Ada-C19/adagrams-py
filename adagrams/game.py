@@ -59,11 +59,30 @@ def score_word(word):
     
 def get_highest_word_score(word_list):
     word_list_score_dict = {}
-    highest_scoring_word = ()
+    starting_score = 0
+    # highest_scoring_word = ""
+    
     for word in word_list:
       score = score_word(word)
       word_list_score_dict[word] = score
       highest_score = max(word_list_score_dict.values())
-      
-      
+      if highest_score > starting_score:
+        tie_breaker(word_list)#returns shortest word
+    
     return (max(word_list_score_dict, key=word_list_score_dict.get)), highest_score
+
+def tie_breaker(word_list):
+  word_count_list = []
+  shortest_word = []
+  tie_breaker_result = {}
+  
+  for word in word_list:
+    word_count_list.append(len(word))
+    tie_breaker_result[word] = (len(word))
+  
+  word_count_list.sort()
+  shortest_word = word_count_list[0]
+  
+  for key, value in tie_breaker_result.items():
+    if len(key) == shortest_word:
+        return key, score_word(key)
