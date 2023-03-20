@@ -76,12 +76,32 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
+    #"highest_score" and "winning_word_len" is set to 0 and "winning_word" is set to an empty string
     highest_score = 0
-    winning_word = ''
-    sorted_list = sorted(word_list, key = len)
-    for word in sorted_list:
+    winning_word = ""
+    winning_word_len = 0
+    #A for loop is used to iterate through the list of words in "word_list"
+    for word in word_list:
+        #The score for each word is calculated using the "score_word" function
         score = score_word(word)
-        if score > highest_score or (score == highest_score and len(word) < len(winning_word)):
+        #The length of the word is stored in the variable "word_len"
+        word_len = len(word)
+        #If the current word's score is greater than the highest score 
+        if score > highest_score:
+            #it is set to the new highest score
             highest_score = score
+            #the word and its length are stored in "winning_word"
             winning_word = word
+            #and winning_word_len
+            winning_word_len = word_len
+        #If the current word's score is equal to the highest score, then  . .
+        elif score == highest_score: 
+            #a check is done to see if the "winning_word_len" is not equal to 10 and if the current word's length is either equal to 10 or less than the "winning_word_len"
+            if winning_word_len != 10 and (word_len == 10 or word_len < winning_word_len):
+                #If this is true, then the new winning word and its length are stored in their respective variables
+                winning_word = word
+                winning_word_len = word_len
+    
     return (winning_word, highest_score)
+    #return winning word and high score in a tuple
+
