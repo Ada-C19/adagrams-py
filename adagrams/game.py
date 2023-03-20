@@ -30,9 +30,11 @@ LETTER_POOL = {
     'Z': 1
 }
 
+
+
 # draw_letters_function
 def draw_letters():   
-    # array for taking in the strings after calculation(drawn_letters), letters array, probability array
+    # initializing variables: array for taking in the strings after calculation(drawn_letters), letters array, probability array, counter
     drawn_letters = []
     letters = ['A', 'B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
     probability = []
@@ -41,7 +43,7 @@ def draw_letters():
     for key in LETTER_POOL:
         p = LETTER_POOL[key]
         probability.append(p)
-    # this below 2 lines are honestly from stockoverflow - it turns the probability array into an np array and makes the sum closer to 1 without altering the rates (didn't come up with it but I sort of understand it...ish)
+    # the below 2 lines are honestly from stockoverflow - it turns the probability array into an np array and makes the sum closer to 1 without altering the rates (didn't come up with it but I sort of understand it...ish)
     probs = np.array(probability)
     probs_scaled = probs / probs.sum()
     # adding letters to the drawn_letters(the array to be returned) as strings. didn't know that numpy nests all results (first time using numpy, not a fan of their doucmentation style)
@@ -56,10 +58,6 @@ def draw_letters():
     return drawn_letters
 
 
-# draw_letters()
-
-
-    
 
 def uses_available_letters(word, letter_bank):
     # an array for determining whether letters of word exists in letter_bank
@@ -83,8 +81,10 @@ def uses_available_letters(word, letter_bank):
     # if any instance of 'false' is in the true_false list, return False
     if 'false' in true_false:
         return False
-    # or else, if all that exist in the true_false array is 'true', return True
+    # or else, if all that exists in the true_false array is 'true', return True
     return True        
+
+
 
 # Score Chart from README
 score_chart = {
@@ -97,16 +97,41 @@ score_chart = {
     ('Q', 'Z'): 10
 }
 
+
+
 def score_word(word):
     total = 0
     word = word.upper()
+    # extra points for longer words
     if len(word) >= 7:
         total += 8
+    # loop through each letter
     for letter in word:
+    # loop through dictionary to find the letter
         for key, val in score_chart.items():
+    # if the letter is in the tuple that is the dictionary key, add the value (score) to the total
             if letter in key:
                 total += val
+    # return total
     return total
 
+
+
 def get_highest_word_score(word_list):
-    pass
+    best_score_word = ""
+    best_score = 0
+    ties = []
+    for word in word_list:
+        current_score = score_word(word)
+        if len(word) > 9:
+            return (word, current_score)
+        elif current_score > best_score:
+            best_score_word = word
+            best_score = current_score
+        elif current_score == best_score:
+            ties.append(word)
+    if len(ties):
+        for word in range(0, len(ties)):
+            if len(ties[word]) < len(best_score_word):
+                best_score_word = ties[word]
+    return [best_score_word, best_score]
