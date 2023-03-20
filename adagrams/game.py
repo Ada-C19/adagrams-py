@@ -128,28 +128,39 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
+    # create dict to hold all word inputted by player
     all_words_dict = {}
     
+    # loop to add items to all words dict with word as key and score as value
     for word in word_list:
         score = score_word(word)
         all_words_dict[word] = score
     
+    # create a list to hold scores and sort scores
     scores = all_words_dict.values()
     score_list = list(scores)
     score_list.sort()
+
+    # create list to hold best words that have the highest scores
     best_word_list = []
+
+    # create loop to append highest scoring words to best word lists
     for word in all_words_dict:
         if all_words_dict[word] == score_list[-1]:
             best_word_list.append(word)
     
+    # sort best word list and list to hold best word lengths for tie comparisons
     best_word_list.sort()
     best_word_lengths = []
 
+    # loop through best word list to get lengths and add to best word lengths
     for word in best_word_list:
         best_word_lengths.append(len(word))
 
+    # sort best word lenghs
     best_word_lengths.sort()
 
+    # conditionals to check for tie situations
     for word in best_word_list:
         if len(word) >= 10:
             return best_word_list[0], score_list[-1]
