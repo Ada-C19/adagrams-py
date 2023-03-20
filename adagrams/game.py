@@ -51,15 +51,26 @@ def draw_letters():
         #adds to end by amount of value
         letters.extend([letter] * count)
 
-    return letters
-#prints as many letters as its value, to test    
-letter_list = draw_letters()
-print(letter_list)
+    #return letters
+#prints as many letters as its value, to test  
+#letter_list = draw_letters()
+#print(letter_list)
 
-
+    hand = []
+    #draw hand of 10
     
+    for i in range(10):
+        #choose 'random' index from letters list
+        index = (i*11) % len(letters)
+        #add letter at chosen index to hand
+        hand.append(letters[index])
+        print(hand)
 
-    
+        letters.pop(index)
+    return hand #scope outside of loop pls
+
+print(draw_letters())    
+
 
 def uses_available_letters(word, letter_bank):
     pass
