@@ -18,6 +18,7 @@ for letter in ["B", "C", "M", "P"]:
     letter_score_dict[letter]= 3
 for letter in ["F", "H", "V", "W", "Y"]:
     letter_score_dict[letter]= 4
+
 def draw_letters():
    
    letter_hand = random.sample(letters_list, 10)
@@ -51,5 +52,22 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    
-    pass
+    word_scores = []
+    for word in word_list:
+        score = score_word(word)
+        word_scores.append(score)
+    best_score = max(word_scores)
+    for word in word_list:
+        if len(word) == 10 and score_word(word)== best_score:
+            best_word = word
+    word_list2 = sorted(word_list, key=len)   
+    for word in word_list2:
+        score = score_word(word)
+        if score == best_score:
+            best_word = word
+            break
+    return best_word, best_score
+   
+   
+
+
