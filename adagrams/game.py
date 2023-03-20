@@ -39,7 +39,6 @@ def draw_letters():
             letters_pool_list.append(key)
             i += 1
         i = 0                                   # reset counter
-        continue
     letters_pool_list = random.sample(letters_pool_list, len(letters_pool_list))            #shuffle the pool list
     letter_bank = letters_pool_list[:10]
     return(letter_bank)               # user draw 10 letters
