@@ -37,7 +37,7 @@ def draw_letters():
     while len(letters) < 10:
         letter = random.choice(list(letter_pool))
 
-        # Check that letter is still available in LETTER_POOL
+        # Check that letter is still available in letter_pool
         # Add available letter to letters, and decrement the available count
         if letter_pool.get(letter) > 0:
             letters.append(letter)
@@ -99,7 +99,7 @@ def score_word(word):
     word = word.upper() # Convert word to uppercase letters
 
     # Check if the word length rewards an extra 8 points
-    if len(word) in (7, 8, 9, 10):
+    if len(word) > 6:
         word_score += 8
 
     # Add value of each letter in word to word_score total
