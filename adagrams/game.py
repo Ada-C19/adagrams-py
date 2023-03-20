@@ -60,10 +60,11 @@ def get_highest_word_score(word_list):
     for word in word_list:
         if len(word) == 10 and score_word(word)== best_score:
             best_word = word
-    word_list2 = sorted(word_list, key=len)   
-    for word in word_list2:
-        score = score_word(word)
-        if score == best_score:
+            break
+    else:
+        word_list2 = sorted(word_list, key=len)   
+        for word in word_list2:
+          if score_word(word) == best_score:
             best_word = word
             break
     return best_word, best_score
