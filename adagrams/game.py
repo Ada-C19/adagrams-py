@@ -31,7 +31,24 @@ def draw_letters():
         "Y" : 2,
         "Z" : 1
     }
-# append letters into list
+    letters_probability = []
+    letter_bank = []
+    total = sum(letters_pool.values())
+    for letter in letters_pool:
+        p = letters_pool[letter] / total
+        letters_probability.append(p)
+    letters = list(letters_pool)
+
+    while len(letter_bank) < 10:
+        get_letter = random.choices(letters, weights=letters_probability, k=1)
+        letter_count = letter_bank.count(get_letter[0])
+        if letter_count < letters_pool[get_letter[0]]:   # Mistake: TypeError: unhashable type:"list"; because random() return a list.
+            letter_bank.append(get_letter[0])
+            continue
+    return(letter_bank)
+'''
+    # original idea -> shuffle the whole list then get 10 letters (it works too)
+    # append letters into list
     letters_pool_list = []
     i = 0
     for key, value in letters_pool.items():
@@ -41,25 +58,15 @@ def draw_letters():
         i = 0                                   # reset counter
     letters_pool_list = random.sample(letters_pool_list, len(letters_pool_list))            #shuffle the pool list
     letter_bank = letters_pool_list[:10]
-    return(letter_bank)               # user draw 10 letters
+    return(letter_bank)               # user draw 10 letters'''
 
 
 
 def uses_available_letters(word, letter_bank):
     word = [elem.upper() for elem in word]     # convert input word to upper case
-    '''    
-    if len(word) > len(letter_bank):        # too much letter than letter_bank return F
-        return False
-    if set(word).issubset(set(letter_bank)) == False:  # if a letter is not in letter_bank return F
-        return False
-    else:
-    '''
     word_count = Counter(word)
     bank_count = Counter(letter_bank)
     return all(word_count[i] <= bank_count[i] for i in word_count)
-
-        
-
 
 def score_word(word):
     score_chart = {
@@ -124,7 +131,7 @@ def get_highest_word_score(word_list):
         # have len10
         else:
             return (len_10_str[0], max_score)
-        '''if count_len_10 == 0:                                # original code for line123
+        '''if count_len_10 == 0:                                # original code for line123 (it works too)
             # check min len, if multi min, return first one
             min_len = len(all_max_words[0])
             min_index = 0
