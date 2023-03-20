@@ -73,29 +73,32 @@ def score_word(word):
     for letter in word.upper().strip():
         score += get_letter_cost(letter)
     if len(word) >= 7:
-        score += 8   
+        score += 8
+    
     return score
 
-def get_highest_word_score(word_list):
-    winner = [None]
-    score_list = [0]
+def get_all_highest_words(word_list):
+    winners = []
+    score = 0
     
     for word in word_list:
-        score = score_word(word)
-        if score > score_list[-1]:
-            winner = [word]
-            score_list = [score]
-        elif score == score_list[-1]:
-            winner.append(word)
-            score_list.append(score)
+        word_score = score_word(word)
+        if word_score > score:
+            winners = [word]
+            score = word_score
+        elif word_score == score:
+            winners.append(word)
             
-    winner_score = list(zip(winner, score_list))
+    return winners, score
 
-    if len(winner_score) == 1:
-        return winner_score[0][0], winner_score[0][1]
+def get_highest_word_score(word_list):
+    winners, score = get_all_highest_words(word_list)
+
+    if len(winners) == 1:
+        return ','.join(winners), score
     
     winner_word = ''
-    for word, score in winner_score:
+    for word in winners:
         if len(word) == 10:
             return word, score
         
@@ -105,4 +108,5 @@ def get_highest_word_score(word_list):
             if len(word) < len (winner_word):
                 winner_word = word
                 print(winner_word)
-    return winner_word, winner_score[0][1]
+                
+    return winner_word, score
