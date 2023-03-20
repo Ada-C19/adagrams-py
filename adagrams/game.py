@@ -60,26 +60,23 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    # an array for determining whether letters of word exists in letter_bank
-    true_false = []
+    # initializing variable: counter for counting charcters in word that exist in letter_bank
+    letter_count = 0
     # copy of letter_bank since direct modification is discouraged according to test_wave_02
     letter_bank_copy = letter_bank[:]
     # since letter_bank uses capital letters
     word = word.upper()
     # check if letter in word are in letter_bank_copy
     for char in word:
+        # if character in word is in letter_bank_copy, increment counter and remove that character from letter_bank_copy
         if char in letter_bank_copy:
-        # if it does exist, append 'true' and remove letter from letter_bank_copy to avoid using that letter multiple times
-            true_false.append('true')
+            letter_count += 1
             letter_bank_copy.remove(char)
-        else:
-        # if it doesn't exist, append 'false'
-            true_false.append('false')
-    # if any instance of 'false' is in the true_false list, return False
-    if 'false' in true_false:
-        return False
-    # or else, if all that exists in the true_false array is 'true', return True
-    return True        
+    # once the loop ends and letter count is equal to the length of the word, that means all the letters in word were in letter_bank so return True
+    if letter_count == len(word):
+        return True     
+    # otherwise return False
+    return False
 
 
 
