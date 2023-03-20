@@ -1,10 +1,8 @@
 import sys
 from adagrams.ui_helper import *
 from adagrams.game import draw_letters, uses_available_letters, score_word, get_highest_word_score
-import random
 
 def wave_1_run_game():
-    
     display_welcome_message()
     game_continue = True
     
@@ -20,7 +18,6 @@ def wave_1_run_game():
     display_goodbye_message()
 
 def wave_2_run_game():
-    
     display_welcome_message()
     game_continue = True
     
@@ -42,7 +39,6 @@ def wave_2_run_game():
     display_goodbye_message()
 
 def wave_3_run_game():
-    
     display_welcome_message()
     game_continue = True
     
@@ -67,7 +63,6 @@ def wave_3_run_game():
     display_goodbye_message()
 
 def wave_4_run_game():
-    
     display_welcome_message()
     game_continue = True
     played_words = []
