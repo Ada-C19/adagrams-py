@@ -95,4 +95,31 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    word_scores = {}
+    for word in word_list:
+        score = score_word(word)
+        word_scores[word] = score
+
+    high_score = 0
+    high_scorers = []
+    for score in word_scores.values():
+        if score >= high_score:
+            high_score = score
+    for word, score in word_scores.items():
+        if score == high_score:
+            high_scorers.append(word)
+
+    winner =''
+    shortest_word =[]
+    shortest_word_length = len(min(high_scorers, key=len))
+
+    for word in high_scorers:
+        if len(word) == 10:
+            winner = word
+            return winner, high_score      
+        elif len(word) == shortest_word_length:
+            shortest_word.append(word)
+
+    winner = shortest_word[0]
+    
+    return winner, high_score
