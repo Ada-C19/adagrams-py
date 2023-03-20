@@ -53,6 +53,7 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     #set initial value of score to zero
     score = 0
+    #use the .upper() function to make word upper case
     word = word.upper()
     for letter in word:
         if letter in "AEIOULNRST":
