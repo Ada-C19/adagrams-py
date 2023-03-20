@@ -44,28 +44,59 @@ def draw_letters():
     while len(drawn_hand) < 10:
         new_letter = random.choice(master_letter_bank)
         drawn_hand.append(new_letter)
+        master_letter_bank.remove(new_letter)
         
     return drawn_hand
-
 
 
 def uses_available_letters(word, letter_bank):
     #ensures user's word only uses letters from drawn_hand
     #loops through each character in the word and checks if it is in drawn_hand
-    
+
     #also need to return false if a character is used too many times...
     #make a dictionary for drawn_hand that has letter and frequency to compare? 
     #use a new data type like set or tuple? 
     valid_word = False
     valid_frequency = False
+    letter_frequency = {}
+    max_frequency = {}
+    for char in letter_bank:
+        if char in max_frequency:
+            max_frequency[char] +=1
+        else:
+            max_frequency[char] = 1
+    
+
     for char in word:
+        char = char.capitalize()
         if char not in letter_bank:
             valid_word = False
             break
         elif char in letter_bank:
             valid_word = True
 
+        if char in letter_frequency:
+            letter_frequency[char] += 1
+        else:
+            letter_frequency[char] = 1   
+
+        # my question/where i am stuck!! 
+        if letter_frequency[char]> max_frequency[char]:
+            valid_frequency = False
+            valid_word = False
+        else:
+            valid_word = True    
+
     return valid_word
+
+#  taken from test files:  
+#       letter_freq = {}
+#         for letter in letters:
+#             if letter in letter_freq:
+#                 letter_freq[letter] += 1
+#                 else:
+#                     letter_freq[letter] = 1
+#     return valid_word
 
 def score_word(word):
     pass
