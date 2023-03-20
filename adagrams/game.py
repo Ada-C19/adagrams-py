@@ -72,7 +72,8 @@ def score_word(word):
     score = 0
     for letter in word.upper().strip():
         score += get_letter_cost(letter)
-            
+    if len(word) >= 7:
+        score += 8   
     return score
 
 def get_highest_word_score(word_list):
