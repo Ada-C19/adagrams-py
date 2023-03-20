@@ -46,33 +46,25 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     score = 0
     uniform_case_word = word.upper()
-    one_pointers = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
-    two_pointers = ["D", "G"]
-    three_pointers = ["B", "C", "M", "P"]
-    four_pointers = ["F", "H", "V", "W", "Y"]
-    five_pointers = ["K"]
-    eight_pointers = ["J", "X"]
-    ten_pointers = ["Q", "Z"]
+
+    point_dict = {
+        ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T") : 1,
+        ("D", "G"): 2,
+        ("B", "C", "M", "P") : 3,
+        ("F", "H", "V", "W", "Y") : 4,
+        ("K") : 5,
+        ("J", "X") : 8,
+        ("Q", "Z") : 10
+    }
+    
 
     for letter in uniform_case_word:
-        if letter in one_pointers:
-            score += 1
-        if letter in two_pointers:
-            score += 2
-        if letter in three_pointers:
-            score += 3
-        if letter in four_pointers:
-            score += 4
-        if letter in five_pointers:
-            score += 5
-        if letter in eight_pointers:
-            score += 8
-        if letter in ten_pointers:
-            score += 10
+        for tuple in point_dict:
+            if letter in tuple:
+                score += point_dict[tuple]
         
     if len(word) >= 7:
             score += 8
-
 
 
     return score 
@@ -104,10 +96,6 @@ def get_highest_word_score(word_list):
 
     return winning_word, score_word(winning_word)
       
-
-
-
-
 
         
 
