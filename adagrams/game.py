@@ -38,7 +38,8 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     ### determines whether letters used are from letter_bank
-    for letter in word:
+    word_cap = word.upper()
+    for letter in word_cap:
         if letter not in letter_bank:
             return False
     
@@ -56,11 +57,11 @@ def uses_available_letters(word, letter_bank):
     ### creates dict with letters as keys and quantities for user word
     word_set = set()
     word_num_dict = {}
-    for letter in word:
+    for letter in word_cap:
         word_set.add(letter)
     for item in word_set:
         word_set_count = 0
-        for letter in word:
+        for letter in word_cap:
             if item == letter:
                 word_set_count += 1
         word_num_dict[item] = word_set_count
