@@ -31,17 +31,11 @@ def draw_letters():
 }
     MAX_LETTER_LENGTHS = 10
 
-    #Creating a letter pool list w/ each letter multiplied by its frequency in LETTER_POOL
-    letter_pool_list = []
-    for letter in LETTER_POOL:
-        temp = [letter] * LETTER_POOL[letter]
-        letter_pool_list.extend(temp)
-    
     #Creating the player's "hand" and putting it into a letters list
     letters = []
     while len(letters) < 10:
-        rand_letter = choice(letter_pool_list)
-        if letters.count(rand_letter) >= LETTER_POOL[letter]:
+        rand_letter = choice(list(LETTER_POOL.keys())) #choose a random letter from a list of LETTER_POOL keys
+        if letters.count(rand_letter) >= LETTER_POOL[rand_letter]:
             continue
         else:
             letters.append(rand_letter)
