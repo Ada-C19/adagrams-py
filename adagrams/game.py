@@ -63,12 +63,9 @@ def uses_available_letters(word, letter_bank):
     # an array for determining whether letters of word exists in letter_bank
     true_false = []
     # copy of letter_bank since direct modification is discouraged according to test_wave_02
-    letter_bank_copy = []
+    letter_bank_copy = letter_bank[:]
     # since letter_bank uses capital letters
     word = word.upper()
-    # copy the content of letter_bank
-    for letter in letter_bank:
-        letter_bank_copy.append(letter)
     # check if letter in word are in letter_bank_copy
     for char in word:
         if char in letter_bank_copy:
@@ -139,9 +136,9 @@ def get_highest_word_score(word_list):
     # if there's anything in ties list,
     if len(ties):
         # loop through the list
-        for word in range(0, len(ties)):
+        for word in ties:
             # if length of the tying word is shorter than current best word, set the shorter word as the new best word
-            if len(ties[word]) < len(best_score_word):
-                best_score_word = ties[word]
+            if len(word) < len(best_score_word):
+                best_score_word = word
     # return the best scoring word and its score
     return [best_score_word, best_score]
