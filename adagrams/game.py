@@ -71,11 +71,11 @@ def get_highest_word_score(word_list):
         if score > winner_score:
             winner_word = word
             winner_score = score
-        elif score == winner_score and len(word) == len(winner_word):   
-            continue
         elif score == winner_score:
             if len(word) < len(winner_word) and len(winner_word) !=10:
                 winner_word = word
+            elif len(word) == len(winner_word):   
+                continue
             elif len(word)==10:
                 winner_word = word
     return (winner_word, winner_score)        
