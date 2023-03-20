@@ -46,7 +46,32 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    cap_word = word.upper()
+    letter_bank_quantity = {}
+    char_quantity = {}
+    result = False
+
+    for letter in letter_bank:
+        if letter not in letter_bank_quantity:
+            letter_bank_quantity[letter] = 1
+        else:
+            letter_bank_quantity[letter] += 1
+    
+    for char in cap_word:
+        if char not in char_quantity:
+            char_quantity[char] = 1
+        else:
+            char_quantity[char] += 1
+    
+    for letter in cap_word:
+        if letter not in letter_bank or char_quantity[letter] > letter_bank_quantity[letter]:
+            result = False
+            break 
+        else:
+            result = True
+
+    return result  
+
 
 def score_word(word):
     pass
