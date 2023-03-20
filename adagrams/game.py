@@ -87,10 +87,14 @@ def score_word(word):
         10: ["Q", "Z"]
     }
 
+    if len(word) >= 7:
+        score += 8
+
     for letter in word.upper():
         for key in score_dict:
             if letter in score_dict[key]:
                 score += key
+
     return score
 
 def get_highest_word_score(word_list):
