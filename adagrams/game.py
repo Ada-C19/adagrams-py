@@ -103,7 +103,34 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    #Me dan una lista con distintas palabras
+    #2.- Calcular el score de cada palabra 
+        #Iterar cada palabra en la word_list
+        #Con la funcion "score_word" saber el score de cada palabra
+        #Guardar el score de cada palabra en una nueva lista llamada "score_list"
+        #Hacer un diccionario que tenga como llaves el "word_list" y como valores "score_list"
+        #Obtener el score mas alto en los valores del diccionario (score_list)
 
-word = "WhImSy"
-print(score_word(word))
+        #Si no hay duplicados en valores (scores), crear una tupla con el valor mayor { word , score }
+
+        #Si hay duplicados en valores (scores)
+            #Si el len(word) < 10 entonces el ganador es el del len menor
+            #Si el len(word) = 10 entonces el ganador es el de len 10
+            #Si hay mas de 1 palabra con len = 10, el ganador es el primero en la lista
+            #Si un word tiene el mismo score y mismo len, retornar el primero que esta en la lista
+
+
+
+
+
+
+    
+    #5.- Si hay empate, buscar la palabra con menos letras, es decir el menor lenght --> solo si:
+        #no hay una palabra de 10 letras
+    #6.- Si hay una palabra con el mismo score y mismo largo, retornar el primero que este en la lista
+
+
+
+
+
+print(get_highest_word_score(word_list))
