@@ -33,9 +33,9 @@ def draw_letters():
     weight_letters = list(LETTER_POOL.values())
     ten_letters = []
     letter_freq = {}
-    used_lists = []
 
-    while len(ten_letters) <10:
+    # could create a helperfunction if the letters are more then 10
+    while len(ten_letters) < 10:
         list_letter_drawn = random.choices(list_of_letters, weights = weight_letters, k=1)
         letter_drawn = list_letter_drawn[0]
         if letter_drawn in letter_freq:
@@ -70,17 +70,11 @@ def uses_available_letters(word, letter_bank):
 
     word_capital = word.upper()
     for letter in word_capital:
-        if letter in letter_bank:
-            if letter_bank_count[letter]>=1:
-                letter_bank_count[letter] -=1  
-            else:
-                return False
+        if letter in letter_bank and letter_bank_count[letter]>=1:
+            letter_bank_count[letter] -=1  
         else:
             return False
     return True
-             
-
-            
 
 def score_word(word):
 # - Has one parameter: `word`, which is a string of characters
