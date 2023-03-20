@@ -48,7 +48,15 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    #Si el len(letter_bank) < len (input) --- retorna Falso
+    #Si no, ejecutar lo de abajo
+    #Crear una letter_bank_aux
+    #Comprobar que el letter_bank contengan las letras que tiene el input (word)
+        #Iterar cada letra en input 
+        #Eliminar la letra en letter_bak si esa letra se encuentra en el input
+        #Retornar falso si la letra en input no esta en el letter_bank
+
+    #Retorne True si itera en todas las letras de el input
 
 def score_word(word):
     pass
