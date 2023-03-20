@@ -50,12 +50,17 @@ def draw_letters():
     for letter, count in letter_dict.items():
         #adds to end by amount of value
         letters.extend([letter] * count)
+    random.shuffle(letters)
+    hand = letters[:10]
+    return hand
 
     #return letters
 #prints as many letters as its value, to test  
 #letter_list = draw_letters()
 #print(letter_list)
-
+print(draw_letters())
+"""
+original attempt without random import being used
     hand = []
     #draw hand of 10
     
@@ -70,7 +75,7 @@ def draw_letters():
     return hand #scope outside of loop pls
 
 print(draw_letters())    
-
+"""
 
 def uses_available_letters(word, letter_bank):
     pass
