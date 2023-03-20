@@ -1,7 +1,8 @@
 import random
+import copy
 
 def draw_letters():
-    pool = {
+    letter_pool = {
     'A': 9, 
     'B': 2, 
     'C': 2, 
@@ -30,39 +31,28 @@ def draw_letters():
     'Z': 1
 }
     frequency_list = []
-    random_letter_list = []
+    hand = []
 # adds letter to frequency_list based on the desired frequency
-    for letter, frequency in pool.items():
+    for letter, frequency in letter_pool.items():
         frequency_list += letter * frequency
 
-    while len(random_letter_list) < 10:
+    while len(hand) < 10:
         random_letter = random.choice(frequency_list)
+        #random.choice doing something..then loop
         frequency_list.remove(random_letter)
-        random_letter_list.append(random_letter)
+        hand.append(random_letter)
 
-    return random_letter_list
+    return hand
 
 def uses_available_letters(word, letter_bank):
-    word = word.upper()
-    letter_bank_letter_frequency = {}
+    letter_bank_copy = copy.deepcopy(letter_bank)
 
-    for letter in word:
-        if letter not in letter_bank:
+    for letter in word.upper():
+        if letter not in letter_bank_copy:
             return False
-        
-        if letter in letter_bank_letter_frequency.keys():
-            letter_bank_letter_frequency[letter] += 1
-        else:
-            letter_bank_letter_frequency[letter] = 1
-    
-    for character in word:
-        if character in letter_bank_letter_frequency.keys():
-            if letter_bank_letter_frequency[character] > letter_bank.count(character):
-                return False
-    
+        elif letter in letter_bank_copy:
+            letter_bank_copy.remove(letter)
     return True
-        
-
 
 def score_word(word):
     scoring_system = {
@@ -78,9 +68,8 @@ def score_word(word):
     word_score = 0
 
     for letter in word:
-        letter = letter.upper()
         for score, letters in scoring_system.items():
-            if letter in letters:
+            if letter.upper() in letters:
                 word_score += score
 
     #bonus if word is between 7 to 10 characters
@@ -96,19 +85,16 @@ def get_highest_word_score(word_list):
         word_score = score_word(word)
         words_with_scores.append({word:word_score})
 
-    highest_score = 0
-    highest_score_word = ""
+    highest_score_with_word = ("", 0)
 
     for pair in words_with_scores:
         for word, word_score in pair.items():
-            if word_score >= highest_score and len(word) == 10:
+            if word_score >= highest_score_with_word[1] and len(word) == 10:
                 return (word, word_score)
-            elif word_score == highest_score and len(word) < len(highest_score_word):
-                highest_score_word = word
-                highest_score = word_score
-            elif word_score > highest_score:
-                highest_score_word = word
-                highest_score = word_score
+            elif word_score == highest_score_with_word[1] and len(word) < len(highest_score_with_word[0]):
+                highest_score_with_word = (word, word_score)
+            elif word_score > highest_score_with_word[1]:
+                highest_score_with_word = (word, word_score)
 
-    return (highest_score_word, highest_score)
+    return highest_score_with_word
 
