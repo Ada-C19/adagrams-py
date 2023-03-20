@@ -44,7 +44,7 @@ def draw_letters():
     for letter, count in LETTER_POOL.items():
         letters += ''.join(letter*count)
     
-    letter_bank = random.choices(letters, k=10)
+    letter_bank = random.sample(letters, 10)
     
     return letter_bank
 
@@ -91,17 +91,18 @@ def get_highest_word_score(word_list):
             
     winner_score = list(zip(winner, score_list))
 
-    if len(winner_score) == 2:
-        return winner_score[0], winner_score[1]
+    if len(winner_score) == 1:
+        return winner_score[0][0], winner_score[0][1]
     
     winner_word = ''
     for word, score in winner_score:
         if len(word) == 10:
             return word, score
+        
         if not winner_word:
             winner_word = word
         else:
             if len(word) < len (winner_word):
                 winner_word = word
                 print(winner_word)
-    return winner_word, winner[1]
+    return winner_word, winner_score[0][1]
