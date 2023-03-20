@@ -94,7 +94,7 @@ def score_word(word):
     word = [elem.upper() for elem in word]     # convert input word to upper case
 
     for letter in word:                        # sum each letter's point
-        sum = sum + score_chart[letter]
+        sum += score_chart[letter]
     if len(word) >= 7:                         # chech if the word gets addtional 8 points
         sum += 8
     return sum
