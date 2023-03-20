@@ -63,9 +63,8 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
     
-    #Crear un diccionario con cada letra y sus puntos
     LETTER_SCORE = {
-    'A': 2, 
+    'A': 1, 
     'B': 3, 
     'C': 3, 
     'D': 2, 
@@ -90,18 +89,21 @@ def score_word(word):
     'W': 4, 
     'X': 8, 
     'Y': 4, 
-    'Z': 10
-}
-    #Iterar cada letra de word
-    #Revisar los puntos de cada letra iterada en el diccionario
+    'Z': 10}
 
-    #El numero de puntos de cada letra es sumado al total score del word
-    #Si el len(word) es igual o mayor a 7 entonces le sumo 8 puntos adicionales al score
-    #Returns los puntos totales (int)
+    score = 0
+
+    for letter in word:
+        score += LETTER_SCORE[letter.upper()]
+
+    if len(word) >= 7:
+        score = score + 8
+    
+    return score
+
 
 def get_highest_word_score(word_list):
     pass
 
-
-
+word = "WhImSy"
 print(score_word(word))
