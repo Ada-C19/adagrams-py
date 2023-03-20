@@ -62,13 +62,18 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    
+    #Crear un diccionario con cada letra y sus puntos
+    #Iterar cada letra de word
+    #Revisar los puntos de cada letra iterada en el diccionario
+
+    #El numero de puntos de cada letra es sumado al total score del word
+    #Si el len(word) es igual o mayor a 7 entonces le sumo 8 puntos adicionales al score
+    #Returns los puntos totales (int)
 
 def get_highest_word_score(word_list):
     pass
 
 
-word = "pasa"
-letter_bank = ["c","a","s", "a", "s"]
-#print(draw_letters())
-print(uses_available_letters(word, letter_bank))
+
+print(score_word(word))
