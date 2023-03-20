@@ -118,20 +118,30 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+    #initializing variables: best scoring word & best score, ties list
     best_score_word = ""
     best_score = 0
     ties = []
+    # iterate through words in word list
     for word in word_list:
+        # score of the word (using score_word function to calculate)
         current_score = score_word(word)
+        # if word length > 9, return that word ASAP
         if len(word) > 9:
             return (word, current_score)
+        # else if, current word's score > the last best score, then update the best_score and best scoring word accordingly
         elif current_score > best_score:
             best_score_word = word
             best_score = current_score
+        # else if 2, if current score is equal to the best score, stash current word in the ties list
         elif current_score == best_score:
             ties.append(word)
+    # if there's anything in ties list,
     if len(ties):
+        # loop through the list
         for word in range(0, len(ties)):
+            # if length of the tying word is shorter than current best word, set the shorter word as the new best word
             if len(ties[word]) < len(best_score_word):
                 best_score_word = ties[word]
+    # return the best scoring word and its score
     return [best_score_word, best_score]
