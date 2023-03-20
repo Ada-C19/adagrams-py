@@ -1,5 +1,5 @@
 # import numpy
-import numpy as np
+import random
 # letter pool copied from test_wave_01. using for probability calculations.
 LETTER_POOL = {
     'A': 9, 
@@ -34,27 +34,21 @@ LETTER_POOL = {
 
 # draw_letters_function
 def draw_letters():   
-    # initializing variables: array for taking in the strings after calculation(drawn_letters), letters array, probability array, counter
+    # initializing variables: drawn_letters("hand"), letters array, probability array, counter
     drawn_letters = []
-    letters = ['A', 'B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-    probability = []
+    letters = list(LETTER_POOL.keys())
+    probability = list(LETTER_POOL.values())
     counter = 0
-    # calculating probability
-    for key in LETTER_POOL:
-        p = LETTER_POOL[key]
-        probability.append(p)
-    # the below 2 lines are honestly from stockoverflow - it turns the probability array into an np array and makes the sum closer to 1 without altering the rates (didn't come up with it but I sort of understand it...ish)
-    probs = np.array(probability)
-    probs_scaled = probs / probs.sum()
-    # adding letters to the drawn_letters(the array to be returned) as strings. didn't know that numpy nests all results (first time using numpy, not a fan of their doucmentation style)
+    # adding letters to the drawn_letters(the array to be returned) as strings. random.choices nests each element so to access just the letters I'm using [0]
     while counter < 10:
-        random_letter = str(np.random.choice(letters, 1, p=probs_scaled)[0])
+        random_letter = random.choices(letters, weights=probability,k=1)[0]
         # if the letter already exists, skip iteration for no dupes. else continue on until there are 10 letters
-        if str(random_letter) in drawn_letters:
+        if random_letter in drawn_letters:
             continue
         else:
             drawn_letters.append(random_letter)
             counter += 1
+    # return the drawn letters("hand")
     return drawn_letters
 
 
