@@ -124,7 +124,7 @@ def get_highest_word_score(word_list):
         # have len10
         else:
             return (len_10_str[0], max_score)
-        '''if count_len_10 == 0:
+        '''if count_len_10 == 0:                                # original code for line123
             # check min len, if multi min, return first one
             min_len = len(all_max_words[0])
             min_index = 0
