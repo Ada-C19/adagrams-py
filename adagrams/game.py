@@ -29,12 +29,12 @@ def draw_letters():
     'Y': 2, 
     'Z': 1
 }
-    MAX_LETTER_LENGTHS = 10
 
     #Creating the player's "hand" and putting it into a letters list
     letters = []
     while len(letters) < 10:
-        rand_letter = choice(list(LETTER_POOL.keys())) #choose a random letter from a list of LETTER_POOL keys
+        #choose a random letter from a list of LETTER_POOL keys
+        rand_letter = choice(list(LETTER_POOL.keys()))
         if letters.count(rand_letter) >= LETTER_POOL[rand_letter]:
             continue
         else:
@@ -53,6 +53,11 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
+    #minimum required length of word to qualify for a long word bonus:
+    BONUS_POINT_MIN_LENGTH = 7
+    #bonus points to be awarded for words that meet the bonus minimum length:
+    BONUS_POINTS = 8
+
     word = word.upper()
     
     letter_values = {
@@ -67,8 +72,8 @@ def score_word(word):
     
     score = 0
     if word:
-        if len(word) >= 7:
-            score += 8
+        if len(word) >= BONUS_POINT_MIN_LENGTH:
+            score += BONUS_POINTS
         for letter in word:
             for tier in letter_values:
                 if letter in tier:
@@ -84,9 +89,9 @@ def get_highest_word_score(word_list):
 
     for word in word_list:
         score = score_word(word)
-        word_scores[word] = score #e.g. {'X': 8, 'XX': 16, 'XXX': 24, 'XXXX': 32}
+        word_scores[word] = score #put the word into word_scores with its score
         if score > high_score:
-            high_score = score
+            high_score = score #keep track of the high score to find which words match it
 
     highest_scoring_words = {key:value for key,value in word_scores.items() if word_scores[key] == high_score}
 
