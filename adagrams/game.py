@@ -128,4 +128,18 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    all_words_dict = {}
+    
+    for word in word_list:
+        score = score_word(word)
+        all_words_dict[word] = score
+    
+    scores = all_words_dict.values()
+    score_list = list(scores)
+    score_list.sort()
+    best_word = ""
+    for word in all_words_dict:
+        if all_words_dict[word] == score_list[-1]:
+            best_word = word
+    
+    return best_word, score_list[-1]
