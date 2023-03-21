@@ -62,7 +62,7 @@ def uses_available_letters(word, letter_bank):
     This function takes in two parametrs. Return true if word is available
     w/ right quantities from letter_bank. Return False if letter in word is 
     not in letter_bank.
-    input: word is a some word and it's a string
+    input: word is some word and it's a string
          letter_bank is an array of 10 strings that represent drawn letters
     output: return True or False
     """
@@ -91,7 +91,52 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    """
+    This function returns the score of a given word. If 
+    length of the word is 7-10, then word gets an additional 8 points.
+    input: one parameter: word, which is a string
+    output: returns an integer that represents the score
+    """
+    score_pool = {
+    'A': 1, 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
+}
+    #initalize score to 0
+    score = 0
+
+    word_length = len(word)
+    #for each letter in uppercase word
+    for letter in word.upper():
+        #add score of letter from score_pool
+        score += score_pool[letter]
+    #if word is between 7-10 length
+    if word_length >= 7 and word_length <= 10:
+        score += 8 
+    return score
 
 def get_highest_word_score(word_list):
     pass
