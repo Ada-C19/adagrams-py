@@ -46,21 +46,6 @@ def draw_letters():
             letter_bank.append(get_letter[0])
             continue
     return(letter_bank)
-'''
-    # original idea -> shuffle the whole list then get 10 letters (it works too)
-    # append letters into list
-    letters_pool_list = []
-    i = 0
-    for key, value in letters_pool.items():
-        while i < value:
-            letters_pool_list.append(key)
-            i += 1
-        i = 0                                   # reset counter
-    letters_pool_list = random.sample(letters_pool_list, len(letters_pool_list))            #shuffle the pool list
-    letter_bank = letters_pool_list[:10]
-    return(letter_bank)               # user draw 10 letters'''
-
-
 
 def uses_available_letters(word, letter_bank):
     word = [elem.upper() for elem in word]     # convert input word to upper case
@@ -110,35 +95,19 @@ def get_highest_word_score(word_list):
     score_list = []
     for i in range(len(word_list)):
         score_list.append(score_word(word_list[i]))         # list of the score of every word
+    
     word_score_dict = dict(zip(word_list,score_list))
     max_score = max(word_score_dict.values())             # get the max score
     all_max_words = [k for k,v in word_score_dict.items() if v == max_score]  # list of all max score words
-
-    # check how many winning words
-    count_win = len(all_max_words)
+    count_win = len(all_max_words)                          # check how many winning words
+    
     # conditional statements
-    # if only one winning return winning
-    if count_win == 1:
+    if count_win == 1:                                      # if only one winning return winning
         return (all_max_words[0], max_score)
-    else:                                      # if have multiple max score
-        # check len10 when count_win > 1
-        len_10_str = [string for string in all_max_words if len(string) == 10]
-        # count how many len10 words
-        count_len_10 = len(len_10_str)
-        # if no len10
-        if count_len_10 == 0:
-            return (min(all_max_words, key=len), max_score)     # simplified the function when no len10
-        # have len10
-        else:
+    else:                                                    # if have multiple max score
+        len_10_str = [string for string in all_max_words if len(string) == 10]      # check len10 when count_win > 1
+        count_len_10 = len(len_10_str)                       # count how many len10 words       
+        if count_len_10 == 0:                                # if no len10
+            return (min(all_max_words, key=len), max_score)  
+        else:                                                # have len10
             return (len_10_str[0], max_score)
-        '''if count_len_10 == 0:                                # original code for line123 (it works too)
-            # check min len, if multi min, return first one
-            min_len = len(all_max_words[0])
-            min_index = 0
-            for i in range(1, len(all_max_words)):
-                if len(all_max_words[i]) < min_len:
-                    min_len = len(all_max_words[i])
-                    min_index = i
-            return (all_max_words[min_index], max_score)            # mistake: DO NOT put a return inside a for LOOP here!!!
-        '''
-
