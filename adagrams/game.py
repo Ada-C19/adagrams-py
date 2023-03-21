@@ -44,21 +44,11 @@ def draw_letters():
         one_random_letter = random.choice(available_letters)
         ten_random_letters.append(one_random_letter)
         available_letters.remove(one_random_letter)
-    return ten_random_letters, available_letters[:]
-    
-
-# def uses_available_letters(word, letter_bank):
-#     word = word.lower() 
-#     letter_bank_list = list(letter_bank)
-#     for letter in word:
-#             if letter in letter_bank_list:
-#                 letter_bank_list.remove(letter)
-#             else:
-#                 return False
-#     return True
+    # return ten_random_letters, available_letters[:]
+    return ten_random_letters
 
 def uses_available_letters(word, letter_bank):
-    letter_bank_copy = list(letter_bank)
+    letter_bank_copy = letter_bank.copy()
     word = word.upper()
     for letter in word:
         if letter in letter_bank_copy:
@@ -108,6 +98,24 @@ def score_word(word):
             word_score += 8 
     return word_score
 
-
 def get_highest_word_score(word_list):
-    pass
+    highest_score = 0
+    winning_word = ""
+    for word in word_list:
+        current_score = score_word(word) 
+        if current_score > highest_score:
+            highest_score = current_score
+            winning_word = word
+        
+        # Conditonals for tie breaker rules
+        elif current_score == highest_score:
+            if len(winning_word) == 10:
+                continue 
+            elif len(word) == 10:
+                winning_word= word 
+                highest_score = current_score
+            elif len(word) < len(winning_word):
+                winning_word = word
+                highest_score = current_score
+
+    return (winning_word, highest_score)
