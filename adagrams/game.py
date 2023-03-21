@@ -1,3 +1,5 @@
+import random
+
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -43,8 +45,25 @@ def draw_letters():
         
     return letters
 
+
+
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_dict = {}
+
+    for character in word:
+        if character in letter_bank and word.count(character) <= letter_bank_dict[character]:
+            return True 
+        else:
+            return False
+
+
+            # for character in letter_bank:
+            #     if character in letter_bank_dict.keys():
+            #         letter_bank_dict[character] += 1
+            #     else:
+            #         letter_bank_dict[character] = 1
+
+
 
 def score_word(word):
     pass
