@@ -58,7 +58,37 @@ def draw_letters():
     return letters_list
 
 def uses_available_letters(word, letter_bank):
-    pass
+    """
+    This function takes in two parametrs. Return true if word is available
+    w/ right quantities from letter_bank. Return False if letter in word is 
+    not in letter_bank.
+    input: word is a some word and it's a string
+         letter_bank is an array of 10 strings that represent drawn letters
+    output: return True or False
+    """
+    
+    #change word to all upper case
+    uppercase_word = word.upper()
+
+    #created a copy of letter_bank
+    letter_bank_copy = letter_bank.copy()
+
+    #converted capital_word to list and set it to letter_list
+    letter_list = list(uppercase_word)
+
+
+    #for each letter in the word_list
+    for letter in letter_list:
+        #if letter is in the updated_bank
+        if letter in letter_bank_copy:
+            #remove that letter from updated_bank
+            letter_bank_copy.remove(letter)
+        #if letter is not in letter_bank_copy
+        elif letter not in letter_bank_copy:
+            return False
+    
+    return True
+
 
 def score_word(word):
     pass
