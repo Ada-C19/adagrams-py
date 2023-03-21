@@ -49,12 +49,18 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
+    # makes a list copy of the letter_bank list so as not to modify the original list
     letter_bank_copy = letter_bank.copy()
+    # iterates through each capitalized letter in the word the user passes in
     for letter in word.upper():
+        # checks if the current letter if found in the letter_bank_copy list
         if letter in letter_bank_copy:
+            # if the current letter is found, remove that instance from the list
             letter_bank_copy.remove(letter)
         else:
+            # on the first instance the current letter is not found in the letter_bank_copy list, return False
             return False
+    # return True if all of the letters in word are found in the letter_bank list
     return True
 
 
