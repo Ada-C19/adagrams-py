@@ -30,14 +30,14 @@ LETTER_POOL = {
     'Z': 1
 }
 def draw_letters():
-    drawn_letters = []
+    letters = []
     
     
-    while len(drawn_letters) < 10:
+    while len(letters) < 10:
         randomLetter = random.choice(string.ascii_uppercase)
-        drawn_letters += randomLetter
+        letters += randomLetter
             
-    print(len(drawn_letters))
+    return letters
     
 
     ten_letters = ["A","Z","O","P","E","T","Q","W","D","L"]
