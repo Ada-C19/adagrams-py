@@ -1,4 +1,5 @@
 import random
+import operator
 
 LETTER_POOL = {
     'A': 9, 
@@ -89,6 +90,24 @@ def get_all_highest_words(word_list):
         elif word_score == score:
             winners.append(word)
             
+    return winners, score
+
+def get_all_highest_words_1(word_list):
+    winners_dict = {}
+    winners = []
+    
+    for word in word_list:
+        word_score = score_word(word)
+        winners_dict[word] = word_score
+    
+    sorted_score = list(sorted(word_score.items(), key=operator.itemgetter(1), reverse=True))
+    score = sorted_score[0][1]
+    
+    for i in range(len(sorted_score)):
+        if sorted_score[i][1] < sorted_score[0][1]:
+            return winners, score
+        winners.append(sorted_score[i][0])
+    
     return winners, score
 
 def get_highest_word_score(word_list):
