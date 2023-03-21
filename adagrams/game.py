@@ -45,6 +45,37 @@ def casefold_letters(letters):
     return casefolded_letters
 
 
+def count_available_letters(letters):
+    letter_counts = {}
+    for letter in letters:
+        letter_counts[letter] = 0
+    for letter in letters:
+        letter_counts[letter] += 1
+    
+    return letter_counts
+
+
+def find_top_word_and_score(scores):
+    top_word = ''
+    top_score = 0
+
+    for word, score in scores.items():
+        if score > top_score:
+            top_word = word
+            top_score = score
+        elif score == top_score:
+            if len(word) == 10 and len(top_word) != 10:
+                top_word = word
+                top_score = score
+            elif len(top_word) == 10:
+                continue
+            elif len(word) < len(top_word):
+                top_word = word
+                top_score = score
+    
+    return top_word, top_score
+
+
 def draw_letters():
     letter_pool_list = generate_letter_pool()
     letter_bank = []
@@ -57,19 +88,19 @@ def draw_letters():
     return letter_bank
 
 
-
 def uses_available_letters(word, letter_bank):
     letter_bank = casefold_letters(letter_bank)
     word = casefold_letters(word)
-    used_letters = []
+    letter_counts = count_available_letters(letter_bank)
 
     for letter in word:
-        if letter in letter_bank and letter not in used_letters:
-            used_letters.append(letter)
+        if letter in letter_bank and letter_counts[letter] > 0:
+            letter_counts[letter] -= 1
         else:
             return False
     
     return True
+
 
 def score_word(word):
     point_values = {
@@ -102,7 +133,7 @@ def score_word(word):
     }
 
     score = 0
-    if len(word) >= 7 and len(word) <= 10:
+    if len(word) in range(7,11):
         score += 8
     for letter in word:
         score += point_values[letter.upper()]
@@ -135,24 +166,6 @@ def get_highest_word_score(word_list):
 
     return winning_word_and_score
 
-def find_top_word_and_score(scores):
-    top_word = ''
-    top_score = 0
 
-    for word, score in scores.items():
-        if score > top_score:
-            top_word = word
-            top_score = score
-        elif score == top_score:
-            if len(word) == 10 and len(top_word) != 10:
-                top_word = word
-                top_score = score
-            elif len(top_word) == 10:
-                continue
-            elif len(word) < len(top_word):
-                top_word = word
-                top_score = score
-    
-    return top_word, top_score
 
     
