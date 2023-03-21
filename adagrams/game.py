@@ -30,23 +30,20 @@ LETTER_POOL = {
 }
 
 def draw_letters():
-    letters = []
-    letter_pool_counter = LETTER_POOL.copy()
-    while len(letters) < 10:
-        # choose random letter from LETTER_POOL
-        random_letter = random.choice(list(LETTER_POOL.keys()))
-        
-        # verify letter_pool_counter[random_letter] is not 0,
-        # decrement dict and append list
-        if letter_pool_counter[random_letter]:
-            letter_pool_counter[random_letter] -= 1
-            letters += random_letter
-        # random_letter empty, start over.  
-        else:
-            continue
+    # create letter bag
+    letters_bag = []
+    for letter, quantity in LETTER_POOL.items():
+        # letter_to_add = letter
+        for i in range(quantity):
+            letters_bag.append(letter)
+    
+    player_letters = []
+    while len(player_letters) < 10:
+        random_letter = random.choice(letters_bag)
+        letters_bag.remove(random_letter)
+        player_letters.append(random_letter)
 
-    return letters
-
+    return player_letters
 
 def uses_available_letters(word, letter_bank):
     pass
