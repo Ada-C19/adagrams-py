@@ -1,9 +1,13 @@
-# Has two parameters:
-# word, the first parameter, describes some input word, and is a string
-# letter_bank, the second parameter, describes an array of drawn letters in a hand. You can expect this to be an array of ten strings, with each string representing a letter
-# Returns either True or False
-# Returns True if every letter in the input word is available (in the right quantities) in the letter_bank
-# Returns False if not; if there is a letter in input that is not present in the letter_bank or has too much of compared to the letter_bank
+# Now you need a function returns the score of a given word as defined by the Adagrams game.
+
+# Implement the function score_word in game.py. This method should have the following properties:
+
+# Has one parameter: word, which is a string of characters
+# Returns an integer representing the number of points
+# Each letter within word has a point value. The number of points of each letter is summed up to represent the total score of word
+# Each letter's point value is described in the table below
+# If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
+
 import random
 
 
@@ -62,11 +66,31 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    points_total = 0
+    SCORE_CHART_DICT ={
+        1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+        2: ["D", "G"],
+        3: ["B", "C", "M", "P"],
+        4: ["F", "H", "V", "W", "Y"],
+        5: ["K"],
+        8: ["J", "X"],
+        10: ["Q", "Z"],
+    }
+    word = word.upper()
+
+    if len(word) >= 7:
+        points_total += 8
+    for letter in word:
+        for point_key, alpha_list in SCORE_CHART_DICT.items():
+            for alpha in alpha_list:
+                if alpha == letter:
+                    points_total += point_key
+
+    return points_total
 
 def get_highest_word_score(word_list):
     pass
 
 # print statements
-print(draw_letters())
+# print(draw_letters())
 # print(random.choice(LETTER_POOL.keys()))
