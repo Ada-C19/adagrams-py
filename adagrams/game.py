@@ -1,6 +1,8 @@
 import random
 from collections import Counter
 
+word_list = ["A", "BB", "CCC", "DDDD"]
+
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -64,17 +66,20 @@ def draw_letters():
     input: no parameters
     output: 10 letters, each letter repeats proper # of times
     """""""""
+# created a space to store our letters list
     letter_list = []
-    for _ in range(10):
+# we want to loop 10 times
+    while len(letter_list) < 10:
+# populate a letter randomly in 10x loop
         letter = random.choice(list(LETTER_POOL.keys()))
+# letter frequency is saved in dict using Counter function
         letter_counts = Counter(letter_list)
         if letter not in letter_list:
             letter_list.append(letter)
-        else:
-            if letter_counts[letter] < LETTER_POOL[letter]:
-                letter_list.append(letter)
-            else:
-                continue
+        elif letter_counts[letter] < LETTER_POOL[letter]:
+            letter_list.append(letter)
+        # else:
+        #     continue
     return letter_list
     
 def uses_available_letters(word, letter_bank):
@@ -103,14 +108,23 @@ def score_word(word):
     return total
 
 def get_highest_word_score(word_list):
+# we will collect all words from word_list and use it as a key and its score will be the value
     score_dict = {}
     for word in word_list:
         score_dict[word] = score_word(word)
+# we are defining a space for the word with the highest score
+    highest_score = 0
+    highest_word = [None, 0]
+# we are looping through the 
     for word, score in score_dict.items():
-        highest_word = [None, 0]
-        highest_score = 0
-        if score > highest_score:
+        if score == highest_score:
+            if len(word) == 10:
+                highest_word[0] = word
+                highest_word[1] = score
+        elif score > highest_score:
             highest_word[0] = word
             highest_word[1] = score
+            highest_score = score
 
     return tuple(highest_word)
+                
