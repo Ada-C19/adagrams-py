@@ -78,7 +78,7 @@ def score_word(word):
     
     return score
 
-def get_all_highest_words(word_list):
+def get_all_highest_words_1(word_list):
     winners = []
     score = 0
     
@@ -92,7 +92,13 @@ def get_all_highest_words(word_list):
             
     return winners, score
 
-def get_all_highest_words_1(word_list):
+def get_all_highest_words(word_list):
+    '''
+    Returns same results (a list of single winner or all tie scored winner words
+    and also it score as a single int) as get_all_highest_words_1 helper function,
+    but implemented using module operator and sorted reversed function,
+    that way on best case if only 1 winner, for loop will exsit after
+    comparing second element value, so it's cheaper.'''
     winners_dict = {}
     winners = []
     
@@ -100,7 +106,7 @@ def get_all_highest_words_1(word_list):
         word_score = score_word(word)
         winners_dict[word] = word_score
     
-    sorted_score = list(sorted(word_score.items(), key=operator.itemgetter(1), reverse=True))
+    sorted_score = list(sorted(winners_dict.items(), key=operator.itemgetter(1), reverse=True))
     score = sorted_score[0][1]
     
     for i in range(len(sorted_score)):
