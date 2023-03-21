@@ -56,10 +56,8 @@ def draw_letters():
     return player_hand
 
 def uses_available_letters(word, letter_bank):
-    letter_bank_copy = []
+    letter_bank_copy = letter_bank.copy()
     word = word.upper()
-    for letter in letter_bank:
-        letter_bank_copy.append(letter)
 
     for letter in word:
         if letter not in letter_bank_copy:
