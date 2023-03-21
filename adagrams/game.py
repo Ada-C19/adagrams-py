@@ -31,13 +31,26 @@ LETTER_POOL = {
 }
 def draw_letters():
     letters = []
-    
-    
+    letter_freq = {}
+    # this while loop adds ten random letters to a list
     while len(letters) < 10:
         randomLetter = random.choice(string.ascii_uppercase)
         letters += randomLetter
-            
-    return letters
+    # i need to track the repetition of letters 
+    # i need to assure its less than letter pool frequency
+    for letter in letters:
+            if letter in letter_freq:
+                letter_freq[letter] += 1
+            else:
+                letter_freq[letter] = 1
+
+    if letter_freq[letter] > LETTER_POOL[letter]:
+        letter_freq[letter] = LETTER_POOL[letter]
+    else:
+        letter_freq[letter] = letter_freq[letter]
+        
+
+    return letter
     
 
     ten_letters = ["A","Z","O","P","E","T","Q","W","D","L"]
