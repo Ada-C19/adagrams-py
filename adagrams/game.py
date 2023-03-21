@@ -103,4 +103,14 @@ def score_word(word):
     return total
 
 def get_highest_word_score(word_list):
-    pass
+    score_dict = {}
+    for word in word_list:
+        score_dict[word] = score_word(word)
+    for word, score in score_dict.items():
+        highest_word = [None, 0]
+        highest_score = 0
+        if score > highest_score:
+            highest_word[0] = word
+            highest_word[1] = score
+
+    return tuple(highest_word)
