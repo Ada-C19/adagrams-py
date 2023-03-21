@@ -60,14 +60,25 @@ def score_word(word):
 def get_highest_word_score(word_list):
     word_list_score_dict = {}
     starting_score = 0
-    # highest_scoring_word = ""
-    
+    checked_values = set()
+    duplicates = set()
+
     for word in word_list:
       score = score_word(word)
       word_list_score_dict[word] = score
       highest_score = max(word_list_score_dict.values())
-      if highest_score > starting_score:
-        tie_breaker(word_list)#returns shortest word
+      
+    for word, score in word_list_score_dict.items():
+      if score not in checked_values:
+        checked_values.add(score)
+      else:
+        duplicates.add(score)
+
+    if duplicates:
+      tie_breaker_score = tie_breaker(word_list)
+      return tie_breaker_score
+    
+    return (max(word_list_score_dict, key=word_list_score_dict.get)), highest_score
     
     return (max(word_list_score_dict, key=word_list_score_dict.get)), highest_score
 
