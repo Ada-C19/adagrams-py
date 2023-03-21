@@ -158,18 +158,16 @@ def get_highest_word_score(word_list):
             max_word_list.append(key)
 
     if len(max_word_list) > 1:
-        if len(max(max_word_list, key = len)) == 10:
+        for word in max_word_list:
+            if len(word) == 10:
+                word_len_10_list.append(word)
+                if len(word_len_10_list) > 1:
+                    return tuple([word_len_10_list[0], highest_word_score])
+                else:
+                    return tuple([word_len_10_list[0], highest_word_score])
 
-            for word in max_word_list:
-                if len(word) == 10:
-                    word_len_10_list.append(word)
-                    if len(word_len_10_list) > 1:
-                        return tuple([word_len_10_list[0], highest_word_score])
-                    else:
-                        return tuple([word_len_10_list[0], highest_word_score])
-
-        else:
-            return tuple([(min(max_word_list, key = len)), highest_word_score])
+            else:
+                return tuple([(min(max_word_list, key = len)), highest_word_score])
     else:
         return tuple([max(word_list_dict), highest_word_score ])
 
