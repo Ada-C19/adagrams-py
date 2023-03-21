@@ -55,6 +55,7 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     available_letters = copy.deepcopy(letter_bank)
+    word = word.upper()
 
     for letter in word:
         if letter in available_letters:

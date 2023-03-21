@@ -52,7 +52,7 @@ def test_uses_available_letters_does_not_change_letter_bank():
     assert is_valid == True
     assert letters == letters_copy
 
-@pytest.mark.skip()
+#@pytest.mark.skip()
 def test_uses_available_letters_ignores_case():
     # Arrange
     letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
