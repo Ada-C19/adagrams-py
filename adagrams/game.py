@@ -49,7 +49,7 @@ def uses_available_letters(word, letter_bank):
     cap_word = word.upper()
     letter_bank_quantity = {}
     char_quantity = {}
-    result = False
+    result = None
 
     for letter in letter_bank:
         if letter not in letter_bank_quantity:
@@ -65,8 +65,7 @@ def uses_available_letters(word, letter_bank):
     
     for letter in cap_word:
         if letter not in letter_bank or char_quantity[letter] > letter_bank_quantity[letter]:
-            result = False
-            break 
+            result = False 
         else:
             result = True
 
