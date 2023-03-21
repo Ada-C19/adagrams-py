@@ -53,10 +53,17 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    for letter in word:
+        if letter in letter_bank:
+            letter_bank.remove(letter)
+        else:
+            return False  
+    return True
+
 
 def score_word(word):
     pass
+
 
 def get_highest_word_score(word_list):
     pass
