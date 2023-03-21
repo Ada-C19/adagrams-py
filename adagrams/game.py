@@ -53,7 +53,19 @@ def draw_letters():
     return hand 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    # check each character in the word string is in the letter_bank array
+    # (in the right quantities) i.e. if the user's guess contains 3 Y's and t
+    # the hand only has 1, then it is not a valid guess
+    # use sets to see if one if a subset of the other? 
+
+    word_set = set()
+    letter_bank_set = set(letter_bank)
+    
+    # place each character in the set
+    for character in word: 
+        word_set.add(character)
+    
+    return word_set.issubset(letter_bank_set)
 
 def score_word(word):
     pass
