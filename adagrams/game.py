@@ -1,4 +1,5 @@
 import random 
+import copy
 def draw_letters():
     
     LETTER_POOL = {
@@ -43,27 +44,32 @@ def uses_available_letters(word, letter_bank):
     check_letters = {}
     word1 = word.upper()
     # check if letter is in letter bank
-    for letter in letter_bank:
-        # if letter hasnt been added to dict yet then add and intialize to 1
-        if letter not in check_letters:
-            check_letters[letter] = 1
-        else:
-            # if letter in bank already then add by 1
-            check_letters[letter] +=1 
+    # for letter in letter_bank:
+    #     # if letter hasnt been added to dict yet then add and intialize to 1
+    #     if letter not in check_letters:
+    #         check_letters[letter] = 1
+    #     else:
+    #         # if letter in bank already then add by 1
+    #         check_letters[letter] +=1 
 
-    # check if an input from user found in hand
-    for char in word1:
-    # # return false if letter not in letter or letter bank used
-        if char not in letter_bank or check_letters[char] == 0:
-            return False
-        else:
-            # subtract 1 for the letter used 
-            check_letters[char] -= 1
-
-    return True
+    # # check if an input from user found in hand
+    # for char in word1:
+    # # # return false if letter not in letter or letter bank used
+    #     if char not in letter_bank or check_letters[char] == 0:
+    #         return False
+    #     else:
+    #         # subtract 1 for the letter used 
+    #         check_letters[char] -= 1
+    # return True
     # return true if every letter in input in letter bank AND not used more than given
     # compare letter count in word vs letter count in letter bank
-
+    letter_bank1 = copy.deepcopy(letter_bank)
+    for char in word1:
+        if char not in letter_bank1:
+            return False
+        elif char in letter_bank1:
+            letter_bank1.remove(char)
+    return True 
 
 def score_word(word):
     # passes in a string
