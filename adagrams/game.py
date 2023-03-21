@@ -59,7 +59,6 @@ def score_word(word):
     
 def get_highest_word_score(word_list):
     word_list_score_dict = {}
-    starting_score = 0
     checked_values = set()
     duplicates = set()
 
@@ -80,12 +79,13 @@ def get_highest_word_score(word_list):
     
     return (max(word_list_score_dict, key=word_list_score_dict.get)), highest_score
     
-    return (max(word_list_score_dict, key=word_list_score_dict.get)), highest_score
 
 def tie_breaker(word_list):
   word_count_list = []
   shortest_word = []
   tie_breaker_result = {}
+
+  prefers_ten_result = tie_breaker_prefers_ten(word_list)
   
   for word in word_list:
     word_count_list.append(len(word))
@@ -93,7 +93,35 @@ def tie_breaker(word_list):
   
   word_count_list.sort()
   shortest_word = word_count_list[0]
+  if prefers_ten_result:
+    return prefers_ten_result
+  else:   
+    for key, value in tie_breaker_result.items():
+      if len(key) == shortest_word:
+          return key, score_word(key)
+      
+def tie_breaker_prefers_ten(word_list):
+  word_count_list = []
+  tie_breaker_result = {}
   
-  for key, value in tie_breaker_result.items():
-    if len(key) == shortest_word:
-        return key, score_word(key)
+  for word in word_list:
+    word_count_list.append(len(word))
+    tie_breaker_result[word] = (len(word))
+    if len(word) == 10:
+      ten_letter_word = word
+      return ten_letter_word, score_word(ten_letter_word)
+
+  return False
+
+def tie_breaker_prefers_ten(word_list):
+  word_count_list = []
+  tie_breaker_result = {}
+  
+  for word in word_list:
+    word_count_list.append(len(word))
+    tie_breaker_result[word] = (len(word))
+    if len(word) == 10:
+      ten_letter_word = word
+      return ten_letter_word, score_word(ten_letter_word)
+
+  return False
