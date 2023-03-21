@@ -129,6 +129,8 @@ def get_highest_word_score(word_list):
                 ### Otherwise make a list of all equivalent words for the high score
                 equivalent_word_list.append(word_opt)
     
+    ### Iterate through equivalent words and identify first instance of word with
+    ### shortest length that gives the highest score
     for equiv_word in equivalent_word_list:
         if len(shortest_word) == 0:
             shortest_word = equiv_word
@@ -136,6 +138,8 @@ def get_highest_word_score(word_list):
             if len(equiv_word) < len(shortest_word):
                 shortest_word = equiv_word
     
+    ### For tie breaker scenario, when no word uses all 10 tiles, return first instance
+    ### of shortest word
     return shortest_word, highest_score_tracker
 
 
