@@ -92,18 +92,20 @@ def get_highest_word_score(word_list):
         all_scores[word] = word_score
 
     for word, score in all_scores.items():
-        # First 10-letter word should be the top scoring word regardless
-        # of other words inputted
-        if len(word) == TOTAL_TILES_PER_HAND:
-            best_word = word
-            best_score = score
-            break
         if score > best_score:
             best_word = word
             best_score = score
-        # If two words are the same score, the shorter word should be prioritised
+
+        # Begins tiebreaker conditionals
         if score == best_score:
-            if len(word) < len(best_word):
+            # Doesn't replace best_word if it already has max letters
+            if len(best_word) == TOTAL_TILES_PER_HAND:
+                continue
+            # Replaces best_word with a word that has max letters
+            elif len(word) == TOTAL_TILES_PER_HAND:
+                best_word = word
+            # Replaces best_word with the shorter word if neither have max letters
+            elif len(word) < len(best_word):
                 best_word = word
 
     return best_word, best_score
