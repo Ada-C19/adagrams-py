@@ -28,11 +28,12 @@ LETTER_POOL = {
     'Z' : 1
 }
 def draw_letters():
-    hand = []
-    for key in LETTER_POOL:
+    #hand = []
+    hand = list(LETTER_POOL.keys())
+    # for key in LETTER_POOL:
         # For each key, the loop runs a nested for loop that adds the letter key to the hand list the number of times specified by the value.
-        for i in range(LETTER_POOL[key]):
-            hand.append(key)
+        # for letters in range(LETTER_POOL[key]):
+        #     hand.append(key)
     # Once all the letters are added to the hand list, the list is shuffled
     random.shuffle(hand)
     # First 10 elements in the list are returned
