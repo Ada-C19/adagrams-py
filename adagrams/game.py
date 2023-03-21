@@ -104,23 +104,26 @@ def score_word(word):
         score += 8
     return score
 
-#scores.sort(reverse = True)
-    #word_list.sort(reverse = True)
-    #words_and_scores = zip(word_list, scores)
-    #best_word = [word for words in words_and_scores for word in words]
+
 def get_highest_word_score(word_list):
     #Calling scores to make scores for each word in list!
     scores = [score_word(word) for word in word_list]
     words = [word for word in word_list]
-    #Zipping them in a new list
     high_scores = {word:score for (word,score) in zip(words,scores)}
     #make best_word into an empty list!
     best_word = []
+    #storing the max score + word:
     max_word = max(high_scores)
     max_score = high_scores.get(max_word)
-    #for word in high_scores:
-        #if len(max_word) <= len(word):
-            #max_word = words[0]
+    #Prefers 10 letters
+    for word, score in high_scores.items():
+        if score == max_score and len(word) == 10:
+            if max(word) == 10:
+                max_word = max_word
+            else:
+                max_word = word
+            
+    
     best_word.extend([max_word, max_score])
     return best_word
     
