@@ -34,7 +34,6 @@ def draw_letters():
     letter_list = []
 
     while len(letter_list) != 10:
-        # letter, quantity = random.choice(list(LETTER_POOL.items()))
         letter = random.choice(list(LETTER_POOL.keys()))
         if LETTER_POOL[letter] > 0:
             letter_list.append(letter)
@@ -100,5 +99,4 @@ def get_highest_word_score(word_list):
             elif len(word_list[i]) < len(best_word):
                 best_word = word_list[i]
                 highest_score = current_word_score
-
     return best_word, highest_score
