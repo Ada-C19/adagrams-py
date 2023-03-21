@@ -108,4 +108,32 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    words_scores = {}
+    score_counter = 0
+    potential_winners = []
+    winning_word = "blank"
+    winning_score = 0
+
+    for word in word_list:
+        words_scores[word] = score_word(word)
+        if words_scores[word] > score_counter:
+            score_counter = words_scores[word]
+
+    for word in words_scores:
+        if words_scores[word] == score_counter:
+            potential_winners.append(word)
+
+    if len(potential_winners) == 1:
+        winning_word = potential_winners[0]
+        winning_score = score_counter
+
+    # if len(potential_winners) > 1:
+    #     for i in range(len(potential_winners)+1):
+    #         if len(potential_winners[i]) == 
+    #         if len(potential_winners[i]) == 10:
+
+    #
+
+            
+
+    return (winning_word, winning_score)
