@@ -65,6 +65,7 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
+    # SCORE_CHART is a chart that contains the point value for each letter
     SCORE_CHART = {
         "AEIOULNRST": 1,
         "DG": 2,
@@ -74,14 +75,21 @@ def score_word(word):
         "JX": 8,
         "QZ": 10
     }
+    # initializes score variable that will keep track of the accumulating score for each letter found in the user's word
     score = 0
-
+    # grabs the key and value of each dicionary key-pair in the SCORE_CHART dictionary
     for key, value in SCORE_CHART.items():
+        # iterate through each letter in capitalized word
         for letter in word.upper():
+            # searches for each letter in a key of letters from SCORE_CHART
             if letter in key:
+                # if the current letter is found in any of the keys from SCORE_CHART, add that key's value to the score
                 score += value
+    # checks if the length of the word is between 7 and 10
     if 7 <= len(word) <= 10:
+      # if the length of the word is between 7 and 10, an additional 8 bonus points are added to score
         score += 8
+    # returns the final score
     return score
 
 
