@@ -98,36 +98,44 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    ### - Has one parameter: `word_list`, which is a list of strings
-    ### - Returns a tuple that represents the data of a winning word and it's score.  The tuple must contain the following elements:
-    ### - index 0 ([0]): a string of a word
-    ### - index 1 ([1]): the score of that word
-    ### - In the case of tie in scores, use these tie-breaking rules:
-        ### - prefer the word with the fewest letters...
-        ### - ...unless one word has 10 letters. If the top score is tied between multiple words and one is 10 letters long, choose the one with 10 letters over the one with fewer tiles
-        ### - If the there are multiple words that are the same score and the same length, pick the first one in the supplied list
     word_list_score_dict = {}
     highest_score_tracker = 0
+    equivalent_word_list = []
+    shortest_word = ""
 
     ### Calculating scores for each word
-    ### Struggling to build dictionary with nested lists
     for word in word_list:
         if score_word(word) not in word_list_score_dict.keys():
             word_list_score_dict[score_word(word)] = [word]
         else:
-            word_list_score_dict[score_word(word)] += word
+            word_list_score_dict[score_word(word)].append(word)
     
     ### Determining highest scoring word
     for score in word_list_score_dict:
         if score > highest_score_tracker:
             highest_score_tracker = score
-
-    print(len(word_list_score_dict[highest_score_tracker]))
     
+    ### Choosing the highest scoring word, whether or not there is a tie
+    ### No tie
     if len(word_list_score_dict[highest_score_tracker]) == 1:
         return word_list_score_dict[highest_score_tracker][0], highest_score_tracker
+    ### Tie
     elif len(word_list_score_dict[highest_score_tracker]) > 1:
         for word_opt in word_list_score_dict[highest_score_tracker]:
+            ### First word of 10 letters wins
             if len(word_opt) == 10:
                 return word_opt, highest_score_tracker
+            else:
+                ### Otherwise make a list of all equivalent words for the high score
+                equivalent_word_list.append(word_opt)
+    
+    for equiv_word in equivalent_word_list:
+        if len(shortest_word) == 0:
+            shortest_word = equiv_word
+        else:
+            if len(equiv_word) < len(shortest_word):
+                shortest_word = equiv_word
+    
+    return shortest_word, highest_score_tracker
+
 
