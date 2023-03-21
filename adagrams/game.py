@@ -29,21 +29,28 @@ def draw_letters():
     'Y': 2, 
     'Z': 1
 }
+    available_letters =[]
+    for letter, number in LETTER_POOL.items():
+        letter_quantity = letter * number
+        available_letters.append(letter_quantity)
 
+
+    letter_string = ''.join(available_letters)
+    list_letter_pool = list(letter_string)
     
-    list_of_letters =[]
     hand = []
 
-    for letter in LETTER_POOL.keys():
-        list_of_letters.append(letter)
-    
     while len(hand) != 10:
-        random_letter = random.choice(list_of_letters)
+        random_letter = random.choice(list_letter_pool)
         hand.append(random_letter)
+        for letter in list_letter_pool:
+            if letter in hand:
+                list_letter_pool.remove(letter)
     return hand
 
-def uses_available_letters(word, letter_bank):
-    pass
+    
+cl
+def uses_available_letters(word, hand):
 
 
 def score_word(word):
