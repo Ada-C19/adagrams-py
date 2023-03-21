@@ -99,4 +99,35 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    
+    words_and_score = []
+    index_of_highest_tuple = 0
+    
+    highest_score = 0
+
+    for word in word_list:
+        score = score_word(word)
+        word_tuple = (word, score)
+        words_and_score.append(word_tuple)
+    
+    for i in range(len(words_and_score)):
+        score = words_and_score[i][1]
+        word = words_and_score[i][0]
+        if score > highest_score:
+            highest_score = score
+            index_of_highest_tuple = i
+        elif score == highest_score:
+            current_highest = words_and_score[index_of_highest_tuple][0]
+            if len(word) == len(current_highest):
+                #index_of_highest_tuple stays the same
+                continue
+            elif len(current_highest) == 10:
+                continue
+            elif len(word) < len(current_highest):
+                index_of_highest_tuple = i
+            elif len(word) == 10:
+                index_of_highest_tuple = i
+                                
+
+    
+    return words_and_score[index_of_highest_tuple]
