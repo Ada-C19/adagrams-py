@@ -33,12 +33,18 @@ LETTER_POOL = {
 def draw_letters():
     letter_list = []
 
+    # While the length of letter_list list is not 10, continue finding an available letter
     while len(letter_list) != 10:
+        # convert the keys in the LETTER_POOL dictionary into a list
+        # randomly choose a letter form this list
         letter = random.choice(list(LETTER_POOL.keys()))
+        # check if the random letter selected is available in the LETTER_POOL dicrionary
         if LETTER_POOL[letter] > 0:
+            # if the letter is available, append the selected letter to the letter_list list
             letter_list.append(letter)
+            # once the letter is used, decrement the quantity available for this letter in the LETTER_POOL dictionary
             LETTER_POOL[letter] -= 1
-
+    # return letter_list list that contains 10 randomly selected letters
     return letter_list
 
 
