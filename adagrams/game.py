@@ -1,5 +1,4 @@
 import random
-import getpass
 
 HAND_SIZE = 10
 
@@ -21,22 +20,33 @@ DISTRIBUTION_OF_LETTERS = {
 
 
 def draw_letters():
-    hand = []
+    letter_bank = []
     letter_list = []
-    for x, y in DISTRIBUTION_OF_LETTERS.items():
-        letter_list.append(x)
+    for letter, limit in DISTRIBUTION_OF_LETTERS.items():
+        letter_list.append(letter)
 
-    while len(hand) <= 9:
+    while len(letter_bank) <= 9:
         letter_choice = random.choice(letter_list)
-        letter_count = hand.count(letter_choice)
+        letter_count = letter_bank.count(letter_choice)
         if letter_count < DISTRIBUTION_OF_LETTERS[letter_choice]:
-            hand.append(letter_choice)
-    print(hand)
-    return hand
+            letter_bank.append(letter_choice)
+    print(letter_bank)
+    return letter_bank
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word = word.upper()
+    for letter in word:
+        # print(letter)
+        # print(word)
+        letter = letter.upper()
+        frequency_in_word = word.count(letter)
+        frequency_in_bank = letter_bank.count(letter)
+        if frequency_in_bank < frequency_in_word:
+            return False
+    return True
+            
+
 
 
 def score_word(word):
@@ -47,4 +57,5 @@ def get_highest_word_score(word_list):
     pass
 
 
-draw_letters()
+# draw_letters()
+# uses_available_letters()
