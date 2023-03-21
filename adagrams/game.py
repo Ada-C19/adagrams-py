@@ -37,6 +37,10 @@ def draw_letters():
         letter, count = random.choice(list(LETTER_POOL.items()))
         letter_list.append(letter)
         counter += 1
+        if letter not in My_dict:
+            My_dict[letter_list] = 1
+        else:
+            My_dict[letter_list] +=1
         print(letter, count)
     return letter_list
 
