@@ -1,13 +1,9 @@
-#     No parameters
-# Returns an array of ten strings
-# Each string should contain exactly one letter
-# These represent the hand of letters that the player has drawn
-# The letters should be randomly drawn from a pool of letters
-# This letter pool should reflect the distribution of letters as described in the table below
-# There are only 2 available C letters, so draw_letters cannot ever return more than 2 Cs
-# Since there are 12 Es but only 1 Z, it should be 12 times as likely for the user to draw an E as a Z
-# Invoking this function should not change the pool of letters
-# Imagine that the user returns their hand to the pool before drawing new letters
+# Has two parameters:
+# word, the first parameter, describes some input word, and is a string
+# letter_bank, the second parameter, describes an array of drawn letters in a hand. You can expect this to be an array of ten strings, with each string representing a letter
+# Returns either True or False
+# Returns True if every letter in the input word is available (in the right quantities) in the letter_bank
+# Returns False if not; if there is a letter in input that is not present in the letter_bank or has too much of compared to the letter_bank
 import random
 
 
@@ -49,12 +45,21 @@ def draw_letters():
     while len(hand) != 10:
         letter = random.choice(full_letter_list)
         if hand.count(letter) < LETTER_POOL[letter]:
-            hand.append(letter)
-    
+            hand.append(letter)    
     return hand
 
+
 def uses_available_letters(word, letter_bank):
-    pass
+    word = word.upper()
+    for letter in word:
+        if letter in letter_bank:
+            if word.count(letter) <=  letter_bank.count(letter):
+                continue
+            else:
+                return False
+        else:
+            return False
+    return True
 
 def score_word(word):
     pass
