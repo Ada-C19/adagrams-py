@@ -1,4 +1,5 @@
 import sys
+import pdb
 from adagrams.ui_helper import *
 from adagrams.game import draw_letters, uses_available_letters, score_word, get_highest_word_score
 
@@ -52,6 +53,8 @@ def wave_3_run_game():
         
         score = score_word(user_input_word)
         display_score(score)
+        pdb.set_trace()
+
 
         display_retry_instructions()
         continue_input = input()
