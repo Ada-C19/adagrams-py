@@ -1,7 +1,6 @@
 import random
 
 def draw_letters():
-    pool_of_letters = ["A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I", "I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L", "M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O", "O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S", "S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W", "W", "X", "Y", "Y", "X"]
 
     letter_probability = {
     'A': 9, 
@@ -31,6 +30,11 @@ def draw_letters():
     'Y': 2, 
     'Z': 1
     }
+    
+    pool_of_letters = []
+    for letter in letter_probability:
+        sub_list = [letter] * letter_probability[letter]
+        pool_of_letters.extend(sub_list)
 
     hand_of_letters = []
     count = 0
@@ -58,35 +62,25 @@ def uses_available_letters(word, letter_bank):
             return False
     return True
 
+
 def score_word(word):
 
-    one_point = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
-    two_points = ["D", "G"] 
-    three_points = ["B", "C", "M", "P"] 
-    four_points = ["F", "H", "V", "W", "Y"]
-    five_points = ["K"]
-    eight_points = ["J", "X"]
-    ten_points = ["Q", "Z"]
-    
+    point_dictionary = {
+    1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+    2: ["D", "G"], 
+    3: ["B", "C", "M", "P"], 
+    4: ["F", "H", "V", "W", "Y"],
+    5: ["K"],
+    8: ["J", "X"],
+    10: ["Q", "Z"]
+    }
+
     word = word.upper()
     points = 0
-
     for letter in word:
-        if letter in one_point:
-            points += 1
-        elif letter in two_points:
-            points += 2
-        elif letter in three_points:
-            points += 3
-        elif letter in four_points:
-            points += 4
-        elif letter in five_points:
-            points += 5
-        elif letter in eight_points:
-            points += 8
-        elif letter in ten_points:
-            points += 10
-    
+        for key, value in point_dictionary.items():
+            if letter in value:
+                points += key
     if len(word) > 6:
         points += 8
 
