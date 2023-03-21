@@ -1,8 +1,8 @@
 import random
 
 def draw_letters():
-   
 
+   # create letter pool to draw letters from
     LETTER_POOL = {
         'A': 9, 
         'B': 2, 
@@ -32,7 +32,11 @@ def draw_letters():
         'Z': 1
     }
 
+    # create empty list to hold hand
     hand = []
+
+    # counter for cards; loop to pull random letters from dictionary keys
+    #  conditional will draw letters/increment i until 10 cards drawn 
     i = 0
     while i < 10:
         draw_random_letters = random.choice(list(LETTER_POOL.keys()))
@@ -40,22 +44,29 @@ def draw_letters():
         if letter_count < LETTER_POOL[draw_random_letters]:
             hand.append(draw_random_letters)
             i += 1
+
     return hand
    
 
 
 def uses_available_letters(word, letter_bank):
+
+    # use upper to account for lowercase
     word = word.upper()
+
+    # loop; if letter is not in bank or quantity is wrong, return false
     for letter in word:
         if letter not in letter_bank:
             return False
         elif word.count(letter) > letter_bank.count(letter):
             return False
+        
     return True
 
 
 def score_word(word):
-    
+
+    # lists grouped by the score of each letter
     one_point = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
     two_point = ["D", "G"]
     three_point = ["B", "C", "M", "P"]
@@ -64,8 +75,10 @@ def score_word(word):
     eight_point = ["J", "X"]
     ten_point = ["Q", "Z"]
 
+    # total starts at 0; check every letter in word, add score to total
     total_score = 0
-    for letter in word.upper():
+    word = word.upper()
+    for letter in word:
         if letter in one_point:
             total_score += 1
         elif letter in two_point:
@@ -80,10 +93,38 @@ def score_word(word):
             total_score += 8
         elif letter in ten_point:
             total_score += 10
-
+   
+   # bonus points for the length of the word
     if len(word) >= 7:
         total_score += 8
+        
     return total_score       
+    
 
 def get_highest_word_score(word_list):
-    pass
+
+    # start at 0 and empty list bc everything will be more than nothing
+    winning_score = 0
+    winning_word = ""
+
+    # loop
+    # call score from previous function
+    # check if every word's score is greater than current winning score
+    # if no, loop again; if yes, that becomes the new winning score/word
+    # if tie, check the length of the words; scores are tied, don't check again
+    # tie if previous word len not 10 and current word is shorter
+    # tie if previous word shorter than 10 and current is 10   
+    for word in word_list:
+        score = score_word(word)
+        if score > winning_score:
+            winning_score = score
+            winning_word = word
+        elif winning_score == score:
+            previous_word_len = len(winning_word)
+            current_word_len = len(word)
+            if current_word_len == 10 and previous_word_len < 10:
+                winning_word = word
+            elif previous_word_len != 10 and current_word_len < previous_word_len:
+                winning_word = word
+
+    return (winning_word, winning_score)
