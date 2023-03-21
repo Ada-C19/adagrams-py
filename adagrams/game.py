@@ -60,7 +60,7 @@ def uses_available_letters(word, letter_bank):
         else:
             # on the first instance the current letter is not found in the letter_bank_copy list, return False
             return False
-    # return True if all of the letters in word are found in the letter_bank list
+    # ends function and returns True if all of the letters in word are found in the letter_bank list
     return True
 
 
