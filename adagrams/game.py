@@ -1,8 +1,18 @@
 
-def draw_letters():
-    pass
-# Your first task is to build a hand of 10 letters for the user. To do so, implement the function draw_letters in game.py. This method should have the following properties:
+import random
+import string 
 
+def draw_letters():
+    hand_count = []
+    randomLetter = random.choice(string.ascii_letters)
+    while len(hand_count) < 10:
+        hand_count.append(randomLetter)
+    print(hand_count)
+    
+
+    ten_letters = ["A","Z","O","P","E","T","Q","W","D","L"]
+# Your first task is to build a hand of 10 letters for the user. To do so, implement the function draw_letters in game.py. This method should have the following properties:
+    
 # No parameters
 # Returns an array of ten strings
 # Each string should contain exactly one letter
