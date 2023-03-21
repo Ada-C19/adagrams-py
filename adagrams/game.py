@@ -31,7 +31,7 @@ LETTER_POOL = {
 }
 
 LETTER_SCORES = {
-    'A': 10, 
+    'A': 1, 
     'B': 3, 
     'C': 3, 
     'D': 2, 
