@@ -65,6 +65,7 @@ def uses_available_letters(word, letter_bank):
         if letter not in letter_bank_copy:
             return False
         letter_bank_copy.remove(letter)
+
     return True
 
 def score_word(word):
@@ -74,10 +75,10 @@ def score_word(word):
     for letter in word:
         score += LETTER_TILES[letter]['value']
 
-    # Checks for words between 7-10 letters and adds bonus 8 points
-    # if condition is true
+    # Adds 8 bonus points if a word is 7-10(max) letters long
     if 7 <= len(word) <= TOTAL_TILES_PER_HAND:
         score += 8
+
     return score
 
 
@@ -95,9 +96,8 @@ def get_highest_word_score(word_list):
         if score > best_score:
             best_word = word
             best_score = score
-
         # Begins tiebreaker conditionals
-        if score == best_score:
+        elif score == best_score:
             # Doesn't replace best_word if it already has max letters
             if len(best_word) == TOTAL_TILES_PER_HAND:
                 continue
