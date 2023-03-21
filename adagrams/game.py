@@ -74,7 +74,29 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    letter_score = [
+        [("A", "E", "I", "O", "U", "L", "N", "R", "S", "T"), 1],
+        [("D", "G"), 2],
+        [("B", "C", "M", "P"), 3],
+        [("F", "H", "V", "W", "Y"), 4],
+        [("K"), 5],
+        [("J", "X"), 8],
+        [("Q", "Z"), 10]
+    ]
+    
+    cap_word = word.upper()
+    sum_score = 0
+
+    for char in cap_word:
+        for i in range(len(letter_score)):
+            if char in letter_score[i][0]:
+                sum_score += letter_score[i][1]
+    
+    if len(word) >= 7:
+        sum_score += 8
+
+    return sum_score
+
 
 def get_highest_word_score(word_list):
     pass
