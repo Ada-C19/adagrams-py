@@ -34,14 +34,12 @@ LETTER_POOL = {
 def test_draw_letters_draws_ten():
     # Arrange/Act
     letters = draw_letters()
-
     # Assert
     assert len(letters) == 10
 
 def test_draw_letters_is_list_of_letter_strings():
     # Arrange/Act
     letters = draw_letters()
-
     # Assert
     assert len(letters) == 10
 
@@ -61,7 +59,6 @@ def test_letter_not_selected_too_many_times():
                 letter_freq[letter] += 1
             else:
                 letter_freq[letter] = 1
-        
         # Assert
         for letter in letters:
             assert letter_freq[letter] <= LETTER_POOL[letter]
@@ -71,6 +68,5 @@ def test_draw_letters_returns_different_hands():
     hand1 = draw_letters()
     hand2 = draw_letters()
     hand3 = draw_letters()
-
     # Assert
     assert hand1 != hand2 or hand2 != hand3
