@@ -31,10 +31,10 @@ def draw_letters():
     }
 #make list to return for "hand"
 #draw 10 random letters from pool
-#reflect letter distribution in dict
+#reflect letter distribution thats in dict
     hand = []
-    for letter, quantity in LETTER_POOL.items():
-        for num in range(quantity):
+    for letter, amount in LETTER_POOL.items():
+        for num in range(amount):
             hand.append(letter)
             random.shuffle(hand)
     return hand[:10]
@@ -42,34 +42,27 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     check_letters = {}
     word1 = word.upper()
-
+    # check if letter is in letter bank
     for letter in letter_bank:
+        # if letter hasnt been added to dict yet then add and intialize to 1
         if letter not in check_letters:
             check_letters[letter] = 1
         else:
+            # if letter in bank already then add by 1
             check_letters[letter] +=1 
-
-    # if letter in bank then add by 1
 
     # check if an input from user found in hand
     for char in word1:
-    # # return false if letter not in letter bank used
+    # # return false if letter not in letter or letter bank used
         if char not in letter_bank or check_letters[char] == 0:
             return False
         else:
+            # subtract 1 for the letter used 
             check_letters[char] -= 1
-            
 
     return True
-    # return true if every letter in input in letter bank
-    # elif letter in word in letter_bank:
-    #     check_letters[letter] -= 1
-    
-    
-
-#check if input is some or alll of hand
-# return false if input has too much of a letter compared to letter_bank
-
+    # return true if every letter in input in letter bank AND not used more than given
+    # compare letter count in word vs letter count in letter bank
 
 
 def score_word(word):
@@ -87,13 +80,14 @@ def score_word(word):
     ('Q', 'Z'): 10
     }
     score = []
-    
+    # iterate through dictionary
     for letter, point in letter_value.items():
         for char in word:
+            # if char in word also in keys of dict, add the associated point
             if char.upper() in letter:
                 score.append(point)
-    
-    if len(word) in range(7, 10):
+    #if the length of the word is between 7-10, add 8 pts
+    if len(word) in range(7, 11):
         score.append(8)
             
     return sum(score)
@@ -101,21 +95,29 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
 # return a tuple with("word", int(score))
-    winning_score = 0
-    winning_word = ""
-    # calculate score of each word in list
+    highest_score = 0
+    highest_word = ""
+    # calculate score of each word in list with helper function
     for word in word_list:
         words_score = score_word(word)
-        #wining word with less words or = 10
-        # if score is tied of words  or are same length,
-        #  winning word is first from list
-        if words_score > winning_score:
-            winning_score = words_score
-            winning_word = word
-        
-        if words_score == winning_score:
-            if len(word) < len(winning_word) or len(word) > len(winning_word) and len(word) == 10:
-                winning_word = word
-                winning_score = words_score
-    final_word = (winning_word, winning_score)
+        # if the last word score is greater than current, then update
+        if words_score > highest_score:
+            highest_score = words_score
+            highest_word = word
+        # for tied scores
+        elif words_score == highest_score:
+            # words with length of 10 are highest
+            if len(word) == 10 and len(highest_word) != 10:
+                # highest_score = words_score
+                highest_word = word
+            # if the length of the new word is less length than highest word and highest word is not equal to 10 then new word wins
+            elif len(word) < len(highest_word) and len(highest_word) != 10:
+            # elif len(word) < len(highest_word) and len(word) == len(highest_word) and len(word) != 10:
+                # highest_score = words_score
+                highest_word = word
+            # if the lengthes are the same, then use the word already in highest word
+            elif len(word) == 10 and len(highest_word) == 10:
+                # highest_score = highest_score
+                highest_word = highest_word
+    final_word = (highest_word, highest_score)
     return final_word
