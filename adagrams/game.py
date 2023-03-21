@@ -167,4 +167,5 @@ def get_highest_word_score(word_list):
         elif best_word_lengths[0] == len(word):
             return word, score_list[-1]
 
+    # return best word and score as tuple if no tie situations 
     return best_word_list[-1], score_list[-1]
