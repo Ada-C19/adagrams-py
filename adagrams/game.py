@@ -1,4 +1,5 @@
 import random
+import copy
 
 LETTER_POOL = {
     'A': 9, 
@@ -53,9 +54,11 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
+    available_letters = copy.deepcopy(letter_bank)
+
     for letter in word:
-        if letter in letter_bank:
-            letter_bank.remove(letter)
+        if letter in available_letters:
+            available_letters.remove(letter)
         else:
             return False  
     return True
