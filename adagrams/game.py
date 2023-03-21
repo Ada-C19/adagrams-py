@@ -61,6 +61,15 @@ def count_available_letters(letter_bank):
     return letter_counts
 
 
+def sort_scores(word_list):
+    """Return a tuple sorted by the scores."""
+    scores = {}
+    for word in word_list:
+        scores[word] = score_word(word)
+    sorted_scores = sorted(scores.items())
+
+    return sorted_scores
+
 
 def draw_letters():
     """Return a list of 10 randomly chosen letters."""
@@ -91,6 +100,7 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
+    """Return the amount of points (integer) for a word."""
     point_values = {
         'A': 1, 
         'B': 3, 
@@ -128,15 +138,11 @@ def score_word(word):
     
     return score
     
-        
-def get_highest_word_score(word_list):
-    scores = {}
-    winner = ("", 0)
-
-    for word in word_list:
-        scores[word] = score_word(word)
     
-    sorted_scores = sorted(scores.items())
+def get_highest_word_score(word_list):
+    """Return a tuple containing the winning word and corresponding score."""
+    winner = ("", 0)
+    sorted_scores = sort_scores(word_list)
     
     for score in range(len(sorted_scores)):
         comparator_word = sorted_scores[score][0]
@@ -154,5 +160,3 @@ def get_highest_word_score(word_list):
                 winner = sorted_scores[score]
 
     return winner
-
-print(get_highest_word_score(["WWW", "MMMM", "BBBBBB", "AAAAAAAAD", "JQ", "KFHK"]))
