@@ -29,13 +29,16 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1
 }
+
 def draw_letters():
     letters = []
     letter_freq = {}
+
     # this while loop adds ten random letters to a list
     while len(letters) < 10:
         randomLetter = random.choice(string.ascii_uppercase)
         letters += randomLetter
+
     # i need to track the repetition of letters 
     # i need to assure its less than letter pool frequency
     for letter in letters:
@@ -43,17 +46,27 @@ def draw_letters():
                 letter_freq[letter] += 1
             else:
                 letter_freq[letter] = 1
+# this function below is not making much sense to me. from my understaning...
+# if the letter frequency goes above the letter pool value than it stays at max
+# else the letter continues to be the letter
+    for letter in letter_freq:
+        if letter_freq[letter] >= LETTER_POOL[letter]:
+            letter_freq[letter] -= 1
+        else:
+            letter_freq[letter] = letter_freq[letter]
+    print(f' this is letter frew{letter_freq}')
+    print(f' this is letter pool {LETTER_POOL}')
 
-    if letter_freq[letter] > LETTER_POOL[letter]:
-        letter_freq[letter] = LETTER_POOL[letter]
-    else:
-        letter_freq[letter] = letter_freq[letter]
+    return letter_freq
+    
+        
         
 
-    return letter
+
+
+    return letters
     
 
-    ten_letters = ["A","Z","O","P","E","T","Q","W","D","L"]
 # Your first task is to build a hand of 10 letters for the user. To do so, implement the function draw_letters in game.py. This method should have the following properties:
     
 # No parameters
