@@ -140,31 +140,28 @@ def get_highest_word_score(word_list):
     #if same score and length, pick the first one to occur
     #return tuple with (string word, score)
 
-    # LIST METHOD
-    # points_list = []
-    # for word in word_list:
-    #     points_list.append(score_word(word))
-    # print(points_list)
-    # top_score = max(points_list)
-    # print(top_score)
-# ask in TA hours - how can I access the word at the same index? or would a dict be better?
-
-
     #DICTIONARY METHOD
     word_score_log = {}
     for word in word_list:
         word_score_log[word] = score_word(word)   
     top_score = max(word_score_log.values()) 
-    
+
+    tied_words = []
+
     for word, score in word_score_log.items():
         if score == top_score:
-            final_tuple = (word, score)
-    return final_tuple        
-#now to build for ties??? get help
+            tied_words.append(word)
 
-    
-
-    # best_word = (word_score_log.values().index(top_score), top_score)  
-
-
+    print(tied_words)        
+    current_winning_word = tied_words[0]
+    for word in tied_words:
+        if len(tied_words) == 1:
+            return (word, word_score_log[word])
+        if len(word) == 10:
+            winning_word = (word, word_score_log[word])
+            return winning_word
+        elif len(word) < len(current_winning_word):
+            current_winning_word = word
+            
+    return (current_winning_word, score)
 
