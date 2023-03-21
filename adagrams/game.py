@@ -115,10 +115,13 @@ def get_highest_word_score(word_list):
 # we are defining a space for the word with the highest score
     highest_score = 0
     highest_word = [None, 0]
-# we are looping through the 
+# we are looping through the dictionary that has all words and their scores
     for word, score in score_dict.items():
         if score == highest_score:
-            if len(word) == 10:
+            if len(word) < len(highest_word[0]):
+                highest_word[0] = word
+                highest_word[1] = score
+            elif len(word) == 10:
                 highest_word[0] = word
                 highest_word[1] = score
         elif score > highest_score:
