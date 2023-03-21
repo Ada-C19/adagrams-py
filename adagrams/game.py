@@ -10,7 +10,10 @@
 # Imagine that the user returns their hand to the pool before drawing new letters
 import random
 
-LETTER_POOL = {
+
+
+def draw_letters():
+    LETTER_POOL = {
     "A": 9,
     "B": 2,
     "C": 2,
@@ -38,12 +41,13 @@ LETTER_POOL = {
     "Y": 2,
     "Z": 1,
 }
-
-
-def draw_letters():
     hand = []
+    full_letter_list = []
+    for alpha, number in LETTER_POOL.items():
+        for i in range(number):
+            full_letter_list.append(alpha)
     while len(hand) != 10:
-        letter = random.choice(list(LETTER_POOL))
+        letter = random.choice(full_letter_list)
         if hand.count(letter) < LETTER_POOL[letter]:
             hand.append(letter)
     
