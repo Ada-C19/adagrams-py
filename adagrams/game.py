@@ -1,6 +1,6 @@
 import random
 
-def draw_letters():
+def generate_letter_pool():
     LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -30,29 +30,42 @@ def draw_letters():
     'Z': 1
     }
     letter_pool_list = []
-    letter_bank = []
     for letter, quantity in LETTER_POOL.items():
         for index in range(0, quantity):
             letter_pool_list.append(letter)
     
+    return letter_pool_list 
+
+
+def casefold_letters(letters):
+    casefolded_letters = []
+    for letter in letters:
+        casefolded_letters.append(letter.casefold())
+    
+    return casefolded_letters
+
+
+def draw_letters():
+    letter_pool_list = generate_letter_pool()
+    letter_bank = []
+
     for tile in range(0, 10):
-        random_tile = letter_pool_list[random.randint(0, len(letter_pool_list) - 1)]
+        random_tile = random.choice(letter_pool_list)
         letter_pool_list.remove(random_tile)
         letter_bank.append(random_tile)
     
     return letter_bank
 
+
+
 def uses_available_letters(word, letter_bank):
-    letter_bank_casefolded = []
+    letter_bank = casefold_letters(letter_bank)
+    word = casefold_letters(word)
     used_letters = []
 
-    for letter in letter_bank:
-        letter_bank_casefolded.append(letter.casefold())
-    
-    for index in range(0, len(word)):
-        current_letter = word[index].casefold()
-        if current_letter in letter_bank_casefolded and current_letter not in used_letters:
-            used_letters.append(current_letter)
+    for letter in word:
+        if letter in letter_bank and letter not in used_letters:
+            used_letters.append(letter)
         else:
             return False
     
