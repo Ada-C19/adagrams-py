@@ -50,16 +50,18 @@ def draw_letters():
     print(letter_bank)
     return letter_bank
 
-        # decrease letter frequency in dictionary
-        # if frequency is 0 then remove key from dictionary
-
-
-
-draw_letters()
-
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_copy = letter_bank.copy()
+    for letter in word.upper():
+        if letter in letter_bank_copy:
+            # do A
+            letter_bank_copy.remove(letter)
+        else:
+            # do B
+            return False
+    # if we got here, for went thru entire word
+    return True
 
 def score_word(word):
     pass
