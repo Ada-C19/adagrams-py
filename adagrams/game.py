@@ -96,6 +96,7 @@ def get_highest_word_score(word_list):
         if score > high_score:
             high_score = score  # keep track of the high score to find which words match it
 
+    # create a dict of the words with the same high score
     highest_scoring_words = {key: value for key, value in word_scores.items(
     ) if word_scores[key] == high_score}
 
@@ -103,7 +104,7 @@ def get_highest_word_score(word_list):
 
         words = [word for word in highest_scoring_words]
         biggest_word = max(words, key=lambda word: len(word))
-        smallest_word = min(words, key=lambda word: len(word)) #will return the first smallest word
+        smallest_word = min(words, key=lambda word: len(word)) # will return the first smallest word
         # in the event of multiple small words w/ same length
 
         if len(biggest_word) == MAX_LETTER_LENGTH:
