@@ -90,26 +90,26 @@ def test_get_highest_word_many_ties_pick_first_ten_letters():
     # Arrange
     words = ["JQ", "FHQ", "AAAAAAAAAA", "BBBBBB", "TTTTTTTTTT"]
 
-    # Act
-    best_word = get_highest_word_score(words)
-
-    # Assert
-    assert best_word[0] == "AAAAAAAAAA"
-    assert best_word[1] == 18
-
+    # Act                                        
+    best_word = get_highest_word_score(words)    
+                                                 
+    # Assert                                     
+    assert best_word[0] == "AAAAAAAAAA"          
+    assert best_word[1] == 18                    
+                                                 
 def test_get_highest_word_many_ties_pick_shortest():
-    # Arrange
+    # Arrange                                    
     words = ["BBBBBB", "AAAAAAAAD", "JQ", "KFHK"]
-
-    # Act
-    best_word = get_highest_word_score(words)
-
-    # Assert
-    assert best_word[0] == "JQ"
-    assert best_word[1] == 18
-
+                                                 
+    # Act                                        
+    best_word = get_highest_word_score(words)    
+                                                 
+    # Assert                                     
+    assert best_word[0] == "JQ"                  
+    assert best_word[1] == 18                    
+                                                 
 def test_get_highest_word_does_not_return_early_after_first_tiebreaker():
-    # Arrange
+    # Arrange                                    
     words = ["WWW", "MMMM", "BBBBBB", "AAAAAAAAD", "JQ", "KFHK"]
 
     # Act

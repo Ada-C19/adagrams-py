@@ -23,23 +23,23 @@ def wave_2_run_game():
         print("Let's draw 10 letters from the letter pool...")
         letter_bank = draw_letters()
         display_drawn_letters(letter_bank)
-        display_game_instructions()
-        user_input_word = input()
-
+        display_game_instructions() 
+        user_input_word = input()   
+                                    
         while( not uses_available_letters(user_input_word, letter_bank)):
             display_needs_valid_input_message()
             user_input_word = input()
-
+                                    
         display_retry_instructions()
-        continue_input = input()
+        continue_input = input()    
         game_continue = continue_input == "y"
-   
-    display_goodbye_message()
-
-def wave_3_run_game():
-    display_welcome_message()
-    game_continue = True
-    while game_continue:
+                                    
+    display_goodbye_message()       
+                                    
+def wave_3_run_game():              
+    display_welcome_message()       
+    game_continue = True            
+    while game_continue:            
         print("Let's draw 10 letters from the letter pool...")
         letter_bank = draw_letters()
         display_drawn_letters(letter_bank)
