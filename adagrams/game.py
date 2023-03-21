@@ -54,7 +54,7 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    SCORE_CHART= {
+    SCORE_CHART = {
         "AEIOULNRST": 1,
         "DG": 2,
         "BCMP": 3,
@@ -70,9 +70,35 @@ def score_word(word):
             if letter in key:
                 score += value
     if 7 <= len(word) <= 10:
-        score +=8
+        score += 8
     return score
 
 
 def get_highest_word_score(word_list):
-    pass
+    best_word = ""
+    highest_score = 0
+
+    for i in range(0, len(word_list)):
+        current_word_score = score_word(word_list[i])
+        if current_word_score > highest_score:
+            best_word = word_list[i]
+            highest_score = current_word_score
+
+        elif current_word_score == highest_score:
+            if (len(word_list[i]) == 10) and (len(best_word) == 10):
+                best_word = best_word
+                highest_score = highest_score
+            elif (len(word_list[i]) == 10) and (len(best_word) != 10):
+                best_word = word_list[i]
+                highest_score = current_word_score
+            elif (len(word_list[i]) != 10) and (len(best_word) == 10):
+                best_word = best_word
+                highest_score = highest_score
+            elif len(word_list[i]) > len(best_word):
+                best_word = best_word
+                highest_score = highest_score
+            elif len(word_list[i]) < len(best_word):
+                best_word = word_list[i]
+                highest_score = current_word_score
+
+    return best_word, highest_score
