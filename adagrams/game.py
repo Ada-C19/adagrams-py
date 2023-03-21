@@ -31,10 +31,11 @@ def generate_letter_pool():
     }
     letter_pool_list = []
     for letter, quantity in LETTER_POOL.items():
-        for index in range(0, quantity):
-            letter_pool_list.append(letter)
+        letter_pool_list.extend([letter] * quantity)
     
     return letter_pool_list 
+
+print(generate_letter_pool())
 
 
 def casefold_letters(letters):
@@ -165,7 +166,3 @@ def get_highest_word_score(word_list):
     winning_word_and_score = find_top_word_and_score(top_two_words)
 
     return winning_word_and_score
-
-
-
-    
