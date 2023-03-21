@@ -92,7 +92,7 @@ def get_highest_word_score(word_list):
 
     for i in word_list:
         pair_word_points[i]=score_word(i)
-   
+
     max_score= max(pair_word_points.values())
 
     for i in pair_word_points:
