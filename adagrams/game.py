@@ -94,29 +94,40 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+    # initialize best_word variable that will hold the best_word
     best_word = ""
+    # initialize highest_score variable that will hold the highest_score
     highest_score = 0
-
+    # iterate through numvers 0 to the length of the word_list
     for i in range(0, len(word_list)):
+        # grab the score for the current word iteration by calling score_word function
         current_word_score = score_word(word_list[i])
+        # checks if the current_word_score iteration is greater than the highest_score
         if current_word_score > highest_score:
+            # if current_word_score is greater than highest_score, update best_word and highest_score
             best_word = word_list[i]
             highest_score = current_word_score
-
+        # else if current_word_scre equals highest_score:
         elif current_word_score == highest_score:
+            # if current_word_score is equal to highest_score, keep first instance
             if (len(word_list[i]) == 10) and (len(best_word) == 10):
                 best_word = best_word
                 highest_score = highest_score
+            # else if the length of current word_list iteration is 10 while the length of best_word is not equal to 10, then update best_word and highest_score
             elif (len(word_list[i]) == 10) and (len(best_word) != 10):
                 best_word = word_list[i]
                 highest_score = current_word_score
+            # else if the length of current word_list iteration is not 10 while the length of best_word is equal to 10, keep current best_word and highest_score
             elif (len(word_list[i]) != 10) and (len(best_word) == 10):
                 best_word = best_word
                 highest_score = highest_score
+            # else if the length of current word_list iteration is greater than the length of best_word, keep current best_word and highest_score
             elif len(word_list[i]) > len(best_word):
                 best_word = best_word
                 highest_score = highest_score
+            # else if the length of current word_list iteration is less than the length of best_word, update best_word and highest_score
             elif len(word_list[i]) < len(best_word):
                 best_word = word_list[i]
                 highest_score = current_word_score
+    # return the final results of best_word and highest_score
     return best_word, highest_score
