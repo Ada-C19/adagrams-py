@@ -58,7 +58,7 @@ def get_highest_word_score(word_list):
         word_scores.append(score)
     best_score = max(word_scores)
     for word in word_list:
-        if len(word) == 10 and score_word(word)== best_score:
+        if len(word) == 10 and score_word(word) == best_score:
             best_word = word
             break
     else:
