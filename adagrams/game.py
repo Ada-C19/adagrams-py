@@ -47,7 +47,7 @@ def draw_letters():
     for letters in range(10):
         letter = random.choice(letter_box)
         letter_list.append(letter)
-    # remove will prevent from creating duplicates to be added
+    # remove will prevent from creating duplicates to be added 
         letter_box.remove(letter)
     return letter_list
 
@@ -66,8 +66,17 @@ def uses_available_letters(word, letter_bank):
     # lloop through the letter_bank
     for each_letter in letter_bank:
         # get the currrent count of each letter as value increments by 1 and and defaults 0 if non-existent
+
         letter_frequency[each_letter.lower()] = letter_frequency.get(
             each_letter.lower(), 0) + 1
+        
+        #long way 
+
+        # if each_letter in letter_frequency:
+        #     letter_frequency[each_letter.lower()] += 1
+
+        # else:
+        #     letter_frequency[each_letter.lower()] = 1
 
     for each_letter in word:
         # if both conditions arre met, return False
@@ -124,4 +133,37 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    # InItialize the maxi score to 0 as a startng point
+    max_score = 0
+
+    # empty list store the best word with highest score
+    best_word = []
+    
+# boolean to chesck if there's a 10 letter word
+    is_ten_letter_word = False
+ 
+#loop
+    for each_word in word_list:
+        # instant winner here -- hceck first if there'a ten-letter word, exit
+        if len(each_word) == 10:
+            is_ten_letter_word = True
+            break
+    # use helper function here to extract score
+    for each_word in word_list:
+        current_score = score_word(each_word)
+# compare scores
+        if current_score > max_score:
+            max_score = current_score
+            best_word = each_word
+# reminder -- check if current score and max_score are same
+# if scores are tied, between current word and current best word has 10 --  updates the best word
+        elif current_score == max_score:
+            if len(each_word) == 10 and len(best_word) != 10:
+                best_word = each_word
+#  if best word is not a ten letter word and len is less than the current word, update best word
+            elif len(each_word) < len(best_word) and len(best_word) < 10:
+                best_word = each_word
+
+    return best_word, max_score
+
+
