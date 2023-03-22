@@ -49,19 +49,31 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     letter_bank_dict = {}
+    is_valid = False
 
     for character in word:
-        if character in letter_bank and word.count(character) <= letter_bank_dict[character]:
-            return True 
+        if character in letter_bank:
+            is_valid = True
         else:
+            is_valid = False
+
+    if character in letter_bank_dict.keys():
+        letter_bank_dict[character] += 1
+    else:
+        letter_bank_dict[character] = 1
+
+    character_frequency_word = word.count(character)
+    character_frequency_dict = letter_bank_dict[character]
+
+    if character_frequency_word <= character_frequency_dict:
+        return True
+    else:
+        if character not in letter_bank or character_frequency_word >= character_frequency_dict:
             return False
+            
+    return 
 
 
-            # for character in letter_bank:
-            #     if character in letter_bank_dict.keys():
-            #         letter_bank_dict[character] += 1
-            #     else:
-            #         letter_bank_dict[character] = 1
 
 
 
