@@ -89,16 +89,12 @@ def get_highest_word_score(word_list):
         elif words_score == highest_score:
             # words with length of 10 are highest
             if len(word) == 10 and len(highest_word) != 10:
-                # highest_score = words_score
                 highest_word = word
             # if the length of the new word is less length than highest word and highest word is not equal to 10 then new word wins
             elif len(word) < len(highest_word) and len(highest_word) != 10:
-            # elif len(word) < len(highest_word) and len(word) == len(highest_word) and len(word) != 10:
-                # highest_score = words_score
                 highest_word = word
             # if the lengthes are the same, then use the word already in highest word
             elif len(word) == 10 and len(highest_word) == 10:
-                # highest_score = highest_score
                 highest_word = highest_word
     final_word = (highest_word, highest_score)
     return final_word
