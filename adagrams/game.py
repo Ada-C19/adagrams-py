@@ -106,57 +106,44 @@ def get_highest_word_score(word_list):
         
     score_list = []
     dict_word_score = {}
-        
-    
+
     for word in word_list:
         score_for_each_word = score_word(word)
         score_list.append(score_for_each_word)
-        score_list  
-        
-    dict_word_score = dict(zip(word_list,score_list))
-        
+
+    dict_word_score = dict(zip(word_list,score_list))  
     max_value = max(dict_word_score.values())
-    #crear diccionario con los top scores
+    
     dict_top_score = {}
     list_max_score = []
-    #list_min_score = []
 
-    #guardamos todas las palabras que hayan conseguido el score maximo.
-    #E.g. si el score maximo era 20, guardamos todos los key que tengan value == 20
+
     for key in dict_word_score:
         if dict_word_score[key] == max_value:
             dict_top_score[key] = max_value
             
-    # si solo habia una palabra con el valor maximo, entonces esa es la ganadora
     if len(dict_top_score) == 1:
-        for key in dict_top_score:
-            list_max_score.insert(0,key)
-            list_max_score.insert(1,dict_top_score[key])
-            return list_max_score
-        #return list[0] = word [1] = score
-    ############# sino ############################################################################
+        key = list(dict_top_score.keys())[0]
+        list_max_score.insert(0,key)
+        list_max_score.insert(1,dict_top_score[key])
+        return list_max_score
+        
     else:
-    # buscamos la primera palabra que tenga len == 10, si es que hay.
-        for key in dict_top_score:
+
+        for key in dict_top_score.keys():
             if len(key) == 10:
                 list_max_score.insert(0,key)
-                list_max_score.insert(1,score)
+                list_max_score.insert(1,dict_top_score[key])
                 return list_max_score
-                #return list[0] = key list[1] = score
-    
-    #por ultimo, si es que no encontramos una palabra de largo 10, entonces
-    #buscamos la palabra con la menor longitud.
-    #e.g. si tenemos palabra "[casa, 20]", "[perro, 20]", el len minimo es de casa.
 
+    min_value = 100000
 
-    #busco el valor minimo
-    min_value = min(dict_word_score.values())
-    for key in dict_top_score:
+    for key in dict_top_score.keys():
         if len(key) < min_value:
             min_value = len(key)
 
-    #y al final, solo retornamos la primera palabra que tenga el largo minimo calculado anteriormente
-    for key in dict_top_score:
-        if dict_top_score[key] == min:
-
-            #return list[0] = key list[1] = score
+    for key in dict_top_score.keys():
+        if len(key) == min_value:
+            list_max_score.insert(0,key)
+            list_max_score.insert(1,dict_top_score[key])
+            return list_max_score
