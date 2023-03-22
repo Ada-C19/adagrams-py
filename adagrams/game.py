@@ -59,69 +59,44 @@ POINT_VALUES = {
     'Z': 10
     }
 
+
 def generate_letter_pool():
-    """Return a list of all the available letter tiles."""
+    """Return a list of all the available letters."""
     letter_pool_list = []
     for letter, quantity in LETTER_POOL.items():
         letter_pool_list.extend([letter] * quantity)
     return letter_pool_list
 
 
-def casefold_letters(word):
-    """Return a list letters from a word in all lowercase."""
-    casefolded_letters = []
-    for letter in word:
-        casefolded_letters.append(letter.casefold())
-    
-    return casefolded_letters
+def draw_letters():
+    """Return a list of 10 randomly chosen letters from the letter pool."""
+    letter_pool_list = generate_letter_pool()
+    letter_bank = []
+    for letter in range(0, 10):
+        random_letter = random.choice(letter_pool_list)
+        letter_pool_list.remove(random_letter)
+        letter_bank.append(random_letter)
+    return letter_bank
 
 
 def count_available_letters(letter_bank):
     """Return a dictionary containing the quantity of each letter in letter_bank."""
     letter_counts = {} 
-
     for letter in letter_bank:
-        if letter not in letter_counts: 
-            letter_counts[letter] = 0 
-        letter_counts[letter] += 1 
-    
+        letter_counts[letter] = 0
+    for letter in letter_bank:
+        letter_counts[letter] += 1
     return letter_counts
 
 
-def score_and_sort_words(word_list):
-    """Return a tuple sorted by the scores."""
-    scores = {}
-    for word in word_list:
-        scores[word] = score_word(word)
-    sorted_scores = sorted(scores.items(), key=lambda x:x[1], reverse=True)
-
-    return sorted_scores
-
-
-def draw_letters():
-    """Return a list of 10 randomly chosen letters."""
-    letter_pool_list = generate_letter_pool()
-    letter_bank = []
-
-    for tile in range(0, 10):
-        random_tile = random.choice(letter_pool_list)
-        letter_pool_list.remove(random_tile)
-        letter_bank.append(random_tile)
-    
-    return letter_bank
-
-
 def uses_available_letters(word, letter_bank):
-    """Return true if a word uses only the letters from letter_bank."""
-    letter_bank = casefold_letters(letter_bank)
-    word = casefold_letters(word)
+    """Return True if a word uses only the letters from letter_bank."""
     letter_counts = count_available_letters(letter_bank)
-
+    word = word.upper()
     for letter in word:
         if letter not in letter_bank or letter_counts[letter] <= 0:
             return False
         letter_counts[letter] -= 1
-    
     return True
 
 
@@ -132,19 +107,27 @@ def score_word(word):
         score += WORD_LENGTH_BONUS_POINTS
     for letter in word:
         score += POINT_VALUES[letter.upper()]
-    
     return score
+
+
+def score_and_sort_words(word_list):
+    """Return a tuple of words sorted by the scores in descending order."""
+    words_and_scores = {}
+    for word in word_list:
+        words_and_scores[word] = score_word(word)
+    sorted_words_and_scores = sorted(words_and_scores.items(), key=lambda words_and_scores:words_and_scores[1], reverse=True)
+    return sorted_words_and_scores
     
     
 def get_highest_word_score(word_list):
     """Return a tuple containing the winning word and corresponding score."""
-    sorted_scores = score_and_sort_words(word_list)
-    current_winner = sorted_scores[0]
+    sorted_words_and_scores = score_and_sort_words(word_list)
+    current_winner = sorted_words_and_scores[0]
     word_index = 0
     score_index = 1
 
-    for word_and_score in range(1, len(sorted_scores)):
-        comparator = sorted_scores[word_and_score]
+    for word_and_score in range(1, len(sorted_words_and_scores)):
+        comparator = sorted_words_and_scores[word_and_score]
         if comparator[score_index] < current_winner[score_index]:
             return current_winner
         elif comparator[score_index] == current_winner[score_index]:
