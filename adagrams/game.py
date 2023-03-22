@@ -31,14 +31,13 @@ def draw_letters():
     }
     final_letter_choice = []
     for number in range(0,10):
-        while True:
-            chosen_letter = random.choice(list(letter_pool.keys()))
-            if(letter_pool[chosen_letter] == 0):
-                continue 
-            else:
-                break
+        chosen_letter = random.choice(list(letter_pool.keys()))
+        if (letter_pool[chosen_letter] == 1):
+            letter_pool.pop(chosen_letter)
+        else:
+            letter_pool[chosen_letter] -= 1
         final_letter_choice.append(chosen_letter)
-        letter_pool[chosen_letter] -= 1
+        
     return final_letter_choice
 
 
@@ -47,7 +46,7 @@ def uses_available_letters(word, letter_bank):
     for characters in word:
         try:
             letter_bank_new.remove(characters.upper())
-        except:
+        except ValueError:
             return False
     return True
 
