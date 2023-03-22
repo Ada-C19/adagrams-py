@@ -43,19 +43,6 @@ def draw_letters():
 
 print(draw_letters())
 
-"""
-check in any input word (word player sumbits) only uses characters
-that are in the hand.
-check to see if the word is an anagram
-word - describes some input word, is a string
-letter_bank array of drawn letters in hand. an array of 1- strings, ea string is a letter
-returns as boleon, true or false
-true if every letter in the input word is available (in right qty)
-in letter bank
-false if there is a letter not in input. not in letterbank or
-too much compared to letterbank
-
-"""
 def uses_available_letters(word, letter_bank):
    
     word = word.upper()
@@ -68,10 +55,28 @@ def uses_available_letters(word, letter_bank):
             return False
         #if the letter is in letter bank, remove it from copy
         letter_bank_copy.remove(letter)
-    # if we got here, then every letter in the word is available in the letter bank
+
     return True
 
 def score_word(word):
+
+    score_dict = {
+
+        ["A","E","I","O","U","L","N","R","S","T"]: 1,
+        ["D","G"]: 2,
+        ["B","C","M","P"]:3,
+        ["K"]:4,
+        ["J","X"]: 8,
+        ["Q","Z"]: 10,
+    }
+
+#has on paramater word as a string
+#returns an int represseting points
+#ea letter has a point value
+#sum the associated value with the letetr
+#created dict with listed values
+#add if the length of word is 7-10 characters long then +8 points
+#returns score of given word
     pass
 
 def get_highest_word_score(word_list):
