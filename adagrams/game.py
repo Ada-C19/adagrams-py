@@ -28,26 +28,23 @@ LETTER_POOL = {
     'Z' : 1
 }
 def draw_letters():
-    #hand = []
-    hand = list(LETTER_POOL.keys())
-    # for key in LETTER_POOL:
-        # For each key, the loop runs a nested for loop that adds the letter key to the hand list the number of times specified by the value.
-        # for letters in range(LETTER_POOL[key]):
-        #     hand.append(key)
-    # Once all the letters are added to the hand list, the list is shuffled
-    random.shuffle(hand)
+    # Create a list of keys from the LETTER_POOL and set it to the new variable "letters"
+    letters = list(LETTER_POOL.keys())   
+    # Once all the letters are added to the letters list, the list is shuffled
+    random.shuffle(letters)
     # First 10 elements in the list are returned
-    return hand[:10]
+    return letters[:10]
 
 def uses_available_letters(word, letter_bank):
-    letters = letter_bank[:]
+    # Could also use copy.deepcopy() to create deep copy of letter_bank, but I dont think thats necessary
+    letterbank_copy = letter_bank[:]
     # Loop through all the letters in the word, .upper() returns a string where all characters are in upper case
     for letter in word.upper():
-        if letter not in letters:
+        if letter not in letterbank_copy:
             return False
         else:
             # Removes the letter from the 'letters' list and continue looping
-            letters.remove(letter)
+            letterbank_copy.remove(letter)
     # If all the letters in the word are present in the letter_bank list, return True
     return True
 
