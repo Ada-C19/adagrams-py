@@ -48,7 +48,7 @@ def draw_letters():
     return(letter_bank)
 
 def uses_available_letters(word, letter_bank):
-    word = word.upper()    # convert input word to upper case
+    word = word.upper()                                  # convert input word to upper case
     word_count = Counter(word)
     bank_count = Counter(letter_bank)
     return all(word_count[i] <= bank_count[i] for i in word_count)
@@ -83,8 +83,7 @@ def score_word(word):
         "Z" : 10
     }
     sum = 0
-    word = [elem.upper() for elem in word]     # convert input word to upper case
-
+    word = word.upper()                        # convert input word to upper case
     for letter in word:                        # sum each letter's point
         sum += score_chart[letter]
     if len(word) >= 7:                         # chech if the word gets addtional 8 points
