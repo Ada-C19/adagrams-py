@@ -70,6 +70,13 @@ def score_word(word):
         ["Q","Z"]: 10,
     }
 
+    total_score = 0
+
+    for letter in word:
+        score = score_dict.get(word,#"index value something not sure yet")
+        total_score += score
+        return total_score
+
 #has on paramater word as a string
 #returns an int represseting points
 #ea letter has a point value
