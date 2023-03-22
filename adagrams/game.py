@@ -107,7 +107,7 @@ def score_word(word):
     """
     word = word.upper()
 
-    score = sum([SCORE_CHART[char] for char in word])
+    score = sum(SCORE_CHART[char] for char in word)
     
     # Give bonus for words longer than 6 letters
     if len(word) > 6:
