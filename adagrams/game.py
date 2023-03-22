@@ -119,4 +119,19 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    # input: list of strings
+    # output: tuple (str, int)
+
+    highest_score = 0
+    winner = "" 
+
+    # go through the the word list and caculate the highest score
+    # for each word (ignoring case), keep track of the highest scoring word
+
+    for word in word_list: 
+        score = score_word(word)
+        if score > highest_score: 
+            highest_score = score
+            winner = str.upper(word)
+
+    return winner, highest_score
