@@ -41,7 +41,6 @@ def draw_letters():
         letters_list += randomLetter
     
     print(letters_list)
- 
 
     # i need to track the repetition of letters 
     # i need to assure its less than letter pool frequency
@@ -61,12 +60,12 @@ def draw_letters():
 
     print(letter_freq)  
     print("**********")
-    print(LETTER_POOL)
-    #*********
 
-    return letters_list
+    #*********
+    #YET TO SEE IF FREQUENCY IS LESS THAN THE LETTER POOL
+    return letter_freq
     
-        
+
         
 
 # Your first task is to build a hand of 10 letters for the user. To do so, implement the function draw_letters in game.py. This method should have the following properties:
@@ -83,7 +82,7 @@ def draw_letters():
 # Imagine that the user returns their hand to the pool before drawing new letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    
 
 def score_word(word):
     pass
