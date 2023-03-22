@@ -1,7 +1,7 @@
 import random
 from collections import Counter
 
-word_list = ["A", "BB", "CCC", "DDDD"]
+word_list = ["AAAAAAAAAA", "BBBBBB", "CCC", "DDDD"]
 
 LETTER_POOL = {
     'A': 9, 
@@ -109,25 +109,31 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
 # we will collect all words from word_list and use it as a key and its score will be the value
-    score_dict = {}
+    all_scores_dict = {}
     for word in word_list:
-        score_dict[word] = score_word(word)
+        all_scores_dict[word] = score_word(word)
 # we are defining a space for the word with the highest score
-    highest_score = 0
     highest_word = [None, 0]
+
 # we are looping through the dictionary that has all words and their scores
-    for word, score in score_dict.items():
-        if score == highest_score:
-            if len(word) < len(highest_word[0]):
-                highest_word[0] = word
-                highest_word[1] = score
-            elif len(word) == 10:
-                highest_word[0] = word
-                highest_word[1] = score
-        elif score > highest_score:
+    for word, score in all_scores_dict.items():
+# tuple is reassigned if score is higher
+        if score > highest_word[1]:
+            print(f"{score} is higher than {highest_word[1]}")
             highest_word[0] = word
             highest_word[1] = score
-            highest_score = score
+        elif score == highest_word[1]:
+            if len(highest_word[0]) == 10:
+                continue
+            if len(word) == 10:
+                highest_word[0] = word
+                highest_word[1] = score
+            elif len(word) < len(highest_word[0]):
+                highest_word[0] = word
+                highest_word[1] = score
+        else:
+            continue
 
     return tuple(highest_word)
                 
+print(get_highest_word_score(word_list))
