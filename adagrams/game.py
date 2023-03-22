@@ -113,18 +113,51 @@ def get_highest_word_score(word_list):
     #make best_word into an empty list!
     best_word = []
     #storing the max score + word:
-    max_word = max(high_scores)
-    max_score = high_scores.get(max_word)
-    #Prefers 10 letters
-    for word, score in high_scores.items():
-        if score == max_score and len(word) == 10:
-            if max(word) == 10:
-                max_word = max_word
-            else:
-                max_word = word
+    max_word = max(high_scores, key=high_scores.get)
+    max_score = max(high_scores.values())
+    #So we'll do it by tie conditions. We set Tie to 0.
+    tie = 0
+#A loop to count how many ties we got
+    for word in high_scores:
+        if high_scores[word] == max_score:
+            tie += 1
+        else:
+            tie == 0
+#Start with the highest amount of ties
+    if tie > 4:
+        for x in words:
+            if len(x) == 10 and len(max_word) != 10:
+                max_word = x
+                if words.index(x) < words.index(max_word):
+                    max_word = x
+# When ties are >= 3:
+    elif tie >= 3:
+        test_word = words[0]
+        for y in words:
+            if len(y) < len(test_word):
+                test_word = y
+        max_word = test_word
+#When there's a tie of two words and the conditions that need to be met
+    elif tie == 2:
+        test_word = words[0]
+        for y in words:
+            if len(test_word) == 10 and len(y) == 10:
+                max_word = test_word
+            elif len(test_word) != 10 and len(y) == 10:
+                max_word = y
+            elif len(test_word) != 10 and len(y) != 10:
+                    if len(y) < len(test_word):
+                        max_word = y
             
-    
+        
+    elif tie < 2:
+        for word, score in high_scores.items():
+            if score == max_score and len(word) == 10:
+                for x in words:
+                    if len(max_word) == 10 and len(x) == 10:
+                        if words.index(x) < words.index(max_word):
+                            max_word = x
+                    else:
+                        max_word = word
     best_word.extend([max_word, max_score])
     return best_word
-    
-
