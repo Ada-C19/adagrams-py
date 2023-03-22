@@ -2,6 +2,9 @@ import random
 
 import copy
 
+import collections
+from collections import Counter
+
 LETTER_POOL = {
     'A': 9,
     'B': 2,
@@ -50,11 +53,41 @@ def draw_letters():
             
     return hand_of_letters
 
-# draw_letter``s()
+        
+    # 1. capitalize all letters, to bypass text case from user input
+    # 2. assigns number value to each letter in the letterbank
+    # 3. assigns number value to each letter in the word
+    # 4. loop through each letter in the word that the user provides 
+    # 5. if the letter is in the word, subtract value of letter in the word from the letter in the letter_bank
+    # 6  if letter from the word is NOT in letter_bank, return False
+    # 7. if the value of the letter is less than 0 return False
+    # 8. if the letter from that word is in the letter bank, return True
+    
+    # look into count method, while using a string.
 
-
+    
 def uses_available_letters(word, letter_bank):
-    pass
+    
+    word = word.upper()                                                
+    
+    for letter in word:                                                  
+
+        letter_bank_counter = Counter(letter_bank)
+        
+        word_counter = Counter(word)
+
+        if letter in letter_bank_counter:                           
+            letter_bank_counter.subtract(word_counter)                      
+            
+            if letter_bank_counter[letter] < 0:
+                return False
+        
+        if  letter not in letter_bank:                                   
+            return False                     
+        
+    return True                                                         
+        
+
 
 def score_word(word):
     pass
