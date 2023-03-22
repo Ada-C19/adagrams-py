@@ -46,7 +46,19 @@ def draw_letters():
         
 
 def uses_available_letters(word, letter_bank):
-    pass
+    hand_frequency = {}
+    
+    for letter in letter_bank:
+        hand_frequency[letter.upper()] = hand_frequency.get(letter.upper(), 0) + 1
+
+    for letter in word.upper():
+        if letter not in hand_frequency or hand_frequency[letter] == 0:
+            return False
+        else:
+            hand_frequency[letter] -= 1
+
+  
+    return True
 
 def score_word(word):
     pass
