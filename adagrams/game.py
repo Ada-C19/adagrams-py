@@ -1,4 +1,5 @@
 import random
+import copy
 
 LETTER_POOL = {
     'A': 9, 
@@ -30,19 +31,24 @@ LETTER_POOL = {
 }
 
 def draw_letters():
-    letter_list = []
-    My_dict = {}
+
+    drawn_letters = []
+    letter_pool_copy = copy.deepcopy(LETTER_POOL)
     counter = 0
+    
     while counter < 10: 
-        letter, count = random.choice(list(LETTER_POOL.items()))
-        letter_list.append(letter)
-        counter += 1
-        if letter not in My_dict:
-            My_dict[letter_list] = 1
-        else:
-            My_dict[letter_list] +=1
+        letter, count = random.choice(list(letter_pool_copy.items()))
         print(letter, count)
-    return letter_list
+        if count == 0:
+            continue
+        else:
+            #decrement count by indexing the dictionary
+            letter_pool_copy[letter] -= 1
+            #add to drawn letters by calling it
+            drawn_letters.append(str(letter))
+            counter += 1
+    
+    return drawn_letters
 
 def uses_available_letters(word, letter_bank):
     pass
