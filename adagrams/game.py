@@ -48,7 +48,7 @@ def draw_letters():
     return(letter_bank)
 
 def uses_available_letters(word, letter_bank):
-    word = [elem.upper() for elem in word]     # convert input word to upper case
+    word = word.upper()    # convert input word to upper case
     word_count = Counter(word)
     bank_count = Counter(letter_bank)
     return all(word_count[i] <= bank_count[i] for i in word_count)
