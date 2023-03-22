@@ -31,23 +31,21 @@ def draw_letters():
     'Z': 1
     }
     
+    # Create pool of letters with frequency as outlined in letter_probability dict
     pool_of_letters = []
     for letter in letter_probability:
-        sub_list = [letter] * letter_probability[letter]
-        pool_of_letters.extend(sub_list)
+        pool_of_letters.extend([letter] * letter_probability[letter])
 
+    # Choose a hand of 10 letters
     hand_of_letters = []
-    count = 0
 
-    while count < 10:
+    while len(hand_of_letters) < 10:
         random_index = random.randint(0, len(pool_of_letters) - 1)
         random_letter = pool_of_letters[random_index]
 
-        if hand_of_letters.count(random_letter) >= letter_probability[random_letter]:
-            continue
-        else:
+    # Ensure no letter is overrepresented compared to letter_probability dict
+        if hand_of_letters.count(random_letter) < letter_probability[random_letter]:
             hand_of_letters.append(pool_of_letters[random_index])
-            count += 1
 
     return hand_of_letters
 
@@ -55,10 +53,9 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     word = word.upper()
 
+    # Ensure that letters in word are available in correct quantities in hand
     for letter in word:
-        if letter in letter_bank and (word.count(letter) <= letter_bank.count(letter)):
-            continue
-        else:
+        if letter not in letter_bank or (word.count(letter) > letter_bank.count(letter)):
             return False
     return True
 
@@ -75,12 +72,15 @@ def score_word(word):
     10: ["Q", "Z"]
     }
 
-    word = word.upper()
     points = 0
-    for letter in word:
+
+    # Loop through word & dict to add points
+    for letter in word.upper():
         for key, value in point_dictionary.items():
             if letter in value:
                 points += key
+
+    # Add extra points for words longer than 6
     if len(word) > 6:
         points += 8
 
