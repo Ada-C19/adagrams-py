@@ -89,11 +89,12 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
 
-    original_word_list_order = word_list.copy()
-    word_list.sort(key=len)
+    sorted_word_list = word_list.copy()
+    sorted_word_list.sort(key=len)
 
-    words_and_scores = {word: score_word(word) for word in word_list}
+    words_and_scores = {word: score_word(word) for word in sorted_word_list}
   
+    # Identify top score, and create dictionary of words with that top score
     top_score = max(words_and_scores.values())
     top_scoring_words = [key for key, value in words_and_scores.items() if value == top_score]
 
@@ -105,12 +106,12 @@ def get_highest_word_score(word_list):
         # more than one word with top score
 
         # one or more words have 10 letters, return first instance
-        if len(word_list[-1]) == 10:
-            for word in original_word_list_order:
+        if len(sorted_word_list[-1]) == 10:
+            for word in word_list:
                 if len(word) == 10:
                     return word, words_and_scores[word]
         
         else:
         # multiple words with same score and same length, return first instance
-            return word_list[0], words_and_scores[word_list[0]]
+            return sorted_word_list[0], words_and_scores[sorted_word_list[0]]
 
