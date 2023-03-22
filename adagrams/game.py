@@ -112,28 +112,36 @@ def get_highest_word_score(word_list):
     score_counter = 0
     potential_winners = []
     winning_word = "blank"
-    winning_score = 0
+    word_length = 11
+    shortest_words = []
 
+    # Calculate the scores of each word in the list, highest score becomes "score_counter"
     for word in word_list:
         words_scores[word] = score_word(word)
         if words_scores[word] > score_counter:
             score_counter = words_scores[word]
 
+    # Add any words with the highest score to potential winners list
     for word in words_scores:
         if words_scores[word] == score_counter:
             potential_winners.append(word)
 
+    # If there is only one word in potential winners list then its the best word!
     if len(potential_winners) == 1:
         winning_word = potential_winners[0]
-        winning_score = score_counter
+    
+    else:
+        # identify lowest word length in a for loop
+        for word in potential_winners:
+            if len(word) < word_length:
+                word_length = len(word)
 
-    # if len(potential_winners) > 1:
-    #     for i in range(len(potential_winners)+1):
-    #         if len(potential_winners[i]) == 
-    #         if len(potential_winners[i]) == 10:
+        # make a list of words with lowest length in a for loop
+        for word in potential_winners:
+            if len(word) == word_length:
+                shortest_words.append(word)
 
-    #
-
-            
-
-    return (winning_word, winning_score)
+        # winner is first in this list of lowest word length
+        winning_word = shortest_words[0]
+        
+    return (winning_word, score_counter)
