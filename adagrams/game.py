@@ -113,7 +113,6 @@ def get_highest_word_score(word_list):
     highest = ()
 
     for word, score in score_dict.items():
-        print(f"word: {word} | score: {score}")
         if score > highest_score:
             highest = (word, score)
             highest_score = score
