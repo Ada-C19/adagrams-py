@@ -114,6 +114,7 @@ def get_highest_word_score(word_list):
     winning_word = "blank"
     word_length = 11
     shortest_words = []
+    ten_letter_words = []
 
     # Calculate the scores of each word in the list, highest score becomes "score_counter"
     for word in word_list:
@@ -130,10 +131,14 @@ def get_highest_word_score(word_list):
     if len(potential_winners) == 1:
         winning_word = potential_winners[0]
     
+    # Tiebreaker! The winning word is the shortest, unless there is a 10 letter word.
     else:
+        # identify if any words are 10 in length
         # identify lowest word length in a for loop
         for word in potential_winners:
-            if len(word) < word_length:
+            if len(word) == 10:
+                ten_letter_words.append(word)
+            elif len(word) < word_length:
                 word_length = len(word)
 
         # make a list of words with lowest length in a for loop
@@ -141,7 +146,16 @@ def get_highest_word_score(word_list):
             if len(word) == word_length:
                 shortest_words.append(word)
 
-        # winner is first in this list of lowest word length
-        winning_word = shortest_words[0]
+        # Determine tiebreaker winner
+        
+        # If there are any 10 letter words that had the high score,
+        # the first in that list wins even if there are multiples
+        if len(ten_letter_words) > 0:
+            winning_word = ten_letter_words[0]
+        
+        # Otherwise, winner is first in this list of lowest word length, 
+        # even if there are multiple words in this list
+        else:
+            winning_word = shortest_words[0]
         
     return (winning_word, score_counter)
