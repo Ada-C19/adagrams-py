@@ -1,16 +1,4 @@
-# Now you need a function returns the score of a given word as defined by the Adagrams game.
-
-# Implement the function score_word in game.py. This method should have the following properties:
-
-# Has one parameter: word, which is a string of characters
-# Returns an integer representing the number of points
-# Each letter within word has a point value. The number of points of each letter is summed up to represent the total score of word
-# Each letter's point value is described in the table below
-# If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
-
 import random
-
-
 
 def draw_letters():
     LETTER_POOL = {
@@ -48,8 +36,8 @@ def draw_letters():
             full_letter_list.append(alpha)
     while len(hand) != 10:
         letter = random.choice(full_letter_list)
-        if hand.count(letter) < LETTER_POOL[letter]:
-            hand.append(letter)    
+        hand.append(letter)
+        full_letter_list.remove(letter)    
     return hand
 
 
@@ -88,9 +76,31 @@ def score_word(word):
 
     return points_total
 
-def get_highest_word_score(word_list):
-    pass
 
-# print statements
-# print(draw_letters())
-# print(random.choice(LETTER_POOL.keys()))
+def get_highest_word_score(word_list):
+    winning_word = None
+    top_score = 0
+    words_with_scores = []
+
+    for word in word_list:
+        score = score_word(word)
+        words_with_scores.append([word, score])
+
+    for i in range(len(words_with_scores)):
+        current_score = words_with_scores[i][1]
+        current_word = words_with_scores[i][0]
+
+        if current_score > top_score:
+            top_score = current_score
+            winning_word = current_word
+        elif current_score == top_score:
+            if len(winning_word) == 10:
+                continue
+            elif len(current_word) == 10:
+                top_score = current_score
+                winning_word = current_word
+            elif len(current_word) < len(winning_word):
+                top_score = current_score
+                winning_word = current_word
+
+    return winning_word, top_score
