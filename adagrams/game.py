@@ -32,7 +32,6 @@ def draw_letters():
     pool_list = []
     player_hand = []
 
-
     for letter, count in letter_pool_dict.items():
         pool_list += [letter] * count
 
@@ -41,24 +40,30 @@ def draw_letters():
         player_hand += letter
         pool_list.remove(letter)
     return player_hand    
+# i dont think my function is accounting for probability
+#refactor if time , research .choices
+                                                                            
+def uses_available_letters(word, letter_bank):
+    copy = letter_bank[:]
+    word = word.upper()
+    player_word = []
+    for letter in word:
+        if letter in copy:
+            copy.remove(letter)
+            player_word.append(letter)
+        else:
+            return False
+    return True
+                    
 
-
-
-
-def uses_available_letters(word, letter_bank):                                            
-    pass                                                                            
-#word uses letters available from draw TRUE / FALSE ( two tests)                    
-# make sure word does not reuse letter from string                                  
-# available letters must not alter the overall letter bank                          
-# account for both capital and lower case, either is fine                                                                            
-                                                                                          
 def score_word(word):                                                               
     pass                                                                            
 #score word                                                                         
 # caps or lower case is fine                                                                             
 # ignore 0                                                                                               
 # bonus points for words >= 7                                                                                  
-                                                                                                         
+
+
 def get_highest_word_score(word_list):                                              
     pass                                                                            
 #identify which word got the highest score and what the score was                                        
@@ -67,4 +72,5 @@ def get_highest_word_score(word_list):
 # EXCEPT if the word is ten letters long                                                                 
 # multi way ties pick shortest words    
 # 
-# for word in word list:                                                                 
+
+                                                           
