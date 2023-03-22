@@ -2,7 +2,6 @@ import pytest
 
 from adagrams.game import score_word, get_highest_word_score
 
-# @pytest.mark.skip(reason="no way of currently testing this")
 def test_get_highest_word_score_accurate():
     # Arrange
     words = ["X", "XX", "XXX", "XXXX"]
@@ -15,7 +14,6 @@ def test_get_highest_word_score_accurate():
     assert best_word[0] == "XXXX"
     assert best_word[1] == 32
 
-# @pytest.mark.skip(reason="no way of currently testing this")
 def test_get_highest_word_score_accurate_unsorted_list():
     # Arrange
     words = ["XXX", "XXXX", "XX", "X"]
@@ -27,7 +25,6 @@ def test_get_highest_word_score_accurate_unsorted_list():
     assert best_word[0] == "XXXX"
     assert best_word[1] == 32
 
-# @pytest.mark.skip(reason="no way of currently testing this")
 def test_get_highest_word_tie_prefers_shorter_word():
     # Arrange
     words = ["MMMM", "WWW"]
@@ -41,7 +38,6 @@ def test_get_highest_word_tie_prefers_shorter_word():
     assert best_word[0] == "WWW"
     assert best_word[1] == 12
 
-# @pytest.mark.skip(reason="no way of currently testing this")
 def test_get_highest_word_tie_prefers_shorter_word_unsorted_list():
     # Arrange
     words = ["WWW", "MMMM"]
@@ -55,7 +51,6 @@ def test_get_highest_word_tie_prefers_shorter_word_unsorted_list():
     assert best_word[0] == "WWW"
     assert best_word[1] == 12
 
-# @pytest.mark.skip(reason="no way of currently testing this")
 def test_get_highest_word_tie_prefers_ten_letters():
     # Arrange
     words = ["AAAAAAAAAA", "BBBBBB"]
@@ -67,7 +62,6 @@ def test_get_highest_word_tie_prefers_ten_letters():
     assert best_word[0] == "AAAAAAAAAA"
     assert best_word[1] == 18
 
-# @pytest.mark.skip(reason="no way of currently testing this")
 def test_get_highest_word_tie_prefers_ten_letters_unsorted_list():
     # Arrange
     words = ["BBBBBB", "AAAAAAAAAA"]
@@ -79,7 +73,6 @@ def test_get_highest_word_tie_prefers_ten_letters_unsorted_list():
     assert best_word[0] == "AAAAAAAAAA"
     assert best_word[1] == 18
 
-# @pytest.mark.skip(reason="no way of currently testing this")
 def test_get_highest_word_tie_same_length_prefers_first():
     # Arrange
     words = ["AAAAAAAAAA", "EEEEEEEEEE"]
@@ -93,7 +86,6 @@ def test_get_highest_word_tie_same_length_prefers_first():
     assert best_word[0] == words[0]
     assert best_word[1] == 18
 
-# @pytest.mark.skip(reason="no way of currently testing this")
 def test_get_highest_word_many_ties_pick_first_ten_letters():
     # Arrange
     words = ["JQ", "FHQ", "AAAAAAAAAA", "BBBBBB", "TTTTTTTTTT"]
@@ -105,7 +97,6 @@ def test_get_highest_word_many_ties_pick_first_ten_letters():
     assert best_word[0] == "AAAAAAAAAA"
     assert best_word[1] == 18
 
-# @pytest.mark.skip(reason="no way of currently testing this")
 def test_get_highest_word_many_ties_pick_shortest():
     # Arrange
     words = ["BBBBBB", "AAAAAAAAD", "JQ", "KFHK"]
@@ -117,7 +108,6 @@ def test_get_highest_word_many_ties_pick_shortest():
     assert best_word[0] == "JQ"
     assert best_word[1] == 18
 
-# @pytest.mark.skip(reason="no way of currently testing this")
 def test_get_highest_word_does_not_return_early_after_first_tiebreaker():
     # Arrange
     words = ["WWW", "MMMM", "BBBBBB", "AAAAAAAAD", "JQ", "KFHK"]
