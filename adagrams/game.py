@@ -1,20 +1,7 @@
 import random
-    #Your first task is to build a hand of 10 letters for the user. To do so, implement the function draw_letters in game.py. This method should have the following properties:
-"""
-No parameters
-Returns an array of ten strings
-Each string should contain exactly one letter
-These represent the hand of letters that the player has drawn
-The letters should be randomly drawn from a pool of letters
-This letter pool should reflect the distribution of letters as described in the table below
-There are only 2 available C letters, so draw_letters cannot ever return more than 2 Cs -- no sets then, look for case sensativity
-Since there are 12 Es but only 1 Z, it should be 12 times as likely for the user to draw an E as a Z
-Invoking this function should not change the pool of letters
-Imagine that the user returns their hand to the pool before drawing new letters
 
-"""
 #in letter out qty
-letter_dict = {
+letter_bank = {
 "A" : 9,	
 "B" : 2,
 "C" : 2,	
@@ -47,38 +34,42 @@ def draw_letters():
     letters = []
     #count/value - how many the letter should appear
     #letter/key
-    for letter, count in letter_dict.items():
+    for letter, count in letter_bank.items():
         #adds to end by amount of value
         letters.extend([letter] * count)
     random.shuffle(letters)
     hand = letters[:10]
     return hand
 
-    #return letters
-#prints as many letters as its value, to test  
-#letter_list = draw_letters()
-#print(letter_list)
 print(draw_letters())
+
 """
-original attempt without random import being used
-    hand = []
-    #draw hand of 10
-    
-    for i in range(10):
-        #choose 'random' index from letters list
-        index = (i*11) % len(letters)
-        #add letter at chosen index to hand
-        hand.append(letters[index])
-        print(hand)
+check in any input word (word player sumbits) only uses characters
+that are in the hand.
+check to see if the word is an anagram
+word - describes some input word, is a string
+letter_bank array of drawn letters in hand. an array of 1- strings, ea string is a letter
+returns as boleon, true or false
+true if every letter in the input word is available (in right qty)
+in letter bank
+false if there is a letter not in input. not in letterbank or
+too much compared to letterbank
 
-        letters.pop(index)
-    return hand #scope outside of loop pls
-
-print(draw_letters())    
 """
-
 def uses_available_letters(word, letter_bank):
-    pass
+   
+    word = word.upper()
+    #create a copy of the letter bank so that we can modify it
+    letter_bank_copy = list(letter_bank)
+    #loop over each letter in the word
+    for letter in word:
+        #if the letter is not in letter bank, return False
+        if letter not in letter_bank_copy:
+            return False
+        #if the letter is in letter bank, remove it from copy
+        letter_bank_copy.remove(letter)
+    # if we got here, then every letter in the word is available in the letter bank
+    return True
 
 def score_word(word):
     pass
