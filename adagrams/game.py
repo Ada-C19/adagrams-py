@@ -47,28 +47,24 @@ def draw_letters():
     # i need to assure its less than letter pool frequency
     #********
     for letter in letters_list:
-            if letter in letter_freq:
-                letter_freq[letter] += 1
-            else:
-                letter_freq[letter] = 1
-    print(letter_freq)
-            
-    #             if letter_freq[letter] >= LETTER_POOL[letter]:
-    #                 letter_freq[letter] -= 1
-    #             else:
-    #                 letter_freq[letter] = 1
-    #*********
+        if letter in letter_freq:
+            letter_freq[letter] += 1
+            # if letter_freq[letter] >= LETTER_POOL[letter]:
+            #         letter_freq[letter] -= 1
+        else:
+            letter_freq[letter] = 1    
 
-# this function below is not making much sense to me. from my understaning...
-# if the letter frequency goes above the letter pool value than it stays at max
-# else the letter continues to be the letter
-
+    for i in letter_freq:
+        if letter_freq[i] > LETTER_POOL[letter]:
+            letter_freq[i] -= 1
         
 
-    # print(f' this is letter frew{letter_freq}')
-    # print(f' this is letter pool {LETTER_POOL}')
+    print(letter_freq)  
+    print("**********")
+    print(LETTER_POOL)
+    #*********
 
-    # return letter_freq
+    return letters_list
     
         
         
