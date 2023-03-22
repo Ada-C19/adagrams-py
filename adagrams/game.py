@@ -1,7 +1,6 @@
 import random 
 import copy
 def draw_letters():
-    
     LETTER_POOL = {
         'A': 9, 
         'B': 2, 
@@ -41,41 +40,18 @@ def draw_letters():
     return hand[:10]
 
 def uses_available_letters(word, letter_bank):
-    check_letters = {}
-    word1 = word.upper()
-    # check if letter is in letter bank
-    # for letter in letter_bank:
-    #     # if letter hasnt been added to dict yet then add and intialize to 1
-    #     if letter not in check_letters:
-    #         check_letters[letter] = 1
-    #     else:
-    #         # if letter in bank already then add by 1
-    #         check_letters[letter] +=1 
-
-    # # check if an input from user found in hand
-    # for char in word1:
-    # # # return false if letter not in letter or letter bank used
-    #     if char not in letter_bank or check_letters[char] == 0:
-    #         return False
-    #     else:
-    #         # subtract 1 for the letter used 
-    #         check_letters[char] -= 1
-    # return True
-    # return true if every letter in input in letter bank AND not used more than given
-    # compare letter count in word vs letter count in letter bank
-    letter_bank1 = copy.deepcopy(letter_bank)
-    for char in word1:
-        if char not in letter_bank1:
+    letter_bank_copy = copy.deepcopy(letter_bank)
+    for char in word.upper():
+        if char not in letter_bank_copy:
             return False
-        elif char in letter_bank1:
-            letter_bank1.remove(char)
+        elif char in letter_bank_copy:
+            letter_bank_copy.remove(char)
     return True 
 
 def score_word(word):
     # passes in a string
     # returns an int representing total score
     # if len of word 7-10 than +8 points
-
     letter_value = {
     ('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'): 1,
     ('D', 'G'): 2,
@@ -97,7 +73,6 @@ def score_word(word):
         score.append(8)
             
     return sum(score)
-
 
 def get_highest_word_score(word_list):
 # return a tuple with("word", int(score))
