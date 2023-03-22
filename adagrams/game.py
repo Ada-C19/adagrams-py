@@ -40,4 +40,40 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    max_score = 0
+    matching_scores = []
+    word_dict = {}
+    
+    for word in word_list:
+        score = score_word(word) 
+        word_dict[word] = score
+    
+    for word in word_dict:
+        if word_dict[word] > max_score:
+            max_score = word_dict[word]
+            winning_word = word
+            
+    matching_scores.append(winning_word)
+
+    # Look for other keys with the same score as max score 
+    # Append them to the matching_scores list
+    for word_key in word_dict:
+        if word_key != winning_word and word_dict[word_key] == max_score:
+            matching_scores.append(word_key)
+
+    for word in matching_scores:
+        if len(word) == 10:
+            winning_word = word
+            break 
+        else:   
+            i = 0 
+            while i + 1 < len(matching_scores): 
+                if len(matching_scores[i]) <= len(matching_scores[i + 1]):
+                    winning_word = matching_scores[i]
+                else:
+                    winning_word = matching_scores[i + 1]
+                i += 1
+
+    return (winning_word, max_score)
+
+
