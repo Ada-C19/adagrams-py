@@ -49,23 +49,42 @@ def draw_letters():
   return random.sample(LETTER_POOL_LIST, hand_quantity)
   #print(random.sample(LETTER_POOL_LIST, hand_quantity))
 
-def uses_available_letters(word, letter_bank):
-  word_verification = []
-  for letter in word:
-    if letter in letter_bank:
-      #print("True")
-      word_verification.append("True")
-    else:
-      #print("False")
-      word_verification.append("False")
-    #print(word_verification)
+def uses_available_letters(word, letter_bank):       
+    word_verification = []
+    hand_letter_count = {}
+    word_letter_count = {}
+    count = 0
+
+    for letter in letter_bank:
+        if letter not in hand_letter_count:
+            count = 1
+            hand_letter_count[letter] = count
+            #print(hand_letter_count)
+        else: 
+            count += 1
+            hand_letter_count[letter] = count
+            #print(hand_letter_count)
     
-  if "False" in word_verification:
-    return False
-  else:
-    return True
-       
-       
+    for letter in word:
+        letter_quantity = word.count(letter)
+        word_letter_count[letter] = letter_quantity
+        #print(word_letter_count)
+
+        if letter in letter_bank and word_letter_count[letter] <= hand_letter_count[letter]:
+
+            word_verification.append("True")
+            #print(word_verification)
+        else:
+            word_verification.append("False")
+            #print(word_verification)
+    
+    if "False" in word_verification:
+        return False
+        #print("False")
+    else:
+        return True
+        #print("True")
+    
 
 def score_word(word):
     pass
