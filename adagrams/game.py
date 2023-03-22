@@ -1,13 +1,6 @@
 import random
 
 def draw_letters():
-    # LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-    # "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    # letter_bank = random.choices(LETTERS, weights=(9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1), k=10)
-
-    # print(letter_bank)
-    # return letter_bank
-
     LETTER_POOL = {
         'A': 9, 
         'B': 2, 
@@ -55,16 +48,51 @@ def uses_available_letters(word, letter_bank):
     letter_bank_copy = letter_bank.copy()
     for letter in word.upper():
         if letter in letter_bank_copy:
-            # do A
             letter_bank_copy.remove(letter)
         else:
-            # do B
             return False
-    # if we got here, for went thru entire word
+        
     return True
 
 def score_word(word):
-    pass
+    LETTER_POINT_VALUE = {
+    'A': 1, 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
+}
+    score = 0
+    for letter in word.upper():
+        point_value = LETTER_POINT_VALUE[letter]
+        score += point_value
+    if len(word) >= 7:
+        score += 8
+    
+    return score
+    
 
 def get_highest_word_score(word_list):
-    pass
+    # for word in word list
+    
