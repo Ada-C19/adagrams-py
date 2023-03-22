@@ -63,11 +63,24 @@ def draw_letters():
                 hand.append(letter)
         else:
             hand.append(letter)
-    # print(hand)
+    print(hand)
     return hand                  
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word = word.upper()
+
+    is_word_valid = True
+    for letter in word:
+        if letter not in letter_bank:
+            is_word_valid = False
+        else:
+            v = letter_bank.count(letter)
+            v2 = word.count(letter)
+            if v2 > v:
+                is_word_valid = False
+    print(is_word_valid)
+    return is_word_valid
+
 
 def score_word(word):
     pass
