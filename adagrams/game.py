@@ -6,12 +6,13 @@ letter_pool_frequency = {
     "N": 6, "O": 8, "P": 2, "Q": 1, "R": 6, "S": 4, "T": 6, "U": 4, "V": 2, "W": 2, "X": 1, "Y": 2, "Z": 1, 
 }
 
+# print (letter_pool_frequency["A"]) --> 9
+
 letter_pool_score = {
     "A": 1,"B": 3,"C": 3,"D": 2,"E": 1,"F": 4,"G": 2,"H": 4,"I": 1,"J": 8,"K": 5,"L": 1,"M": 3,
     "N": 1,"O": 1,"P": 3,"Q": 1,"R": 1,"S": 1,"T": 1,"U": 1,"V": 4,"W": 4,"X": 8,"Y": 4,"Z": 1,
 }
 
-# print (letter_pool_frequency["A"]) --> 9
 # print (letter_pool_score["A"]) --> 1
 
 
@@ -35,13 +36,11 @@ draw_letters()
 #####END OF WAVE 1 FUNCTION#####
 
 
-
 #####WAVE_2_FUNCTION#####
 def uses_available_letters(word, letter_bank):
     letters_copy = letter_bank[:]
     word = word.upper()
     for letter in word:
-        print (letter)
         if letter not in letters_copy:
             return False
         else: 
@@ -53,8 +52,19 @@ def uses_available_letters(word, letter_bank):
 
 #####WAVE_3_FUNCTION#####
 def score_word(word):
-    pass
+    letter_scores = []
+    word = word.upper()
+    for letter in word:
+        letter_score = (letter_pool_score[letter])
+        letter_scores.append(letter_score)
+    if (len(word)) >= 7:
+        letter_scores.append(8)
+    return sum(letter_scores)
 #####END_OF_WAVE_3_FUNCTION#####
 
+
+
+#####WAVE_4_FUNCTION#####
 def get_highest_word_score(word_list):
     pass
+#####END_OF_WAVE_4_FUNCTION#####
