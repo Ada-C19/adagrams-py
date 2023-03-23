@@ -1,13 +1,17 @@
 # import everything (alphabet_list) from alphabet_letters file
 from adagrams.alphabet_letters import *
+import random
 
-# wave 1
 def draw_letters():
+    """
+    input: None
+    output: list of 10 randomly generated letters from generate_alphabet_letters()
+    """
+
+    grab_10_elements = 10
     alphabet_list = generate_alphabet_letters() 
-    hand_of_10_letters = []
 
-    # while hand_of_10_letters < 10:
-
+    return random.choices(alphabet_list, k = grab_10_elements)
 
 def uses_available_letters(word, letter_bank):
     pass
