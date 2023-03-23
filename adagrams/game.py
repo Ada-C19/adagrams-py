@@ -2,6 +2,9 @@ from random import choice
 
 
 def draw_letters():
+
+    MAX_LETTERS_IN_HAND = 10
+
     LETTER_POOL = {
         'A': 9,
         'B': 2,
@@ -30,12 +33,18 @@ def draw_letters():
         'Y': 2,
         'Z': 1
     }
+    
+    letter_pool_list = []
 
-    # Creating the player's "hand" and putting it into a letters list
+    # Creating a letter pool list to emulate a pile of letters to choose from:
+    for letter in LETTER_POOL:
+         temp = [letter] * LETTER_POOL[letter]
+         letter_pool_list.extend(temp)
+
     letters = []
-    while len(letters) < 10:
-        # choose a random letter from a list of LETTER_POOL keys
-        rand_letter = choice(list(LETTER_POOL.keys()))
+    while len(letters) < MAX_LETTERS_IN_HAND:
+        # choose a random letter from a list of LETTER_POOL keys using random.choice
+        rand_letter = choice(letter_pool_list)
         if letters.count(rand_letter) >= LETTER_POOL[rand_letter]:
             continue
         else:
