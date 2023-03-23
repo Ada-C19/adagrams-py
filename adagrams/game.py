@@ -95,4 +95,35 @@ def score_word(word):
     
 
 def get_highest_word_score(word_list):
-    pass
+    high_score = 0
+    best_word = None
+    scored_word_dict = {}
+    
+    for word in word_list:
+        score = score_word(word)
+        scored_word_dict[word] = score 
+        if len(word) == 10:
+            best_word = (word, score)
+            return best_word
+        
+        if score > high_score:
+            high_score = score 
+            if len(word) == 10:
+                best_word = (word, high_score)
+                return best_word
+            else:
+                best_word = (word, high_score)
+                
+            
+        elif score == high_score:
+            if len(word) == 10:
+                best_word = (word, high_score)
+            elif len(word) < len(best_word[0]):
+                best_word = (word, high_score)
+            elif len(word) == len(best_word[0]):
+                best_word = (word, high_score)
+            
+    
+    
+    return best_word       
+        
