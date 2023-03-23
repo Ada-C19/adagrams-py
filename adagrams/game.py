@@ -1,6 +1,7 @@
 import random 
 import string
 
+
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -35,8 +36,9 @@ def draw_letters():
     letter_freq = {}
 
     # this while loop adds ten random letters to a list
-
-    while len(letters_list) < 10:
+    ten_times = 10
+    for i in range(0,10):
+        # while len(letters_list) < 10:
         randomLetter = random.choice(string.ascii_uppercase)
         letters_list += randomLetter
     
@@ -82,7 +84,14 @@ def draw_letters():
 # Imagine that the user returns their hand to the pool before drawing new letters
 
 def uses_available_letters(word, letter_bank):
-    
+
+    for i in range(len(word)):
+        print(i)
+        if word[] in letter_bank:
+        #     return True
+        # else:
+        #     True
+
 
 def score_word(word):
     pass
