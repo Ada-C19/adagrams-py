@@ -11,7 +11,7 @@ def draw_letters():
     grab_10_elements = 10
     alphabet_list = generate_alphabet_letters() 
 
-    return random.choices(alphabet_list, k = grab_10_elements)
+    return random.sample(alphabet_list, grab_10_elements)
 
 def uses_available_letters(word, letter_bank):
     """
