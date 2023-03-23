@@ -74,14 +74,14 @@ def score_word(word):
 }
     total_score = 0
     for letter in word.upper():
-        #add some kind of +8 for letters
-        #if word > len(7) or == len(10):
-           # +8
+      
         for key in score_dict:
             if letter in key:
                 total_score += score_dict[key]
-
                 break
+    if 7 <= len(word) <= 10:
+        total_score += 8
+
     return total_score
 
 
