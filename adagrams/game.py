@@ -51,12 +51,13 @@ def draw_letters():
     
 
 def uses_available_letters(word, hand):
+    word = word.upper()
+    for letter in word:
+        if letter not in hand or word.count(letter) > hand.count(letter):
+            return False
+        else:
+            return True
     
-    for letter in word.upper():
-      if letter in hand:
-          return True
-      else:
-          return False
 
 def score_word(word):
 
@@ -91,7 +92,7 @@ def score_word(word):
 }
     for letter in word.upper():
       score += points_value[letter]
-      if word == "":
+      if len(word) == 0:
         score = 0
     if len(word) in bonus_point_list:
         score = score + 8
@@ -99,4 +100,18 @@ def score_word(word):
     
 
 def get_highest_word_score(word_list):
-    pass
+    
+    word_value_dictionary = {}
+    score_list = []
+    for word in word_list:
+        score = score_word(word)
+        # points_list.append(score)
+        word_value_dictionary[word] = score
+    
+    highest_score = max(word_value_dictionary.values())
+    for k,v in word_value_dictionary.items():
+        if v == highest_score:
+            score_list.append(k)
+            score_list.append(highest_score)
+    return tuple(score_list) 
+
