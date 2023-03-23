@@ -1,5 +1,6 @@
 import random
 
+
 def draw_letters():                                                                       
     letter_pool_dict = {
         'A': 9, 
@@ -31,7 +32,7 @@ def draw_letters():
 }
     pool_list = []
     player_hand = []
-
+#this is where my code accounts for probability, right? (line 36,37)
     for letter, count in letter_pool_dict.items():
         pool_list += [letter] * count
 
@@ -40,9 +41,8 @@ def draw_letters():
         player_hand += letter
         pool_list.remove(letter)
     return player_hand    
-# i dont think my function is accounting for probability
-#refactor if time , research .choices
-                                                                            
+
+
 def uses_available_letters(word, letter_bank):
     copy = letter_bank[:]
     word = word.upper()
@@ -56,21 +56,58 @@ def uses_available_letters(word, letter_bank):
     return True
                     
 
-def score_word(word):                                                               
-    pass                                                                            
-#score word                                                                         
-# caps or lower case is fine                                                                             
-# ignore 0                                                                                               
-# bonus points for words >= 7                                                                                  
+def score_word(word):
+    letter_values = {
+    'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1, 'N': 1, 'R': 1, 'S': 1, 'T': 1,
+    'D': 2, 'G': 2,
+    'B': 3, 'C': 3, 'M': 3, 'P': 3,
+    'F': 4, 'H': 4, 'V': 4, 'W': 4, 'Y': 4,
+    'K': 5,
+    'J': 8, 'X': 8,
+    'Q': 10, 'Z': 10
+}   
+    
+    word = word.upper()
+    score = 0
+    for letter in word:
+        points = letter_values[letter]
+        score += points
+
+    if len(word) >= 7:
+        score += 8
+    return score
+# look at this crazy dictionary i tried to make with lists of strings to numbered keys!                                                          
+#  int_letters = {
+#     1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+#     2: ['D', 'G'],
+#     3: ['B', 'C', 'M', 'P'],
+#     4: ['F', 'H', 'V', 'W', 'Y'],
+#     5: ['K'],
+#     8: ['J', 'X'],
+#     10: ['Q', 'Z']
+# }    
 
 
-def get_highest_word_score(word_list):                                              
-    pass                                                                            
-#identify which word got the highest score and what the score was                                        
+def get_highest_word_score(word_list):  
+    winning_word = None
+    winning_score = 0
+    score_list = [] 
+    final_word_list = []
+    for word in word_list:
+        scores = score_word(word)
+        score_list.append(scores) 
+        final_word_list.append(word)
+
+
+    # for i in score_list:    
+    winning_score = max(score_list)
+        # final_word_list[i] = max(score_list[i]) 
+        # winning_word = final_word_list[i]
+
+    
+    return (winning_word, winning_score)
+                                        
 # still get highest score even if the list is unsorted ( so not by index?)                               
 # if two words have the same score, game prioritizes shorter word                                        
 # EXCEPT if the word is ten letters long                                                                 
 # multi way ties pick shortest words    
-# 
-
-                                                           
