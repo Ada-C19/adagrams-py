@@ -25,3 +25,6 @@ def draw_letters():
     # Return the hand
     return hand
 
+
+
+
