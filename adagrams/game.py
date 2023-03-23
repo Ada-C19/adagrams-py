@@ -82,28 +82,18 @@ def score_word(word):
         "J": 8, "X": 8,
         "Q": 10, "Z": 10}
 
-    list_of_letters = []
-    score = []
-    # for letter in word:
-    #     if letter in score_chart.keys():
-    #         list_of_scores.append(letter)
-
-    for letter in word:
-        list_of_letters.append(letter)
-    print(list_of_letters)
-
-    if (set(list_of_letters) - score_chart.keys()):
-        print("these letters are in score")
-
-
-    # for key, value in score_chart.items():
-    #     if list_of_scores == key:
-    #         print(value)
-    #         score += value
-    # print(value)
-    # print(list_of_scores)
-
     
+    score = []
+
+
+    for letter in word.upper():
+        if letter in score_chart.keys():
+                score.append(score_chart[letter])
+    # print(score)
+    
+    final_score = sum(score)
+    
+    return final_score
     # print(list_of_scores)
     final_score = 0
     
