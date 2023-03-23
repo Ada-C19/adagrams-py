@@ -49,10 +49,7 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     test_word = []
     word_dict = {}
-
-    for letter in word:
-        big_word = word.upper()
-        word = big_word
+    word = word.upper()
 
     for letter in word:
         if letter in word_dict:
@@ -129,12 +126,13 @@ def get_highest_word_score(word_list):
     word_dict = {}
     winners_list = []
     len_list = []
+
     for word in word_list:
         score = score_word(word)
         word_dict[word] = score
 
     max_value = max(word_dict.values())
-
+    
     for key in word_dict:
         if word_dict[key] == max_value:
             test_tuple = (key, max_value)
@@ -152,7 +150,8 @@ def get_highest_word_score(word_list):
         for winner in winners_list:
             if len(winner[0]) >= 10:
                 return winner 
-            else: 
+            else:
                 continue
-        if len(winner[0]) == min_tie:
+        for winner in winners_list:
+            if len(winner[0]) == min_tie:
                 return winner
