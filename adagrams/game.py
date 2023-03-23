@@ -86,7 +86,7 @@ def score_word(word):
     'Q': 10, 
     'R': 1, 
     'S': 1, 
-    'T': 6, 
+    'T': 1, 
     'U': 1, 
     'V': 4, 
     'W': 4, 
@@ -108,4 +108,26 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+
+    winner = []
+    highest_score = 0
+    highest_scored_word = ""
+
+    for word in word_list:
+        score = score_word(word)
+        if score > highest_score:
+            highest_score = score
+            highest_scored_word = word
+        if score == highest_score:
+            if len(word) == len(highest_scored_word):
+                highest_scored_word =  highest_scored_word
+            elif len(word) < len(highest_scored_word) and len(highest_scored_word) != 10:
+                highest_scored_word = word
+            elif len(word) == 10 :
+                highest_scored_word = word
+            elif len(highest_scored_word) == 10: 
+                highest_scored_word = highest_scored_word
+    winner.insert(0, highest_scored_word)
+    winner.insert(1, highest_score)
+    the_winner = tuple(winner)
+    return the_winner
