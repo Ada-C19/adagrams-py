@@ -51,12 +51,13 @@ def draw_letters():
     
 
 def uses_available_letters(word, hand):
-    word = word.upper()
+    word = word.upper()   
     for letter in word:
-        if letter not in hand or word.count(letter) > hand.count(letter):
-            return False
-        else:
-            return True
+      if letter in hand and word.count(letter) < hand.count(letter):
+        continue
+      elif letter not in hand or word.count(letter) > hand.count(letter):
+        return False
+    return True
     
 
 def score_word(word):
