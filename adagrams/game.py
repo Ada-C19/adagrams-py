@@ -61,7 +61,7 @@ def uses_available_letters(word, letter_bank):
 
     # letters_in_list_flag == True
 
-    for letter in word:
+    for letter in word.upper():
         if letter in list_copy:
             list_copy.remove(letter)
         else:
@@ -70,11 +70,6 @@ def uses_available_letters(word, letter_bank):
     return True
 
 
-
-
-
-    # 
-    pass
 
 def score_word(word):
     pass
