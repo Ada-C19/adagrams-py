@@ -84,15 +84,18 @@ def score_word(word):
 
     
     score = []
+    uppercase_word = word.upper()
 
-
-    for letter in word.upper():
+    for letter in uppercase_word:
         if letter in score_chart.keys():
                 score.append(score_chart[letter])
-    # print(score)
+    
     
     final_score = sum(score)
     
+    if len(uppercase_word) >= 7:
+        final_score += 8
+
     return final_score
     # print(list_of_scores)
     final_score = 0
