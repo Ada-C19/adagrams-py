@@ -72,9 +72,10 @@ def uses_available_letters(word, letter_bank):
     bool: True or False
     """
 
+
     letter_bank_copy = letter_bank[:]
-    for letter in word:
-        if letter.upper() not in letter_bank_copy:
+    for letter in word.strip():
+        if letter.upper() not in letter_bank_copy or not letter.isalpha():
             return False
         else:
             letter_bank_copy.remove(letter.upper())
@@ -118,7 +119,7 @@ def get_highest_word_score(word_list):
     highest_word, highest_score = "", 0
 
     for word in word_list:
-        score = score_word(word)
+        score = score_word(word.strip())
         if score > highest_score:
             highest_word, highest_score = word, score
         elif score == highest_score:
