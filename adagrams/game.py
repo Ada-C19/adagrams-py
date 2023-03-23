@@ -32,15 +32,14 @@ def draw_letters():
     'Z': 1
 }
     # create a list that will eventually be filled with 10 different letters
+    LENGTH_OF_HAND = 10
     hand = []
-    length_of_hand = 10
     
-
     # based on the desired length of the hand (in this case, 10), 
     # the loop will simulate a player 'picking' 10 random letters 
     # for their hand
     
-    while len(hand) < length_of_hand: 
+    while len(hand) < LENGTH_OF_HAND: 
         # random letter generator (upper case)
         random_letter = chr(random.randint(ord('A'), ord('Z')))
 
@@ -57,20 +56,13 @@ def uses_available_letters(word, letter_bank):
     # check each character in the word string is in the letter_bank array
     # (in the right quantities) i.e. if the user's guess contains 3 Y's and
     # the hand only has 1, then it will return false
-    # we cannot use a set because it only store unique elements! 
+    # we cannot use a set for duplicating the letter_bank variable
+    # because it only store unique elements! 
     # will not be helpful with duplicates
 
-    word_list = []
     word_is_in_letter_bank = True
     string_letter_bank = ""
 
-    # place each character from word in a list
-    # all upper case to do accurate comparisons
-    for character in word: 
-        word_list.append(character.upper())
-    
-    # make a string from the letter bank to compare
-    # each letter in the word 
     for letter in letter_bank: 
         string_letter_bank += letter
     
@@ -79,7 +71,8 @@ def uses_available_letters(word, letter_bank):
     if len(word) > len(letter_bank): 
         return False
 
-    for character in word_list: 
+    for character in word:
+        character = str.upper(character)
         if character in string_letter_bank: 
             string_letter_bank = string_letter_bank.replace(character, '')
         else: 
@@ -89,59 +82,73 @@ def uses_available_letters(word, letter_bank):
     return word_is_in_letter_bank 
 
 def score_word(word):
-    # data structure for the score chart
-    SCORE_CHART = {
-    1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'], 
-    2: ['D', 'G'], 
-    3: ['B', 'C', 'M', 'P'], 
-    4: ['F', 'H', 'V', 'W', 'Y'], 
-    5: ['K'], 
-    8: ['J', 'X'],  
-    10: ['Q', 'Z']
-
+    # make a dictionary to create a key value pair between the letter 
+    # and its' point value
+    LETTER_SCORE = {
+    'A': 1, 
+    'B': 3,
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
 }
-    # make the word upper case for case insenstive comparison
-    # a score variable to keep track of the points
-    word_case = str.upper(word)
-    score = 0
 
-    # iterate through the word and check to see if it is within the score
-    # chart dictionary
-    for char in word_case:
-        for key, letters in SCORE_CHART.items():  
-            if char in letters: 
-                score += key
+    score = 0 
 
+    # iterate through the word and use the character as 
+    # a key to grab the
+    # value that it's associated to in the dictionary
+    for letter in word: 
+        letter = str.upper(letter)
+        score += LETTER_SCORE[letter]
+    
     # add additional points to the score based on length of the word
-    if len(word_case) >= 7 and len(word_case) <= 10: 
+    if len(word) >= 7 and len(word) <= 10: 
         score += 8
 
     return score
 
+
 def get_highest_word_score(word_list):
     # input: list of strings
     # output: tuple (str, int)
-
+    MAX_LENGTH = 10 
     highest_score = 0
     winner = ""
 
     # go through the the word list and caculate the highest score
-    # for each word (ignoring case), keep track of the highest scoring word
-
+    # for each word, keep track of the highest scoring word
     for word in word_list: 
         score = score_word(word)
         if score > highest_score: 
             highest_score = score
             winner = word
         
+        # tie breaker logic
         elif score == highest_score:
-            if len(word) == 10 and len(winner) != 10: 
+            if len(word) == MAX_LENGTH and len(winner) != MAX_LENGTH: 
                 winner = word
-            elif len(word) < len(winner) and len(winner) < 10:
+            elif len(word) < len(winner) and len(winner) < MAX_LENGTH:
                 winner = word
-            else:
-                continue
-        
-    
 
     return winner, highest_score
