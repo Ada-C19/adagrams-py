@@ -103,7 +103,7 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
 
-    # start at 0 and empty list bc everything will be more than nothing
+    # start at 0 and empty list because everything will be more than nothing
     winning_score = 0
     winning_word = ""
 
@@ -111,9 +111,9 @@ def get_highest_word_score(word_list):
     # call score from previous function
     # check if every word's score is greater than current winning score
     # if no, loop again; if yes, that becomes the new winning score/word
-    # if tie, check the length of the words; scores are tied, don't check again
-    # tie if previous word len not 10 and current word is shorter
-    # tie if previous word shorter than 10 and current is 10   
+    # if tie, check the length of the words; scores are tied, DON'T check again
+    # tie if previous word len not 10 AND current word is shorter
+    # tie if previous word shorter than 10 AND current is 10   
     for word in word_list:
         score = score_word(word)
         if score > winning_score:
