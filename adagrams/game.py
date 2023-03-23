@@ -32,11 +32,13 @@ LETTER_POOL = {
 def draw_letters():  
     full_hand = []
     my_hand = []
-    main_pool = LETTER_POOL
-    for letter in main_pool:
-        while full_hand.count(letter) < main_pool[letter]:
+    #applying a copy of LETTER_POOL to full_hand to avoid 
+    #modifying original
+    for letter in LETTER_POOL:
+        while full_hand.count(letter) < LETTER_POOL[letter]:
             full_hand.append(letter)
 
+    #take random letter from full_hand then remove once taken
     while len(my_hand) < 10:
         random_choice = random.choice(full_hand)
         my_hand.append(random_choice)
@@ -51,28 +53,31 @@ def uses_available_letters(word, letter_bank):
     word_dict = {}
     word = word.upper()
 
+    #storing the letter and amount from word into word_dict
     for letter in word:
         if letter in word_dict:
             word_dict[letter] += 1
         else:
             word_dict[letter] = 1
             
-
+    #letters in letter_bank that match letters in word
+    #append to test_word
     for char in letter_bank:
         if char in word:
             test_word.append(char)
     
+    #convert test_word into a string (final_word)
     final_word = ''.join(test_word)
 
+    #check that letters don't repeat in list
     if letter in final_word and word_dict[letter] == 1:
             return True
         
     return False
 
 def score_word(word):
-    #make a score chart via dictionary that holds the point values of the letters
-    #make a statement that if the word's length is > 7 it get 8+ points
-    #for each letter in the word, take the value and add it to the score_board
+    #create a constant, a variable to keep track of points, another for bonus points
+    #assign word to always capitalize itself
     LETTER_SCORE = {
     'A': 1, 
     'B': 3, 
@@ -104,6 +109,9 @@ def score_word(word):
     score_board = 0
     bonus = 8 
     word = word.upper()
+
+    #check each letter's score and add it into score board
+    #if word has more than 7 letters, provide bonus points
     for letter in word:
         if letter in LETTER_SCORE:
             score_board += LETTER_SCORE[letter]
