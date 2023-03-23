@@ -38,10 +38,10 @@ def draw_letters():
     game_letters = re_ordered_list[:10]
     return game_letters
 
-# ----------------------------------------------------------------------------
 
 
 def uses_available_letters(word, letters):
+
     matches = []
     word = word.upper()
     for letter in word:
@@ -56,7 +56,7 @@ def uses_available_letters(word, letters):
     else:
         return False
 
-# ---------------------------------------------------------------
+
 
 points_dict = {
     'A': 1, 
@@ -97,5 +97,29 @@ def score_word(word):
 
     return score
 
-# def get_highest_word_score(word_list):
-    # pass
+
+def get_highest_word_score(words):
+
+    best_word = []
+    word_scores = []
+    high_value_words = []  
+
+    for word in words:
+        word_scores.append(score_word(word))
+        max_score = max(word_scores)
+    for i in range(len(word_scores)):
+        if word_scores[i] == max_score:
+            high_value_words.append(words[i])
+            high_value_words.sort(key = len, reverse = True)
+    for word in high_value_words:
+        shortest_word = high_value_words[-1]
+        if len(word) == 10:
+            best_word.append(word)
+            break
+        else:
+            best_word.append(shortest_word)
+            break
+
+    best_word.append(max_score)
+
+    return best_word
