@@ -32,7 +32,7 @@ def draw_letters():
 }
     pool_list = []
     player_hand = []
-#this is where my code accounts for probability, right? (line 36,37)
+
     for letter, count in letter_pool_dict.items():
         pool_list += [letter] * count
 
@@ -76,38 +76,26 @@ def score_word(word):
     if len(word) >= 7:
         score += 8
     return score
-# look at this crazy dictionary i tried to make with lists of strings to numbered keys!                                                          
-#  int_letters = {
-#     1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
-#     2: ['D', 'G'],
-#     3: ['B', 'C', 'M', 'P'],
-#     4: ['F', 'H', 'V', 'W', 'Y'],
-#     5: ['K'],
-#     8: ['J', 'X'],
-#     10: ['Q', 'Z']
-# }    
 
 
-def get_highest_word_score(word_list):  
-    winning_word = None
-    winning_score = 0
-    score_list = [] 
-    final_word_list = []
-    for word in word_list:
-        scores = score_word(word)
-        score_list.append(scores) 
-        final_word_list.append(word)
-
-
-    # for i in score_list:    
-    winning_score = max(score_list)
-        # final_word_list[i] = max(score_list[i]) 
-        # winning_word = final_word_list[i]
-
+def get_highest_word_score(word_list):
+    word_score_dict = {}
     
-    return (winning_word, winning_score)
-                                        
-# still get highest score even if the list is unsorted ( so not by index?)                               
-# if two words have the same score, game prioritizes shorter word                                        
-# EXCEPT if the word is ten letters long                                                                 
-# multi way ties pick shortest words    
+    for word in word_list:
+        score = score_word(word)
+        if score in word_score_dict:
+            word_score_dict[score].append(word)
+        else:
+            word_score_dict[score] = [word]
+    
+    winning_score = max(word_score_dict.keys())
+    winning_words = word_score_dict[winning_score]
+    best_word = winning_words[0]
+
+# what should i assume  the default winner is? IT. DOESNT. MATTER. START FROM THE BEGINNING.
+    for challenger in winning_words:
+        if len(challenger) > len(best_word) and len(challenger) ==10:
+            best_word = challenger 
+        if len(challenger) < len(best_word) and len(best_word) != 10:
+            best_word = challenger
+    return (best_word, winning_score)
