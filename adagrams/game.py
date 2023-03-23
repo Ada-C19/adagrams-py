@@ -121,21 +121,24 @@ def score_word(word):
     return score_board
 
 def get_highest_word_score(word_list):
-    #create empty dict for word+score; create lists to hold winner(s) and
-    #each word's string length
     word_dict = {}
     winners_list = []
     len_list = []
 
     #obtain scores for each word and create key,value pairs for word_dict
+    #line 133: first word with 10 letters gets automatic win
     for word in word_list:
         score = score_word(word)
         word_dict[word] = score
+        if len(word) == 10:
+            return (word, score)
+        else:
+            continue
 
     #obtain the highest value within the dictionary for the winner
     max_value = max(word_dict.values())
     
-    #check each key to see which matches max score; put thme in winners_list
+    #check each key to see which matches max score; put them in winners_list
     #continue to make sure all keys are iterated
     for key in word_dict:
         if word_dict[key] == max_value:
@@ -154,11 +157,6 @@ def get_highest_word_score(word_list):
 
     #tie-breaker check; return winner 
     if len(winners_list) > 0:
-        for winner in winners_list:
-            if len(winner[0]) >= 10:
-                return winner 
-            else:
-                continue
         for winner in winners_list:
             if len(winner[0]) == min_tie:
                 return winner
