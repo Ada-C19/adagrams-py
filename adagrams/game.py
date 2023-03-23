@@ -53,11 +53,10 @@ def draw_letters():
     freq = 10
     while freq > 0:
         letter = random.choice(list(letter_pool.keys()))
-        if letter_pool[letter] == 0:
-            continue
-        letter_bank.append(letter)
-        letter_pool[letter] -= 1
-        freq -= 1
+        if letter_pool[letter] != 0:
+            letter_bank.append(letter)
+            letter_pool[letter] -= 1
+            freq -= 1
 
     return letter_bank
 
@@ -94,12 +93,12 @@ def score_word(word):
     """
 
     score = 0
-    for letter in word:
+    for letter in word.strip():
         for key in SCORE_DICT:
             if letter.upper() in key:
                 score += SCORE_DICT[key]
 
-    if len(word) in range(7, 11):
+    if len(word.strip()) in range(7, 11):
         score += 8
 
     return score
@@ -116,19 +115,16 @@ def get_highest_word_score(word_list):
     Returns:
     tuple: highest_word, highest_score
     """
+    highest_word, highest_score = "", 0
 
-    highest_word = ""
-    highest_score = 0
     for word in word_list:
         score = score_word(word)
         if score > highest_score:
-            highest_word = word
-            highest_score = score
+            highest_word, highest_score = word, score
         elif score == highest_score:
             if len(highest_word) == 10:
                 continue
             elif len(word) == 10 or len(word) < len(highest_word):
-                highest_word = word
-                highest_score = score
+                highest_word, highest_score = word, score
 
     return highest_word, highest_score
