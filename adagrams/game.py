@@ -57,61 +57,54 @@ LETTER_POINT_SYSTEM = {
     }
 
 def draw_letters():
-    # creates a list of ten randomized characters
-    # uses pop and add back into the data structure of letters? 
-    # maybe: make a list of all the letters, only occurring the allowed number of times and use a randomizing operator on it
-    # iterate over the dictionary to make list
     
+    #iterates over LETTER_QUANTITY dict to make a list of all letters with exact occurrences
     master_letter_bank = []
     for letter, frequency in LETTER_QUANTITY.items():
         for i in range(frequency):
             master_letter_bank.append(letter)
 
-
+    # uses a randomizing operator on above list and removes that letter from the list so it cannot be reselected
     drawn_hand = []
     while len(drawn_hand) < 10:
         new_letter = random.choice(master_letter_bank)
         drawn_hand.append(new_letter)
         master_letter_bank.remove(new_letter)
-        
+
+    #result is a list with ten selected letters for user's hand    
     return drawn_hand
 
 
-def uses_available_letters(word, letter_bank):
-    #ensures user's word only uses letters from drawn_hand
-    #loops through each character in the word and checks if it is in drawn_hand
+def uses_available_letters(word, drawn_hand):
 
-    #also need to return false if a character is used too many times...
-    #make a dictionary for drawn_hand that has letter and frequency to compare? 
-    #use a new data type like set or tuple? 
+    #makes a dictionary called max_frequency from drawn_hand that has letter and frequency
     valid_word = False
     valid_frequency = False
     letter_frequency = {}
     max_frequency = {}
-    for char in letter_bank:
+    for char in drawn_hand:
         if char in max_frequency:
             max_frequency[char] +=1
         else:
             max_frequency[char] = 1
     
-
+    #ensures input will be converted to capital letters
+    #returns false if word uses incorrect characters not given in drawn_hand
     for char in word:
         char = char.capitalize()
-        if char not in letter_bank:
-            valid_word = False
-            break
-        elif char in letter_bank:
+        if char not in drawn_hand:
+            return False
+        elif char in drawn_hand:
             valid_word = True
-
+        #populates to letter_frequency to check repeat letter usage
         if char in letter_frequency:
             letter_frequency[char] += 1
         else:
             letter_frequency[char] = 1   
 
-
+        #compares to max_frequency to ensure letters are not used too many times
         if letter_frequency[char]> max_frequency[char]:
-            valid_frequency = False
-            valid_word = False
+            return False
         else:
             valid_word = True    
 
@@ -119,9 +112,7 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    #takes in the valid word and returns an intger representing points
-    #points calculated by adding up each letter's point values
-    #step one: irtate through each character and += each point value
+    #step one: iterate through each character and add each point value to total
     #step two: check if word length is 7-10 characters and add 8 extra points if so
     point_total = 0
     for char in word:
@@ -134,32 +125,26 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    #takes in word_list, a list of strings
-    #calculate score of each word in list
-    #in the event of a tie: prefer word with fewest letters OR 10 letters
-    #if same score and length, pick the first one to occur
-    #return tuple with (string word, score)
-
-    #DICTIONARY METHOD
+    
+    #creates a dictionary of each word in word_list, with its points as values
     word_score_log = {}
     for word in word_list:
         word_score_log[word] = score_word(word)   
     top_score = max(word_score_log.values()) 
 
+    #in the event of a tie: prefer word with fewest letters OR 10 letters
+    #if same score and length, pick the first occurring word
     tied_words = []
-
     for word, score in word_score_log.items():
         if score == top_score:
             tied_words.append(word)
-
-    print(tied_words)        
+        
     current_winning_word = tied_words[0]
     for word in tied_words:
         if len(tied_words) == 1:
             return (word, word_score_log[word])
         if len(word) == 10:
-            winning_word = (word, word_score_log[word])
-            return winning_word
+            return (word, word_score_log[word])
         elif len(word) < len(current_winning_word):
             current_winning_word = word
             
