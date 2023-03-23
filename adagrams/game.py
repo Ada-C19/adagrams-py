@@ -54,11 +54,7 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     """ docstring """
-    letter_bank_copy = letter_bank
-    # for element in letter_bank:
-    #     letter_bank_copy.append(element.casefold())
-        
-    # print(letter_bank_copy)
+    letter_bank_copy = letter_bank.copy()
     
     for letter in word:
         if letter in letter_bank_copy:
