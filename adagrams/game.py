@@ -14,7 +14,16 @@ def draw_letters():
     return random.choices(alphabet_list, k = grab_10_elements)
 
 def uses_available_letters(word, letter_bank):
-    pass
+    """
+    input: word as string, and letter_bank as list
+    output: boolean of True or False
+    """
+
+    for letter in word:
+        if letter in letter_bank:
+            return True
+        else:
+            return False 
 
 def score_word(word):
     pass
