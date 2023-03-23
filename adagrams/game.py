@@ -30,6 +30,12 @@ LETTER_POOL = {
 }
 
 def draw_letters():
+    '''
+    Randomly draw 10 letters from a copy of LETTER_POOL.
+    
+    Uses random.randint() to randomly append an index from letter_pool_list.
+    Returns 'hand' pointing to a list of drawn letters.
+    '''
     letter_pool_list = []
     letter_pool_dict = {}
     hand = []
@@ -46,20 +52,22 @@ def draw_letters():
     # debug info
     # print(f"letter_pool is {letter_pool}")
 
-    # random.randint() as to append a random index from letter_pool list
+    # random.randint() to append a random index from letter_pool list
     while i < 10:
         letter = letter_pool_list[random.randint(0, 25)] 
 
-        #check if letter is available in letter_pool_dict
-
-        #debug info
+        # debug info
         # print(f"letter to check is {letter}")
         # print(f"letter_pool_dict[letter] is {letter_pool_dict[letter]}")
+
+    # check if letter is available in letter_pool_dict
         if letter_pool_dict[letter] > 0:
             hand.append(letter)
-            print(f"hand is {hand}")
             letter_pool_dict[letter] -= 1
             i += 1
+
+            # debug info
+            # print(f"hand is {hand}")
 
     return hand
     
@@ -67,13 +75,21 @@ hand = draw_letters()
 print(hand)
 
 def uses_available_letters(word, letter_bank):
+    '''
+    Checks word uses available letters in letter_bank
+
+    Iterates through each letter in word, checks if letter is available in
+    list copy of letter_bank and removes letter.
+    '''
     letter_bank_copy = []
     result = True
 
-    #copy letter_bank
+    # copy letter_bank
     for letter in letter_bank:
         letter_bank_copy.append(letter)
 
+    # iterate through each letter in word, convert to uppercase, and
+    # checks if letter is in letter_bank_copy
     for letter in word:
         letter = letter.upper()
         if letter not in letter_bank_copy:
@@ -85,6 +101,7 @@ def uses_available_letters(word, letter_bank):
     return result
 
 def score_word(word):
+    '''Scores word based on values for each letter in word.'''
     score = 0
     VALUE_1 = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
     VALUE_2 = ["D", "G"]
@@ -119,13 +136,19 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    best_word = ["A", 1]
+    '''
+    Compares each word in word_list, returns best_word with highest score.
+    '''
+    best_word = ["", 0]
 
     for word in word_list:
         word_score = score_word(word)
         if word_score > best_word[1]:
             best_word[0] = word
-            best_word[1] = word_score        
+            best_word[1] = word_score
+
+        # tiebreaker prefers 10 letter words, then first best_word, then
+        # shortest word        
         elif word_score == best_word[1]:
             if len(best_word[0]) == 10:
                 continue
