@@ -81,15 +81,32 @@ def score_word(word):
         "K": 5,
         "J": 8, "X": 8,
         "Q": 10, "Z": 10}
-    print(type(score_chart))
 
-    score = 0
-    # 
+    list_of_letters = []
+    score = []
+    # for letter in word:
+    #     if letter in score_chart.keys():
+    #         list_of_scores.append(letter)
+
     for letter in word:
-        for key,value in score_chart.items():
-        
+        list_of_letters.append(letter)
+    print(list_of_letters)
 
-    pass
+    if (set(list_of_letters) - score_chart.keys()):
+        print("these letters are in score")
+
+
+    # for key, value in score_chart.items():
+    #     if list_of_scores == key:
+    #         print(value)
+    #         score += value
+    # print(value)
+    # print(list_of_scores)
+
+    
+    # print(list_of_scores)
+    final_score = 0
+    
 
 def get_highest_word_score(word_list):
     pass
