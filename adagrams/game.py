@@ -135,8 +135,6 @@ def get_highest_word_score(word_list):
                 return current_winner
             elif len(comparator[word_index]) == 10:
                 return comparator[word_index], comparator[score_index]
-            elif len(current_winner[word_index]) < len(comparator[word_index]):
-                continue
             elif len(comparator[word_index]) < len(current_winner[word_index]):
                 current_winner = comparator[word_index], comparator[score_index]
 
