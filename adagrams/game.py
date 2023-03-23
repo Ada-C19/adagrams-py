@@ -66,5 +66,20 @@ def score_word(word):
 
 #####WAVE_4_FUNCTION#####
 def get_highest_word_score(word_list):
-    pass
+    word_scores = []
+    for word in word_list:
+        word_score = score_word(word)
+        winning_word_and_score = (word, word_score)
+        word_scores.append(winning_word_and_score)
+        print (word_scores)
+        highest_score = max(word_scores)
+        print (highest_score)
+        if len(word) == 10:
+            return winning_word_and_score
+    
+    
+    return highest_score
+    
+get_highest_word_score(["BBBBBB", "AAAAAAAAD", "JQ", "KFHK"])
+# best_word = ("XXXX", "32")
 #####END_OF_WAVE_4_FUNCTION#####
