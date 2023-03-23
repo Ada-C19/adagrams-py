@@ -32,40 +32,33 @@ LETTER_POOL = {
 }
 
 def draw_letters():
-    letters_list = []
-    letter_freq = {}
-
-    # this while loop adds ten random letters to a list
-    ten_times = 10
-    for i in range(0,10):
-        # while len(letters_list) < 10:
-        randomLetter = random.choice(string.ascii_uppercase)
-        letters_list += randomLetter
     
-    print(letters_list)
+    letters_list = []
 
-    # i need to track the repetition of letters 
-    # i need to assure its less than letter pool frequency
-    #********
-    for letter in letters_list:
-        if letter in letter_freq:
-            letter_freq[letter] += 1
-            # if letter_freq[letter] >= LETTER_POOL[letter]:
-            #         letter_freq[letter] -= 1
-        else:
-            letter_freq[letter] = 1    
+    for char, frequency in LETTER_POOL.items():
+        letters_list.extend([char] * frequency)
 
-    for i in letter_freq:
-        if letter_freq[i] > LETTER_POOL[letter]:
-            letter_freq[i] -= 1
+
+    hand = []
+    for i in range(10):
+        randomLetter = random.choice(letters_list)
+        hand.append(randomLetter)
+        letters_list.remove(randomLetter)
+    
+
+    
+    
+    print(hand)
+
+
+
         
 
-    print(letter_freq)  
     print("**********")
 
     #*********
     #YET TO SEE IF FREQUENCY IS LESS THAN THE LETTER POOL
-    return letter_freq
+    return hand
     
 
         
@@ -85,13 +78,13 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
 
-    for i in range(len(word)):
-        print(i)
-        if word[] in letter_bank:
+    # for i in range(len(word)):
+    #     print(i)
+    #     if word[] in letter_bank:
         #     return True
         # else:
         #     True
-
+    pass
 
 def score_word(word):
     pass
