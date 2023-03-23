@@ -5,7 +5,7 @@ from adagrams.game import uses_available_letters
 def test_uses_available_letters_true_word_in_letter_bank():
     # Arrange
     letters = ["D", "O", "G", "X", "X", "X", "X", "X", "X", "X"]
-    word = "DOG"
+    word = "DOXG"
     
     # Act
     is_valid = uses_available_letters(word, letters)
