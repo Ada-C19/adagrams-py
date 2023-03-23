@@ -72,6 +72,14 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
+    score_chart = {1 : ["A","E", "I", "O", "U", "L", "N", "R", "S", "T" ],
+                   2 :["D","G"],
+                   3 : ["B", "C", "M", "P" ],
+                   4 : ["F", "H", "V", "W", "Y"],
+                   5 : ["K"],
+                   8 : ["J", "X"],
+                   10 : ["Q", "Z"]
+                   }
     pass
 
 def get_highest_word_score(word_list):
