@@ -86,18 +86,33 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
 
-    #initialize info
-    high_score = 0
+    #initialize info 
+    highest_score = 0
     winning_word = ""
-
+    
+    #loop through each word in the list
     for word in word_list:
-        # score = the word, score
-        if score > high_score:
-            #high score and winning word something here
-            elif:
-                #coniditons for 10 letters
+        score = score_word(word)
+        
+        #if word has a higher score than highest score, update the variables
+        if score > highest_score:
+            highest_score = score
+            winning_word = word
+        
+        #if tie in scores, follow tie-breaking rules
+        """
+        elif score == highest_score:
+            #if the current word is shorter than winning word, set it as new winning word
+            if word length is < word...?
+                winning_word = word
+            #if the current word has 10 letters, set it as new winning word
+            if word == 10, length
+                winning_word = word
+        """
+    #return a tuple of winning word and its score
+    return (winning_word, highest_score)
 
-    #return [winning word, score]
+
     """
 
     return a tuple with data or winning word and score
