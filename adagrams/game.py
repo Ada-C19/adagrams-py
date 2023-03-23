@@ -45,8 +45,6 @@ def draw_letters():
 
 
 
-
-
 def uses_available_letters(word, letter_bank):
 
     word = word.upper()
@@ -65,21 +63,46 @@ def uses_available_letters(word, letter_bank):
         else:
             letter_dict[letter] -= 1
     
-    return True
+    return True 
 
-
-    # for letters in list_word:
-    #     for letters in letter_bank:
-    #         if letters in letter_bank:
-    #             letter_bank.remove(letters)
-    #         return True
-    # else:
-    #     return False
- 
 
 
 def score_word(word):
-    pass
+    letter_value = {
+        "A": 1, "E": 1, "I": 1, "O": 1, "U": 1, "L": 1, "N": 1, "R": 1, "S": 1, "T": 1,
+        "D": 2, "G": 2, "B": 3, "C": 3, "M": 3, "P": 3, "F": 4, "H": 4, "V": 4, "W": 4, 
+        "Y": 4, "K": 5, "J": 8, "X": 8, "Q": 10, "Z": 10
+    }
+
+    score = 0
+    word = word.upper()
+    for letter in word:
+        score += letter_value[letter]
+    if len(word) >= 7:
+        score += 8
+    return score
+
 
 def get_highest_word_score(word_list):
-    pass
+    scores_calculate = {}
+    for word in word_list:
+        score = score_word(word)
+        scores_calculate[word] = score
+    
+    max_score = max(scores_calculate.values())
+
+    winners = []
+    for word in scores_calculate :
+        if scores_calculate[word] == max_score:
+            winners.append(word)
+
+    bigest_word = max(winners, key=len)
+    smallest_word = min(winners, key=len)
+    
+    if len(winners) == 1: 
+        return (winners[0], scores_calculate[winners[0]])
+    elif len(bigest_word) == 10:
+        return (bigest_word, scores_calculate[bigest_word])
+    else:
+        return (smallest_word, scores_calculate[smallest_word])
+
