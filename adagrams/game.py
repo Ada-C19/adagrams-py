@@ -73,10 +73,6 @@ def uses_available_letters(word, letter_bank):
     else:
         if character not in letter_bank or character_frequency_word >= character_frequency_dict:
             return False
-        
-        
-
-
 
 
 def score_word(word):
@@ -122,4 +118,24 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    highest_score = 0  
+    score_dict = {}
+    winning_word = ""
+    
+    for word in word_list:
+        scorez = score_word(word)
+        score_dict[word] = scorez
+        winning_word = word
+    
+    for word, scorez in score_dict.items():
+        if scorez > highest_score:
+            highest_score = scorez
+            
+    
+    winner = (winning_word, highest_score)
+
+
+    return winner
+
+
+
