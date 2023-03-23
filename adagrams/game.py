@@ -31,8 +31,18 @@ LETTER_POOL = {
     'Z': 1
 }
 
+SCORE_CHART_DICT = {
+    1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+    2: ['D', 'G'],
+    3: ['B', 'C', 'M', 'P'],
+    4: ['F', 'H', 'V', 'W', 'Y'],
+    5: ['K'],
+    8: ['J', 'X'],
+    10: ['Q','Z']
+}
+
 def draw_letters():  
-  #empty list of all letters
+  
     list_of_letters = []
        
     for letter, frequency in LETTER_POOL.items():
@@ -42,17 +52,12 @@ def draw_letters():
             total_times_letter_appears += 1
     
     letters = []
-# Randomly choose a letter from the list aboveclear
 
     while len(letters) < 10:
         random_letter = random.choice(list_of_letters)
-        # if random_letter in list_of_letters:
         list_of_letters.remove(random_letter)
         letters.append(random_letter)
-        # else:
-        #     continue
 
-    #return letters which is a list of 10 letters
     return letters 
 
 def uses_available_letters(word, letter_bank):
@@ -68,40 +73,23 @@ def uses_available_letters(word, letter_bank):
 
     
 def score_word(word):
-    # score_chart:
-    one_pt_letters = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T']
-    two_pt_letters = ['D', 'G']
-    three_pt_letters = ['B', 'C', 'M', 'P']
-    four_pt_letters = ['F', 'H', 'V', 'W', 'Y']
-    five_pt_letters = ['K']
-    eight_pt_letters = ['J', 'X']
-    ten_pt_letters = ['Q','Z']
-    
+
     score = 0
-    
+
     if len(word) >= 7:
         score += 8
     
-    for letter in word.upper():
-        if letter in one_pt_letters:
-            score += 1
-        elif letter in two_pt_letters:
-            score += 2
-        elif letter in three_pt_letters:
-            score += 3
-        elif letter in four_pt_letters:
-            score += 4
-        elif letter in five_pt_letters:
-            score += 5
-        elif letter in eight_pt_letters:
-            score += 8
-        elif letter in ten_pt_letters:
-            score += 10
-        elif letter == "": 
-            return 0
+    word = word.upper()
 
+    for letter in word:
+        for points, letters in SCORE_CHART_DICT.items():
+            if letter in letters:
+                score += points
+        else:
+            score += 0
 
     return score
+
 
 def get_highest_word_score(word_list):
       
@@ -123,15 +111,7 @@ def get_highest_word_score(word_list):
             shortest_word = word
         elif len(word) < len(shortest_word):
             shortest_word = word
-
-        
-
-    #1st highest up word with 10 charac.
-    #2nd current word with 10 characters
-    #3rd shortest word
-    
   
   winning_score = (shortest_word, high_score)
 
-  
   return winning_score
