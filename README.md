@@ -1,4 +1,4 @@
-# AdaGrams
+# AdaGrams - Ashley Yang
 
 ## Skills Assessed
 
