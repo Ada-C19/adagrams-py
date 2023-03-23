@@ -85,10 +85,12 @@ def get_highest_word_score(word_list):
     highest_score_word = []
     for word in word_list:
         score_dict[word] = score_word(word)
+
     max_value = max(score_dict.values())
     for word, point_value in score_dict.items():
         if point_value == max_value:
             highest_score_word.append(word)
+
     if len(highest_score_word) > 1:
         for word in highest_score_word:
             for i in range(len(highest_score_word)):
