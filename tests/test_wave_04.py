@@ -25,6 +25,7 @@ def test_get_highest_word_score_accurate_unsorted_list():
     assert best_word[0] == "XXXX"
     assert best_word[1] == 32
 
+
 def test_get_highest_word_tie_prefers_shorter_word():
     # Arrange
     words = ["MMMM", "WWW"]
@@ -38,6 +39,7 @@ def test_get_highest_word_tie_prefers_shorter_word():
     assert best_word[0] == "WWW"
     assert best_word[1] == 12
 
+
 def test_get_highest_word_tie_prefers_shorter_word_unsorted_list():
     # Arrange
     words = ["WWW", "MMMM"]
@@ -50,6 +52,7 @@ def test_get_highest_word_tie_prefers_shorter_word_unsorted_list():
     assert score_word(words[1]) == 12
     assert best_word[0] == "WWW"
     assert best_word[1] == 12
+
 
 def test_get_highest_word_tie_prefers_ten_letters():
     # Arrange
