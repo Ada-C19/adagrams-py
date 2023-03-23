@@ -88,11 +88,70 @@ def score_word(word):
         point_value = LETTER_POINT_VALUE[letter]
         score += point_value
     if len(word) >= 7:
-        score += 8
+        score += 8 # change to 8 
     
     return score
     
 
 def get_highest_word_score(word_list):
-    # for word in word list
+    # PART 1: 
+    word_dict= {}
+    for word in word_list:
+        points = score_word(word)
+        word_dict[word] = points
     
+    max_key = max(word_dict, key=word_dict.get)
+    max_value = word_dict[max_key]
+
+    # part 2
+
+    tie_words = []
+    for word, value in word_dict.items():
+        if value == max_value:
+            tie_words.append(word)
+    print(tie_words, max_value)
+
+    if len(tie_words) == 1:
+        return max_key, max_value
+    
+    word_lengths = {}
+    for word in tie_words:
+        length = len(word)
+        if length in word_lengths:
+            word_lengths[length].append(word)
+        else:
+            word_lengths[length] = [word]
+
+    # check a word has 10 characters
+
+    if 10 in word_lengths:
+        max_key_ten = word_lengths[10][0]
+        return max_key_ten, max_value
+    
+    # check shortest 
+
+    minimum_key = min(word_lengths)
+    print(minimum_key)
+    first_word = word_lengths[minimum_key][0]
+    print(first_word, max_value)
+    return first_word, max_value
+    
+
+    
+    # max_value = max(word_dict.items())
+    # print(max_value)
+    # print(word_dict.items())
+    # return max_value
+
+
+        
+    
+get_highest_word_score(["WAVE", "MOON", "AHOY", "AAAAAAAAA"])
+    # for word in word list
+    # invoke score_word, store word and score in a dictionary?
+    # returns tuple (word, score) of winning word
+
+    # if scores are equal
+    # then len(word) that is less wins
+    # if len(word) = 10, that wins
+    # if len(word) is the same and score is the same, first word in the list wins
