@@ -79,15 +79,15 @@ def score_word(word):
     extra_points_min_length = 7
     extra_points_max_length = 10
 
-    key_list = list(score_board.keys())
-    value_list = list(score_board.values())
+    points_list = list(score_board.keys())
+    letters_list = list(score_board.values())
 
     for letter in word:
         index = 0
-        for i in range(len(value_list)):
-            if letter in value_list[i]:
+        for i in range(len(letters_list)):
+            if letter in letters_list[i]:
                 index = i
-                score += key_list[index]
+                score += points_list[index]
 
     if len(word) >= extra_points_min_length and len(word) <= extra_points_max_length:
         score += 8
