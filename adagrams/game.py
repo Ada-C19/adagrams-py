@@ -37,14 +37,13 @@ def draw_letters():
     # get a list (available_letters) showing all available letters. 
     for letter, number in LETTER_POOL.items():
         available_letters.append(letter)
-    # print(available_letters)
     
 
     while len(ten_random_letters) < 10:
         one_random_letter = random.choice(available_letters)
         ten_random_letters.append(one_random_letter)
         available_letters.remove(one_random_letter)
-    # return ten_random_letters, available_letters[:]
+    
     return ten_random_letters
 
 def uses_available_letters(word, letter_bank):
