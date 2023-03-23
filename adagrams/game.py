@@ -113,35 +113,38 @@ def score_word(word):
     return score_board
 
 def get_highest_word_score(word_list):
-    #iterate each word in word list, obtaining the scores of each word 
-    #compare the scores; take the best word and score to store it in a tuple
-    #find the max
-    #loop through list to see who has max
-    #make a list to put in possible winners
-    #compare list to len of word (shortest wins) tiebreaker
+    #create empty dict for word+score; create lists to hold winner(s) and
+    #each word's string length
     word_dict = {}
     winners_list = []
     len_list = []
 
+    #obtain scores for each word and create key,value pairs for word_dict
     for word in word_list:
         score = score_word(word)
         word_dict[word] = score
 
+    #obtain the highest value within the dictionary for the winner
     max_value = max(word_dict.values())
     
+    #check each key to see which matches max score; put thme in winners_list
+    #continue to make sure all keys are iterated
     for key in word_dict:
         if word_dict[key] == max_value:
             test_tuple = (key, max_value)
             winners_list.append(test_tuple)
             continue
 
+    #iterate through winners_list to collect len(string) of each word to 
+    #put in len_list
     for str, value in winners_list:
         length = len(str)
         len_list.append(length)
 
+    #create a variable that stores the smallest value in len_list
     min_tie = min(len_list)
 
-    
+    #tie-breaker check; return winner 
     if len(winners_list) > 0:
         for winner in winners_list:
             if len(winner[0]) >= 10:
