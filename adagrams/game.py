@@ -92,10 +92,11 @@ def get_highest_word_score(word_list):
     winning_words = word_score_dict[winning_score]
     best_word = winning_words[0]
 
-# what should i assume  the default winner is? IT. DOESNT. MATTER. START FROM THE BEGINNING.
+
     for challenger in winning_words:
         if len(challenger) > len(best_word) and len(challenger) ==10:
             best_word = challenger 
+        #how can i refactor this second if statement?    
         if len(challenger) < len(best_word) and len(best_word) != 10:
             best_word = challenger
     return (best_word, winning_score)
