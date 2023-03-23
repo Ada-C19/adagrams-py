@@ -111,6 +111,7 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+    # List is empty
     if not word_list:
         return None
 
