@@ -111,6 +111,9 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+    if not word_list:
+        return None
+
     # Dictionary tracks each word with its score.
     word_scores = {}
     for word in word_list:
