@@ -57,8 +57,7 @@ def uses_available_letters(word, letter_bank):
         letter_bank_copy.remove(letter)
 
     return True
-#word = ("dog")
-#print(f'this is second function {uses_available_letters(word,letter_bank)}')
+
 
 def score_word(word):
 
@@ -85,13 +84,31 @@ def score_word(word):
     return total_score
 
 
-#has on paramater word as a string
-#returns an int represseting points
-#ea letter has a point value
-#sum the associated value with the letetr
-#created dict with listed values
-#add if the length of word is 7-10 characters long then +8 points
-#returns score of given word
-
 def get_highest_word_score(word_list):
+
+    #initialize info
+    high_score = 0
+    winning_word = ""
+
+    for word in word_list:
+        # score = the word, score
+        if score > high_score:
+            #high score and winning word something here
+            elif:
+                #coniditons for 10 letters
+
+    #return [winning word, score]
+    """
+
+    return a tuple with data or winning word and score
+    * The tuple must contain the following elements:
+    * index 0 ([0]): a string of a word
+    * index 1 ([1]): the score of that word
+
+    incase of tie
+    prefer word with fewest letters
+    unless word is 10 letters long
+    if multiple score on same list are same, pick first
+    
+    """
     pass
