@@ -2,6 +2,9 @@ import pytest
 
 from adagrams.game import uses_available_letters
 
+# test to make sure the only the drawn letters are used - initial list is blank
+# uses a boolean
+# expected output: True
 def test_uses_available_letters_true_word_in_letter_bank():
     # Arrange
     letters = ["D", "O", "G", "X", "X", "X", "X", "X", "X", "X"]
@@ -13,6 +16,8 @@ def test_uses_available_letters_true_word_in_letter_bank():
     # Assert
     assert is_valid == True
 
+# test to return False when letter used is not in the hand drawn
+# expected output: False
 def test_uses_available_letters_false_word_in_letter_bank():
     # Arrange
     letters = ["D", "O", "X", "X", "X", "X", "X", "X", "X", "X"]
@@ -24,6 +29,8 @@ def test_uses_available_letters_false_word_in_letter_bank():
     # Assert
     assert is_valid == False
 
+# test if you use the same letter more than once
+# expected output: false
 def test_uses_available_letters_false_word_overuses_letter():
     # Arrange
     letters = ["A", "X", "X", "X", "X", "X", "X", "X", "X", "X"]
@@ -47,7 +54,9 @@ def test_uses_available_letters_does_not_change_letter_bank():
     # Assert
     assert is_valid == True
     assert letters == letters_copy
-
+    
+# test ignores case
+# expected output: true
 def test_uses_available_letters_ignores_case():
     # Arrange
     letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]

@@ -31,6 +31,8 @@ LETTER_POOL = {
     'Z': 1
 }
 
+#   test to see if 10 letters were drawn
+#   expected output: 10 
 def test_draw_letters_draws_ten():
     # Arrange/Act
     letters = draw_letters()
@@ -38,6 +40,9 @@ def test_draw_letters_draws_ten():
     # Assert
     assert len(letters) == 10
 
+# test data type to be a string
+# test using len() that 1 is the length
+# expected output: str for data type and 1 for length
 def test_draw_letters_is_list_of_letter_strings():
     # Arrange/Act
     letters = draw_letters()
@@ -49,6 +54,8 @@ def test_draw_letters_is_list_of_letter_strings():
         assert type(elem) == str
         assert len(elem) == 1
 
+#test count to verify letter is available
+#expected output: number of letter is greater than provided
 def test_letter_not_selected_too_many_times():
 
     for i in range(1000):
@@ -66,6 +73,8 @@ def test_letter_not_selected_too_many_times():
         for letter in letters:
             assert letter_freq[letter] <= LETTER_POOL[letter]
 
+# test to make sure the hand is drawn differently each time
+# expected output: hand 1 or hand 2 or hand 3 is not the same
 def test_draw_letters_returns_different_hands():
     # Arrange/Act
     hand1 = draw_letters()
