@@ -57,25 +57,33 @@ def uses_available_letters(word, letter_bank):
         letter_bank_copy.remove(letter)
 
     return True
+#word = ("dog")
+#print(f'this is second function {uses_available_letters(word,letter_bank)}')
 
 def score_word(word):
 
     score_dict = {
 
-        ["A","E","I","O","U","L","N","R","S","T"]: 1,
-        ["D","G"]: 2,
-        ["B","C","M","P"]:3,
-        ["K"]:4,
-        ["J","X"]: 8,
-        ["Q","Z"]: 10,
-    }
-
+    ("A","E","I","O","U","L","N","R","S","T"): 1,
+    ("D","G"): 2,
+    ("B","C","M","P"):3,
+    ("F","H","V","W","Y"): 4,
+    ("K"):5,
+    ("J","X"): 8,
+    ("Q","Z"): 10,
+}
     total_score = 0
+    for letter in word.upper():
+        #add some kind of +8 for letters
+        #if word > len(7) or == len(10):
+           # +8
+        for key in score_dict:
+            if letter in key:
+                total_score += score_dict[key]
 
-    for letter in word:
-        score = score_dict.get(word,#"index value something not sure yet")
-        total_score += score
-        return total_score
+                break
+    return total_score
+
 
 #has on paramater word as a string
 #returns an int represseting points
@@ -84,7 +92,6 @@ def score_word(word):
 #created dict with listed values
 #add if the length of word is 7-10 characters long then +8 points
 #returns score of given word
-    pass
 
 def get_highest_word_score(word_list):
     pass
