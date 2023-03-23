@@ -69,7 +69,7 @@ letter_score_dict = {
 #     return pool
 # pool = create_pool(letter_quant_dict)
 
-def draw_letters(letter_quant_dict):
+def draw_letters():
     pool = []
     for letter in letter_quant_dict:
         quant = letter_quant_dict[letter]
@@ -79,55 +79,108 @@ def draw_letters(letter_quant_dict):
     hand = []
     draw = 10
     while draw > 0:
-        index = random.randint(0, len(pool))
+        index = random.randint(0, len(pool)-1)
         hand.append(pool[index])
         pool.pop(index)
         draw -= 1
     return hand
 
-letter_bank = draw_letters(letter_quant_dict)
+# def uses_available_letters(word, letter_bank):
+#     hand = letter_bank
+#     for letter in word.upper():
+#         if not letter in hand:
+#             return False
+#         hand.remove(letter)
+#     return True
 
 def uses_available_letters(word, letter_bank):
-    hand = letter_bank
+    #I dont understand why we woulndt want to update the letter_bank but ok
+
+    #build letter_bank_dict
+    letter_bank_dict = {}
+    for letter in letter_bank:
+        if letter in letter_bank_dict:
+            letter_bank_dict[letter] += 1
+        else:
+            letter_bank_dict[letter] = 1
+
+    #build hand_dict
+    hand_dict = {}
     for letter in word.upper():
-        if not letter in hand:
+        if letter in hand_dict:
+            hand_dict[letter] += 1
+        else:
+            hand_dict[letter] = 1
+    
+    #compare two dictionaries
+    for letter in hand_dict:
+        if letter not in letter_bank_dict:
             return False
-        hand.remove(letter)
+        elif hand_dict[letter] > letter_bank_dict[letter]:
+            return False
     return True
+
 
 def score_word(word):
     word_score = 0
+    if len(word) >= 7:
+        word_score += 8
     for letter in word.upper():
         letter_score = letter_score_dict[letter]
         word_score += letter_score
     return word_score
 
+# def get_highest_word_score(word_list):
+#     word_score_dict = {} 
+#     highest_score_yet = 0
+#     highest_word_yet = ""
+#     highest_len_yet = 0
+#     for word in word_list:
+#         word_score_dict[word] = score_word(word)
+#     for word, score in word_score_dict.items():
+#         if score > highest_score_yet:
+#             highest_score_yet = score
+#             highest_word_yet = word
+#             highest_len_yet = len(word)
+#         if score == highest_score_yet:
+#             if len(word) == 10:
+#                 highest_score_yet = score
+#                 highest_word_yet = word
+#                 highest_len_yet = len(word)
+#                 winning_tuple = (highest_word_yet, highest_score_yet)
+#             elif len(word) < highest_len_yet:
+#                 highest_score_yet = score
+#                 highest_word_yet = word
+#                 highest_len_yet = len(word)
+#     winning_tuple = (highest_word_yet, highest_score_yet)
+#     return winning_tuple
+    
 def get_highest_word_score(word_list):
-    word_score_dict = {}
-    
-    highest_score_yet = 0
-    highest_word_yet = ""
-    highest_len_yet = 0
-    
-    winning_tuple = ()
-    
+    highest_word_score = 0
+    highest_score_words = []
+    #find the highest score
     for word in word_list:
-        word_score_dict[word] = score_word(word)
-
-    for word in word_score_dict:
-        if word_score_dict[word] > highest_score_yet:
-            highest_score_yet = word_score_dict[word]
-            highest_word_yet = word
-            highest_len_yet = len(word)
-        elif word_score_dict[word] == highest_score_yet:
+        if score_word(word) > highest_word_score:
+            highest_word_score = score_word(word)
+    #add word(s) with the highest score to the highest_word_score_words list
+    for word in word_list:
+        if score_word(word) == highest_word_score:
+            highest_score_words.append(word)
+    # return the word (as a tuple) with the highest score if theres only one
+    if len(highest_score_words) == 1:
+        return tuple([str(highest_score_words[0]), score_word(highest_score_words[0])])
+    # break tie
+    elif len(highest_score_words) > 1:
+        # initialize the shortest length
+        shortest_word_len = 9
+        # find the first 10 or shortest length
+        for word in highest_score_words:            
+            # return the first 10 letter long word
             if len(word) == 10:
-                highest_score_yet = word_score_dict[word]
-                highest_word_yet = word
-                highest_len_yet = len(word)
-                winning_tuple = (highest_word_yet, highest_score_yet)
-            elif len(word) < highest_len_yet:
-                highest_score_yet = word_score_dict[word]
-                highest_word_yet = word
-                highest_len_yet = len(word)
-    winning_tuple = (highest_word_yet, highest_score_yet)
-    return winning_tuple
+                return tuple([word, score_word(word)])    
+            elif len(word) < shortest_word_len:
+                shortest_word_len = len(word)
+        # return the first, shortest length word
+        for word in highest_score_words:
+            if len(word) == shortest_word_len:
+                return tuple([word, score_word(word)])
