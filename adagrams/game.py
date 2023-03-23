@@ -1,7 +1,5 @@
 import random
 
-HAND_SIZE = 10
-
 DISTRIBUTION_OF_LETTERS = {
     "A": 9, "B": 2,
     "C": 2, "D": 4,
@@ -34,12 +32,12 @@ SCORE_CHART = {
     "Y": 4, "Z": 10
 }
 
+
 def draw_letters():
     letter_bank = []
     letter_list = []
     for letter, limit in DISTRIBUTION_OF_LETTERS.items():
         letter_list.append(letter)
-
     while len(letter_bank) <= 9:
         letter_choice = random.choice(letter_list)
         letter_count = letter_bank.count(letter_choice)
@@ -75,24 +73,22 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    words_and_scores = {}
-    for i in word_list:
-        words_and_scores[i] = score_word(i)
-    print(words_and_scores)
-    # word_scores = []
-    # # print(word_scores)
-    # for word in word_list:
-    #     word_score = score_word(word)
-    #     word_scores.append(word_score)
-        # words_and_scores[i] = word_score
-    # # print(word_scores)
-    # for i in word_scores:
-    #     words_and_scores[i] = i
-    
-
-
-word_list = ["dog", "banana", "dewey"]
-# draw_letters()
-# uses_available_letters()
-# score_word()
-get_highest_word_score(word_list)
+    highest_score = 0
+    highest_word = ""
+    for word in word_list:
+        score = score_word(word)
+        if score > highest_score:
+            highest_score = score
+            highest_word = word
+        elif score == highest_score:
+            if len(word) == len(highest_word):
+                pass
+            elif len(word) == 10:
+                highest_word = word
+            elif len(word) < len(highest_word) and len(highest_word) != 10:
+                highest_word = word
+    # print(highest_score)
+    # print(highest_word)
+    word_and_score = [highest_word, highest_score]
+    # print(word_and_score)
+    return word_and_score
