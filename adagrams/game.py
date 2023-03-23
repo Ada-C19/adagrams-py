@@ -46,10 +46,30 @@ def draw_letters():
 
     return letters
 
+# word = "doNkey"
+# word = "eele"
+# word = "men"
+
+# letter_bank = ['d', 'o', 'k', 'n', 'e', 'e', 'y', 'a']
 
 def uses_available_letters(word, letter_bank):
-    """ doc string """
-    pass
+    """ docstring """
+    letter_bank_copy = letter_bank
+    # for element in letter_bank:
+    #     letter_bank_copy.append(element.casefold())
+        
+    # print(letter_bank_copy)
+    
+    for letter in word:
+        if letter in letter_bank_copy:
+            letter_bank_copy.remove(letter)
+            # print(letter_bank_copy)
+        else:
+            return False
+
+    return True
+
+# print(uses_available_letters(word, letter_bank))
 
 def score_word(word):
     """ doc string """
