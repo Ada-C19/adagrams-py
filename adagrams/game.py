@@ -1,4 +1,4 @@
-"""doc string"""
+"""adagrams: it's really scrabble"""
 
 import random
 
@@ -31,7 +31,6 @@ LETTER_POOL = {
     'Z': 1
 }
 
-
 def draw_letters():
     """Build a hand of 10 letters for the user"""
     letter_pool_copy = LETTER_POOL.copy()
@@ -46,9 +45,8 @@ def draw_letters():
 
     return letters
 
-
 def uses_available_letters(word, letter_bank):
-    """take word input and compare to letter bank."""
+    """Take word input and compare to letter bank."""
     letter_bank_copy = letter_bank.copy()
     letter_bank_case = [element.upper() for element in letter_bank_copy]
 
@@ -62,7 +60,7 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    """assign a point value to the input word"""
+    """Assign a point value to the input word"""
     letter_value = {
         1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
         2: ['D', 'G'],
@@ -84,7 +82,18 @@ def score_word(word):
 
     return current_score
 
-
+word_list = ['graze', 'ferment', 'add', 'sex', 'tenletters', 'branxzorfl']
 def get_highest_word_score(word_list):
-    """ doc string """
-    pass
+    """Return the highest scoring word as a tuple: ('string', word_score)"""
+    # initiate empty dictionary
+    word_score_dict = {}
+
+    # for each word in the list, produce a score and assign
+    # word/score to dictionary
+    for word in word_list:
+        score = score_word(word)
+        print(f'word: {word}, score: {score}')
+        word_score_dict.update({word: score})
+    print(word_score_dict)
+
+print(get_highest_word_score(word_list))
