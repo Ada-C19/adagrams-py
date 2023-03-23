@@ -96,13 +96,12 @@ def get_highest_word_score(word_list):
         if scores_calculate[word] == max_score:
             winners.append(word)
 
-    bigest_word = max(winners, key=len)
+    biggest_word = max(winners, key=len)
     smallest_word = min(winners, key=len)
     
     if len(winners) == 1: 
         return (winners[0], scores_calculate[winners[0]])
-    elif len(bigest_word) == 10:
-        return (bigest_word, scores_calculate[bigest_word])
+    elif len(biggest_word) == 10:
+        return (biggest_word, scores_calculate[biggest_word])
     else:
         return (smallest_word, scores_calculate[smallest_word])
-
