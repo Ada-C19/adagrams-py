@@ -108,4 +108,64 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    word_list_with_scores = []
+    score_with_word_dict = {}
+    word_length_list = []
+    best_word = None
+
+    for word in word_list:
+        score = score_word(word)
+        score_with_word_dict[word]= score
+        if len(word) == 10:
+            best_word = (word, score)
+            return best_word
+        else:
+            continue
+
+    highest_score = max(score_with_word_dict.values())
+    for word, score in score_with_word_dict.items():
+        if highest_score == score:
+            best_word= (word, score)
+            word_list_with_scores.append(best_word)
+
+
+    for str, value in word_list_with_scores:
+        word_length_list.append(len(str))
+
+
+    lowest_score = min(word_length_list)
+
+    for str, value in word_list_with_scores:
+        if len(str) == lowest_score:
+            best_word = (str, value)
+            return best_word
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    return best_word
+        
+
+        
+
+
+        # word_list_with_scores.append(word)
+        # word_list_with_scores.append(score)
+
+    
+        
+
+
+        
+    
