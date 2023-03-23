@@ -115,10 +115,6 @@ def score_word(word):
 def get_highest_word_score(word_list):
     #iterate each word in word list, obtaining the scores of each word 
     #compare the scores; take the best word and score to store it in a tuple
-    #make a list holding the scores themselves
-    #remove indices until the greater one remains 
-    #compare the dict[keys] to the remainder in list
-    #if the value and index match, create a tuple that returns the best word with score
     #find the max
     #loop through list to see who has max
     #make a list to put in possible winners
