@@ -5,6 +5,7 @@ from adagrams.game import draw_letters, uses_available_letters, score_word, get_
 def wave_1_run_game():
     display_welcome_message()
     game_continue = True
+    
     while game_continue:
         print("Let's draw 10 letters from the letter pool...")
         letter_bank = draw_letters()
@@ -13,12 +14,13 @@ def wave_1_run_game():
         display_retry_instructions()
         continue_input = input()
         game_continue = continue_input == "y"
-   
+        
     display_goodbye_message()
 
 def wave_2_run_game():
     display_welcome_message()
     game_continue = True
+    
     while game_continue:
         print("Let's draw 10 letters from the letter pool...")
         letter_bank = draw_letters()
@@ -26,19 +28,20 @@ def wave_2_run_game():
         display_game_instructions()
         user_input_word = input()
 
-        while( not uses_available_letters(user_input_word, letter_bank)):
+        while not uses_available_letters(user_input_word, letter_bank):
             display_needs_valid_input_message()
             user_input_word = input()
 
         display_retry_instructions()
         continue_input = input()
         game_continue = continue_input == "y"
-   
+    
     display_goodbye_message()
 
 def wave_3_run_game():
     display_welcome_message()
     game_continue = True
+    
     while game_continue:
         print("Let's draw 10 letters from the letter pool...")
         letter_bank = draw_letters()
@@ -46,7 +49,7 @@ def wave_3_run_game():
         display_game_instructions()
         user_input_word = input()
 
-        while( not uses_available_letters(user_input_word, letter_bank)):
+        while not uses_available_letters(user_input_word, letter_bank):
             display_needs_valid_input_message()
             user_input_word = input()
         
@@ -56,12 +59,14 @@ def wave_3_run_game():
         display_retry_instructions()
         continue_input = input()
         game_continue = continue_input == "y"
+    
     display_goodbye_message()
 
 def wave_4_run_game():
     display_welcome_message()
     game_continue = True
     played_words = []
+    
     while game_continue:
         print("Let's draw 10 letters from the letter pool...")
         letter_bank = draw_letters()
@@ -69,7 +74,7 @@ def wave_4_run_game():
         display_game_instructions()
         user_input_word = input()
 
-        while( not uses_available_letters(user_input_word, letter_bank)):
+        while not uses_available_letters(user_input_word, letter_bank):
             display_needs_valid_input_message()
             user_input_word = input()
         
@@ -80,6 +85,7 @@ def wave_4_run_game():
         display_retry_instructions()
         continue_input = input()
         game_continue = continue_input == "y"
+        
     display_highest_score(get_highest_word_score(played_words))
     display_goodbye_message()
 
