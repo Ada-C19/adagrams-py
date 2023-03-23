@@ -82,7 +82,7 @@ def score_word(word):
 
     score = 0
     if word:
-        word = word.upper()
+        word = word.upper() # make word case insensitive
         if len(word) >= BONUS_POINT_MIN_LENGTH:
             score += BONUS_POINTS
         for letter in word:
