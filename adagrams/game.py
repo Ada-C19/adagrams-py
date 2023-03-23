@@ -1,6 +1,8 @@
 import random
 
-LETTER_POOL = {
+def draw_letters():
+
+    ada_gram = {
     'A': 9, 
     'B': 2, 
     'C': 2, 
@@ -28,20 +30,18 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1
 }
-
-def draw_letters():
-    ada_gram = LETTER_POOL
-    potato = []
+    
+    letter_pool = []
     hand_as_list = []
     
     for k,v in ada_gram.items():
         for i in range(v):
-            potato.append(k)
+            letter_pool.append(k)
 
     while len(hand_as_list) < 10:
-        random_letter = random.choice(potato)
+        random_letter = random.choice(letter_pool)
         hand_as_list.append(random_letter)
-        potato.remove(random_letter)
+        letter_pool.remove(random_letter)
 
     return hand_as_list
 
