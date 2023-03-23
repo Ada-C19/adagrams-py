@@ -1,9 +1,9 @@
 import random
 
 
-"""def draw_letters():
+def draw_letters():
     
-    letters_2   = {
+    letters   = {
     'A': 9, 
     'B': 2, 
     'C': 2, 
@@ -36,16 +36,14 @@ import random
     count = 99
     for i in range(10):
         rand_piece = random.randrange(1, count)
-        key = weighted(letters_2, rand_piece)
+        key = weighted(letters, rand_piece)
         pieces.append(key)
         
-        if letters_2[key] == 0:
-            letters_2.pop(key)
+        if letters[key] == 0:
+            letters.pop(key)
         else:
-            letters_2[key] -= 1
+            letters[key] -= 1
         count -= 1
-    
-    print(pieces)
     return pieces
 
 def weighted(dict,random_piece):
@@ -54,7 +52,7 @@ def weighted(dict,random_piece):
             if random_piece <= 0:
                 #pieces.append(char)
                 return char
-"""
+
 """
 def draw_letters():
     
@@ -99,6 +97,7 @@ def draw_letters():
     return pieces
 
 """ 
+"""
 def draw_letters():
     rand_letters =[]
     letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 
@@ -120,7 +119,7 @@ def draw_letters():
         rand_letters.append(rand_piece[0])
 
     return rand_letters
-
+"""
 def uses_available_letters(word, letter_bank):
     # check if they can use the word they inputted
     new_letter_bank = []
@@ -149,6 +148,7 @@ def score_word(word):
         for val in values.keys():
             if letter.upper() in val:
               sum += values.get(val)
+              continue
     return sum
 
 
