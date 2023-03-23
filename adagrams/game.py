@@ -146,6 +146,10 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
     word_score = {}
+
+    if word == "":
+       word_score["empty"] = 0
+
     for letter in word:
        if letter in SCORE_CHART:
           word_score[letter] = SCORE_CHART[letter]
