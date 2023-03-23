@@ -105,7 +105,7 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    """his function looks at the list of word_list and calculates
+    """This function looks at the list of word_list and calculates
     which of these words has the highest score, applies any tie-breaking logic,
     and returns the winning word in a tuple
 
