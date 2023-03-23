@@ -1,5 +1,5 @@
 def draw_letters():
-    pass
+    return ["a", "b", "c","a", "b", "c","a", "b", "c","d"]
 
 def uses_available_letters(word, letter_bank):
     pass
