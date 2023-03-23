@@ -64,20 +64,10 @@ def uses_available_letters(word, letter_bank):
             result = True
         else:
             result = False
-    #Counts + compares to the letter bank
-    #if word.count(char) > letter_bank.count(char):
-        #return False
     return result
 
 def score_word(word):
     score = 0
-    #Setting lists for letters + points
-    #one_point = ["A","E","I","O","U","L","N","R","S","T"]
-    #two_pts = ["D","G"]
-    #three_pts = ["B","C","M","P"]
-    #four_pts = ["F","H","V","W","Y"]
-    #eight_pts = ["J","X"]
-    #ten_pts = ["Q","Z"]
     #Making sure words evaluated are uppercase
     word = word.upper()
     #Loop through each letter + add to get each score
