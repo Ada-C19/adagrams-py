@@ -47,7 +47,28 @@ def draw_letters():
     return letters_list
 
 def uses_available_letters(word, letter_bank):
-    pass
+    upper_case_word = word.upper()
+    letter_count = {}
+  # key is letter, value is # of times letter is present
+    for letter in letter_bank:
+        if letter in letter_count:
+            letter_count[letter] += 1
+        else:
+            letter_count[letter] = 1
+
+        # letter_count = {'A': 2, 'X': 8}
+
+
+    # in for loop, check if we have enough available letters 
+    for letter in upper_case_word:
+        if letter not in letter_bank or letter_count[letter] == 0:
+            return False
+        elif letter in letter_bank:
+            letter_count[letter] -= 1
+        
+    return True
+
+
 
 def score_word(word):
     pass
