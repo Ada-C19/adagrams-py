@@ -49,7 +49,28 @@ def draw_letters():
     return hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    quantity_available = {}
+    validate_enough_available = {}
+    upper_word = word.upper()
+
+    #Creating a dict to hold the quantity available for each letter
+    for letter in letter_bank:
+        available_count = letter_bank.count(letter)
+        quantity_available[letter] = available_count
+    #Validating if there is enough quantity available per letter & storing in another dict
+    for character in upper_word:
+        amount_needed_for_word = upper_word.count(character)
+        if character in quantity_available and (amount_needed_for_word <= quantity_available[character]):
+            validate_enough_available[character] = True
+        else:
+            validate_enough_available[character] = False
+    #Returning True or False if there is sufficent letters available to form word    
+    if False in validate_enough_available.values():
+        return False
+    else:
+        return True
+  
+  
 
 def score_word(word):
     pass
