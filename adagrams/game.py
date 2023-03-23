@@ -94,7 +94,7 @@ def get_highest_word_score(word_list):
         if this_word_score > top_word_score:
             winning_word = word
             top_word_score = this_word_score
-        if this_word_score == top_word_score:
+        elif this_word_score == top_word_score:
             if len(word) == 10 and len(winning_word) != 10:
                 winning_word = word
                 top_word_score = this_word_score
