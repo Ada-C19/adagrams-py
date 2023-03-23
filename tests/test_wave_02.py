@@ -2,6 +2,8 @@ import pytest
 
 from adagrams.game import uses_available_letters
 
+
+#@pytest.mark.skip()
 def test_uses_available_letters_true_word_in_letter_bank():
     # Arrange
     letters = ["D", "O", "G", "X", "X", "X", "X", "X", "X", "X"]
@@ -13,6 +15,8 @@ def test_uses_available_letters_true_word_in_letter_bank():
     # Assert
     assert is_valid == True
 
+
+#@pytest.mark.skip()
 def test_uses_available_letters_false_word_in_letter_bank():
     # Arrange
     letters = ["D", "O", "X", "X", "X", "X", "X", "X", "X", "X"]
@@ -24,6 +28,8 @@ def test_uses_available_letters_false_word_in_letter_bank():
     # Assert
     assert is_valid == False
 
+
+#@pytest.mark.skip()
 def test_uses_available_letters_false_word_overuses_letter():
     # Arrange
     letters = ["A", "X", "X", "X", "X", "X", "X", "X", "X", "X"]
@@ -35,6 +41,8 @@ def test_uses_available_letters_false_word_overuses_letter():
     # Assert
     assert is_valid == False
 
+
+#@pytest.mark.skip()
 def test_uses_available_letters_does_not_change_letter_bank():
     # Arrange
     letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
@@ -48,6 +56,8 @@ def test_uses_available_letters_does_not_change_letter_bank():
     assert is_valid == True
     assert letters == letters_copy
 
+    
+#@pytest.mark.skip()
 def test_uses_available_letters_ignores_case():
     # Arrange
     letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
