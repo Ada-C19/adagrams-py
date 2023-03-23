@@ -28,6 +28,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
+
 def draw_letters():
     letter_pool_list = ('A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 
         'B', 'B', 
@@ -55,6 +56,7 @@ def draw_letters():
         'X', 
         'Y', 'Y', 
         'Z')
+    
     draw_letters = []
     
     
@@ -133,16 +135,7 @@ def score_word(word):
     
 
 def get_highest_word_score(word_list):
-    # for word in word_list, call score_word(word) function?
-    #create an empty tuple and append above to tuple or dict?
-    #create a highest word tuple that pulls in the word with the highest score?
-    #tie breaking rules: if word in word_list dict/tuple value is the highest and the same as another word,
-    #if len of one word is 10 choose that word else choose the word with shortest len
-    #if word_score of two words is equal and neither word is 10 letters choose the shorterst len
-    #If multiple words have the same score and the same length, pick the first on in the list
-    #tuple(dict.keys()to get the key which will be the word,dict[key] to get the value which will be the score)
-    #Get max value using max(dict_name)
-    #pull all keys with that value to implement tie breaker rules
+    
 
     word_list_dict = {}
     max_word_list = []
