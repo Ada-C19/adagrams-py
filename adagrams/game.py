@@ -41,6 +41,7 @@ def draw_letters():
          temp = [letter] * LETTER_POOL[letter]
          letter_pool_list.extend(temp)
 
+    #build the player's hand (letters)
     letters = []
     while len(letters) < MAX_LETTERS_IN_HAND:
         # choose a random letter from a list of LETTER_POOL keys using random.choice
@@ -69,8 +70,6 @@ def score_word(word):
     # bonus points to be awarded for words that meet the bonus minimum length:
     BONUS_POINTS = 8
 
-    word = word.upper()
-
     letter_values = {
         'AEIOULNRST': 1,
         'DG': 2,
@@ -83,6 +82,7 @@ def score_word(word):
 
     score = 0
     if word:
+        word = word.upper()
         if len(word) >= BONUS_POINT_MIN_LENGTH:
             score += BONUS_POINTS
         for letter in word:
