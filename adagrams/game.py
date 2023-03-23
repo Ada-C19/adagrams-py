@@ -1,6 +1,5 @@
 import random
 
-#in letter out qty
 letter_bank = {
 "A" : 9,	
 "B" : 2,
@@ -30,12 +29,11 @@ letter_bank = {
 }
 
 def draw_letters():
-    #each letter in the list appears as many times as its value 
+    
     letters = []
-    #count/value - how many the letter should appear
-    #letter/key
+    
     for letter, count in letter_bank.items():
-        #adds to end by amount of value
+       
         letters.extend([letter] * count)
     random.shuffle(letters)
     hand = letters[:10]
@@ -46,14 +44,12 @@ print(draw_letters())
 def uses_available_letters(word, letter_bank):
    
     word = word.upper()
-    #create a copy of the letter bank so that we can modify it
+    
     letter_bank_copy = list(letter_bank)
-    #loop over each letter in the word
+    
     for letter in word:
-        #if the letter is not in letter bank, return False
         if letter not in letter_bank_copy:
             return False
-        #if the letter is in letter bank, remove it from copy
         letter_bank_copy.remove(letter)
 
     return True
@@ -86,44 +82,26 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
 
-    #initialize info 
+    #word_list is a list of strings ['','','']
     highest_score = 0
-    winning_word = ""
+    best_word = ""
     
-    #loop through each word in the list
     for word in word_list:
         score = score_word(word)
         
-        #if word has a higher score than highest score, update the variables
         if score > highest_score:
             highest_score = score
-            winning_word = word
+            best_word = word
         
         #if tie in scores, follow tie-breaking rules
-        """
         elif score == highest_score:
             #if the current word is shorter than winning word, set it as new winning word
-            if word length is < word...?
-                winning_word = word
+            if len(word) < best_word:
+                best_word = word
             #if the current word has 10 letters, set it as new winning word
-            if word == 10, length
-                winning_word = word
-        """
+            elif len(word) == 10:
+                best_word = word
+
     #return a tuple of winning word and its score
-    return (winning_word, highest_score)
+    return (best_word, highest_score)
 
-
-    """
-
-    return a tuple with data or winning word and score
-    * The tuple must contain the following elements:
-    * index 0 ([0]): a string of a word
-    * index 1 ([1]): the score of that word
-
-    incase of tie
-    prefer word with fewest letters
-    unless word is 10 letters long
-    if multiple score on same list are same, pick first
-    
-    """
-    pass
