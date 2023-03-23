@@ -48,7 +48,7 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    """ docstring """
+    """take word input and compare to letter bank."""
     letter_bank_copy = letter_bank.copy()
     letter_bank_case = [element.upper() for element in letter_bank_copy]
 
@@ -61,12 +61,28 @@ def uses_available_letters(word, letter_bank):
 
     return True
 
-# print(uses_available_letters(word, letter_bank))
-
-
 def score_word(word):
-    """ doc string """
-    pass
+    """assign a point value to the input word"""
+    letter_value = {
+        1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+        2: ['D', 'G'],
+        3: ['B', 'C', 'M', 'P'],
+        4: ['F', 'H', 'V', 'W', 'Y'],
+        5: ['K'],
+        8: ['J', 'X'],
+        10: ['Q', 'Z']
+    }
+
+    current_score = 0
+    for letter in word:
+        letter = letter.upper()
+        for key, val in letter_value.items():
+            if letter in val:
+                current_score += key
+    if 6 < len(word) < 10:
+        current_score += 8
+
+    return current_score
 
 
 def get_highest_word_score(word_list):
