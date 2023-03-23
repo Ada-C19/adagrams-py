@@ -31,6 +31,7 @@ def draw_letters():
     }
 
     hand = []
+
     while len(hand) < 10:
         letter = random.choice(list(letter_pool))
         if letter_pool[letter] > 0:
@@ -41,6 +42,7 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     letters_copy = letter_bank.copy()
+
     for letter in word:
         if letter.upper() in letters_copy:
             letters_copy.remove(letter.upper())
@@ -80,34 +82,34 @@ def score_word(word):
     }
 
     score = 0
-    for char in word:
-        score += SCORE_CHART[char.upper()]
+    for letter in word:
+        score += SCORE_CHART[letter.upper()]
+
     if 7 <= len(word) <= 10:
         score += 8
+
     return score
 
 def get_highest_word_score(word_list):
     winning_word = ""
     first_ten_letter_word = ""
     highest_score = 0
-    for word in word_list:
-        if len(word) == 10:
-            first_ten_letter_word = word
-            break
 
     for word in word_list:
         score = score_word(word)
         if score > highest_score:
             highest_score = score
             winning_word = word
-        if score == highest_score and len(word) < len(winning_word):
+        elif score == highest_score and len(word) < len(winning_word):
             winning_word = word
-        if score >= highest_score and len(word) == 10:
+        elif score >= highest_score and len(word) == 10:
             highest_score = score
             winning_word = word
-            
-    if first_ten_letter_word:
-        winning_word = first_ten_letter_word
-        
 
+    for word in word_list:
+        if len(word) == 10:
+            first_ten_letter_word = word
+            winning_word = first_ten_letter_word
+            break
+        
     return winning_word, highest_score
