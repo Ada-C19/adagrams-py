@@ -28,7 +28,7 @@ LETTER_POOL = {
     'Z' : 1
 }
 def draw_letters():
-    # Create a list of keys from the LETTER_POOL and set it to the new variable "letters"
+    # Create a list of keys from the LETTER_POOL dictionary and set it to the new variable "letters"
     letters = list(LETTER_POOL.keys())   
     # Once all the letters are added to the letters list, the list is shuffled
     random.shuffle(letters)
@@ -36,10 +36,11 @@ def draw_letters():
     return letters[:10]
 
 def uses_available_letters(word, letter_bank):
-    # Could also use copy.deepcopy() to create deep copy of letter_bank, but I dont think thats necessary
+    # Could also use copy.deepcopy() to create deep copy of letter_bank, but slicing works for this 
     letterbank_copy = letter_bank[:]
     # Loop through all the letters in the word, .upper() returns a string where all characters are in upper case
     for letter in word.upper():
+        # If letter is not in the word
         if letter not in letterbank_copy:
             return False
         else:
