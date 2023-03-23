@@ -85,24 +85,27 @@ def score_word(word):
         score += 8
     return score
 
-def get_highest_word_score(word_list):
+def sort_list_by_score(word_list):
     score_list = []
-    high_score = 0
-    potential_winners = []
-    winning_word = ''
     for word in word_list:
         wscore = score_word(word)
         score_list.append((word,wscore))
     ordered_list = sorted(score_list, key=lambda word_pair: word_pair[1], reverse = True)
+    return ordered_list
+
+def get_highest_word_score(word_list):
+    high_score = 0
+    potential_winners = []
+    winning_word = ''
     
-    for pair in ordered_list:
+    for pair in sort_list_by_score(word_list):
         if pair[1] >= high_score:
             high_score = pair[1]
             potential_winners.append(pair)
-    if len(potential_winners) ==1:
+    if len(potential_winners) == 1:
         winning_word = potential_winners[0]
+
     for candidate in potential_winners:
-                
         if len(candidate[0]) == 10:
             winning_word=candidate
             break
