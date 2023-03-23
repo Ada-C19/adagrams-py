@@ -56,9 +56,31 @@ def uses_available_letters(word, letter_bank):
                 return False
         return True
 
-# ******* TEST 3 **********
 def score_word(word):
-    pass
 
+    score_chart = {
+    **dict.fromkeys(["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"], 1),
+    **dict.fromkeys(["D", "G"], 2),
+    **dict.fromkeys(["B", "C", "M", "P"], 3),
+    **dict.fromkeys(["F", "H", "V", "W", "Y"], 4),
+    **dict.fromkeys(["K"], 5),
+    **dict.fromkeys(["J", "X"], 8),
+    **dict.fromkeys(["Q", "Z"], 10),
+    **dict.fromkeys([""], 0)
+    }
+
+    word = word.upper()
+    total_score = 0
+    for letter in word:
+        if word == "":
+            return False
+        else:
+            total_score += score_chart[letter]
+    if 7 <= len(word) <= 10:
+        total_score += 8
+    return total_score
+
+
+# ******* TEST 4 **********
 def get_highest_word_score(word_list):
     pass
