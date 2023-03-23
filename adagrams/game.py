@@ -31,11 +31,11 @@ LETTER_POOL = {
     'Z': 1
 }
 
+
 def draw_letters():
     """Build a hand of 10 letters for the user"""
     letter_pool_copy = LETTER_POOL.copy()
     letters = []
-
 
     while len(letters) < 10:
         letter_key = random.choice(list(letter_pool_copy.keys()))
@@ -46,20 +46,16 @@ def draw_letters():
 
     return letters
 
-# word = "doNkey"
-# word = "eele"
-# word = "men"
-
-# letter_bank = ['d', 'o', 'k', 'n', 'e', 'e', 'y', 'a']
 
 def uses_available_letters(word, letter_bank):
     """ docstring """
     letter_bank_copy = letter_bank.copy()
-    
-    for letter in word:
-        if letter in letter_bank_copy:
-            letter_bank_copy.remove(letter)
-            # print(letter_bank_copy)
+    letter_bank_case = [element.upper() for element in letter_bank_copy]
+
+    for letter in word.upper():
+        letter.upper()
+        if letter in letter_bank_case:
+            letter_bank_case.remove(letter)
         else:
             return False
 
@@ -67,9 +63,11 @@ def uses_available_letters(word, letter_bank):
 
 # print(uses_available_letters(word, letter_bank))
 
+
 def score_word(word):
     """ doc string """
     pass
+
 
 def get_highest_word_score(word_list):
     """ doc string """
