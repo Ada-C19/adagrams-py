@@ -1,3 +1,4 @@
+
 import pytest
 
 from adagrams.game import draw_letters
