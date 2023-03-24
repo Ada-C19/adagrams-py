@@ -137,11 +137,12 @@ def get_highest_word_score(word_list):
     if len(words_to_compare) == 1:
         return words_to_compare[0], highest_score
     
+    # If there's a tie, let's compare the words 
     current_winner = words_to_compare[0]
-    # If there's a tie, the first word to have ten letters wins
+    # The first word to have ten letters wins
     if len(current_winner) == 10:
         return current_winner, highest_score
-    for index in range(len(words_to_compare)):
+    for index in range(1, len(words_to_compare)):
         comparator = words_to_compare[index]
         if len(comparator) == 10:
             return comparator, highest_score
