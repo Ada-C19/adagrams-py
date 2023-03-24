@@ -42,9 +42,11 @@ def draw_letters():
     # adding letters to the drawn_letters(the array to be returned) as strings. random.choices nests each element so to access just the letters I'm using [0]
     while counter < 10:
         random_letter = random.choices(letters, weights=probability,k=1)[0]
-        # if the letter already exists, skip iteration for no dupes. else continue on until there are 10 letters
+        # if the letter exists more than 3 times, skip the letter
         if random_letter in drawn_letters:
-            continue
+            letter_count = drawn_letters.count(random_letter)
+            if letter_count > 3:
+                continue
         else:
             drawn_letters.append(random_letter)
             counter += 1
