@@ -1,5 +1,5 @@
 import random
-
+# ?What is your time complexity?
 def draw_letters():
 
     ada_gram = {
@@ -33,7 +33,7 @@ def draw_letters():
     
     letter_pool = []
     hand_as_list = []
-    
+    # should this be skipped and the data structure begin in list format?
     for k,v in ada_gram.items():
         for i in range(v):
             letter_pool.append(k)
@@ -46,12 +46,12 @@ def draw_letters():
     return hand_as_list
 
 
-
 def uses_available_letters(word, letter_bank):
     letter_list = []
-    for letters in letter_bank:
-        letter_list.append(letters)
 
+    for char in letter_bank:
+        letter_list.append(char)
+    
     for letter in word:
         upper_letter = letter.upper()
         if upper_letter in letter_list:
@@ -60,6 +60,7 @@ def uses_available_letters(word, letter_bank):
             return False
     return True
 
+# ?What is your time complexity#
 def score_word(word):
 
     score_chart = {
@@ -73,7 +74,7 @@ def score_word(word):
     }
 
     score =  0
-
+    
     for k,v in score_chart.items():
         for letter in word:
             if letter.upper() in v:
@@ -83,7 +84,7 @@ def score_word(word):
         score += 8
 
     return score
-
+# ?what is the time complexity?
 def get_highest_word_score(word_list):
     winning_score = 0
     winning_word = ""
@@ -93,11 +94,11 @@ def get_highest_word_score(word_list):
         if score > winning_score:
             winning_score = score
             winning_word = word
-
+        # could you add an and statment here???
         elif score == winning_score:
             if len(word) == 10 and len(winning_word) != 10:
                 winning_word = word 
-            elif len(winning_word) == 10 and len(word) != 10:
+            elif len(word) != 10 and len(winning_word) == 10:
                 winning_word = winning_word
             elif len(word) < len(winning_word):
                 winning_word = word
