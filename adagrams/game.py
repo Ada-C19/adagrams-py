@@ -109,9 +109,8 @@ def get_highest_word_score(word_list):
       word_score = score_word(word)
       player_scores[word] = word_score
 
-    highest_score = max(player_scores.values())
-
     for key, value in player_scores.items():
+      highest_score = max(player_scores.values())
       if value >= highest_score:
         top_players.append((key, value))
 
