@@ -30,17 +30,12 @@ LETTER_POOL = {
 }
 
 
-
-
 def draw_letters():
     hand = []
-    #Create copy of LETTER_POOL dict to modify without changing original
     copy_letter_pool = LETTER_POOL.copy()
 
     while len(hand) < 10:
-      #Using random.choices to select a random letter after converting the copy to a list & utitlizing the weighted feature to get the weighted possibility of each letter from dict.values() & setting our population sample to 1. 
       random_letter = random.choices(list(copy_letter_pool), weights = copy_letter_pool.values(), k=1)
-      #random.choices returns a list, so must index into list to retrieve the value of the random letter
       str_random_letter = random_letter[0]
       
       if copy_letter_pool[str_random_letter] > 0:
@@ -51,20 +46,18 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     quantity_available = {}
     validate_enough_available = {}
-    upper_word = word.upper()
 
-    #Creating a dict to hold the quantity available for each letter
     for letter in letter_bank:
         available_count = letter_bank.count(letter)
         quantity_available[letter] = available_count
-    #Validating if there is enough quantity available per letter & storing in another dict
-    for character in upper_word:
-        amount_needed_for_word = upper_word.count(character)
+
+    for character in word.upper():
+        amount_needed_for_word = (word.upper()).count(character)
         if character in quantity_available and (amount_needed_for_word <= quantity_available[character]):
             validate_enough_available[character] = True
         else:
             validate_enough_available[character] = False
-    #Returning True or False if there is sufficent letters available to form word    
+  
     if False in validate_enough_available.values():
         return False
     else:
@@ -108,7 +101,6 @@ def score_word(word):
         score += 8
     return score
 
-
 def get_highest_word_score(word_list):
     player_scores = {}
     top_players = []
@@ -123,7 +115,6 @@ def get_highest_word_score(word_list):
       if value >= highest_score:
         top_players.append((key, value))
 
-      
     winner = top_players[0]
 
     for word, score in top_players:
