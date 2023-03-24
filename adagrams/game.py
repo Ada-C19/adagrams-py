@@ -71,15 +71,24 @@ def draw_letters():
     for sublist in temp_list:
         for letter in sublist:
             LETTER_POOL_LIST.append(letter)
-    #print(LETTER_POOL_LIST)
 
     # Chooses 10 random letters as hand, excluding the ones that are already chosen.
-    hand = random.sample(LETTER_POOL_LIST, 10)
+    #hand = random.sample(LETTER_POOL_LIST, 10)
+
+    hand = []
+    while len(hand) < 10:
+        random_letter = random.choice(LETTER_POOL_LIST)
+        random_letter_index = LETTER_POOL_LIST.index(random_letter)
+        LETTER_POOL_LIST.pop(random_letter_index)
+        # print(random_letter)
+        # print(random_letter_index)
+        hand.append(random_letter)
 
     #print(hand)
+    #print(LETTER_POOL_LIST)
     return hand
 
-#draw_letters()
+draw_letters()
      
 def uses_available_letters(word, letter_bank):       
     word_verification = []
