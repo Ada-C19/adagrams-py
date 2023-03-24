@@ -93,7 +93,6 @@ def get_highest_word_score(word_list):
     top_scoring_words = [word for word in word_list if score_word(word) == top_score]
     longest_word = max(top_scoring_words, key=len)
     shortest_word = min(top_scoring_words, key=len)
-    list_of_shortest_words = [word for word in word_list if len(word) == len(shortest_word)]
 
     # if there's only one word with the highest score
     if len(top_scoring_words) == 1:
@@ -107,7 +106,9 @@ def get_highest_word_score(word_list):
         
         # otherwise, choose the first, shortest word
         else:
-            return list_of_shortest_words[0], top_score
+            for word in word_list:
+                if len(word) == len(shortest_word):
+                    return word, top_score
 
         
         
