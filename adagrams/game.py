@@ -80,12 +80,8 @@ def draw_letters():
         random_letter = random.choice(LETTER_POOL_LIST)
         random_letter_index = LETTER_POOL_LIST.index(random_letter)
         LETTER_POOL_LIST.pop(random_letter_index)
-        # print(random_letter)
-        # print(random_letter_index)
         hand.append(random_letter)
 
-    #print(hand)
-    #print(LETTER_POOL_LIST)
     return hand
 
 draw_letters()
@@ -101,30 +97,23 @@ def uses_available_letters(word, letter_bank):
         if letter not in hand_letter_count:
             count = 1
             hand_letter_count[letter] = count
-            #print(hand_letter_count)
         else: 
             count += 1
             hand_letter_count[letter] = count
-            #print(hand_letter_count)
       
     for letter in capitalized_word:
         letter_quantity = capitalized_word.count(letter)
         word_letter_count[letter] = letter_quantity
-        #print(word_letter_count)
 
         if letter in letter_bank and word_letter_count[letter] <= hand_letter_count[letter]:
             word_verification.append("True")
-            #print(word_verification)
         else:
             word_verification.append("False")
-            #print(word_verification)
       
     if "False" in word_verification:
         return False
-        #print("False")
     else:
         return True
-        #print("True")
       
 
 def score_word(word):
@@ -139,7 +128,6 @@ def score_word(word):
                 word_score[letter] = SCORE_CHART[letter]
             else:
                 word_score[letter] += SCORE_CHART[letter]
-    #print(word_score)
 
     if 7 <= len(word) <= 10:
         word_score["bonus"] = 8
@@ -155,35 +143,28 @@ def get_highest_word_score(word_list):
     for word in word_list:
         score = score_word(word)
         score_dict[word] = score
-    #print(f"score dictionary: {score_dict}")
 
     for word, score in score_dict.items():
         score_list.append(score)
-        #print(score_list)
         if score > highest_score:
             highest_score = score
             winning_word = word
     
     matching_scores = [k for k,v in Counter(score_list).items() if v>1]
-    #print(matching_scores)
 
     for word, score in score_dict.items():
         if score in matching_scores:
             matching_scores_dict[word] = score
-    #print(matching_scores_dict)
 
     for word, score in matching_scores_dict.items():
         if score == highest_score and len(word) == 10:
             highest_score = score
             winning_word = word
-            #print(winning_word)
             break
         elif score == highest_score and len(word) < len(winning_word):
             highest_score = score
             winning_word = word
-            #print(winning_word)
             break
         
     best_word = (winning_word, highest_score)
-    #print(best_word)
     return best_word
