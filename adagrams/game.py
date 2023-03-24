@@ -30,10 +30,14 @@ def draw_letters():
         'Y': 2, 
         'Z': 1
     }
-
+    
+    # initiate draw_letters to record and return drawn random letters
+    # initiate letter_freq to check the frequency of drawn out random letters
     draw_letters_list = []
     letter_freq = {}
     
+    # create random letter picking from letter poll
+    # only append letters that are no bigger than letter poll frequency
     while len(draw_letters_list) < 10:
         cur_random_letter = random.choice(list(LETTER_POOL.keys()))
         if cur_random_letter in letter_freq.keys():
@@ -47,12 +51,17 @@ def draw_letters():
     return draw_letters_list
 
 def uses_available_letters(word, letter_bank):
+    
+    # check each letter's frequency and record in letter_band_freq
     letter_bank_freq = {}
     for letter in letter_bank:
         if letter in letter_bank_freq:
             letter_bank_freq[letter] += 1
         else:
             letter_bank_freq[letter] = 1
+
+    # check if every letter or its lower-case form in word existed in letter_bank 
+    # also check the occurance of each letter not bigger than its letter_bank      
     for letter in word:
         if letter and letter.upper() not in letter_bank:
             return False
@@ -69,6 +78,8 @@ def uses_available_letters(word, letter_bank):
     
 
 def score_word(word):
+
+    # based on scire chart to create score_dic with each letter's score
     score_dic = {}
     score_dic[1] = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T" ]
     score_dic[2] = ["D", "G" ]
@@ -78,28 +89,38 @@ def score_word(word):
     score_dic[8] = ["J","X"]
     score_dic[10] = ["Q","Z"]
 
+    # check if each letter of word existed in score_word and get its score accordingly
     score_sum = 0
     for letter in word:
         for key, value in score_dic.items():
             if letter in value or letter.upper() in value:
                 score_sum += key
+
+    # if the length of word is between 7 to 10, add 8 to sum
     if 7 <= len(word) and len(word) <= 10:
         score_sum += 8
+
     return score_sum
 
 def get_highest_word_score(word_list):
+
     highest_score = 0
     highest_letter = ""
+
+    # iterate word_list to update highest_score and highest_letter
     for word in word_list:
         cur_score = score_word(word)
         if cur_score > highest_score:
             highest_score = cur_score
             highest_letter = word
         elif cur_score == highest_score:
+              # when two letters' scores are tied, return the first one
             if len(highest_letter) == 10 and len(word) == 10:
                 continue
+            # when two letters' scores are tied, return the one with 10 letters
             elif len(word) == 10:
                 highest_letter = word
+            # when two letters' scores are tied and both length are not 10, return shorter one
             elif len(highest_letter) != 10 and len(word) < len(highest_letter):
                 highest_letter = word
 
