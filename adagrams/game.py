@@ -45,7 +45,7 @@ def draw_letters():
         # if the letter exists more than 3 times, skip the letter
         if random_letter in drawn_letters:
             letter_count = drawn_letters.count(random_letter)
-            if letter_count > 3:
+            if letter_count >= 3:
                 continue
         else:
             drawn_letters.append(random_letter)
