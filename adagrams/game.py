@@ -120,8 +120,18 @@ def get_highest_word_score(word_list):
     #  if word has lengh of 10 WINNER else shortest word wins
     # return word n score
     shortest_word = min(tied_scores, key=len)
+    winner = None
+    for i in tied_scores:
+        if len(i) == 10:
+            return i, highest_score
+        else:
+            if winner is None or len(i) < len(winner):
+                winner = i
+
+    
+
     print(shortest_word)
-    return shortest_word, highest_score
+    return winner, highest_score
 
 
 
