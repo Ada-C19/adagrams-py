@@ -1,4 +1,5 @@
 import random
+from collections import Counter
 
 LETTER_POOL = {
   'A': 9,
@@ -136,6 +137,8 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     score_dict = {}
+    score_list = []
+    matching_scores_dict = {}
     highest_score = 0
 
     for word in word_list:
@@ -144,12 +147,26 @@ def get_highest_word_score(word_list):
     #print(f"score dictionary: {score_dict}")
 
     for word, score in score_dict.items():
+        score_list.append(score)
+        #print(score_list)
         if score > highest_score:
             highest_score = score
             winning_word = word
-    #print(winning_word)
-    #print(highest_score)
+    
+    matching_scores = [k for k,v in Counter(score_list).items() if v>1]
+    #print(matching_scores)
 
+    for word, score in score_dict.items():
+        if score in matching_scores:
+            matching_scores_dict[word] = score
+    #print(matching_scores_dict)
+
+    for word, score in matching_scores_dict.items():
+        if score == highest_score and len(word) < len(winning_word):
+            highest_score = score
+            winning_word = word
+            break
+        
     best_word = (winning_word, highest_score)
     #print(best_word)
     return best_word
