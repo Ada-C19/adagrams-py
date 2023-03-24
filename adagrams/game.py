@@ -39,18 +39,17 @@ def draw_letters():
     hand = letters[:10]
     return hand
 
-print(draw_letters())
 
 def uses_available_letters(word, letter_bank):
    
     word = word.upper()
     
-    letter_bank_copy = list(letter_bank)#not necessary
+    letter_bank_copy = list(letter_bank)
     
     for letter in word:
         if letter not in letter_bank_copy:
             return False
-        letter_bank_copy.remove(letter)# not nessecary
+        letter_bank_copy.remove(letter)
 
     return True
 
@@ -100,7 +99,7 @@ def get_highest_word_score(word_list):
     word_scores = [(score_word(word), word) for word in word_list]
     max_score = max(word_scores)[0]
     max_words = [word for score, word in word_scores if score == max_score]
-    
+
     if len(max_words) == 1:
         return max_words[0], max_score
     else:
