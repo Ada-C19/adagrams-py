@@ -124,7 +124,41 @@ def get_highest_word_score(word_list):
     output: word string, and score of word (tuple) 
     """
 
-    # USE DICT INSTEAD!!!!
+    word_and_point_value_dict = {}
+
+
+    # iterating through each element in word_list 
+    for element in word_list:
+        word_and_point_value_dict[element] = score_word(element)
+
+    # gets highest scoring word
+    highest_score = max(word_and_point_value_dict.values())
+    print(highest_score)
+
+    # gets word with the highest score
+    word_with_highest_score = max(word_and_point_value_dict, key=word_and_point_value_dict.get)
+    print(word_with_highest_score)
+    
+
+    return tuple([word_with_highest_score, highest_score])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     list_of_scores = []
 
     for element in word_list:
