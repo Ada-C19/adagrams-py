@@ -55,19 +55,20 @@ def draw_letters():
 
     return hand
 
-
-def uses_available_letters(word, letter_bank):
-    #Create dict of hand with letter as key and count as value
-    letter_dict = {}
-    for letter in letter_bank:
-        letter = letter.upper()
-        letter_dict[letter] = letter_dict.get(letter, 0) + 1
-
-    #Create dict of word with letter as key and count as value
+def word_to_dict(word):
     word_dict = {}
     for i in range(len(word)):
         letter = word[i].upper()
         word_dict[letter] = word_dict.get(letter, 0) + 1
+
+    return word_dict
+
+def uses_available_letters(word, letter_bank):
+    #Create dicts of hand and current word
+    letter_bank_word = "".join(letter_bank)
+    letter_dict = word_to_dict(letter_bank_word)
+    
+    word_dict = word_to_dict(word)
 
     #Compare to verify word letters are in bank AND there aren't too many
     for letter, count in word_dict.items():
