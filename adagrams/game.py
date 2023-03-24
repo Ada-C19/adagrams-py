@@ -58,46 +58,65 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
+    # Calculate the score for each word in the word_list and store them as tuples
     word_scores = [(word, score_word(word)) for word in word_list]
+    
+    # Initialize the highest_word variable with the first word and its score
     highest_word = word_scores[0]
 
+    # Iterate through the rest of the word_scores list (skipping the first element)
     for word, score in word_scores[1:]:
+        # Check if the current word has a higher score than the highest_word
         if score > highest_word[1] or (
+            # If the scores are equal, apply tie-breaking rules:
             score == highest_word[1] and (
+                # If the current word has 10 letters and the highest_word doesn't, choose the current word
                 (len(word) == 10 and len(highest_word[0]) != 10) or
+                # If neither word has 10 letters, choose the word with fewer letters
                 (len(highest_word[0]) != 10 and len(word) < len(highest_word[0]))
             )
         ):
-            highest_word = (word, score)
+            # Update the highest_word with the current word and its score
+                    highest_word = (word, score)
+        # If the scores are equal and the word lengths are also equal, use the order in the supplied list
         elif score == highest_word[1] and len(word) == len(highest_word[0]):
-            if word_list.index(word) < word_list.index(highest_word[0]):
-                highest_word = (word, score)
+            # Check the index of the current word and highest_word in the original list
+            # If the index of the current word is lower, update highest_word with the current word and its score
+            highest_word = (word_list.index(word) < word_list.index(highest_word[0])) and (word, score) or highest_word
 
+    # Return the highest_word tuple containing the winning word and its score
     return highest_word
 
-
-
-
-
-
 def play_game():
+    # Initialize an empty list to store all the words played
     all_words = []
 
+    # Play 4 rounds of the game
     for i in range(4):
+        # Draw a new hand of 10 letters
         hand = draw_letters()
+        # Print the current hand
         print(f"Hand {i + 1}: {hand}")
 
+        # Ask the user to input a word using the available letters
         word = input("Enter a word using the available letters: ")
 
+        # Check if the input word is valid using the available letters
         if uses_available_letters(word, hand):
+            # Calculate the score of the input word
             score = score_word(word)
+            # Print the valid word and its score
             print(f"The word '{word}' is valid and has a score of {score}.")
+            # Add the valid word to the list of all_words
             all_words.append(word)
         else:
+            # Print an error message if the input word is not valid
             print(f"The word '{word}' is not valid.")
-    
+
+    # Calculate the highest scoring word and its score
     result = get_highest_word_score(all_words)
     if result:
+        # result tuple into highest_word and highest_score variables
         highest_word, highest_score = result
         print(f"The highest scoring word is '{highest_word}' with a score of {highest_score}.")
 if __name__ == "__main__":
