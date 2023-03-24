@@ -120,11 +120,11 @@ def get_highest_word_score(word_list):
     for word in word_list:
         score = score_word(word.strip())
         if score > highest_score:
-            highest_word, highest_score = word, score
+            highest_word, highest_score = word.strip(), score
         elif score == highest_score:
             if len(highest_word) == 10:
                 continue
             elif len(word.strip()) == 10 or len(word.strip()) < len(highest_word):
-                highest_word, highest_score = word, score
+                highest_word, highest_score = word.strip(), score
 
     return highest_word, highest_score
