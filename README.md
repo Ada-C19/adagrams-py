@@ -9,6 +9,8 @@
 
 ## Goal
 
+# Adding my name: Divya Naidoo
+
 An [anagram](https://en.wikipedia.org/wiki/Anagram) is a word or phrase formed by rearranging the letters of a different word or phrase. In this project you will be creating _Adagrams_, a game in which a player is given a random set of letters and must make an anagram using those letters.  Each submitted word will score points.
 
 While working on _Adagrams_, it may help to think of a physical metaphor for this game, such as other common word games like _Scrabble_ or _Bananagrams_. These games all feature a _pool_ of letter _tiles_ that the player _draws_ from.
