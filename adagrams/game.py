@@ -80,7 +80,52 @@ def score_word(word):
         total_score += 8
     return total_score
 
-
-# ******* TEST 4 **********
 def get_highest_word_score(word_list):
-    pass
+
+    best_words_list = []
+
+    for word in word_list:
+        word = word.upper()
+        score_one_word = score_word(word)
+        best_words_list.append((word, score_one_word))
+    # print(best_words_list)
+    
+    for word, score in best_words_list:
+        if len(word) == 10:
+            return ((word, score))
+    else:
+        top_score = 0
+        best_word = []
+        for word, score in best_words_list:
+            if score > top_score:
+                top_score = score
+                best_word = [word]
+            elif score == top_score:
+                best_word.append(word)
+
+        short_word = best_word[0]
+        for word in best_word:
+            if len(short_word) > len(word):
+                short_word = word
+        return short_word, top_score
+
+
+
+
+
+
+    # max_word_score = max(best_words_list, key=lambda x: x[1])
+    # if len(best_words_list) == 1:
+    #     return best_words_list
+    # else:
+    #     max_score = max(best_words_list, key=lambda x: x[1])[1]
+    #     max_words = [word for word, score in best_words_list if score == max_score]
+    #     if len(max_words) == 1:
+    #         return max(best_words_list, key=lambda x: x[1])
+    #     else:
+    #         ten_letter_words = [word for word in max_words if len(word) == 10]
+    #         if ten_letter_words:
+    #             return (ten_letter_words[0], max_score)
+    #         else:
+    #             min_length_word = min(max_words, key=lambda x: len(x))
+    #             return (min_length_word, max_score)
