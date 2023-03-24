@@ -45,12 +45,13 @@ def uses_available_letters(word, letter_bank):
     uppercase_word = word.upper()
 
     for letter in uppercase_word:
-        for item in letter_bank:
-            if letter in letter_bank:
-                continue
-            if letter not in letter_bank:
-                return False
-    
+        count_of_letter_in_uppercase_word = uppercase_word.count(letter)
+        count_of_letter_in_letter_bank = letter_bank.count(letter)
+        if count_of_letter_in_uppercase_word <= count_of_letter_in_letter_bank:
+            continue
+        else:
+            return False
+        
     return True
     
 
