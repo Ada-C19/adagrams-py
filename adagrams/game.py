@@ -14,7 +14,6 @@ def draw_letters():
 
     return random.sample(alphabet_list, grab_10_elements)
 
-##########################################################################
 
 def uses_available_letters(word, letter_bank):
     """
@@ -40,6 +39,8 @@ def uses_available_letters(word, letter_bank):
     if word is not word.upper():
         word = word.upper()
 
+    # calling transform_to_dictionary_without_replacement on word string and
+    # letter_bank list to turn the inputs of uses_available_letters into dicts
     word_dict = transform_to_dictionary_without_replacement(word)
     letters_dict = transform_to_dictionary_without_replacement(letter_bank)
         
@@ -58,7 +59,6 @@ def uses_available_letters(word, letter_bank):
 
     return True
 
-##########################################################################
 
 def score_word(word):
     """
@@ -116,8 +116,6 @@ def score_word(word):
     return user_score
 
 
-##########################################################################
-
 def get_highest_word_score(word_list):
     """
     input: word_list (list of strings)
@@ -125,7 +123,6 @@ def get_highest_word_score(word_list):
     """
 
     word_and_point_value_dict = {}
-
 
     # iterating through each element in word_list 
     for element in word_list:
@@ -141,53 +138,3 @@ def get_highest_word_score(word_list):
     
 
     return tuple([word_with_highest_score, highest_score])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    list_of_scores = []
-
-    for element in word_list:
-        # print(element)
-        word_score = score_word(element)
-        list_of_scores.append(word_score)
-        print(element, word_score)
-
-    winning_word_score = max(list_of_scores)
-    print(winning_word_score)
-    
-
-    # tuple(word, word_score)
-
-
-    # I have lists of lists and I need to check the len of elements in both
-
-    # comment in this code later, empty list to append to
-    # THEN need to convert list to tuple
-    # so I can return tuple for this function
-
-    # winning_word = []
-
-
-    # code for checking highest scoring word
-    # code for addressing ties
-
-
-
-    # ("EXPO", 12)
-
-    # return tuple(winning_word)
