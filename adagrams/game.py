@@ -102,7 +102,6 @@ def get_highest_word_score(word_list):
             winning_word = word
         # if score is tied btwn two dif words w/ one word being 10 char long, 10 char long word wins 
         elif score == highest_score:
-            print(105, score, highest_score)
             if (len(word) == 10 and len(winning_word) < 10) or len(word) > len(winning_word):
                 winning_word = word
             # create code block for if the two highest words are less than 10 choose the shortest word 
