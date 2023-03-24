@@ -139,4 +139,64 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    """
+    This function finds the highest scored word from word_list. If there's a 
+    tie: the word with 10 letters wins. if no ten letters, then prefer word
+    with fewest word. If a tie and same length, pick first word in supplied
+    list.
+    input: one parameter: word_list is a list of strings
+    output: returns a tuple of highest scored word (word, score)
+    """
+    word_dict = {}
+    highest_scored_word = ""
+    highest_scored_word_score = 0
+    score_set = set()
+    lengths_of_words = []
+    
+
+    for word in word_list:
+      word_score = score_word(word)
+      #append scores to score_set
+      score_set.add(word_score)
+      #creating a dict too hahah
+      word_dict[word] = word_score
+      #create a list of length of words ....
+      lengths_of_words.append(len(word))
+      
+    #high score of set
+    # high_score = max(score_set)
+    high_score = max(word_dict.values())
+    common_high_score = 0
+    #create common numnnersof high score
+    for score in word_dict.values():
+      if score == high_score:
+        common_high_score += 1
+
+    #smallest length of word as a number.
+    # smallest_length_word = min(lengths_of_words)
+
+
+    # print("highscore", high_score)
+    # print("commonhighscore", common_high_score)
+
+
+    if common_high_score == 1:
+      score = high_score
+      word = max(word_dict, key=word_dict.get)
+      return word, score
+    else:
+      for word, score in word_dict.items():
+        if len(word) == 10:
+          return word, score
+        # elif len(word) == smallest_length_word:
+        #   smallest_word = min(word_dict, key=len)
+        #   return smallest_word, score
+        elif max(lengths_of_words) < 10:
+          print(word_dict, "dict")
+          smallest_word = min(word_dict, key=len)
+          smallest_word_score = word_dict[smallest_word]
+          return smallest_word, smallest_word_score
+
+
+
+
