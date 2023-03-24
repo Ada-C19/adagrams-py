@@ -100,6 +100,7 @@ def get_highest_word_score(word_list):
 
   high_score = 0
   shortest_word = ""
+  
   for word, score in scores_dict.items():
     if score > high_score:
         high_score = score
