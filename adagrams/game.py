@@ -100,6 +100,7 @@ def get_highest_word_score(word_list):
     word_scores = [(score_word(word), word) for word in word_list]
     max_score = max(word_scores)[0]
     max_words = [word for score, word in word_scores if score == max_score]
+    
     if len(max_words) == 1:
         return max_words[0], max_score
     else:
@@ -112,50 +113,3 @@ def get_highest_word_score(word_list):
                 return ten_char_words[0] , max_score
             else:
                 return shortest_word , max_score
-
-
-    """
-    #list of tuples containing the score and word for each word in the input list
-    word_scores = [(score_word(word), word) for word in word_list]
-    print(word_scores)
-  #max score in the list of word scores
-    max_score = max(word_scores, key=lambda x: x[0])[0]
-    
-
-    shortest_word = None
-    for score, word in word_scores:
-        if score == max_score:
-            if shortest_word is None or len(word) < len(shortest_word):
-                shortest_word = word
-            
-    print(word)
-    #return shortest_word
-
-    #print(word_list)
-    """    
-
-
-
-
-
-    """
-    #word_list is a list of strings ['','','']
-    highest_score = 0
-    best_word = ""
-    
-    for word in word_list:
-        score = score_word(word)
-        
-        if score > highest_score:
-            highest_score = score
-            best_word = word
-        
-        #if tie in scores, follow tie-breaking rules
-        elif score == highest_score:
-            #if the current word has 10 letters, set it as new winning word 7-10 forgot 7
-            if len(word) == 10 and len(best_word) != 10:
-                best_word = word
-
-    #return a tuple of winning word and its score
-    return (best_word, highest_score)
-    """
