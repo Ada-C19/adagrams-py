@@ -45,35 +45,50 @@ def uses_available_letters(word, letter_bank):
    
     word = word.upper()
     
-    letter_bank_copy = list(letter_bank)
+    letter_bank_copy = list(letter_bank)#not necessary
     
     for letter in word:
         if letter not in letter_bank_copy:
             return False
-        letter_bank_copy.remove(letter)
+        letter_bank_copy.remove(letter)# not nessecary
 
     return True
 
 
-def score_word(word):
-
+def score_word(word): 
+    
     score_dict = {
-
-    ("A","E","I","O","U","L","N","R","S","T"): 1,
-    ("D","G"): 2,
-    ("B","C","M","P"):3,
-    ("F","H","V","W","Y"): 4,
-    ("K"):5,
-    ("J","X"): 8,
-    ("Q","Z"): 10,
+"A" : 1,	
+"B" : 3,
+"C" : 3,	
+"D" : 2,	
+"E" : 1,	
+"F" : 4,	
+"G" : 2,	
+"H" : 4,	
+"I" : 1,
+"J" : 8,	
+"K" : 5,	
+"L" : 1,
+"M" : 3,
+"O": 1,
+"P": 3,
+"Q": 10,
+"R": 1,
+"S": 1,
+"T": 1,
+"U": 1,
+"V": 4,
+"W": 4,
+"X": 8,
+"Y": 4,
+"Z": 10,
 }
+
     total_score = 0
     for letter in word.upper():
-      
-        for key in score_dict:
-            if letter in key:
-                total_score += score_dict[key]
-                break
+        total_score += score_dict.get(letter,0)
+        
     if 7 <= len(word) <= 10:
         total_score += 8
 
@@ -96,9 +111,9 @@ def get_highest_word_score(word_list):
         #if tie in scores, follow tie-breaking rules
         elif score == highest_score:
             #if the current word is shorter than winning word, set it as new winning word
-            if len(word) < best_word:
+            if len(word) < len(best_word):# check here comparing int to word
                 best_word = word
-            #if the current word has 10 letters, set it as new winning word
+            #if the current word has 10 letters, set it as new winning word 7-10 forgot 7
             elif len(word) == 10:
                 best_word = word
 
