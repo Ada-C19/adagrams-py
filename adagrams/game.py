@@ -28,30 +28,9 @@ def weighted(dict,random_piece):
             random_piece -= weight
             if random_piece <= 0:
                 return char
-
-"""
-def draw_letters():
-    # simplest version
-    rand_letters =[]
-    letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 
-            'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
-            'W', 'X', 'Y', 'Z']
-    weight = [9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 
-            4, 6, 4, 2, 2, 1, 2, 1]
-
-    for i in range(10):
-        rand_piece = random.choices(letters, weights = weight, k = 1)
-
-        # with replacement 
-        index = letters.index(rand_piece[0])
-        weight[index] -= 1
-
-        rand_letters.append(rand_piece[0])
-
-    return rand_letters
-"""
+            
 def uses_available_letters(word, letter_bank):
-    # check if they can use the word they inputted
+    # check if they can use the word they inputed
     new_letter_bank = []
     for l in letter_bank:
         new_letter_bank.append(l.upper())
@@ -63,7 +42,7 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    values = {('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T') :1,
+    values = {('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T') : 1,
             ('D', 'G'):	2,
             ('B', 'C', 'M', 'P'): 3,
             ('F', 'H', 'V', 'W', 'Y') : 4,
