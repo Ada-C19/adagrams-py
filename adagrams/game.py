@@ -101,5 +101,14 @@ def score_word(word):
     final_score = 0
     
 
+
 def get_highest_word_score(word_list):
-    pass
+    word_and_score_pair = {}
+    for word in word_list:
+        words_score = score_word(word) 
+        
+    
+
+
+    print(words_score)
+    # return word_and_score_pair
