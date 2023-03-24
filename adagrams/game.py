@@ -84,7 +84,14 @@ def draw_letters():
     return hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    # change word to all uppercase to account for no case sensitivity
+    uppercase_word = word.upper()
+
+    for character in uppercase_word:
+        count_character = uppercase_word.count(character)
+        if character not in letter_bank or count_character > letter_bank.count(character):
+            return False
+    return True
 
 def score_word(word):
     pass
