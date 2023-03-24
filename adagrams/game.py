@@ -162,9 +162,15 @@ def get_highest_word_score(word_list):
     #print(matching_scores_dict)
 
     for word, score in matching_scores_dict.items():
-        if score == highest_score and len(word) < len(winning_word):
+        if score == highest_score and len(word) == 10:
             highest_score = score
             winning_word = word
+            #print(winning_word)
+            break
+        elif score == highest_score and len(word) < len(winning_word):
+            highest_score = score
+            winning_word = word
+            #print(winning_word)
             break
         
     best_word = (winning_word, highest_score)
