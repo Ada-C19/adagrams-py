@@ -74,7 +74,7 @@ def uses_available_letters(word, letter_bank):
 
     letter_bank_copy = letter_bank[:]
     for letter in word.strip():
-        if letter.upper() not in letter_bank_copy or not letter.isalpha():
+        if letter.upper() not in letter_bank_copy:
             return False
         else:
             letter_bank_copy.remove(letter.upper())
