@@ -38,7 +38,6 @@ def draw_letters():
 
     while len(hand) < 10:
         random_letter = random.choice(frequency_list)
-        #random.choice doing something..then loop
         frequency_list.remove(random_letter)
         hand.append(random_letter)
 

@@ -1,0 +1,3 @@
+WAVE 1
+random.sample(LETTER_POOL, k = 10)
+checked hand for vowels
