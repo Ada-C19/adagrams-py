@@ -113,19 +113,12 @@ def get_highest_word_score(word_list):
             high_score = idx
             highest_score_words.append(tupl)
 
+    # print(word_scores)
+    # print(high_score)
+    # print(highest_score_words)
 
-
-
-
-
-
-    print(word_scores)
-    print(high_score)
-    print(highest_score_words)
-
-    
     # return tuple of the word with the highest score
-    return None
+    return highest_score_words[-1]
 
 
 print(get_highest_word_score(words_list))
