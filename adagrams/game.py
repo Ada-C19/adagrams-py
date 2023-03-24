@@ -93,8 +93,6 @@ def score_word(word):
     total= sum(points)
     if len(new_word) ==7 or len(new_word)==8 or len(new_word)==9 or len(new_word)==10:
         total+=8
-    else:
-        total+=0
     return total
 
 def get_highest_word_score(word_list):
@@ -103,17 +101,16 @@ def get_highest_word_score(word_list):
     max_key = None
     word_list.sort(key=len)
     for word in word_list:
-        puntos = score_word(word)
-        scores_dict[word] = puntos
+        score = score_word(word)
+        scores_dict[word] = score
     for scores in scores_dict :
         if scores_dict[scores] > maximum:
             maximum = scores_dict[scores]
             max_key = scores
-        elif len(word_list[-1]) == len(word_list[0]) and puntos == maximum:
-            max_key = (word_list[0])
-        elif len(word_list[-1]) == len(word_list[-2]) and puntos ==maximum:
+#Line 111 & 112  doesn't work if there are 3 or more words that are the same length
+        elif len(word_list[-1]) == len(word_list[-2]) and score ==maximum:
             max_key = word_list[-2]
-        elif len(word_list[-1]) == 10 and puntos == maximum:
+        elif len(word_list[-1]) == 10 and score == maximum:
             max_key = word_list[-1]
     return (max_key, maximum)
 
@@ -124,7 +121,7 @@ def get_highest_word_score(word_list):
 #     word_list.sort(key=len)
 #     score_dict={}
 #     for word in word_list:
-#         puntos = score_word(word)
-#         score_dict[word]=puntos
+#         score = score_word(word)
+#         score_dict[word]=score
 #     winner = max(score_dict, key=score_dict.get)
 #     return(winner, score_dict[winner])
