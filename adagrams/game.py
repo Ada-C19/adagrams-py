@@ -29,29 +29,34 @@ def draw_letters():
     'Y': 2, 
     'Z': 1
 }
-    available_letters =[]
+    list_letter_pool =[]
     for letter, number in LETTER_POOL.items():
         letter_quantity = letter * number
-        available_letters.append(letter_quantity)
+        list_letter_pool.append(letter_quantity)
 
 
-    letter_string = ''.join(available_letters)
-    list_letter_pool = list(letter_string)
+    letter_string = ''.join(list_letter_pool)
+   
+    # Available letters with frequencies list
+    available_letters = list(letter_string)
     
     hand = []
 
+# Returns a list of 10 random letters
     while len(hand) != 10:
-        random_letter = random.choice(list_letter_pool)
+        random_letter = random.choice(available_letters)
         hand.append(random_letter)
-        for letter in list_letter_pool:
+        for letter in available_letters:
             if letter in hand:
-                list_letter_pool.remove(letter)
+                available_letters.remove(letter)
     return hand
 
     
 
 def uses_available_letters(word, hand):
-    word = word.upper()   
+    # Changes user's input to uppercase
+    word = word.upper()  
+    # Returns true if all the letters in word are in the hand 
     for letter in word:
       if letter in hand and word.count(letter) < hand.count(letter):
         continue
@@ -64,6 +69,7 @@ def score_word(word):
 
     score = 0
     bonus_point_list =[7,8,9,10]
+    
     points_value = {'A': 1, 
                 'E' : 1, 
                 'I': 1, 
@@ -90,7 +96,7 @@ def score_word(word):
                 'X':8,
                 'Q':10,
                 'Z':10   
-}
+}   # Gets the score of the word
     for letter in word.upper():
       score += points_value[letter]
       if len(word) == 0:
@@ -101,18 +107,22 @@ def score_word(word):
     
 
 def get_highest_word_score(word_list):
-    
+   # Stores the word and it's score  
     word_value_dictionary = {}
+   
+    # Stores the scores of the words in 
     score_list = []
+    # Scores each word in the word list and stores it a dictionary
     for word in word_list:
         score = score_word(word)
-        # points_list.append(score)
         word_value_dictionary[word] = score
-    
+    # Gets the highest score
     highest_score = max(word_value_dictionary.values())
-    for k,v in word_value_dictionary.items():
-        if v == highest_score:
-            score_list.append(k)
+    # Gets the word with the highest score and returns it in a tuple
+    for word,value in word_value_dictionary.items():
+        if value == highest_score:
+            score_list.append(word)
             score_list.append(highest_score)
+    
     return tuple(score_list) 
 
