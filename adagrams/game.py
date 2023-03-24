@@ -56,7 +56,7 @@ def create_dict(some_list):
 
 def uses_available_letters(word, letter_bank):
 
-    # turning the letter pool and the passed in word to lists, with values as the occurence of letters
+    # turning the letter pool and the passed in word to dictionaries, with values as the occurence of letters
     letter_pool_dict = create_dict(letter_bank)
     word_dict = create_dict(word)
 
