@@ -107,4 +107,19 @@ def score_word(word):
     return sum_word
 
 def get_highest_word_score(word_list):
-    pass
+    highscore = ("", 0)
+    
+    for word in word_list:
+        calculate_score = score_word(word)
+        # check if previous score seen is less than new calculated score
+        if highscore[1] < calculate_score:
+            highscore = (word, calculate_score)
+        # check if previous score seen is equal to new calculated score
+        elif highscore[1] == calculate_score:
+            # check len of previous word seen is not 10 and len of new word is 10
+            if len(highscore[0]) != 10 and len(word) == 10: 
+                highscore = (word, calculate_score)
+            #check len of previous word seen is not 10 and len of new word is less than len of previous word seen
+            elif len(highscore[0]) != 10 and len(word) < len(highscore[0]):
+                highscore = (word, calculate_score)
+    return highscore
