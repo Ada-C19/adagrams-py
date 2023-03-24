@@ -136,18 +136,20 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     score_dict = {}
+    highest_score = 0
 
     for word in word_list:
         score = score_word(word)
         score_dict[word] = score
-    print(score_dict)
-    
-    for score in score_dict.values():
-        winning_word = max(score_dict)
-        highest_word_score = score_dict[winning_word]
-    #print(winning_word)
-    #print(highest_word_score)
+    #print(f"score dictionary: {score_dict}")
 
-    best_word = (winning_word, highest_word_score)
-    print(best_word)
+    for word, score in score_dict.items():
+        if score > highest_score:
+            highest_score = score
+            winning_word = word
+    #print(winning_word)
+    #print(highest_score)
+
+    best_word = (winning_word, highest_score)
+    #print(best_word)
     return best_word
