@@ -94,7 +94,17 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    sum_word = 0
+    uppercase_word = word.upper()
+
+    if 7 <= len(uppercase_word) <= 10:
+        sum_word += 8
+
+    for character in uppercase_word:
+        if character in SCORE_CHART: 
+            sum_word += SCORE_CHART[character]
+
+    return sum_word
 
 def get_highest_word_score(word_list):
     pass
