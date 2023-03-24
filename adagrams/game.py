@@ -63,15 +63,21 @@ def get_highest_word_score(word_list):
 
     for word, score in word_scores[1:]:
         if score > highest_word[1] or (
-            score == highest_word[1] and
-            (len(word) == 10 and len(highest_word[0]) != 10) or
-            (len(highest_word[0]) != 10 and len(word) < len(highest_word[0]))
+            score == highest_word[1] and (
+                (len(word) == 10 and len(highest_word[0]) != 10) or
+                (len(highest_word[0]) != 10 and len(word) < len(highest_word[0]))
+            )
         ):
             highest_word = (word, score)
         elif score == highest_word[1] and len(word) == len(highest_word[0]):
-            highest_word = (word_list.index(word) < word_list.index(highest_word[0])) and (word, score) or highest_word
+            if word_list.index(word) < word_list.index(highest_word[0]):
+                highest_word = (word, score)
 
     return highest_word
+
+
+
+
 
 
 def play_game():
