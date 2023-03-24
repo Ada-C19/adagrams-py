@@ -121,16 +121,27 @@ def get_highest_word_score(word_list):
     highest_score = 0  
     score_dict = {}
     winning_word = ""
+    tie_breaker = {}
     
+    #calculates word & score & adds to score_dict
     for word in word_list:
         scorez = score_word(word)
         score_dict[word] = scorez
         winning_word = word
     
+    # assigns highest score to highest_score
     for word, scorez in score_dict.items():
         if scorez > highest_score:
             highest_score = scorez
-            
+    
+    # checks for tie breaker 
+    for word in score_dict:
+        if len(word) == len(winning_word):
+            winning_word = 
+
+
+
+
     
     winner = (winning_word, highest_score)
 
