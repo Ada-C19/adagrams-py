@@ -145,16 +145,34 @@ def uses_available_letters(word, letter_bank):
       
 
 def score_word(word):
+    # word_score = {}
+
+    # if word == "":
+    #     word_score["empty"] = 0
+
+    # for letter in word:
+    #     if letter in SCORE_CHART:
+    #         word_score[letter] = SCORE_CHART[letter]
+    #     elif letter in SCORE_CHART_LOWERCASE:
+    #         word_score[letter] = SCORE_CHART_LOWERCASE[letter]
+    # #print(word_score)
+
     word_score = {}
 
     if word == "":
-        word_score["empty"] = 0
+       word_score["empty"] = 0
 
     for letter in word:
         if letter in SCORE_CHART:
-            word_score[letter] = SCORE_CHART[letter]
+            if letter not in word_score:
+                word_score[letter] = SCORE_CHART[letter]
+            else:
+                word_score[letter] = word_score[letter] + SCORE_CHART[letter]
         elif letter in SCORE_CHART_LOWERCASE:
-            word_score[letter] = SCORE_CHART_LOWERCASE[letter]
+            if letter not in word_score:
+                word_score[letter] = SCORE_CHART_LOWERCASE[letter]
+            else:
+                word_score[letter] = word_score[letter] + SCORE_CHART_LOWERCASE[letter]
     #print(word_score)
 
     while 7 <= len(word) <= 10:
