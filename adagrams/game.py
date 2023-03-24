@@ -61,66 +61,62 @@ def uses_available_letters(word, letter_bank):
 ##########################################################################
 
 def score_word(word):
-    pass
-    # """
-    # input: word (string of characters/letters)
-    # output: number of points integer
-    # """
+    """
+    input: word (string of characters/letters)
+    output: number of points integer
+    """
 
-    # comment in later: dictionary of letters and values
-    # letter_point_value_dict = {
-    #     "A": 1,
-    #     "E": 1,
-    #     "I": 1,
-    #     "O": 1,
-    #     "U": 1,
-    #     "L": 1,
-    #     "N": 1,
-    #     "R": 1,
-    #     "S": 1,
-    #     "T": 1,
-    #     "D": 2,
-    #     "G": 2,
-    #     "B": 3,
-    #     "C": 3,
-    #     "M": 3,
-    #     "P": 3,
-    #     "F": 4,
-    #     "H": 4,
-    #     "V": 4,
-    #     "W": 4,
-    #     "Y": 4,
-    #     "K": 5,
-    #     "J": 8,
-    #     "X": 8,
-    #     "Q": 10,
-    #     "Z": 10
-    # } 
+    letter_point_value_dict = {
+        "A": 1,
+        "E": 1,
+        "I": 1,
+        "O": 1,
+        "U": 1,
+        "L": 1,
+        "N": 1,
+        "R": 1,
+        "S": 1,
+        "T": 1,
+        "D": 2,
+        "G": 2,
+        "B": 3,
+        "C": 3,
+        "M": 3,
+        "P": 3,
+        "F": 4,
+        "H": 4,
+        "V": 4,
+        "W": 4,
+        "Y": 4,
+        "K": 5,
+        "J": 8,
+        "X": 8,
+        "Q": 10,
+        "Z": 10
+    } 
 
+    user_score = 0
+    long_word_bonus = 8
 
-    # comment in this code later
-    # user_score = 0
-    # long_word_bonus = 8
+    if len(word) > 10 or len(word) == 0:
+        return False
+    
+    if word is not word.upper():
+        word = word.upper()
 
-
-    # comment this code in later
-    # code to look up each letter in word by looking at key
-    # in dict and then adding value to user_score
-
-
-
-
-    # comment in this code later, checks if len(word) is 
-    # 7, 8, 9, or 10 to add additional 8 points
-    # if len(word) >= 7 and <= 10:
-    #     user_score = user_score + long_word_bonus
+    # updates user_score through every iteration of letter in word
+    for letter in word:
+        user_score = user_score + letter_point_value_dict[letter]
+            
+    # if checks if user will get long_word_bonus
+    if len(word) > 6:
+        user_score = user_score + long_word_bonus
 
 
-    # return user_score
+    return user_score
 
 
-
-
+##########################################################################
 
 def get_highest_word_score(word_list):
     pass
