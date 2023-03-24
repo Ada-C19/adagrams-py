@@ -35,8 +35,7 @@ def make_letter_list(dict):
     #equal to its frequency
     letter_list = []
     for letter, count in dict.items():
-        for _ in range(count):
-            letter_list.append(letter)
+        letter_list.extend([letter for _ in range(count)])
 
     return letter_list
 
