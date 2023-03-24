@@ -65,9 +65,7 @@ def word_to_dict(word):
 
 def uses_available_letters(word, letter_bank):
     #Create dicts of hand and current word
-    letter_bank_word = "".join(letter_bank)
-    letter_dict = word_to_dict(letter_bank_word)
-    
+    letter_dict = word_to_dict("".join(letter_bank))
     word_dict = word_to_dict(word)
 
     #Compare to verify word letters are in bank AND there aren't too many
