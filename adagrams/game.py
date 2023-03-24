@@ -112,7 +112,7 @@ def score_word(word):
         score += SCORE_DICT[letter]
 
     #Add 8 extra points if word is 7-10 letters long
-    if len(word) in range(7,11):
+    if len(word) >= 7:
         score += 8
 
     return score
