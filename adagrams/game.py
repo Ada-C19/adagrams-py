@@ -39,8 +39,6 @@ def draw_letters():
         for item in range(0,v):
             letter_tiles.append(k)
     
-    
-    # Draw Ten
     for i in range(MAX_LETTERS):
         random_index = (random.randrange(len(letter_tiles)))
         hand.append(letter_tiles[random_index])
