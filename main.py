@@ -1,4 +1,5 @@
 import sys
+import random
 from adagrams.ui_helper import *
 from adagrams.game import draw_letters, uses_available_letters, score_word, get_highest_word_score
 
