@@ -42,12 +42,16 @@ def draw_letters():
     return hand_of_letters
 
 def uses_available_letters(word, letter_bank):
-    for letter in word:
+    uppercase_word = word.upper()
+
+    for letter in uppercase_word:
         for item in letter_bank:
+            if letter in letter_bank:
+                continue
             if letter not in letter_bank:
                 return False
-            if letter in letter_bank:
-                return True
+    
+    return True
     
 
 def score_word(word):
