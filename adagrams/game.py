@@ -110,7 +110,7 @@ def uses_available_letters(word, letter_bank):
     for letter in word.lower():
         if letter in letter_list:
             letter_index = letter_list.index(letter)
-            #pop only removes one, instead of all (remove)
+            #pop only removes one based on the index
             letter_list.pop(letter_index)
         else:
             return False
