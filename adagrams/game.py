@@ -96,23 +96,21 @@ def score_word(word):
 def get_highest_word_score(word_list):
     winning_score = 0
     winner_word = ""
+    
     for word in word_list:
         word_score = score_word(word)
+        
         if word_score > winning_score:
             winner_word = word
             winning_score = word_score
         elif word_score == winning_score:
-            if len(word) < len(winner_word) and len(winner_word) != 10:
+            if len(word) < len(winner_word)and len(winner_word) != 10:
                 winner_word = word
-        elif len(word) == len(winner_word):
-            continue
-        elif len(word) == 10:
-            winner_word = word
-            #if the length of the word is equal to the length of the winond word
-
+            elif len(word) == 10 and len(winner_word) != 10:
+                winner_word = word
+     
     return (winner_word,winning_score)   
 
-    
     
     
     
