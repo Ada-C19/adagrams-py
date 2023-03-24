@@ -116,4 +116,29 @@ def score_word(word):
     #if letter in word length is <= 7 +8
 
 def get_highest_word_score(word_list):
-    pass
+    highest_score = 0
+    high_scoring_word = ""
+    for word in word_list:
+      score = score_word(word)
+      if score > highest_score:
+        highest_score = score
+        high_scoring_word = word
+      elif highest_score == score:
+        if len(high_scoring_word) == 10:
+          high_scoring_word = high_scoring_word
+        elif len(word) == 10:
+            high_scoring_word = word      
+        elif len(word) < len(high_scoring_word):
+          high_scoring_word = word
+    
+    return (high_scoring_word, highest_score)
+    #word_list is a list of strings
+    #return a tuple that represents the data of a winning word and it's score RETURN DATA OF WINNING WORD AND THE POINT AS A TUPLE
+    #The tuple must contain the following elements:
+    # #index 0 ([0]): a string of a word
+    # #index 1 ([1]): the score of that word
+
+#     In the case of tie in scores, use these tie-breaking rules:
+    #prefer the word with the fewest letters...
+    #unless one word has 10 letters. If the top score is tied between multiple words and one is 10 letters long, choose the one with 10 letters over the one with fewer tiles
+    #If the there are multiple words that are the same score and the same length, pick the first one in the supplied list
