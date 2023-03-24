@@ -145,18 +145,6 @@ def uses_available_letters(word, letter_bank):
       
 
 def score_word(word):
-    # word_score = {}
-
-    # if word == "":
-    #     word_score["empty"] = 0
-
-    # for letter in word:
-    #     if letter in SCORE_CHART:
-    #         word_score[letter] = SCORE_CHART[letter]
-    #     elif letter in SCORE_CHART_LOWERCASE:
-    #         word_score[letter] = SCORE_CHART_LOWERCASE[letter]
-    # #print(word_score)
-
     word_score = {}
 
     if word == "":
@@ -167,12 +155,12 @@ def score_word(word):
             if letter not in word_score:
                 word_score[letter] = SCORE_CHART[letter]
             else:
-                word_score[letter] = word_score[letter] + SCORE_CHART[letter]
+                word_score[letter] += SCORE_CHART[letter]
         elif letter in SCORE_CHART_LOWERCASE:
             if letter not in word_score:
                 word_score[letter] = SCORE_CHART_LOWERCASE[letter]
             else:
-                word_score[letter] = word_score[letter] + SCORE_CHART_LOWERCASE[letter]
+                word_score[letter] += SCORE_CHART_LOWERCASE[letter]
     #print(word_score)
 
     while 7 <= len(word) <= 10:
@@ -181,10 +169,19 @@ def score_word(word):
     return sum(word_score.values())
 
 def get_highest_word_score(word_list):
-    best_word = ()
     score_dict = {}
 
     for word in word_list:
         score = score_word(word)
         score_dict[word] = score
-        #print(score_dict)
+    print(score_dict)
+    
+    for score in score_dict.values():
+        winning_word = max(score_dict)
+        highest_word_score = score_dict[winning_word]
+    #print(winning_word)
+    #print(highest_word_score)
+
+    best_word = (winning_word, highest_word_score)
+    print(best_word)
+    return best_word
