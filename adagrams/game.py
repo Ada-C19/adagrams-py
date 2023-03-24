@@ -89,29 +89,25 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
 
-    sorted_word_list = word_list.copy()
-    sorted_word_list.sort(key=len)
+    top_score = max([score_word(word) for word in word_list])
+    top_scoring_words = [word for word in word_list if score_word(word) == top_score]
+    longest_word = max(top_scoring_words, key=len)
+    shortest_word = min(top_scoring_words, key=len)
+    list_of_shortest_words = [word for word in word_list if len(word) == len(shortest_word)]
 
-    words_and_scores = {word: score_word(word) for word in sorted_word_list}
-  
-    # Identify top score, and create dictionary of words with that top score
-    top_score = max(words_and_scores.values())
-    top_scoring_words = [key for key, value in words_and_scores.items() if value == top_score]
-
+    # if there's only one word with the highest score
     if len(top_scoring_words) == 1:
-        # only one top score
         return top_scoring_words[0], top_score
     
+    # if there's more than one word with the highest score
     else:
-        # more than one word with top score
-
-        # one or more words have 10 letters, return first instance
-        if len(sorted_word_list[-1]) == 10:
-            for word in word_list:
-                if len(word) == 10:
-                    return word, words_and_scores[word]
+        # if there's at least one word with 10 letters, choose the first instance
+        if len(longest_word) == 10:
+            return longest_word, top_score
         
+        # otherwise, choose the first, shortest word
         else:
-        # multiple words with same score and same length, return first instance
-            return sorted_word_list[0], words_and_scores[sorted_word_list[0]]
+            return list_of_shortest_words[0], top_score
 
+        
+        
