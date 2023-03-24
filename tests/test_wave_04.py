@@ -73,10 +73,10 @@ def test_get_highest_word_tie_prefers_ten_letters_unsorted_list():
     assert best_word[0] == "AAAAAAAAAA"
     assert best_word[1] == 18
 
-    # Arrange
-    words = ["AAAAAAAAAA", "EEEEEEEEEE"]
+   
 def test_get_highest_word_tie_same_length_prefers_first():
-
+ # Arrange
+    words = ["AAAAAAAAAA", "EEEEEEEEEE"]
     # Act
     best_word = get_highest_word_score(words)
 
