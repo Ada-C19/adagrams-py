@@ -56,7 +56,6 @@ def draw_letters():
     return letters
 
 
-
 def uses_available_letters(word, letter_bank):
     """Take word input and compare to letter bank."""
 
@@ -87,7 +86,7 @@ def score_word(word):
 
     return current_score
 
-
+words_list = ['QQQQ', 'JJJJJ', 'add', 'sex', 'tenletters', 'branxzorfd', 'branxzorfl']
 def get_highest_word_score(word_list):
     """Return the highest scoring word as a tuple: ('string', word_score)"""
 
@@ -95,13 +94,34 @@ def get_highest_word_score(word_list):
     winning_word = ""
 
     for word in word_list:
-        # if the score of the word is higher than highest_score:
-        if score_word(word) > highest_score:
-            # that word's score becomes the high schore
-            highest_score = score_word(word)
-            winning_word = word                    # that word becomes the winning word
+        score = score_word(word)
+
+        if score > highest_score:
+            if len(word) == 10:
+                highest_score = score
+                winning_word = word
+            elif len(word) < 10:
+                highest_score = score
+                winning_word = word
+        elif score == highest_score:
+            if len(word) == 10:
+                highest_score = score
+                winning_word = word
+            elif len(word) < 10 and len(word) < len(winning_word):
+                highest_score = score
+                winning_word = word
+        
+        
 
     return (winning_word, highest_score)
 
+print(get_highest_word_score(words_list))
 
-print(get_highest_word_score(word_list))
+# for each word in the supplied list, 
+    # if there is one word with the highest score:
+        # that word is the winner    ***CHECK***
+
+    # elif more than 1 word has the same highest score:
+        # the word with 10 letters wins
+    # elif:
+        # the word with the fewest letters wins
