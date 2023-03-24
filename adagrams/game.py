@@ -1,4 +1,4 @@
-"""doc string"""
+"""Adagrams: It's really scrabble"""
 
 import random
 
@@ -43,7 +43,9 @@ letter_value = {
 
 
 def draw_letters():
-    """Build a hand of 10 letters for the user"""
+    """Output a list of ten strings, where each string is a letter of 
+    len(1) as defined in LETTER_POOL."""
+
     letter_pool_copy = LETTER_POOL.copy()
     letters = []
 
@@ -57,7 +59,8 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    """Take word input and compare to letter bank."""
+    """Each letter in the word 1) is not case-sensitive and 2) is not 
+    utilized more than the available frequency outlined in LETTER_POOL."""
 
     letter_bank_copy = letter_bank.copy()
     letter_bank_case = [element.upper() for element in letter_bank_copy]
@@ -73,7 +76,7 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    """Assign a point value to the input word"""
+    """Assign point value to the word as outlined in letter_value."""
 
     current_score = 0
     for letter in word:
@@ -86,10 +89,11 @@ def score_word(word):
 
     return current_score
 
-words = ["AAAAAAAAAA", "EEEEEEEEEE"]
 
 def get_highest_word_score(word_list):
-    """Return the highest scoring word as a tuple: ('string', word_score)"""
+    """Return the highest scoring word. For ties: the first
+    10-letter word wins. If there are no 10-letter words, the 
+    shortest word wins."""
 
     highest_score = 0
     winning_word = ""
@@ -113,6 +117,3 @@ def get_highest_word_score(word_list):
                 winning_word = word
 
     return (winning_word, highest_score)
-
-print(get_highest_word_score(words))
-
