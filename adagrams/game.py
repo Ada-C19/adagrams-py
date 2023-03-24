@@ -40,7 +40,6 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    max_score = 0
     matching_scores = []
     word_dict = {}
   
