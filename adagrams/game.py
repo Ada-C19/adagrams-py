@@ -60,29 +60,19 @@ LETTER_SCORE = {
 
 hand_size = 10
 
-letter_bank = ['A', 'N', 'S', 'I', 'T', 'A', 'P', 'A', 'U', 'N']
-print(f"{letter_bank = }")
-# word_test  = "ANSIT"
-# print(f"{word_test = }")
-# test_word_list = ["test", "Awareness", "Ada", "dog"]
-# test_word_list = ["JQ", "FHQ", "AAAAAAAAAA", "BBBBBB", "TTTTTTTTTT"]
-test_word_list = ["JQ", "FQ", "AAAAAAAAA", "BBBBB", "TTTTTTTTTT"]
-
 def draw_letters():
-
     letter_list = []
+    hand = []
+
     for key, value in LETTER_POOL.items():
         letter_list.extend([key] * value)
 
-    hand = []
     for i in range(hand_size):
         random_num = random.randint(0, len(letter_list) - 1)
         hand.append(letter_list[random_num])
         letter_list.pop(random_num)
 
     return hand
-
-
 
 def uses_available_letters(word, letter_bank):
     word = word.upper()
@@ -92,9 +82,6 @@ def uses_available_letters(word, letter_bank):
             result = False
             break
     return result
-
-
-
 
 def score_word(word):
     total_value = 0
@@ -106,186 +93,340 @@ def score_word(word):
         total_value += 8
     return total_value
 
-
 def get_highest_word_score(word_list):
-    winner_list = []
-    
+    words_scored = []
+
     for word in word_list:
-        word_score = score_word(word)
-        tuple_score = word, word_score
-        winner_list.append(tuple_score)
+        score = score_word(word)
+        words_scored.append((word, score))
 
-    result = sorted(winner_list, key=lambda x: x[1], reverse=True)
+    highest_score = max(pair[1] for pair in words_scored)
+    winners = [pair for pair in words_scored if pair[1] == highest_score]
+    word_list_short = sorted(winners, key=lambda x: len(x[0]))
+    word_list_long = sorted(winners, key=lambda x: len(x[0]), reverse=True)
 
-    word_lenght_list = []
+    short_winner = word_list_short[0]
+    long_winner = word_list_long[0]
 
-    for item in result:
-        if item[1] == result[0][1]:
-            word_lenght_list.append(item)
-
-    
-    word_lenght_sort = sorted(word_lenght_list, key=lambda x: len(x[0]))
-    word_lenght_sort_ten = sorted(word_lenght_list, key=lambda x: len(x[0]), reverse=True)
-    first_item = word_lenght_sort_ten[0]
-    if len(first_item[0]) == 10:
-        return word_lenght_sort_ten[0]
+    if len(long_winner[0]) == 10:
+        return long_winner
     else:
-        return word_lenght_sort[0]
-
-get_highest_word_score_results = get_highest_word_score(test_word_list)
-print(f"{get_highest_word_score_results = }")
-
-
-
-def get_highest_word_score(word_list):
-    winner_list = []
+        return short_winner
     
-    for word in word_list:
-        word_score = score_word(word)
-        print(f"{word_score = }")
-        tuple_score = word, word_score
-        print(f"{tuple_score = }")
-        winner_list.append(tuple_score)
-        print(f"{winner_list = }")
-
-    result = sorted(winner_list, key=lambda x: x[1], reverse=True)
-    print(f"{result = }")
-
-    word_lenght_list = []
-
-    for item in result:
-        if item[1] == result[0][1]:
-            word_lenght_list.append(item)
-    print(f"{word_lenght_list = }")
-    
-    word_lenght_sort = sorted(word_lenght_list, key=lambda x: len(x[0]))
-    print(f"{word_lenght_sort = }")
-    word_lenght_sort_ten = sorted(word_lenght_list, key=lambda x: len(x[0]), reverse=True)
-    print(f"{word_lenght_sort_ten = }")
-    first_item = word_lenght_sort_ten[0]
-    print(f"{first_item = }")
-    if len(first_item[0]) == 10:
-        return word_lenght_sort_ten[0]
-    else:
-        return word_lenght_sort[0]
-
-get_highest_word_score_results = get_highest_word_score(test_word_list)
-print(f"{get_highest_word_score_results = }")
 
 
 
-letter_bank = draw_letters()
-uses_available_letters("word", letter_bank)
-score_word("word")
+# -----------------------------------------------------
 
-
-
-
-
-# def draw_letters():
-
-#     letter_list = []
-#     for key, value in LETTER_POOL.items():
-#         letter_list.extend([key] * value)
-
-#     hand = []
-#     for i in range(hand_size):
-#         random_num = random.randint(0, len(letter_list) - 1)
-#         hand.append(letter_list[random_num])
-#         letter_list.pop(random_num)
-
-#     return hand
-
-# letter_bank = draw_letters()
-
-# # -----------------------------------------------------
-# # letter_bank = ['A', 'N', 'S', 'I', 'T', 'A', 'P', 'A', 'U', 'N']
-# print(f"{letter_bank = }")
-# # word_test = input("Make a word: ")
-# word_test  = "aaannnsitddddd"
-# print(f"{word_test = }")
+# FIRST ATTEMPT
 
 # def uses_available_letters(word, letter_bank):
-#     word = word.upper()
-#     result = True
-#     for letter in word:
-#         print(f"{letter = } {word.count(letter) = } {letter_bank.count(letter) = }")
-#         if word.count(letter) > letter_bank.count(letter):
-#             result = False
-#             break
-#     return result
 
-#     # word = word.upper()
-#     # for letter in word:
-#     #     if word.count(letter) > letter_bank.count(letter):
-#     #         return False
-#     # return True
-#     # result = True
-#     # result = all(letter in letter_bank for letter in word)
-#     # return result
-#     # word_dict = {} 
-#     # letters_dict = {} 
-#     # for letter in word: 
-#     #     word_dict[letter] = word_dict.get(letter, 0) + 1 
-#     # for letter in letter_bank: 
-#     #     letters_dict[letter] = letters_dict.get(letter, 0) + 1 
-#     # for letter in word: 
-#     #     if letter not in letter_bank or word_dict[letter] != letters_dict[letter]:
-#     #         result = False 
-#     #         break
-#     # print(f"{word_dict = }")
-#     # print(f"{letters_dict = }")
-#     # return result
-
-#     # word = input("input word: ")
-
-#     # word_list = []
-#     # word_list[:0] = word
-#     # print(f'{word_list = }')
+    # result = all(letter in letter_bank for letter in word)
+    # return result
 
 
-#     # letter_bank_str = ''.join(letter_bank)
-#     # letter_bank_str = letter_bank_str.casefold()
-#     # print(f"{letter_bank_str = }")
+    # result = set(word).issubset(set(letter_bank))
+    # print(f"{result = }")
+    # return result
 
-#     # result = all(letter in word for letter in letter_bank_str)
 
-#     # result = set(word).issubset(set(letter_bank))
-#     # print(f"{result = }")
-#     # return result
 
-#     # letter_bank_str = ''.join(letter_bank)
-#     # letter_bank_str = letter_bank_str.casefold()
-#     # print(f"{letter_bank_str = }")
+    # word_dict = {} 
+    # letters_dict = {} 
+    # for letter in word: 
+    #     word_dict[letter] = word_dict.get(letter, 0) + 1 
+    # for letter in letter_bank: 
+    #     letters_dict[letter] = letters_dict.get(letter, 0) + 1 
+    # for letter in word: 
+    #     if letter not in letter_bank or word_dict[letter] != letters_dict[letter]:
+    #         result = False 
+    #         break
+    # print(f"{word_dict = }")
+    # print(f"{letters_dict = }")
+    # return result
 
-#     # word = word.casefold()
-#     # print(f"{word = }")
+    
+    # word_list = []
+    # word_list[:0] = word
+    # print(f'{word_list = }')
 
-#     # for letter in word:
-#     #     if letter not in letter_bank_str:
-#     #         return False
-#     #         break
-#     #     else:
-#     #         return True
+
+    # letter_bank_str = ''.join(letter_bank)
+    # letter_bank_str = letter_bank_str.casefold()
+    # print(f"{letter_bank_str = }")
+
+    # word = word.casefold()
+    # print(f"{word = }")
+    # for letter in word:
+    #     if letter not in letter_bank_str:
+    #         return False
+    #         break
+    #     else:
+    #         return True
         
-# uses_available_letters_output = uses_available_letters(word_test, letter_bank)
-# print({f"{uses_available_letters_output = }"})
-# # print(f"{letter_bank = }")
 
-# def score_word(word):
-#     total_value = 0
-#     for letter in word.upper():
-#         for key,value in LETTER_SCORE.items():
-#             if letter == key:
-#                 total_value += value
-#     if len(word) >= 7:  
-#         total_value += 8
-#     print(f"{total_value = }")
-#     return total_value
 
-# score_word_return = score_word(word_test)
-# print(f"{score_word_return = }")
+
+
+
 
 # def get_highest_word_score(word_list):
-#     pass
+
+#     print(f"before sort {word_list = }")
+#     word_list_short = sorted(word_list, key=len)
+#     word_list_long = sorted(word_list, key=len, reverse = True)
+#     print(f"after sorted {word_list_short = }")
+#     print(f"after sorted {word_list_long = }")
+
+#     for word in word_list_short:
+#         score = score_word(word)
+#         words_scored.append((word, score))
+#     print(f"{words_scored = }")
+
+#     # words_scored.append((word_list_low[0], score),(word_list_high[0], score))
+
+#     highest_score = max(pair[1] for pair in words_scored)
+#     winners = [pair for pair in words_scored if pair[1] == highest_score]
+#     last_word = winners[-1][0]
+
+#     if len(last_word) == 10:
+#         return winners[-1]
+#     else:
+#         return winners[0]
+
+#     print(f"{words_scored = }")
+#     print(f"{scores = }")
+#     print(f"{highest_score = }")
+#     print(f"{winners = }")
+
+#     winner_list = []
+    
+#     for word in word_list:
+#         word_score = score_word(word)
+#         tuple_score = word, word_score
+#         winner_list.append(tuple_score)
+
+#     result = sorted(winner_list, key=lambda x: x[1], reverse=True)
+#     word_lenght_list = []
+
+#     for item in result:
+#         if item[1] == result[0][1]:
+#             word_lenght_list.append(item)
+    
+#     word_lenght_sort = sorted(word_lenght_list, key=lambda x: len(x[0]))
+#     word_lenght_sort_ten = sorted(word_lenght_list, key=lambda x: len(x[0]), reverse=True)
+#     first_item = word_lenght_sort_ten[0]
+#     if len(first_item[0]) == 10:
+#         return word_lenght_sort_ten[0]
+#     else:
+#         return word_lenght_sort[0]
+    
+# get_highest_word_score_results = get_highest_word_score(test_word_list)
+# print(f"{get_highest_word_score_results = }")
+# def get_highest_word_score(word_list):
+#     words_scored = []
+#     scores = []
+
+#     print(f"before sort {word_list = }")
+#     word_list_short = sorted(word_list, key=len)
+#     word_list_long = sorted(word_list, key=len, reverse = True)
+#     print(f"after sorted {word_list_short = }")
+#     print(f"after sorted {word_list_long = }")
+
+#     for word in word_list:
+#         score = score_word(word)
+#         words_scored.append((word, score))
+#     print(f"{words_scored = }")
+
+#     words_scored.append((word_list_low[0], score),(word_list_high[0], score))
+
+#     highest_score = max(pair[1] for pair in words_scored)
+#     winners = [pair for pair in words_scored if pair[1] == highest_score]
+#     print(f"{winners = }")
+#     print(f"{highest_score = }")
+#     word_list_short = sorted(winners, key=lambda x: len(x[0]))
+#     word_list_long = sorted(winners, key=lambda x: len(x[0]), reverse=True)
+#     print(f"after sorted {word_list_short = }")
+#     print(f"after sorted {word_list_long = }")
+
+#     short_winner = word_list_short[0]
+#     long_winner = word_list_long[0]
+#     winners = [pair for pair in words_scored if pair[1] == highest_score]
+#     last_word = winners[-1][0]
+
+#     if len(long_winner[0]) == 10:
+#         return long_winner
+#     else:
+#         return short_winner
+
+#     print(f"{words_scored = }")
+#     print(f"{scores = }")
+#     print(f"{highest_score = }")
+#     print(f"{winners = }")
+
+#     print(f"before sort {word_list = }")
+#     word_list_short = sorted(words_scored, key=lambda x: len(x[0]))
+#     word_list_long = sorted(words_scored, key=lambda x: len(x[0]), reverse=True)
+#     print(f"after sorted {word_list_short = }")
+#     print(f"after sorted {word_list_long = }")
+
+#     for word in word_list_short:
+#         score = score_word(word)
+#         words_scored.append((word, score))
+#     print(f"{words_scored = }")
+
+#     # words_scored.append((word_list_low[0], score),(word_list_high[0], score))
+
+#     highest_score = max(pair[1] for pair in words_scored)
+#     winners = [pair for pair in words_scored if pair[1] == highest_score]
+#     last_word = winners[-1][0]
+
+#     if len(last_word) == 10:
+#         return winners[-1]
+#     else:
+#         return winners[0]
+
+#     print(f"{words_scored = }")
+#     print(f"{scores = }")
+#     print(f"{highest_score = }")
+#     print(f"{winners = }")
+
+#     winner_list = []
+    
+#     for word in word_list:
+#         word_score = score_word(word)
+#         tuple_score = word, word_score
+#         winner_list.append(tuple_score)
+
+#     result = sorted(winner_list, key=lambda x: x[1], reverse=True)
+#     word_lenght_list = []
+
+#     for item in result:
+#         if item[1] == result[0][1]:
+#             word_lenght_list.append(item)
+    
+#     word_lenght_sort = sorted(word_lenght_list, key=lambda x: len(x[0]))
+#     word_lenght_sort_ten = sorted(word_lenght_list, key=lambda x: len(x[0]), reverse=True)
+#     first_item = word_lenght_sort_ten[0]
+#     if len(first_item[0]) == 10:
+#         return word_lenght_sort_ten[0]
+#     else:
+#         return word_lenght_sort[0]
+    
+# get_highest_word_score_results = get_highest_word_score(test_word_list)
+# print(f"{get_highest_word_score_results = }")
+
+
+
+
+# FIRST ATTEMPT/WORKING CODE
+
+
+# def get_highest_word_score(word_list):
+#     winner_list = []
+    
+#     for word in word_list:
+#         word_score = score_word(word)
+#         print(f"{word_score = }")
+#         tuple_score = word, word_score
+#         print(f"{tuple_score = }")
+#         winner_list.append(tuple_score)
+#         print(f"{winner_list = }")
+
+#     result = sorted(winner_list, key=lambda x: x[1], reverse=True)
+#     print(f"{result = }")
+
+#     word_lenght_list = []
+
+#     for item in result:
+#         if item[1] == result[0][1]:
+#             word_lenght_list.append(item)
+#     print(f"{word_lenght_list = }")
+    
+#     word_lenght_sort = sorted(word_lenght_list, key=lambda x: len(x[0]))
+#     print(f"{word_lenght_sort = }")
+#     word_lenght_sort_ten = sorted(word_lenght_list, key=lambda x: len(x[0]), reverse=True)
+#     print(f"{word_lenght_sort_ten = }")
+#     first_item = word_lenght_sort_ten[0]
+#     print(f"{first_item = }")
+#     if len(first_item[0]) == 10:
+#         return word_lenght_sort_ten[0]
+#     else:
+#         return word_lenght_sort[0]
+
+# get_highest_word_score_results = get_highest_word_score(test_word_list)
+# print(f"{get_highest_word_score_results = }")
+
+
+
+
+
+
+# def get_highest_word_score(word_list):
+
+#     # print(f"before sort {word_list = }")
+#     # word_list_short = sorted(word_list, key=len)
+#     # word_list_long = sorted(word_list, key=len, reverse = True)
+#     # print(f"after sorted {word_list_short = }")
+#     # print(f"after sorted {word_list_long = }")
+
+#     # words_scored.append((word_list_low[0], score),(word_list_high[0], score))
+
+#     highest_score = max(pair[1] for pair in words_scored)
+#     winners = [pair for pair in words_scored if pair[1] == highest_score]
+#     print(f"{winners = }")
+#     print(f"{highest_score = }")
+#     word_list_short = sorted(winners, key=lambda x: len(x[0]))
+#     word_list_long = sorted(winners, key=lambda x: len(x[0]), reverse=True)
+#     print(f"after sorted {word_list_short = }")
+#     print(f"after sorted {word_list_long = }")
+
+#     short_winner = word_list_short[0]
+#     long_winner = word_list_long[0]
+#     # winners = [pair for pair in words_scored if pair[1] == highest_score]
+#     # last_word = winners[-1][0]
+
+#     if len(long_winner[0]) == 10:
+#         return long_winner
+#     else:
+#         return short_winner
+
+    # print(f"{words_scored = }")
+    # print(f"{scores = }")
+    # print(f"{highest_score = }")
+    # print(f"{winners = }")
+
+    
+    # for word in word_list:
+    #     word_score = score_word(word)
+    #     tuple_score = word, word_score
+    #     winner_list.append(tuple_score)
+
+    # result = sorted(winner_list, key=lambda x: x[1], reverse=True)
+    # word_lenght_list = []
+
+    # for item in result:
+    #     if item[1] == result[0][1]:
+    #         word_lenght_list.append(item)
+    
+    # word_lenght_sort = sorted(word_lenght_list, key=lambda x: len(x[0]))
+    # word_lenght_sort_ten = sorted(word_lenght_list, key=lambda x: len(x[0]), reverse=True)
+    # first_item = word_lenght_sort_ten[0]
+    # if len(first_item[0]) == 10:
+    #     return word_lenght_sort_ten[0]
+    # else:
+    #     return word_lenght_sort[0]
+    
+# get_highest_word_score_results = get_highest_word_score(test_word_list)
+# print(f"{get_highest_word_score_results = }")
+
+
+
+
+
+
+
+
+
 
