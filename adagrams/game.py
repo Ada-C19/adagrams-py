@@ -127,12 +127,12 @@ def get_highest_word_score(word_list):
     for word in word_list:
         scorez = score_word(word)
         score_dict[word] = scorez
-        winning_word = word
     
     # assigns highest score to highest_score
     for word, scorez in score_dict.items():
         if scorez > highest_score:
             highest_score = scorez
+            winning_word = word 
     
     # checks for tie breaker 
     for word in score_dict:
