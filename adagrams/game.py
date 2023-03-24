@@ -30,20 +30,18 @@ def draw_letters():
     'Z': 1
     }
 
-    letter_pool_copy_list = LETTER_POOL
+    letter_pool_copy_dict = LETTER_POOL.copy()
     full_letter_bank_list = []
     my_letter_bank_list = []
 
-    for letter in letter_pool_copy_list:
-        while full_letter_bank_list.count(letter) < letter_pool_copy_list[letter]:
+    for letter in letter_pool_copy_dict:
+        while full_letter_bank_list.count(letter) < letter_pool_copy_dict[letter]:
             full_letter_bank_list.append(letter)
 
     while len(my_letter_bank_list) < 10:
         random_letter = random.choice(full_letter_bank_list)
         my_letter_bank_list.append(random_letter)
         full_letter_bank_list.remove(random_letter)
-
-
 
     return my_letter_bank_list
 
@@ -52,7 +50,9 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     word = word.upper()
     for letter in word:
-        if letter not in letter_bank or word.count(letter) > letter_bank.count(letter):
+        if letter not in letter_bank:
+            return False
+        if word.count(letter) > letter_bank.count(letter):
             return False
     return True
             
@@ -104,68 +104,37 @@ def score_word(word):
 
 
 
-
-
-
 def get_highest_word_score(word_list):
-    word_list_with_scores = []
     score_with_word_dict = {}
+    word_list_with_scores = []
     word_length_list = []
-    best_word = None
 
+    
     for word in word_list:
         score = score_word(word)
         score_with_word_dict[word]= score
-        if len(word) == 10:
-            best_word = (word, score)
-            return best_word
-        else:
-            continue
 
     highest_score = max(score_with_word_dict.values())
     for word, score in score_with_word_dict.items():
         if highest_score == score:
-            best_word= (word, score)
-            word_list_with_scores.append(best_word)
+            winning_word= (word, score)
+            word_list_with_scores.append(winning_word)
 
 
     for str, value in word_list_with_scores:
         word_length_list.append(len(str))
+        if len(str) == 10:
+            winning_word = (str, value)
+            return winning_word
+        else: 
+            continue
+        
 
-
-    lowest_score = min(word_length_list)
-
+    least_letter_word= min(word_length_list)
     for str, value in word_list_with_scores:
-        if len(str) == lowest_score:
-            best_word = (str, value)
-            return best_word
+        word_length_list.append(len(str))
+        if len(str) == least_letter_word:
+            winning_word = (str, value)
+            return winning_word
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    return best_word
-        
-
-        
-
-
-        # word_list_with_scores.append(word)
-        # word_list_with_scores.append(score)
-
-    
-        
-
-
-        
-    
