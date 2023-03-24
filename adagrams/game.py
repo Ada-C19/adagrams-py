@@ -71,7 +71,7 @@ def uses_available_letters(word, letter_bank):
 
     #Compare to verify word letters are in bank AND there aren't too many
     for letter, count in word_dict.items():
-        if letter not in list(letter_dict.keys()):
+        if letter not in letter_dict:
             return False
         elif count > letter_dict[letter]:
             return False
