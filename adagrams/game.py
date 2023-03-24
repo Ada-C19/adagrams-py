@@ -4,6 +4,7 @@ import random
 
 
 
+
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
@@ -44,11 +45,10 @@ VALUE_SCORES = {
 }
 
 
- #WAVE 1
+#WAVE 1
 def draw_letters():
     #pass
     #no parameters
-   
     #return an array of 10 strings
     # array is a list, return list of 10 strings
     drawn_letters = []
@@ -61,7 +61,6 @@ def draw_letters():
     for letter, num in LETTER_POOL.items():
         for i in range(num):
             available_letters.append(letter)
-            
 
     # letters should be randomly drawn from a pool of letters
     # letter pool should reflect the distribution of letters
@@ -69,8 +68,7 @@ def draw_letters():
     # while length of drawn letters from pool of letters is <= 10 is True
     while len(drawn_letters) < 10:
         # draw random letter from available_letters
-        # use import random to use random() which returns random float between
-        # 0 and 1
+        # use import random to use random() which returns random float between 0 and 1
         # use choice() returns a random element from the given sequence
         randomly_draw_letter = random.choice(available_letters)
         available_letters.remove(randomly_draw_letter)
@@ -79,37 +77,32 @@ def draw_letters():
         drawn_letters.append(randomly_draw_letter)
         #build a data sturcture for the letter pool
     #there are only 2 available C letters
-        #draw letters cannot return more than 2 C's
+        #draw_letters cannot return more than 2 C's
     #there are 12 E's but only one Z
         #should be 12 times as likely to draw a E as a Z
     #invoking this function should NOT change the pool of letters
         #imagine user returns their hand to the pool before drawing new letterss
     return drawn_letters
 
-
-
 #terminal vs code wave one success! -- terminal wave one success!
 
 #WAVE 2
 def uses_available_letters(word, letter_bank):
     #pass
-    #No_cases = word.upper()
+    #nOT_cAsE_sEnsiTiVe = word.upper() -- could have made a variable
     #letter bank describes an array of drawn letters in a hand
     for letter in list(word.upper()):
-        # set is a dict unordered duplicates not allowed 
-    #     #check if an input word only uses characters that are within a 
-    # hand of drawn cards
-
-    #     # word describes some input word, and is a string
-        #if letter in letter_bank:  
+    # set is a dict unordered duplicates not allowed -- set would work if using with list, tuple or dict
+    #set didn't work was not iterating thru for loop
+    # had to turn set into a list
+    #check if an input word only uses characters that are within a hand of drawn cards
+    #word describes some input word, and is a string
         if word.upper().count(letter) > letter_bank.count(letter):
             return False
-    #     # return False if not; if there is a letter in input that is not present in the letter_bank
-            #letter_bank.remove(letter)
-    # #return True if every letter in the input word is available in the letter_bank
+    #return False if not; if there is a letter in input that is not present in the letter_bank
+    #return True if every letter in the input word is available in the letter_bank
     return True
 
-# there should be a .lower() or .upper() but doesn't work :()
 
 #WAVE 3
 #has one parameter word
@@ -133,21 +126,22 @@ def get_highest_word_score(word_list):
     #find highest scoring word
     max_word = ''
     for word in word_list:
+        #for i in word:
     # list of word list - one parameter - list of strings
-        word_score = score_word(word)
+            word_score = score_word(word)
         # calculates which of these words has the highest score, applies any ties
-        if word_score > max_score:
-            max_score = word_score
-            max_word = word
-        elif word_score == max_score:
+            if word_score > max_score:
+                max_score = word_score
+                max_word = word
+            elif word_score == max_score:
             # for tie breaking rules - prefer the word with the fewest letters
             # unless one word has 10 letters, if top score is tied with 10 letters
             # over the one with fewer tiles
             #if there are multiple words that are the same score and the same length
             #pick the first one in the supplied list
-            if len(word) < len(max_word) or (len(word) == len(max_word) 
-            and len(word) == 10):
-                max_word = word
+                if len(word) < len(max_word) or len(word) == (len(max_word) == 10):
+                # (min((word for word in max_word if word), key=len))
+                    max_word = word
     # returns the winning word in a special data stucture
     # returns a tuple that rep the data of winning word and it's score
     return (max_word, max_score)
