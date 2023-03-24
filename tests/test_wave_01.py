@@ -74,3 +74,4 @@ def test_draw_letters_returns_different_hands():
 
     # Assert
     assert hand1 != hand2 or hand2 != hand3
+
