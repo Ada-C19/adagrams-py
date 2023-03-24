@@ -44,31 +44,18 @@ def draw_letters():
     return tiles
         
 
-    
-
-        
-
-            
-
-
-
-
-
 def uses_available_letters(word, letter_bank):
     letter_bank_dict = {}
     word_dict = {}
     word = word.upper()
 
-    #creates a dictionary key = letter value = amount of times used
     for letter in letter_bank:
         if letter not in letter_bank_dict:
             letter_bank_dict[letter] = 1
         else:
             letter_bank_dict[letter] += 1
-    
-    #creates a dictionary key = letter value = amount of times used
-    for character in word:
 
+    for character in word:
         if character not in letter_bank:
             return False
         else:
@@ -78,17 +65,10 @@ def uses_available_letters(word, letter_bank):
                 word_dict[character] += 1
 
     for characters in word_dict:
-        bunny = word_dict[characters]
-        rabbit = letter_bank_dict[characters]
         if word_dict[characters] > letter_bank_dict[characters]:
-            
             return False
     return True
         
-    
-    
-
-    
 def score_word(word):
     point_values = {
         "A" : 1,
@@ -131,6 +111,34 @@ def score_word(word):
     
 
 def get_highest_word_score(word_list):
-    pass
+    words_points = {}
+    for word in word_list:
+        points = score_word(word)
+        if points not in words_points.keys():
+            words_points[points] = [word]
+        else:
+            words_points[points].append(word)
+    
+    highest_key = max(words_points.keys())
+    highest_words_list = words_points[highest_key] 
+
+    current_winner = highest_words_list[0]
+    for index in range(1, len(highest_words_list)):
+        if len(current_winner) == 10:
+            return (current_winner, highest_key)
+        elif len(highest_words_list[index]) == 10:
+            return (highest_words_list[index], highest_key)
+        elif len(current_winner) > len(highest_words_list[index]):
+            current_winner = highest_words_list[index]
+    return (current_winner, highest_key)
+
+        
+    
+        
+
+    
+
+
+
 
 draw_letters()
