@@ -33,7 +33,6 @@ LETTER_POOL = {
 def draw_letters():
     hand = []
     copy_letter_pool = LETTER_POOL.copy()
-
     while len(hand) < 10:
       random_letter = random.choices(list(copy_letter_pool), weights = copy_letter_pool.values(), k=1)
       str_random_letter = random_letter[0]
@@ -46,7 +45,6 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     quantity_available = {}
     validate_enough_available = {}
-
     for letter in letter_bank:
         available_count = letter_bank.count(letter)
         quantity_available[letter] = available_count
@@ -93,7 +91,7 @@ def score_word(word):
         "Y": 4,
         "Z": 10,
     }
-
+    
     for letter in word.upper():
         if letter in score_chart:
             score += score_chart[letter]
