@@ -48,8 +48,6 @@ def draw_letters():
         
     return hand
 
-draw_letters()
-
 def uses_available_letters(word, letter_bank):
     # check uppercase
     # check if letter is in letter_bank (copied to not modify original)
@@ -63,7 +61,6 @@ def uses_available_letters(word, letter_bank):
             letter_bank_copy.remove(letter)
     return True
 
-
 def score_word(word):
     score = 0
     score_dict = {"A": 1, "E": 1, "I": 1, "O": 1, "U": 1, 
@@ -72,13 +69,12 @@ def score_word(word):
                 "P": 3, "F": 4, "H": 4, "V": 4, "W": 4, 
                 "Y": 4, "K": 5, "J": 8, "X": 8, "Q": 10, "Z": 10
                 }
-    
+
     for letter in word.upper():    
         score += score_dict[letter]
     if len(word) >= 7:
         score += 8
     return score
-
 
 def get_highest_word_score(word_list):
     highest_word_score = 0 
