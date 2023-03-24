@@ -40,7 +40,6 @@ def draw_letters():
             hand.append(random_letter)
         
     return hand
-draw_letters()
 
 
 def uses_available_letters(word, letter_bank):
@@ -90,7 +89,6 @@ def score_word(word):
     if len(word) >= 7:
         score += 8
     return score
-print(score_word("elephant"))
 
 
 def get_highest_word_score(word_list):
@@ -101,7 +99,6 @@ def get_highest_word_score(word_list):
         if temp_score > highest_score:
             highest_score = temp_score
             winning_word = temp_word
-            # use len() to get length of tiebreaker words
         elif temp_score == highest_score:
             if len(winning_word) == 10:
                 continue
