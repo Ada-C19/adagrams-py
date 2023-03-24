@@ -119,11 +119,28 @@ def score_word(word):
 ##########################################################################
 
 def get_highest_word_score(word_list):
-    pass
-    # """
-    # input: word_list (list of strings)
-    # output: word string, and score of word (tuple) 
-    # """
+    """
+    input: word_list (list of strings)
+    output: word string, and score of word (tuple) 
+    """
+
+    # USE DICT INSTEAD!!!!
+    list_of_scores = []
+
+    for element in word_list:
+        # print(element)
+        word_score = score_word(element)
+        list_of_scores.append(word_score)
+        print(element, word_score)
+
+    winning_word_score = max(list_of_scores)
+    print(winning_word_score)
+    
+
+    # tuple(word, word_score)
+
+
+    # I have lists of lists and I need to check the len of elements in both
 
     # comment in this code later, empty list to append to
     # THEN need to convert list to tuple
@@ -137,6 +154,6 @@ def get_highest_word_score(word_list):
 
 
 
-
+    # ("EXPO", 12)
 
     # return tuple(winning_word)
