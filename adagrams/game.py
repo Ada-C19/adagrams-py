@@ -105,10 +105,30 @@ def score_word(word):
 def get_highest_word_score(word_list):
     word_and_score_pair = {}
     for word in word_list:
-        words_score = score_word(word) 
+        words_score = score_word(word)
+        word_and_score_pair[word] = words_score
         
+    highest_score = max(word_and_score_pair.values())
+    # word_and_score = (highest_score, word_and_score_pair[highest_score])
+    tied_scores = []
+    # loop through for highest scores, get keys of highests scores
+    for strings, ties in word_and_score_pair.items():
+        if ties == highest_score:
+            tied_scores.append(strings)
+        # print(tied_scores)
+    #get shortest work in tied scores. 
+    #  if word has lengh of 10 WINNER else shortest word wins
+    # return word n score
+    shortest_word = min(tied_scores, key=len)
+    print(shortest_word)
+    return shortest_word, highest_score
+
+
+
+
+    # add keys to dict. n then pic the shortest string n return.
+
+    # return word_and_score
     
-
-
-    print(words_score)
+    
     # return word_and_score_pair
