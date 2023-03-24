@@ -30,6 +30,36 @@ LETTER_POOL = {
 'Z': 1
 }
 
+#Define score for each letter
+SCORE_DICT = {
+    "A": 1,
+    "B": 3,
+    "C": 3,
+    "D": 2,
+    "E": 1,
+    "F": 4,
+    "G": 2,
+    "H": 4,
+    "I": 1,
+    "J": 8,
+    "K": 5,
+    "L": 1,
+    "M": 3,
+    "N": 1,
+    "O": 1,
+    "P": 3,
+    "Q": 10,
+    "R": 1,
+    "S": 1,
+    "T": 1,
+    "U": 1,
+    "V": 4,
+    "W": 4,
+    "X": 8,
+    "Y": 4,
+    "Z": 10
+}
+
 def make_letter_list(dict):
     #Turn dict into list where each letter appears a number of times
     #equal to its frequency
@@ -75,36 +105,6 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    #Define score for each letter
-    SCORE_DICT = {
-        "A": 1,
-        "B": 3,
-        "C": 3,
-        "D": 2,
-        "E": 1,
-        "F": 4,
-        "G": 2,
-        "H": 4,
-        "I": 1,
-        "J": 8,
-        "K": 5,
-        "L": 1,
-        "M": 3,
-        "N": 1,
-        "O": 1,
-        "P": 3,
-        "Q": 10,
-        "R": 1,
-        "S": 1,
-        "T": 1,
-        "U": 1,
-        "V": 4,
-        "W": 4,
-        "X": 8,
-        "Y": 4,
-        "Z": 10
-    }
-
     #Iterate through word and total score for each letter
     score = sum([SCORE_DICT[word[i].upper()] for i in range(len(word))])
 
