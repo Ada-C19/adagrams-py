@@ -60,13 +60,13 @@ def uses_available_letters(word, letter_bank):
     #Create dict of hand with letter as key and count as value
     letter_dict = {}
     for letter in letter_bank:
-        letter = letter.lower()
+        letter = letter.upper()
         letter_dict[letter] = letter_dict.get(letter, 0) + 1
 
     #Create dict of word with letter as key and count as value
     word_dict = {}
     for i in range(len(word)):
-        letter = word[i].lower()
+        letter = word[i].upper()
         word_dict[letter] = word_dict.get(letter, 0) + 1
 
     #Compare to verify word letters are in bank AND there aren't too many
