@@ -36,7 +36,7 @@ def draw_letters():
     draw_letters_list = []
     letter_freq = {}
     
-    # create random letter picking from letter poll
+    # create random letter picking from the letter poll
     # only append letters that are no bigger than letter poll frequency
     while len(draw_letters_list) < 10:
         cur_random_letter = random.choice(list(LETTER_POOL.keys()))
@@ -52,7 +52,7 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     
-    # check each letter's frequency and record in letter_band_freq
+    # check each letter's frequency and record in letter_bank_freq
     letter_bank_freq = {}
     for letter in letter_bank:
         if letter in letter_bank_freq:
@@ -61,7 +61,7 @@ def uses_available_letters(word, letter_bank):
             letter_bank_freq[letter] = 1
 
     # check if every letter or its lower-case form in word existed in letter_bank 
-    # also check the occurance of each letter not bigger than its letter_bank      
+    # also check the occurance of each letter not bigger than its frequency in the letter_bank      
     for letter in word:
         if letter and letter.upper() not in letter_bank:
             return False
@@ -79,7 +79,7 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
 
-    # based on scire chart to create score_dic with each letter's score
+    # based on the score chart to create score_dic with each letter's score
     score_dic = {}
     score_dic[1] = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T" ]
     score_dic[2] = ["D", "G" ]
@@ -120,7 +120,7 @@ def get_highest_word_score(word_list):
             # when two letters' scores are tied, return the one with 10 letters
             elif len(word) == 10:
                 highest_letter = word
-            # when two letters' scores are tied and both length are not 10, return shorter one
+            # when two letters' scores are tied and both length are not 10, return the shorter one
             elif len(highest_letter) != 10 and len(word) < len(highest_letter):
                 highest_letter = word
 
