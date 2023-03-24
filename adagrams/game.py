@@ -62,8 +62,8 @@ def uses_available_letters(word, letter_bank):
     This function takes in two parametrs. Return true if word is available
     w/ right quantities from letter_bank. Return False if letter in word is 
     not in letter_bank.
-    input: word is some word and it's a string
-         letter_bank is an array of 10 strings that represent drawn letters
+    input: word is some word and it's a string. letter_bank is an 
+    array of 10 strings that represent drawn letters
     output: return True or False
     """
     
@@ -94,7 +94,7 @@ def score_word(word):
     """
     This function returns the score of a given word. If 
     length of the word is 7-10, then word gets an additional 8 points.
-    input: one parameter: word, which is a string
+    input: one parameter, word and is a string
     output: returns an integer that represents the score
     """
     score_pool = {
@@ -147,55 +147,42 @@ def get_highest_word_score(word_list):
     input: one parameter: word_list is a list of strings
     output: returns a tuple of highest scored word (word, score)
     """
+    #initialize empty dict and list
     word_dict = {}
-    highest_scored_word = ""
-    highest_scored_word_score = 0
-    score_set = set()
     lengths_of_words = []
     
 
     for word in word_list:
-      word_score = score_word(word)
-      #append scores to score_set
-      score_set.add(word_score)
-      #creating a dict too hahah
-      word_dict[word] = word_score
-      #create a list of length of words ....
-      lengths_of_words.append(len(word))
-      
-    #high score of set
-    # high_score = max(score_set)
-    high_score = max(word_dict.values())
-    common_high_score = 0
-    #create common numnnersof high score
+        word_score = score_word(word)
+        word_dict[word] = word_score
+        #getting length of ea. word to later find fewest letters
+        lengths_of_words.append(len(word))
+
+    #counts how many highest scores are same, will 
+    #help to see if there are ties.
+    highest_score = max(word_dict.values())
+    common_highest_scores = 0
     for score in word_dict.values():
-      if score == high_score:
-        common_high_score += 1
+        if score == highest_score:
+            common_highest_scores += 1
 
-    #smallest length of word as a number.
-    # smallest_length_word = min(lengths_of_words)
-
-
-    # print("highscore", high_score)
-    # print("commonhighscore", common_high_score)
-
-
-    if common_high_score == 1:
-      score = high_score
-      word = max(word_dict, key=word_dict.get)
-      return word, score
+    #if only 1 unique highest score
+    if common_highest_scores == 1:
+        score = highest_score
+        #gets key of highest score
+        word = max(word_dict, key=word_dict.get)
+        return word, score
+    #if more than 1 common highest score. Aka a tie
     else:
-      for word, score in word_dict.items():
-        if len(word) == 10:
-          return word, score
-        # elif len(word) == smallest_length_word:
-        #   smallest_word = min(word_dict, key=len)
-        #   return smallest_word, score
-        elif max(lengths_of_words) < 10:
-          print(word_dict, "dict")
-          smallest_word = min(word_dict, key=len)
-          smallest_word_score = word_dict[smallest_word]
-          return smallest_word, smallest_word_score
+        for word, score in word_dict.items():
+            if len(word) == 10:
+                return word, score
+            #if there are no other words in the dict that are 10 
+            # long, return the shortest word
+            elif max(lengths_of_words) < 10:
+                shortest_word = min(word_dict, key=len)
+                shortest_word_score = word_dict[shortest_word]
+                return shortest_word, shortest_word_score
 
 
 
