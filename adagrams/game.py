@@ -1,4 +1,4 @@
-"""adagrams: it's really scrabble"""
+"""doc string"""
 
 import random
 
@@ -54,6 +54,7 @@ def draw_letters():
             letters.append(letter_key)
 
     return letters
+
 
 
 def uses_available_letters(word, letter_bank):
