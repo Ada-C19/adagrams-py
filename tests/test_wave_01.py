@@ -54,7 +54,7 @@ def test_letter_not_selected_too_many_times():
     for i in range(1000):
         # Arrange/Act
         letters = draw_letters()
-
+        
         letter_freq = {}
         for letter in letters:
             if letter in letter_freq:
