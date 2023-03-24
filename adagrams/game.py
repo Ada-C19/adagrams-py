@@ -93,17 +93,15 @@ def draw_letters():
 #WAVE 2
 def uses_available_letters(word, letter_bank):
     #pass
-    #letter_bank_copy = letter_bank.copy()
     #letter bank describes an array of drawn letters in a hand
-    #for letters in letter_bank:
-    for letter in set(word):
+    for letter in list(word.upper()):
         # set is a dict unordered duplicates not allowed 
     #     #check if an input word only uses characters that are within a 
     # hand of drawn cards
 
     #     # word describes some input word, and is a string
         #if letter in letter_bank:  
-        if word.count(letter) > letter_bank.count(letter):
+        if word.upper().count(letter) > letter_bank.count(letter):
             return False
     #     # return False if not; if there is a letter in input that is not present in the letter_bank
             #letter_bank.remove(letter)
@@ -152,3 +150,5 @@ def get_highest_word_score(word_list):
     # returns the winning word in a special data stucture
     # returns a tuple that rep the data of winning word and it's score
     return (max_word, max_score)
+
+# going home now :() hopefully clear test later today
