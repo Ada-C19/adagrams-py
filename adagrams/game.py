@@ -89,24 +89,24 @@ SCORE_CHART_LOWERCASE = {
 
 temp_list = []
 LETTER_POOL_LIST = []
-hand = []
-hand_quantity = 10
 
 def draw_letters():
+    hand = []
+    hand_quantity = 10
 
-  # Create a comprehensive list which includes the total quanity of each available letter from the LETTER_POOL dictionary as individual elements. 
-  for key, value in LETTER_POOL.items():
-    temp_list.append([key] * value)
+    # Create a comprehensive list which includes the total quanity of each available letter from the LETTER_POOL dictionary as individual elements. 
+    for key, value in LETTER_POOL.items():
+        temp_list.append([key] * value)
   
-  for sublist in temp_list:
-    for letter in sublist:
-      LETTER_POOL_LIST.append(letter)
-  #print(LETTER_POOL_LIST)
+    for sublist in temp_list:
+        for letter in sublist:
+            LETTER_POOL_LIST.append(letter)
+    #print(LETTER_POOL_LIST)
 
-  # Choose 10 random letters as hand, excluding the ones that are already chosen.
-  return random.sample(LETTER_POOL_LIST, hand_quantity)
-  #print(random.sample(LETTER_POOL_LIST, hand_quantity))
-
+    # Choose 10 random letters as hand, excluding the ones that are already chosen.
+    return random.sample(LETTER_POOL_LIST, hand_quantity)
+    #print(random.sample(LETTER_POOL_LIST, hand_quantity))
+     
 def uses_available_letters(word, letter_bank):       
     word_verification = []
     hand_letter_count = {}
@@ -123,7 +123,7 @@ def uses_available_letters(word, letter_bank):
             count += 1
             hand_letter_count[letter] = count
             #print(hand_letter_count)
-    
+      
     for letter in capitalized_word:
         letter_quantity = capitalized_word.count(letter)
         word_letter_count[letter] = letter_quantity
@@ -135,30 +135,38 @@ def uses_available_letters(word, letter_bank):
         else:
             word_verification.append("False")
             #print(word_verification)
-    
+      
     if "False" in word_verification:
         return False
         #print("False")
     else:
         return True
         #print("True")
-    
+      
 
 def score_word(word):
     word_score = {}
 
     if word == "":
-       word_score["empty"] = 0
+        word_score["empty"] = 0
 
     for letter in word:
-       if letter in SCORE_CHART:
-          word_score[letter] = SCORE_CHART[letter]
-       elif letter in SCORE_CHART_LOWERCASE:
-          word_score[letter] = SCORE_CHART_LOWERCASE[letter]
+        if letter in SCORE_CHART:
+            word_score[letter] = SCORE_CHART[letter]
+        elif letter in SCORE_CHART_LOWERCASE:
+            word_score[letter] = SCORE_CHART_LOWERCASE[letter]
     #print(word_score)
 
+    while 7 <= len(word) <= 10:
+        word_score["bonus"] = 8
+      
     return sum(word_score.values())
 
-
 def get_highest_word_score(word_list):
-    pass
+    best_word = ()
+    score_dict = {}
+
+    for word in word_list:
+        score = score_word(word)
+        score_dict[word] = score
+        #print(score_dict)
