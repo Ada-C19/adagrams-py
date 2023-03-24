@@ -2,6 +2,7 @@
 from adagrams.alphabet_letters import *
 import random
 
+
 def draw_letters():
     """
     input: None
@@ -9,87 +10,55 @@ def draw_letters():
     """
 
     grab_10_elements = 10
-    alphabet_list = generate_alphabet_letters() 
+    alphabet_list = generate_alphabet_letters()
 
     return random.sample(alphabet_list, grab_10_elements)
+
+##########################################################################
 
 def uses_available_letters(word, letter_bank):
     """
     input: word as string, and letter_bank as list
     output: boolean of True or False
     """
+    
+    def transform_to_dictionary_without_replacement(data_type):
+        output = {}
+        
+        for element in data_type:
+            if element in output:
+                output[element] += 1
+            else:
+                output[element] = 1
 
-    # ignore letter casing code
-    # BUT STILL NOT passing test letters_ignore_case()
+        return output
+    
+
+    if len(word) == 0:
+        return False
+
     if word is not word.upper():
         word = word.upper()
-        print(word)
 
-
-    # if word uses all 10 available letters in list, 
-    # don't do more logic, just return True
-    if len(word) == 10:
-        return True
-
-
-    # logic for if letter in word is not in letter_bank
-    for letter in word:
-        if letter not in letter_bank:
-            return False
+    word_dict = transform_to_dictionary_without_replacement(word)
+    letters_dict = transform_to_dictionary_without_replacement(letter_bank)
+        
+    for key, value in word_dict.items():
+        if key in letters_dict:
+            letters_dict[key] = letters_dict[key] - value
         else:
-            print('here')
-            break
+            return False
 
+    # transforming letter_dict_values into a list to check if value is < 0
+    letter_dict_values = letters_dict.values()
 
+    for value in letter_dict_values:
+        if value < 0:
+            return False
 
-    # # logic to pass 
-    # # test_uses_available_letters_true_word_in_letter_bank()
-    # for letter in word:
-    #     if letter in letter_bank:
-    #         return True
-    #     else:
-    #         return False
+    return True
 
-
-    # # iterate through string and check if each letter is in
-    # # list letter_bank without replacement
-
-
-    # for letter in word:
-    #     for element in letter_bank:
-    #         if letter in letter_bank:
-    #             letter_bank.remove(letter)
-    #             print(letter_bank)
-
-
-
-    # # not removing letter from list, need to update logic
-    # for letter in word:
-    #     if letter in letter_bank:
-    #         letter_bank.remove(letter)
-    #         return True 
-    #         # print(letter_bank)
-    #         # continue
-    #     else:
-    #         return False 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+##########################################################################
 
 def score_word(word):
     pass
