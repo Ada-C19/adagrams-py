@@ -106,10 +106,7 @@ def score_word(word):
     }
 
     #Iterate through word and total score for each letter
-    score = 0
-    for i in range(len(word)):
-        letter = word[i].upper()
-        score += SCORE_DICT[letter]
+    score = sum([SCORE_DICT[word[i].upper()] for i in range(len(word))])
 
     #Add 8 extra points if word is 7-10 letters long
     if len(word) >= 7:
