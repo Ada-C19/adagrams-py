@@ -61,9 +61,7 @@ def draw_letters():
     while len(letters) < 10:
         choose_letter = (random.choices(avail_letters))
         add_letter = choose_letter[0]
-        occurences = letters.count(add_letter)
-        availability = LETTER_POOL[add_letter]
-        if occurences < availability:
+        if letters.count(add_letter) < LETTER_POOL[add_letter]:
             letters+=add_letter
 
     return letters
@@ -77,6 +75,7 @@ def uses_available_letters(word, letter_bank):
         else:
             available_letters.remove(letter)
     return True
+
 def score_word(word):
     score = 0
     for letter in word:
@@ -85,37 +84,20 @@ def score_word(word):
         score += 8
     return score
 
-def get_potential_winners(word_list):
-    high_score = 0
-    potential_winners = []
-    for pair in sort_list_by_score(word_list):
-        if pair[1] >= high_score:
-            high_score = pair[1]
-            potential_winners.append(pair)
-    return potential_winners
-
-def sort_list_by_score(word_list):
-    score_list = []
-    for word in word_list:
-        wscore = score_word(word)
-        score_list.append((word,wscore))
-    ordered_list = sorted(score_list, key=lambda word_pair: word_pair[1], reverse = True)
-    return ordered_list
-
 def get_highest_word_score(word_list):    
-    winning_word = ''
+    highest_score = 0
+    winning_word = ""
 
-    if len(get_potential_winners(word_list)) == 1:
-        winning_word = get_potential_winners(word_list)[0]
+    for word in word_list:
+        score = score_word(word)
+        
+        if score > highest_score:
+            highest_score = score
+            winning_word = word
+            
+        elif score == highest_score:
+            if (len(word) == 10 or len(word) < len(winning_word)) and len(winning_word) != 10:
+                winning_word = word
 
-    for candidate in get_potential_winners(word_list):
-        if len(candidate[0]) == 10:
-            winning_word=candidate
-            break
-                
-        else:
-            if candidate[0] == min(word_list, key = len):
-                winning_word = candidate
-
-    return winning_word
+    return winning_word, highest_score
         
