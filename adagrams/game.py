@@ -92,24 +92,18 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     winning_word = ""
-    first_ten_letter_word = ""
     highest_score = 0
 
     for word in word_list:
         score = score_word(word)
-        if score > highest_score:
+        if len(word) == 10:
+            highest_score = score
+            winning_word = word
+            break
+        elif score > highest_score:
             highest_score = score
             winning_word = word
         elif score == highest_score and len(word) < len(winning_word):
             winning_word = word
-        elif score >= highest_score and len(word) == 10:
-            highest_score = score
-            winning_word = word
-
-    for word in word_list:
-        if len(word) == 10:
-            first_ten_letter_word = word
-            winning_word = first_ten_letter_word
-            break
         
     return winning_word, highest_score
