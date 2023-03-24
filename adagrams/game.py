@@ -113,8 +113,7 @@ def get_highest_word_score(word_list):
     else:
         tied_words = []
         for word, score in words_and_scores.items():
-            if score == highest_score:
-                tied_words.append(word)
+            tied_words.append(word)
 
         for word in tied_words:
             if len(word) == 10:
