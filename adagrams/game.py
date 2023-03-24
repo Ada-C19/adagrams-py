@@ -52,7 +52,6 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    #bring in table with scores as a dictionary
     score_chart = {
         "A":1,
         "E":1,
@@ -89,13 +88,32 @@ def score_word(word):
         letter = letter.upper()
         print(letter)
         if letter in score_chart:
-            print("score_chart:",score_chart[letter])
-        #add that value (Score) to total_points
             total_points += score_chart[letter]
-            # print(f'total_points:{total_points}')
-    print(f'total_points:{total_points}')
+        
     return total_points
 
+
 def get_highest_word_score(word_list):
-    pass
+    winning_score = 0
+    winner_word = ""
+    for word in word_list:
+        word_score = score_word(word)
+        if word_score > winning_score:
+            winner_word = word
+            winning_score = word_score
+        elif word_score == winning_score:
+            if len(word) < len(winner_word) and len(winner_word) != 10:
+                winner_word = word
+        elif len(word) == len(winner_word):
+            continue
+        elif len(word) == 10:
+            winner_word = word
+            #if the length of the word is equal to the length of the winond word
+
+    return (winner_word,winning_score)   
+
+    
+    
+    
+    
 
