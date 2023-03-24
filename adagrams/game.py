@@ -58,35 +58,6 @@ SCORE_CHART = {
   'Z': 10
 }
 
-SCORE_CHART_LOWERCASE = {
-  'a': 1,
-  'b': 3,
-  'c': 3,
-  'd': 2,
-  'e': 1,
-  'f': 4,
-  'g': 2,
-  'h': 4,
-  'i': 1,
-  'j': 8,
-  'k': 5,
-  'l': 1,
-  'm': 3,
-  'n': 1,
-  'o': 1,
-  'p': 3,
-  'q': 10,
-  'r': 1,
-  's': 1,
-  't': 1,
-  'u': 1,
-  'v': 4,
-  'w': 4,
-  'x': 8,
-  'y': 4,
-  'z': 10
-}
-
 temp_list = []
 LETTER_POOL_LIST = []
 
@@ -150,20 +121,15 @@ def score_word(word):
     if word == "":
        word_score["empty"] = 0
 
-    for letter in word:
+    for letter in word.upper():
         if letter in SCORE_CHART:
             if letter not in word_score:
                 word_score[letter] = SCORE_CHART[letter]
             else:
                 word_score[letter] += SCORE_CHART[letter]
-        elif letter in SCORE_CHART_LOWERCASE:
-            if letter not in word_score:
-                word_score[letter] = SCORE_CHART_LOWERCASE[letter]
-            else:
-                word_score[letter] += SCORE_CHART_LOWERCASE[letter]
     #print(word_score)
 
-    while 7 <= len(word) <= 10:
+    if 7 <= len(word) <= 10:
         word_score["bonus"] = 8
       
     return sum(word_score.values())
