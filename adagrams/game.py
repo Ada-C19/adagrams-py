@@ -88,7 +88,7 @@ def score_word(word):
         point_value = LETTER_POINT_VALUE[letter]
         score += point_value
     if len(word) >= 7:
-        score += 8 # change to 8 
+        score += 8  
     
     return score
     
@@ -137,21 +137,3 @@ def get_highest_word_score(word_list):
     return first_word, max_value
     
 
-    
-    # max_value = max(word_dict.items())
-    # print(max_value)
-    # print(word_dict.items())
-    # return max_value
-
-
-        
-    
-get_highest_word_score(["WAVE", "MOON", "AHOY", "AAAAAAAAA"])
-    # for word in word list
-    # invoke score_word, store word and score in a dictionary?
-    # returns tuple (word, score) of winning word
-
-    # if scores are equal
-    # then len(word) that is less wins
-    # if len(word) = 10, that wins
-    # if len(word) is the same and score is the same, first word in the list wins
