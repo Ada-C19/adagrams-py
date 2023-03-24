@@ -164,7 +164,7 @@ This will let us give feedback on what you've finished so that you can be better
 
 Take time to read through the Wave 1 implementation requirements and the tests for Wave 1. Write down your questions, and spend some time going through your understanding of the requirements and tests. Make sure you can run `$ pytest` and see the tests fail.
 
-If, after you have taken some time to think through the problem and would like direction for how to dissect the problem, or if you need clarity on the terms/vocabulary we used in this project, you can check out [a small hint we've provided](./project_docs/hints.md).
+If, after you have taken some time to think through the problem and would like direction for how to disgit add -Asect the problem, or if you need clarity on the terms/vocabulary we used in this project, you can check out [a small hint we've provided](./project_docs/hints.md).
 
 ### Wave 1: draw_letters
 
