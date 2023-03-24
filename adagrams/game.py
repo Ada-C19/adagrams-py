@@ -144,7 +144,6 @@ def get_highest_word_score(word_list):
         if word_dict[key] == max_value:
             test_tuple = (key, max_value)
             winners_list.append(test_tuple)
-            continue
 
     #iterate through winners_list to collect len(string) of each word to 
     #put in len_list
