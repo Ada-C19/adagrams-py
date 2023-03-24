@@ -35,16 +35,19 @@ def draw_letters():
     for letter, freq in LETTER_POOL.items():
         letter_list.extend([letter] * freq)
     print(letter_list)
+
     return random.sample(letter_list, 10)
 
 # a helper function to be used in the function uses_available_letters()
 def create_dict(some_list):
     new_dict = {}
+
     for item in some_list:
         if item.lower() not in new_dict:
             new_dict[item.lower()] = 1
         else:
             new_dict[item.lower()] += 1
+
     return new_dict
 
 
@@ -70,6 +73,7 @@ def score_word(word):
                 }
 
     word_value = 0
+
     for letter in word:
         letter_value = next(
             value for tp, value in value_dict.items() if letter.upper() in tp)
@@ -77,6 +81,7 @@ def score_word(word):
 
     if len(word) in range(7, 11):
         word_value += 8
+        
     return word_value
 
 
