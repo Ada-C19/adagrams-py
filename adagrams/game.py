@@ -71,10 +71,9 @@ def uses_available_letters(word, letter_bank):
 
     #Compare to verify word letters are in bank AND there aren't too many
     for letter, count in word_dict.items():
-        if letter not in letter_dict:
+        if letter not in letter_dict or count > letter_dict[letter]:
             return False
-        elif count > letter_dict[letter]:
-            return False
+
     return True
 
 def score_word(word):
