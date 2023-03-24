@@ -59,25 +59,27 @@ SCORE_CHART = {
   'Z': 10
 }
 
-temp_list = []
 LETTER_POOL_LIST = []
+temp_list = []
 
 def draw_letters():
-    hand = []
-    hand_quantity = 10
 
-    # Create a comprehensive list which includes the total quanity of each available letter from the LETTER_POOL dictionary as individual elements. 
-    for key, value in LETTER_POOL.items():
-        temp_list.append([key] * value)
-  
+    # Creates a comprehensive list which includes the total quanity of each available letter from the LETTER_POOL dictionary as individual elements.  
+    for letter, quantity in LETTER_POOL.items():
+        temp_list.append([letter] * quantity)
+ 
     for sublist in temp_list:
         for letter in sublist:
             LETTER_POOL_LIST.append(letter)
     #print(LETTER_POOL_LIST)
 
-    # Choose 10 random letters as hand, excluding the ones that are already chosen.
-    return random.sample(LETTER_POOL_LIST, hand_quantity)
-    #print(random.sample(LETTER_POOL_LIST, hand_quantity))
+    # Chooses 10 random letters as hand, excluding the ones that are already chosen.
+    hand = random.sample(LETTER_POOL_LIST, 10)
+
+    #print(hand)
+    return hand
+
+#draw_letters()
      
 def uses_available_letters(word, letter_bank):       
     word_verification = []
