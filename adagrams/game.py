@@ -115,13 +115,11 @@ def get_highest_word_score(word_list):
     if count_of_highscore == 1:
         winner = (right_word, highest_score)
         return winner
-    elif count_of_highscore > 1:
+    else:
         for number in length_of_words:
             if number == 10:
                 index_of_ten_letter_word = length_of_words.index(number)
-                another_right_word = word_list[index_of_ten_letter_word]
-                return (another_right_word, highest_score)
-        # for readability: putting smallest_number variable here would make it easier to read
+                return (word_list[index_of_ten_letter_word], highest_score)
         smallest_number = min(length_of_words)
         for word in word_list:
             if len(word) == 10:
