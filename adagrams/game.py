@@ -42,7 +42,13 @@ def draw_letters():
     return hand_of_letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    for letter in word:
+        for item in letter_bank:
+            if letter not in letter_bank:
+                return False
+            if letter in letter_bank:
+                return True
+    
 
 def score_word(word):
     pass
