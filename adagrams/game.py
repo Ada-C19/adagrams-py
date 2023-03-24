@@ -93,6 +93,7 @@ def draw_letters():
 #WAVE 2
 def uses_available_letters(word, letter_bank):
     #pass
+    #No_cases = word.upper()
     #letter bank describes an array of drawn letters in a hand
     for letter in list(word.upper()):
         # set is a dict unordered duplicates not allowed 
