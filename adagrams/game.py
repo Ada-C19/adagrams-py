@@ -29,17 +29,20 @@ LETTER_POOL = {
     'Z': 1
 }
 
-def draw_letters():
-    letter_list = []
 
+def draw_letters():
+
+    # build a list of letters from the letter pool
+    letter_list = []
     for letter, freq in LETTER_POOL.items():
         letter_list.extend([letter] * freq)
-    print(letter_list)
 
+    # drawing letters
     return random.sample(letter_list, 10)
 
 # a helper function to be used in the function uses_available_letters()
 def create_dict(some_list):
+
     new_dict = {}
 
     for item in some_list:
@@ -52,17 +55,22 @@ def create_dict(some_list):
 
 
 def uses_available_letters(word, letter_bank):
+
+    # turning the letter pool and the passed in word to lists, with values as the occurence of letters
     letter_pool_dict = create_dict(letter_bank)
     word_dict = create_dict(word)
 
+    # check if the word used lettes in the letter bank,
+    # if yes compare the occurence of those letters in the word with the occurence in the letter bank
     for letter in word:
         if letter.lower() not in letter_pool_dict or letter_pool_dict[letter.lower()] < word_dict[letter.lower()]:
             return False
-        
+
     return True
 
 
 def score_word(word):
+
     value_dict = {('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'): 1,
                 ('D', 'G'): 2,
                 ('B', 'C', 'M', 'P'): 3,
@@ -72,6 +80,7 @@ def score_word(word):
                 ('Q', 'Z'): 10
                 }
 
+    # access the value of the letters and add up to find the total score of the word
     word_value = 0
 
     for letter in word:
@@ -81,17 +90,20 @@ def score_word(word):
 
     if len(word) in range(7, 11):
         word_value += 8
-        
+
     return word_value
 
 
 def get_highest_word_score(word_list):
-    score_dict = {word : score_word(word) for word in word_list}
+
+    score_dict = {word: score_word(word) for word in word_list}
 
     highest_score = 0
     highest_score_words = []
+
     best_word = tuple()
 
+    # collect all the possible highest score words
     for word, score in score_dict.items():
         if score > highest_score:
             highest_score = score
@@ -99,6 +111,7 @@ def get_highest_word_score(word_list):
         elif score == highest_score:
             highest_score_words.append(word)
 
+    # check the ten-letter length condition, else choose the shortest and first one in the highest score list
     ten_letter_word = [word for word in highest_score_words if len(word) == 10]
 
     if ten_letter_word:
@@ -108,4 +121,3 @@ def get_highest_word_score(word_list):
         best_word = (shortest_word, score_word(shortest_word))
 
     return best_word
-
