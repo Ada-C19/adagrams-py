@@ -14,6 +14,7 @@ def test_get_highest_word_score_accurate():
     assert best_word[0] == "XXXX"
     assert best_word[1] == 32
 
+
 def test_get_highest_word_score_accurate_unsorted_list():
     # Arrange
     words = ["XXX", "XXXX", "XX", "X"]
