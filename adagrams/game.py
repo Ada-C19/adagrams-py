@@ -32,6 +32,7 @@ def draw_letters():
 
     hand = []
 
+    # Randomly get letters from letter pool while decrementing the value associated with it
     while len(hand) < 10:
         letter = random.choice(list(letter_pool))
         if letter_pool[letter] > 0:
@@ -41,8 +42,10 @@ def draw_letters():
     return hand
 
 def uses_available_letters(word, letter_bank):
+    # Create a copy of letter bank
     letters_copy = letter_bank.copy()
 
+    # Loop through each letter of word and remove letter from letters copy
     for letter in word:
         if letter.upper() in letters_copy:
             letters_copy.remove(letter.upper())
@@ -82,9 +85,11 @@ def score_word(word):
     }
 
     score = 0
+    # Add up points for each letter of word according to score chart
     for letter in word:
         score += SCORE_CHART[letter.upper()]
 
+    # Add 8 extra points to score if word has 7-10 letters 
     if 7 <= len(word) <= 10:
         score += 8
 
@@ -95,14 +100,21 @@ def get_highest_word_score(word_list):
     highest_score = 0
 
     for word in word_list:
+        # Get score for each word in word list
         score = score_word(word)
+
+        # Check if word has 10 letters
         if len(word) == 10:
             highest_score = score
             winning_word = word
             break
+
+        # Check for highest score
         elif score > highest_score:
             highest_score = score
             winning_word = word
+        
+        # If highest score is tied, get shortest word
         elif score == highest_score and len(word) < len(winning_word):
             winning_word = word
         
