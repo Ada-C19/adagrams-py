@@ -1,104 +1,37 @@
 import random
 
-
 def draw_letters():
     
     letters   = {
-    'A': 9, 
-    'B': 2, 
-    'C': 2, 
-    'D': 4, 
-    'E': 12, 
-    'F': 2, 
-    'G': 3, 
-    'H': 2, 
-    'I': 9, 
-    'J': 1, 
-    'K': 1, 
-    'L': 4, 
-    'M': 2, 
-    'N': 6, 
-    'O': 8, 
-    'P': 2, 
-    'Q': 1, 
-    'R': 6, 
-    'S': 4, 
-    'T': 6, 
-    'U': 4, 
-    'V': 2, 
-    'W': 2, 
-    'X': 1, 
-    'Y': 2, 
-    'Z': 1
-    }
+    'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2, 'G': 3, 'H': 2, 
+    'I': 9, 'J': 1, 'K': 1, 'L': 4, 'M': 2, 'N': 6, 'O': 8, 'P': 2, 
+    'Q': 1, 'R': 6, 'S': 4, 'T': 6, 'U': 4, 'V': 2, 'W': 2, 'X': 1, 
+    'Y': 2, 'Z': 1 }
 
     pieces = []
-    count = 99
+    # number of pieces in letter pool
+    count = 98
+
     for i in range(10):
-        rand_piece = random.randrange(1, count)
+        rand_piece = random.randrange(1, count+1)
         key = weighted(letters, rand_piece)
         pieces.append(key)
         
+        letters[key] -=1
         if letters[key] == 0:
             letters.pop(key)
-        else:
-            letters[key] -= 1
         count -= 1
     return pieces
 
 def weighted(dict,random_piece):
     for char, weight in dict.items():
-            random_piece = random_piece - weight
+            random_piece -= weight
             if random_piece <= 0:
-                #pieces.append(char)
                 return char
 
 """
 def draw_letters():
-    
-    letters = [
-        'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 
-        'B', 'B',
-        'C', 'C',
-        'D', 'D', 'D', 'D',
-        'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E',
-        'F', 'F',
-        'G', 'G', 'G',
-        'H', 'H',
-        'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I',
-        'J',
-        'K',
-        'L', 'L', 'L', 'L',
-        'M', 'M',
-        'N', 'N', 'N', 'N', 'N', 'N',
-        'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O',
-        'P', 'P',
-        'Q',
-        'R', 'R', 'R', 'R', 'R', 'R', 
-        'S', 'S', 'S', 'S',
-        'T', 'T', 'T', 'T', 'T', 'T', 
-        'U', 'U', 'U', 'U', 
-        'V', 'V', 
-        'W', 'W', 
-        'X', 
-        'Y', 'Y',
-        'Z'
-            ]
-
-    pieces = []
-
-
-    random.shuffle(letters)
-    for i in range (10):
-        rand_piece = random.randrange(len(letters))
-        
-        pieces.append(letters[rand_piece])
-        letters.pop(rand_piece)
-    return pieces
-
-""" 
-"""
-def draw_letters():
+    # simplest version
     rand_letters =[]
     letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 
             'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
@@ -112,9 +45,6 @@ def draw_letters():
         # with replacement 
         index = letters.index(rand_piece[0])
         weight[index] -= 1
-        if weight[index] == 0:
-            weight.pop(index)
-            letters.pop(index)
 
         rand_letters.append(rand_piece[0])
 
@@ -147,8 +77,8 @@ def score_word(word):
     for letter in word:
         for val in values.keys():
             if letter.upper() in val:
-              sum += values.get(val)
-              continue
+                sum += values.get(val)
+                continue
     return sum
 
 
