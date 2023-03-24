@@ -110,32 +110,42 @@ def score_word(word):
     return score
 
 
-def score_and_sort_words(word_list):
-    """Return a tuple of words sorted by the scores in descending order."""
+def make_word_and_score_dictionary(word_list):
+    """Score all words and return dictionary with words and scores."""
     words_and_scores = {}
     for word in word_list:
         words_and_scores[word] = score_word(word)
-    sorted_words_and_scores = sorted(words_and_scores.items(), key=lambda words_and_scores:words_and_scores[1], reverse=True)
-    return sorted_words_and_scores
+    return words_and_scores
+
+
+def find_top_score_and_best_words(word_list):
+    """Find the top scoring words and return them along with corresponding score."""
+    words_and_scores = make_word_and_score_dictionary(word_list)
+    words_with_highest_scores = []
+    highest_score = max(words_and_scores.values())
+    for word, score in words_and_scores.items():
+        if score == highest_score:
+            words_with_highest_scores.append(word)
+    return words_with_highest_scores, highest_score
     
-    
+
 def get_highest_word_score(word_list):
-    """Return a tuple containing the winning word and corresponding score."""
-    sorted_words_and_scores = score_and_sort_words(word_list)
-    current_winner = sorted_words_and_scores[0]
-    word_index = 0
-    score_index = 1
+    """Find the best word out of the words with the top score. Return as tuple with its score."""
+    words_to_compare, highest_score = find_top_score_and_best_words(word_list)
 
-    for word_and_score in range(1, len(sorted_words_and_scores)):
-        comparator = sorted_words_and_scores[word_and_score]
-        if comparator[score_index] < current_winner[score_index]:
-            return current_winner
-        elif comparator[score_index] == current_winner[score_index]:
-            if len(current_winner[word_index]) == 10:
-                return current_winner
-            elif len(comparator[word_index]) == 10:
-                return comparator[word_index], comparator[score_index]
-            elif len(comparator[word_index]) < len(current_winner[word_index]):
-                current_winner = comparator[word_index], comparator[score_index]
-
-    return current_winner
+    # Return if only one winner
+    if len(words_to_compare) == 1:
+        return words_to_compare[0], highest_score
+    
+    current_winner = words_to_compare[0]
+    # If there's a tie, the first word to have ten letters wins
+    if len(current_winner) == 10:
+        return current_winner, highest_score
+    for index in range(len(words_to_compare)):
+        comparator = words_to_compare[index]
+        if len(comparator) == 10:
+            return comparator, highest_score
+        # If no word has ten letters, the word with the fewest letters wins
+        elif len(comparator) < len(current_winner):
+            current_winner = comparator
+    return current_winner, highest_score
