@@ -82,18 +82,50 @@ def score_word(word):
 
     return current_score
 
-word_list = ['graze', 'ferment', 'add', 'sex', 'tenletters', 'branxzorfl']
-def get_highest_word_score(word_list):
-    """Return the highest scoring word as a tuple: ('string', word_score)"""
-    # initiate empty dictionary
+words_list = ['graze', 'ferment', 'add', 'sex', 'tenletters', 'branxzorfl']
+def get_word_scores(word_list):
+    """Create a list of words and their scores based on the hand drawn."""
     word_score_dict = {}
 
-    # for each word in the list, produce a score and assign
-    # word/score to dictionary
     for word in word_list:
         score = score_word(word)
-        print(f'word: {word}, score: {score}')
         word_score_dict.update({word: score})
-    print(word_score_dict)
+    score_list = list(word_score_dict.items())
 
-print(get_highest_word_score(word_list))
+    return score_list
+
+def get_highest_word_score(word_list):
+    """Return the highest scoring word as a tuple: ('string', word_score)"""
+    # word_score_dict = {}
+
+    # for word in word_list:
+    #     score = score_word(word)
+    #     word_score_dict.update({word: score})
+    # score_list = list(word_score_dict.items())
+    word_scores = get_word_scores(word_list)
+
+    high_score = 0
+    highest_score_words = []
+
+    for tupl in word_scores:
+        idx = tupl[1]
+        if idx > high_score:
+            high_score = idx
+            highest_score_words.append(tupl)
+
+
+
+
+
+
+
+    print(word_scores)
+    print(high_score)
+    print(highest_score_words)
+
+    
+    # return tuple of the word with the highest score
+    return None
+
+
+print(get_highest_word_score(words_list))
