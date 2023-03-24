@@ -81,12 +81,13 @@ def score_word(word):
         for key, val in letter_value.items():
             if letter in val:
                 current_score += key
-    if 6 < len(word) < 10:
+    if 6 < len(word) <= 10:
         current_score += 8
 
     return current_score
 
-words_list = ['QQQQ', 'JJJJJ', 'add', 'sex', 'tenletters', 'branxzorfd', 'branxzorfl']
+words = ["AAAAAAAAAA", "EEEEEEEEEE"]
+
 def get_highest_word_score(word_list):
     """Return the highest scoring word as a tuple: ('string', word_score)"""
 
@@ -95,33 +96,23 @@ def get_highest_word_score(word_list):
 
     for word in word_list:
         score = score_word(word)
-
+        print(f'word: {word}, score: {score}')
         if score > highest_score:
             if len(word) == 10:
                 highest_score = score
                 winning_word = word
-            elif len(word) < 10:
+            elif len(word) < 10 and len(winning_word) != 10:
                 highest_score = score
                 winning_word = word
         elif score == highest_score:
-            if len(word) == 10:
+            if len(word) == 10 and len(winning_word) != 10:
                 highest_score = score
                 winning_word = word
-            elif len(word) < 10 and len(word) < len(winning_word):
+            elif len(winning_word) != 10 and len(word) < 10 and len(word) < len(winning_word):
                 highest_score = score
                 winning_word = word
-        
-        
 
     return (winning_word, highest_score)
 
-print(get_highest_word_score(words_list))
+print(get_highest_word_score(words))
 
-# for each word in the supplied list, 
-    # if there is one word with the highest score:
-        # that word is the winner    ***CHECK***
-
-    # elif more than 1 word has the same highest score:
-        # the word with 10 letters wins
-    # elif:
-        # the word with the fewest letters wins
