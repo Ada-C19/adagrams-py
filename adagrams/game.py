@@ -42,11 +42,10 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     letter_bank_copy = letter_bank.copy()
-    word = word.upper()
-    for letter in word:
+    #word = word.upper()
+    for letter in word.upper():
         if letter not in letter_bank_copy:
             return False
-        # mudar essa estrutura porque nao e' uma boa pratica
         letter_bank_copy.remove(letter)
     if len(letter_bank_copy) >= len(word):
         return True
