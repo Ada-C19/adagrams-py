@@ -30,6 +30,7 @@ def draw_letters():
     vowel_count = 0
     while vowel_count < 3:
         hand = []
+
         for i in range(10):
             random_letter = choice(all_letters)
         
@@ -46,7 +47,7 @@ def draw_letters():
         vowel_count = 0
         for vowel in VOWELS:
             vowel_count += hand.count(vowel)
-        print(f"{vowel_count=}")
+
     return hand
 
 
@@ -74,6 +75,7 @@ def score_word(word):
     # if the len of the word is > 7 add the bonus
     if len(word) >= 7:
         score += 8
+
     return score
 
 
@@ -86,16 +88,20 @@ def get_highest_word_score(word_list):
 
     # Iterate through the words and scores list and check their values
     for tup in words_and_scores:
+
         # update best score if a score is higher than the current best score value
         if tup[1] > best_score[1]:
             best_score = tup
+
         # deal with a tie
         if tup[1] == best_score[1]:
+
             # sets best score to new tup if its len is 10 then returns becasue the first
             # one of these answers will always win so we will just return if we get here 
             if len(tup[0]) == 10:
                 best_score = tup
                 return best_score
+
             # sets best score to new tup if its shorter 
             # if there are multiple of this situation, 
             # it will continue to find the shortest
