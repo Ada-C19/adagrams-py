@@ -1,7 +1,7 @@
 import random
 
 def draw_letters():
-    letters = {
+    letter_pool = {
     'A': 9, 
     'B': 2, 
     'C': 2, 
@@ -28,15 +28,18 @@ def draw_letters():
     'X': 1, 
     'Y': 2, 
     'Z': 1
-}
+    }
+
     hand = []
-    for i in range(10):
-        choose_letter = list(letters.keys())
-        letter_choice = random.choice(choose_letter)
-        while letters[letter_choice] == 0:
-            letter_choice = random.choice(choose_letter)
+    LENGTH_OF_HAND = 10
+    ALPHABET = list(letter_pool.keys())
+    
+    for i in range(LENGTH_OF_HAND):
+        letter_choice = random.choice(ALPHABET)
+        while letter_pool[letter_choice] == 0:
+            letter_choice = random.choice(ALPHABET)
         hand.append(letter_choice)
-        letters[letter_choice] -= 1
+        letter_pool[letter_choice] -= 1
     return hand
             
 
@@ -54,7 +57,7 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    letter_points = {
+    LETTER_POINTS = {
     'A': 1, 
     'B': 3, 
     'C': 3, 
@@ -86,8 +89,8 @@ def score_word(word):
     word = word.upper()
     score = int()
     for letter in word:
-        if letter in letter_points:
-            score += letter_points[letter]
+        if letter in LETTER_POINTS:
+            score += LETTER_POINTS[letter]
     if len(word) >=7 and len(word) <=10:
         score += 8
     
@@ -109,8 +112,8 @@ def get_highest_word_score(word_list):
         if score == high_score:
             high_scorers.append(word)
 
-    winner =''
-    shortest_word =[]
+    winner = ''
+    shortest_word = []
     shortest_word_length = len(min(high_scorers, key=len))
 
     for word in high_scorers:
