@@ -11,7 +11,7 @@
 
 An [anagram](https://en.wikipedia.org/wiki/Anagram) is a word or phrase formed by rearranging the letters of a different word or phrase. In this project you will be creating _Adagrams_, a game in which a player is given a random set of letters and must make an anagram using those letters.  Each submitted word will score points.
 
-While working on _Adagrams_, it may help to think of a physical metaphor for this game, such as other common word games like _Scrabble_ or _Bananagrams_. These games all feature a _pool_ of letter _tiles_ that the player _draws_ from.
+While working on _Adagrams_, gitit may help to think of a physical metaphor for this game, such as other common word games like _Scrabble_ or _Bananagrams_. These games all feature a _pool_ of letter _tiles_ that the player _draws_ from.
 
 In this version of _Adagrams_, we will only be working with the English alphabet.
 
@@ -171,7 +171,7 @@ If, after you have taken some time to think through the problem and would like d
 Your first task is to build a hand of 10 letters for the user. To do so, implement the function `draw_letters` in `game.py`. This method should have the following properties:
 
 - No parameters
-- Returns an array of ten strings
+- Returns an list of ten strings
   - Each string should contain exactly one letter
   - These represent the hand of letters that the player has drawn
 - The letters should be randomly drawn from a pool of letters
