@@ -106,24 +106,24 @@ LETTER_POOL = {
 
 # print(uses_available_letters("anymore", ["h", "a", "n","m","o","r","e","y"]))
 
-def score_word(word):
-    word_score = 0
-    # word_score = 0
-    scores = { 1: "A" "E" "I" "O" "U" "L" "N" "R" "S" "T",
-    2: "D" "G"}
-    # 3 : ["B", "C", "M", "P" ,
-    # 4: ["F", "H", "V", "W", "Y"],
-    # 5: ["K"],
-    # 8:["J", "X"],
-    # 10: ["Q", "Z"]}
-    for i in scores.items():
-        print(i)
-        for letter in i:
-            # print(letter)
-            word_score += i[letter]
-            print(word_score)
+# def score_word(word):
+#     word_score = 0
+#     # word_score = 0
+#     scores = { 1: "A" "E" "I" "O" "U" "L" "N" "R" "S" "T",
+#     2: "D" "G"}
+#     # 3 : ["B", "C", "M", "P" ,
+#     # 4: ["F", "H", "V", "W", "Y"],
+#     # 5: ["K"],
+#     # 8:["J", "X"],
+#     # 10: ["Q", "Z"]}
+#     for i in scores.items():
+#         print(i)
+#         for letter in i:
+#             # print(letter)
+#             word_score += i[letter]
+#             print(word_score)
     
-print(score_word("Dug"))
+# print(score_word("Rug"))
 
 
 # def score_word(word):
