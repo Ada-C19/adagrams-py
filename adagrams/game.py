@@ -70,7 +70,6 @@ def uses_available_letters(word, letter_bank):
         
 def score_word(word):
     word_score = 0
-    # word_score = 0
     scores = {"A" : 1, "E": 1, "I": 1, "O": 1, "U": 1 ,"L": 1, "N": 1, "R": 1, "S": 1, "T": 1, "D": 2, "G": 2,"B": 3, "C": 3, "M": 3, "P": 3, "F": 4, "H": 4, "V": 4, "W": 4, "Y": 4,"K": 5, "J": 8, "X":8 ,"Q": 10, "Z": 10}
 
     for letter in word.upper():
@@ -80,62 +79,6 @@ def score_word(word):
 
     return word_score
    
-#     word_score = 0
-#     extra_points = 8
-#    # if able to refactor try a nested list. 
-#     value_1_list = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
-#     value_2_list = ["D", "G"]
-#     value_3_list = ["B", "C", "M", "P"]
-#     value_4_list = ["F", "H", "V", "W", "Y"]
-#     value_5_list = ["K"]
-#     value_8_list = ["J", "X"]
-#     value_10_list = ["Q", "Z"]
-
-
-# # score = 0
-# score = 0
-# for letter in word:
-    
-# dict
-# for letter in word 
-# score += scores["letter"]
-    
-#     while len(word) < 7:
-#         for character in word.upper():
-#             if character in value_1_list:
-#                 word_score += 1
-#             elif character in value_2_list:
-#                 word_score += 2
-#             elif character in value_3_list:
-#                 word_score += 3
-#             elif character in value_4_list:
-#                 word_score += 4
-#             elif character in value_5_list:
-#                 word_score += 5
-#             elif character in value_8_list: 
-#                 word_score += 8
-#             elif character in value_10_list:
-#                 word_score += 10
-#         return word_score
-#     else:
-#         for character in word.upper():
-#             if character in value_1_list:
-#                 extra_points += 1
-#             elif character in value_2_list:
-#                 extra_points += 2
-#             elif character in value_3_list:
-#                 extra_points += 3
-#             elif character in value_4_list:
-#                 extra_points += 4
-#             elif character in value_5_list:
-#                 extra_points += 5
-#             elif character in value_8_list: 
-#                 extra_points += 8
-#             elif character in value_10_list:
-#                 extra_points += 10
-#         return extra_points
-            
-
 
 
 
