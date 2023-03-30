@@ -1,4 +1,4 @@
-import random
+from random import sample
 
 LETTER_POOL = {
     'A': 9, 
@@ -58,30 +58,56 @@ LETTER_SCORE = {
     'Z': 10
 }
 
-hand_size = 10
+# hand_size = 10
+HAND_SIZE = 10
 
+# def draw_letters():
+    # letter_list = []
+    # hand = []
+
+    # for key, value in LETTER_POOL.items():
+    #     letter_list.extend([key] * value)
+    
+    # for i in range(hand_size):
+    #     random_num = random.randint(0, len(letter_list) - 1)
+    #     hand.append(letter_list[random_num])
+    #     letter_list.pop(random_num)
+
+    # return hand
 def draw_letters():
     letter_list = []
-    hand = []
 
     for key, value in LETTER_POOL.items():
         letter_list.extend([key] * value)
 
-    for i in range(hand_size):
-        random_num = random.randint(0, len(letter_list) - 1)
-        hand.append(letter_list[random_num])
-        letter_list.pop(random_num)
+    return sample(letter_list, HAND_SIZE)
 
-    return hand
+# def uses_available_letters(word, letter_bank):
+#     word = word.upper()
+#     result = True
+#     for letter in word:
+#         if word.count(letter) > letter_bank.count(letter):
+#             result = False
+#             break
+#     return result
 
 def uses_available_letters(word, letter_bank):
     word = word.upper()
-    result = True
     for letter in word:
+        if letter in letter_bank:
+            # letter_bank(letter).pop()
+            letter_bank.remove(letter)
+        else:
+            return False
+    return True
+
+def uses_available_letters(word, letter_bank):
+
+    word = word.upper()
+    for letter in set(word):
         if word.count(letter) > letter_bank.count(letter):
-            result = False
-            break
-    return result
+            return False
+    return True
 
 def score_word(word):
     total_value = 0
@@ -113,7 +139,6 @@ def get_highest_word_score(word_list):
     else:
         return short_winner
     
-
 
 
 # -----------------------------------------------------
