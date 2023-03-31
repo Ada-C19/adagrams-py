@@ -1,28 +1,56 @@
-import string
 import random
-#list of letters in the alphabet that we're allowed to use
-LETTERS_ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-                       'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-#list of maximum amount allowed per letter in LETTERS_ALPHABET
-LETTERS_MAX_ALLOWED = [9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1]
+#dictionary with the letters as keys and the allowed amount as values
+LETTERS_ALPHABET = {
+    'A': 9, 
+    'B': 2, 
+    'C': 2, 
+    'D': 4, 
+    'E': 12, 
+    'F': 2, 
+    'G': 3, 
+    'H': 2, 
+    'I': 9, 
+    'J': 1, 
+    'K': 1, 
+    'L': 4, 
+    'M': 2, 
+    'N': 6, 
+    'O': 8, 
+    'P': 2, 
+    'Q': 1, 
+    'R': 6, 
+    'S': 4, 
+    'T': 6, 
+    'U': 4, 
+    'V': 2, 
+    'W': 2, 
+    'X': 1, 
+    'Y': 2, 
+    'Z': 1
+}
+#helper function to get a random letter from LETTERS_ALPHABET dictionary
+def random_selected_letter():
+    letters_alphabet = list(LETTERS_ALPHABET.keys())
+    #randint() is part of random library and random_index will return a random index between 0 and the higher limit in the length of letters_alphabet list
+    #every time we use this function it will retrieve a random index number
+    random_index = random.randint(0, len(letters_alphabet)-1)
+    #we'll use that random_index to retrieve the element (letter) that is in that position in the list
+    random_letter = letters_alphabet[random_index]
+
+    return random_letter
+
 def draw_letters():
     #hand variable will storage all the 10 random letters
     hand = []
     random_letter = ""
-    letters_alphabet = LETTERS_ALPHABET
-
-    #cant_letter is a counter to make sure we don't exceed the maximum allowed per letter
-    cant_letter = 0
 
     #while loop to loop through both lists letters_alphabet and LETTERS_MAX_ALLOWED to make
     # sure we don't use more than the maximun amount allowed per letter
     # while loop stops when we have 10 letters appended  
     while len(hand) < 10:
-        random_letter = random.choice(list(letters_alphabet))
-        for i in range(len(letters_alphabet)):
-            if letters_alphabet[i] == random_letter and cant_letter < LETTERS_MAX_ALLOWED[i]:
-                hand.append(random_letter)
-                cant_letter += 1
+        random_letter= random_selected_letter()
+        if hand.count(random_letter) < LETTERS_ALPHABET[random_letter]:
+            hand.append(random_letter)
 
     return hand
 
