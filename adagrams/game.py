@@ -109,7 +109,7 @@ def score_word(word):
 
 
 def make_scores_and_words_dictionary(word_list):
-    """Score all words and return dictionary with words and scores."""
+    """Score all words and return dictionary of scores and words corresponding to that score."""
     scores_and_words = {}
     for word in word_list:
         score = score_word(word)
@@ -126,17 +126,15 @@ def find_top_score_and_best_words(word_list):
     highest_score = max(scores_and_words.keys())
     return scores_and_words[highest_score], highest_score
 
-    
+
 def get_highest_word_score(word_list):
     """Find the best word out of the words with the top score. Return as tuple with its score."""
     words_to_compare, highest_score = find_top_score_and_best_words(word_list)
 
     current_winner = words_to_compare[0]
-    for word in words_to_compare:                        # If there is only 1 winner, we skip the for loop to return the winner 
-        comparator = word                                # If there's a tie, let's compare the words 
-        if len(comparator) == 10:                        # The first word to have 10 letters wins
-            return comparator, highest_score
-        elif len(comparator) < len(current_winner):      # If no word has ten letters, the word with the fewest letters wins
-            current_winner = comparator
-
+    for word in words_to_compare:                  # If there is only 1 winner, we skip the for loop to return the winner                               
+        if len(word) == 10:                        # The first word to have 10 letters wins
+            return word, highest_score
+        elif len(word) < len(current_winner):      # If no word has ten letters, the word with the fewest letters wins
+            current_winner = word
     return current_winner, highest_score
