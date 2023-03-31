@@ -120,29 +120,20 @@ def get_highest_word_score(word_list):
     for word in word_list:
         score = score_word(word)
         score_dict[word]= score
-    
-    #get the word with the maximun score in score_dict
-    word_high_score = max(score_dict)
     #get the word with the maximun score in score_dict
     value_high_score = max(score_dict.values())
-    # list to store every word that share the same maximum score
-    list_high_word = []
-    
     #append the words that share the same store into list_high_word
-    for key, value in score_dict.items():
-        if value == value_high_score:
-            list_high_word.append(key)
-    
+    list_high_word = [word for word, score in score_dict.items() if score == value_high_score]    
+    #if there are only one word with the max score no need to loop through the list
+    if len(list_high_word) == 1:
+        high_score_tuple = (list_high_word[0], value_high_score)
     #loop through list_high_word to get the word and value that should be stored in high_score_tuple
-    for word in list_high_word:
-        if len(word) == 10 and high_score_tuple == ():
-            high_score_tuple = (word, value_high_score)
-        elif len(word) == 10 and len(word) > len(high_score_tuple[0]):
-            high_score_tuple = (word, value_high_score)
-        elif len(word) < len(word_high_score) and high_score_tuple == ():
-            high_score_tuple = (word, value_high_score)
-        elif word == word_high_score and high_score_tuple == ():
-            high_score_tuple = (word, value_high_score)
-
-              
+    for word in range(len(list_high_word)):
+        last_word = list_high_word[word-1]
+        if len(list_high_word[word]) == 10:
+            high_score_tuple = (list_high_word[word], value_high_score)
+            break
+        elif len(list_high_word[word]) < len(last_word):
+            high_score_tuple = (list_high_word[word], value_high_score)
+               
     return high_score_tuple
