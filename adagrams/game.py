@@ -29,9 +29,37 @@ LETTER_POOL = {
     'Z': 1
     }
 
+SCORE_CHART = {
+    "A": 1,
+    "E": 1, 
+    "I": 1,
+    "O": 1,
+    "U": 1,
+    "L": 1,
+    "N": 1,
+    "R": 1,
+    "S": 1,
+    "T": 1,
+    "D": 2,
+    "G": 2,
+    "B": 3,
+    "C": 3,
+    "M": 3,
+    "P": 3,
+    "F": 4,
+    "H": 4,
+    "V": 4,
+    "W": 4,
+    "Y": 4,
+    "K": 5,
+    "J": 8,
+    "X": 8,
+    "Q": 10,
+    "Z": 10,
+}
 
 def draw_letters():   
-    # Store the quantity of each letter in the pool and the count of each letter in these 2 lists
+    # Store the quantity of each letter in the pool and the letters in these 2 lists
     counts = []
     letters = []
 
@@ -91,35 +119,6 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     points_total = 0
     word = convert_case(word)
-
-    score_chart = {
-        "A": 1,
-        "E": 1, 
-        "I": 1,
-        "O": 1,
-        "U": 1,
-        "L": 1,
-        "N": 1,
-        "R": 1,
-        "S": 1,
-        "T": 1,
-        "D": 2,
-        "G": 2,
-        "B": 3,
-        "C": 3,
-        "M": 3,
-        "P": 3,
-        "F": 4,
-        "H": 4,
-        "V": 4,
-        "W": 4,
-        "Y": 4,
-        "K": 5,
-        "J": 8,
-        "X": 8,
-        "Q": 10,
-        "Z": 10,
-    }
     
     # If the string is empty
     if not word:
@@ -127,7 +126,7 @@ def score_word(word):
     
     # Add up the points by looking up each letter in word in the score_chart dict
     for letter in word:
-        points_total += score_chart[letter]
+        points_total += SCORE_CHART[letter]
 
     if len(word) > 6:
         points_total += 8
@@ -158,6 +157,7 @@ def get_highest_word_score(word_list):
 
     # Find the shortest word length with the highest score
     shortest_highest = min(lengths_with_highest_scores)
+    top_word = ""
 
     for word, value in word_dict.items():
         length = value[0]
@@ -166,10 +166,8 @@ def get_highest_word_score(word_list):
         if score == highest_score and length == 10:
             return word, score
         
-    for word, value in word_dict.items():
-        length = value[0]
-        score = value[1]
-        
         if score == highest_score and length == shortest_highest:
-            return word, score
+            top_word = word
+    
+    return top_word, highest_score
 
