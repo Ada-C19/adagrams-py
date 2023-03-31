@@ -82,45 +82,33 @@ def uses_available_letters(word, letter_bank):
             break
         else:
             valid = True
-            
+
     return valid
 
 def score_word(word):
-    #create lists storing letters that shares the same point value
-    list_score1 = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
-    list_score2 = ["D", "G"]
-    list_score3 = ["B", "C", "M", "P"]
-    list_score4 = ["F", "H", "V", "W", "Y"]
-    list_score5 = ["K"]
-    list_score8 = ["J", "X"]
-    list_score10 = ["Q", "Z"]
-    
+    #create dict_score to store letters that shares the same point value
+    dict_score = {1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+                  2: ["D", "G"],
+                  3: ["B", "C", "M", "P"],
+                  4: ["F", "H", "V", "W", "Y"],
+                  5: ["K"],
+                  8: ["J", "X"],
+                  10: ["Q", "Z"]}
     #score variable to store the points earned
-    score = 0
+    result = 0
     #word_upper_case variable converts word variable elements into uppercase letters
-    word_upper_case = word.upper()
-    #for to loop through the elements in word_upper_case to give the right points per letter
-    for letter in word_upper_case:
-        if letter in list_score1:
-            score += 1
-        elif letter in list_score2:
-            score += 2
-        elif letter in list_score3:
-            score += 3
-        elif letter in list_score4:
-            score += 4
-        elif letter in list_score5:
-            score += 5
-        elif letter in list_score8:
-            score += 8
-        elif letter in list_score10:
-            score += 10
-    
+    word_upper = word.upper()
+    #for to loop through the elements in word_upper to give the right points per letter
+    for letter in word_upper:
+        for score, letters in dict_score.items():
+            if letter in letters:
+                result += score
+            
     #if word has 7, 8, 9 or 10 letters the word gets 8 additional points
     if len(word) >= 7 and len(word)<= 10:
-        score += 8
+        result += 8
         
-    return score
+    return result
 
 def get_highest_word_score(word_list):
     #tuple to store the word with the high score
