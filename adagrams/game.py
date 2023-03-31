@@ -131,22 +131,12 @@ def get_highest_word_score(word_list):
     """Find the best word out of the words with the top score. Return as tuple with its score."""
     words_to_compare, highest_score = find_top_score_and_best_words(word_list)
 
-    # Return if only one winner
-    if len(words_to_compare) == 1:
-        return words_to_compare[0], highest_score
-    
-    # If there's a tie, let's compare the words 
     current_winner = words_to_compare[0]
-    # The first word to have ten letters wins
-    if len(current_winner) == 10:
-        return current_winner, highest_score
-    
-    for index in range(1, len(words_to_compare)):
-        comparator = words_to_compare[index]
-        if len(comparator) == 10:
+    for word in words_to_compare:                        # If there is only 1 winner, we skip the for loop to return the winner 
+        comparator = word                                # If there's a tie, let's compare the words 
+        if len(comparator) == 10:                        # The first word to have 10 letters wins
             return comparator, highest_score
-        # If no word has ten letters, the word with the fewest letters wins
-        elif len(comparator) < len(current_winner):
+        elif len(comparator) < len(current_winner):      # If no word has ten letters, the word with the fewest letters wins
             current_winner = comparator
 
     return current_winner, highest_score
