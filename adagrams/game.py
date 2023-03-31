@@ -54,23 +54,34 @@ def draw_letters():
 
     return hand
 
+#helper function to convert a string or list into a dictionary with the amount of times that element appears
+#as it value
+def word_letter_dictionaries(data_to_convert):
+    dict_convert = {}
+
+    for elem in data_to_convert:
+        if elem in dict_convert:
+            dict_convert[elem] +=1
+        else:
+            dict_convert[elem]= 1
+    return dict_convert
+    
 def uses_available_letters(word, letter_bank):
     #valid variable to check whether the letter is in letter_bank or not
     valid = False
-    #new list to store all elements in letter_bank but ignoring case
-    letters_ignore_case = []
-    #for loop to append every element from letter_bank into letter_ignore_case but ignoring case
-    for letter in letter_bank:
-        letters_ignore_case.append(letter.casefold())
-    #variable to store string from word variable but ignoring case
-    word_ignore_case = word.casefold()
-    #for loop to loop through word_ignore_case string and check whether the letters are in letter_ignore_case
-    #or not and in case the quantity of that letter exceeds the quantity in the list it returns False
-    for elem in word_ignore_case:
-        if elem in letters_ignore_case and word_ignore_case.count(elem) <= letters_ignore_case.count(elem):
-            valid = True
-        else:
+    word_upper = word.upper()
+    #dict_word and dict_letter_bank store a dictionary with each letter as key and the amount of that that letter
+    #appears as value
+    dict_word = word_letter_dictionaries(word_upper)
+    dict_letter_bank = word_letter_dictionaries(letter_bank)
+    #for loop to loop through dict_word  and check whether the letters are in dict_letter_bank
+    #or not and in case the amount of that letter exceeds the amount in dict_letter_bank it returns False
+    for elem in dict_word:
+        if elem not in letter_bank or dict_word[elem] > dict_letter_bank[elem]:
             valid = False
+            break
+        else:
+            valid = True
             
     return valid
 
