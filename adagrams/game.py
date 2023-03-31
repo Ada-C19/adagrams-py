@@ -73,9 +73,9 @@ def draw_letters():
     letter_pool_list = generate_letter_pool()
     letter_bank = []
     for letter in range(0, 10):
-        random_letter = random.choice(letter_pool_list)
-        letter_pool_list.remove(random_letter)
-        letter_bank.append(random_letter)
+        random_letter_index = random.randint(0, len(letter_pool_list) - 1)
+        letter_bank.append(letter_pool_list[random_letter_index])
+        letter_pool_list.pop(random_letter_index)
     return letter_bank
 
 
@@ -122,7 +122,9 @@ def find_top_score_and_best_words(word_list):
     """Find the top scoring words and return them along with corresponding score."""
     words_and_scores = make_word_and_score_dictionary(word_list)
     words_with_highest_scores = []
+
     highest_score = max(words_and_scores.values())
+
     for word, score in words_and_scores.items():
         if score == highest_score:
             words_with_highest_scores.append(word)
@@ -142,6 +144,7 @@ def get_highest_word_score(word_list):
     # The first word to have ten letters wins
     if len(current_winner) == 10:
         return current_winner, highest_score
+    
     for index in range(1, len(words_to_compare)):
         comparator = words_to_compare[index]
         if len(comparator) == 10:
@@ -149,4 +152,5 @@ def get_highest_word_score(word_list):
         # If no word has ten letters, the word with the fewest letters wins
         elif len(comparator) < len(current_winner):
             current_winner = comparator
+
     return current_winner, highest_score
