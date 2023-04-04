@@ -50,7 +50,20 @@ def score_word(word):
     return score
 
 
-
-    
-
 def get_highest_word_score(word_list):
+    highest_score = 0
+    winning_word = ""
+    
+    for word in word_list:
+        score = score_word(word)
+        
+        if score > highest_score:
+            highest_score = score
+            winning_word = word
+        elif score == highest_score:
+            if len(word) == 10:
+                winning_word = word
+            elif len(word) < len(winning_word) and len(winning_word) != 10:
+                winning_word = word
+    
+    return (winning_word, highest_score)
