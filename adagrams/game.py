@@ -84,7 +84,7 @@ SCORES = {
 def draw_letters():
     # Create an empty list to hold the drawn letters
     hand = []
-    
+
     # Create a list of all letters in the LETTER_POOL dictionary
     all_letters = []
     for letter, freq in LETTER_POOL.items():
@@ -97,6 +97,14 @@ def draw_letters():
     # Return the list of drawn letters
     return hand
 
+def draw_letters():
+    # Create an empty list to hold the drawn letters
+    hand = []
+    # add the drawn letters to the list
+    hand = random.sample(list(LETTER_POOL.keys()), counts = list(LETTER_POOL.values()), k = 10)
+    
+    # Return the list of drawn letters
+    return hand
 
 def uses_available_letters(word, letter_bank):
     # Convert letter_bank to string
