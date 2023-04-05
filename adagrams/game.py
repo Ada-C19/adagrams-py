@@ -57,7 +57,7 @@ SCORES = {
     'Y': 4, 
     'Z': 10
 }
-
+# I know you ask me to remove unnecessary comments, I'd prefer to keep them to see different ways.
 # def draw_letters():
 #     # Create an empty list to hold the drawn letters
 #     hand = []
@@ -81,21 +81,21 @@ SCORES = {
 #     # Return the list of drawn letters
 #     return hand
 
-def draw_letters():
-    # Create an empty list to hold the drawn letters
-    hand = []
+# def draw_letters():
+#     # Create an empty list to hold the drawn letters
+#     hand = []
 
-    # Create a list of all letters in the LETTER_POOL dictionary
-    all_letters = []
-    for letter, freq in LETTER_POOL.items():
-        all_letters.extend([letter] * freq)
+#     # Create a list of all letters in the LETTER_POOL dictionary
+#     all_letters = []
+#     for letter, freq in LETTER_POOL.items():
+#         all_letters.extend([letter] * freq)
     
-    # Shuffle the list of letters and draw 10 at random
-    random.shuffle(all_letters)
-    hand = all_letters[:10]
+#     # Shuffle the list of letters and draw 10 at random
+#     random.shuffle(all_letters)
+#     hand = all_letters[:10]
     
-    # Return the list of drawn letters
-    return hand
+#     # Return the list of drawn letters
+#     return hand
 
 def draw_letters():
     # Create an empty list to hold the drawn letters
