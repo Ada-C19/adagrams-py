@@ -62,7 +62,10 @@ def uses_available_letters(word, letter_bank):
     '''verify the input word uses only letters in the player's hand.'''
     letter_bank_count = {}
     for letter in letter_bank:
-        letter_bank_count[letter] = letter_bank.count(letter)
+        if letter not in  letter_bank_count:
+            letter_bank_count[letter] = 1
+        else:
+            letter_bank_count[letter] += 1
     for letter in word.upper():
         if letter in letter_bank and letter_bank_count[letter] > 0:
             letter_bank_count[letter] -= 1
