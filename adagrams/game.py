@@ -29,6 +29,34 @@ LETTER_POOL = {
     'Z': 1
 }
 
+POINTS_DICT = {
+    'A': 1, 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10 }
+
 def draw_letters():
     used_letters = {}
     letters = []
@@ -78,36 +106,10 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     upper_word = word.upper()
     total_points = 0
-    points_dict = {
-    'A': 1, 
-    'B': 3, 
-    'C': 3, 
-    'D': 2, 
-    'E': 1, 
-    'F': 4, 
-    'G': 2, 
-    'H': 4, 
-    'I': 1, 
-    'J': 8, 
-    'K': 5, 
-    'L': 1, 
-    'M': 3, 
-    'N': 1, 
-    'O': 1, 
-    'P': 3, 
-    'Q': 10, 
-    'R': 1, 
-    'S': 1, 
-    'T': 1, 
-    'U': 1, 
-    'V': 4, 
-    'W': 4, 
-    'X': 8, 
-    'Y': 4, 
-    'Z': 10 }
+    
 
     for character in upper_word:
-        total_points += points_dict[character]
+        total_points += POINTS_DICT[character]
 
     if len(upper_word) >= 7:
         total_points += 8 
@@ -134,7 +136,7 @@ def get_highest_word_score(word_list):
             highest_score = scorez
             winning_word = word 
     
-    # checks for tie breaker 
+    #checks for tie breaker 
     for word in score_dict:
         if len(word) == len(winning_word):
             winning_word = 
