@@ -93,12 +93,10 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-
     dict_scores = {}
     list_ties = []
     highest_score = 0
     
-
     # Get total score for each word in word_list
     for word in word_list:
         score = score_word(word)
