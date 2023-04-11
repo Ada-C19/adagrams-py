@@ -29,36 +29,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
-def draw_letters():
-    available_letters = []
-    ten_random_letters = []
-
-    # I am iterating through each letter and number in the dictionary so that I can
-    # get a list (available_letters) showing all available letters. 
-    for letter, number in LETTER_POOL.items():
-        available_letters.append(letter)
-    
-
-    while len(ten_random_letters) < 10:
-        one_random_letter = random.choice(available_letters)
-        ten_random_letters.append(one_random_letter)
-        available_letters.remove(one_random_letter)
-    
-    return ten_random_letters
-
-def uses_available_letters(word, letter_bank):
-    letter_bank_copy = letter_bank.copy()
-    word = word.upper()
-    for letter in word:
-        if letter in letter_bank_copy:
-            letter_bank_copy.remove(letter)
-        else:
-            return False
-    return True
-
-    
-def score_word(word):
-    letter_score = {
+LETTER_SCORE = {
     'A': 1, 
     'B': 3, 
     'C': 3, 
@@ -87,12 +58,47 @@ def score_word(word):
     'Z': 10
     }
 
+def draw_letters():
+    available_letters = []
+    ten_random_letters = []
+
+    # I am iterating through each letter and number in the dictionary so that I can
+    # get a list (available_letters) showing all available letters. 
+    for letter, number in LETTER_POOL.items():
+        available_letters.extend([letter]*number)
+
+
+    while len(ten_random_letters) < 10:
+        one_random_letter = random.choice(available_letters)
+        ten_random_letters.append(one_random_letter)
+        available_letters.remove(one_random_letter)
+    
+    return ten_random_letters
+
+# using list comprehention for the function above +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# def draw_letters():
+#     available_letters = [letter for letter, number in LETTER_POOL.items() for i in range(number)]
+#     ten_random_letters = [random.choice(available_letters) for i in range(10)]
+#     return ten_random_letters
+# ------------------------------------------------------------- 
+
+def uses_available_letters(word, letter_bank):
+    letter_bank_copy = letter_bank.copy()
+    word = word.upper()
+    for letter in word:
+        if letter in letter_bank_copy:
+            letter_bank_copy.remove(letter)
+        else:
+            return False
+    return True
+
+    
+def score_word(word):
     word_score = 0
 
     for letter in word:
-        for alphabet, score in letter_score.items():
-            if letter.upper() == alphabet:
-                word_score += score 
+        word_score += LETTER_SCORE[letter.upper()]
+
     if len(word) >= 7:
             word_score += 8 
     return word_score
@@ -107,13 +113,8 @@ def get_highest_word_score(word_list):
             winning_word = word
         
         # Conditonals for tie breaker rules
-        elif current_score == highest_score:
-            if len(winning_word) == 10:
-                continue 
-            elif len(word) == 10:
-                winning_word= word 
-                highest_score = current_score
-            elif len(word) < len(winning_word):
+        elif current_score == highest_score and len(winning_word) != 10:
+            if len(word) == 10 or len(word) < len(winning_word):
                 winning_word = word
                 highest_score = current_score
 
