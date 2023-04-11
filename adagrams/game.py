@@ -62,8 +62,6 @@ def draw_letters():
     available_letters = []
     ten_random_letters = []
 
-    # I am iterating through each letter and number in the dictionary so that I can
-    # get a list (available_letters) showing all available letters. 
     for letter, number in LETTER_POOL.items():
         available_letters.extend([letter]*number)
 
@@ -74,13 +72,6 @@ def draw_letters():
         available_letters.remove(one_random_letter)
     
     return ten_random_letters
-
-# using list comprehention for the function above +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# def draw_letters():
-#     available_letters = [letter for letter, number in LETTER_POOL.items() for i in range(number)]
-#     ten_random_letters = [random.choice(available_letters) for i in range(10)]
-#     return ten_random_letters
-# ------------------------------------------------------------- 
 
 def uses_available_letters(word, letter_bank):
     letter_bank_copy = letter_bank.copy()
