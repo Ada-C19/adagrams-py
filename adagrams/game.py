@@ -61,7 +61,6 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-
     score_board = {
         1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
         2: ["D", "G"],
@@ -72,17 +71,15 @@ def score_word(word):
         10: ["Q", "Z"]
     }
 
-    word = word.upper()
-
     score = 0
     extra_points = 8
     extra_points_min_length = 7
     extra_points_max_length = 10
 
-    points_list = list(score_board.keys())
+    points_list = list(score_board)
     letters_list = list(score_board.values())
 
-    for letter in word:
+    for letter in word.upper():
         index = 0
         for i in range(len(letters_list)):
             if letter in letters_list[i]:
@@ -91,6 +88,7 @@ def score_word(word):
 
     if len(word) >= extra_points_min_length and len(word) <= extra_points_max_length:
         score += 8
+
     return score
 
 
@@ -105,7 +103,7 @@ def get_highest_word_score(word_list):
     for word in word_list:
         score = score_word(word)
         dict_scores[word] = score
-        
+
         if dict_scores[word] > highest_score:
             list_ties = [word]
             highest_score = dict_scores[word]
