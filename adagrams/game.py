@@ -78,14 +78,11 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     upper_word = word.upper()
     letter_bank_dict = {}
-    is_valid = False
+
 
     for character in upper_word:
-        if character in letter_bank:
-            is_valid = True
-        else:
-            is_valid = False
-            return is_valid
+        if character not in letter_bank:
+            return False
     
 
     if character in letter_bank_dict.keys():
