@@ -78,27 +78,14 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     upper_word = word.upper()
-    letter_bank_dict = {}
-
+    letter_bank_copy = letter_bank.copy()
 
     for character in upper_word:
-        if character not in letter_bank:
+        if character not in letter_bank_copy:
             return False
-    
-
-    if character in letter_bank_dict.keys():
-        letter_bank_dict[character] += 1
-    else:
-        letter_bank_dict[character] = 1
-
-    character_frequency_word = upper_word.count(character)
-    character_frequency_dict = letter_bank_dict[character]
-
-    if character_frequency_word <= character_frequency_dict:
-        return True
-    else:
-        if character not in letter_bank or character_frequency_word >= character_frequency_dict:
-            return False
+        else:
+            letter_bank_copy.remove(character)
+    return True
 
 
 def score_word(word):
@@ -135,9 +122,9 @@ def get_highest_word_score(word_list):
             winning_word = word 
     
     #checks for tie breaker 
-    # for word in score_dict:
-    #     if len(word) == len(winning_word):
-    #         winning_word = 
+    for word in score_dict:
+        if len(word) == len(winning_word):
+            pass
 
 
 
