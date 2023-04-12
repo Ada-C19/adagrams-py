@@ -59,20 +59,21 @@ POINTS_DICT = {
 
 def draw_letters():
     used_letters = {}
-    letters = []
-    possible_letters = list(LETTER_POOL.keys())
+    letters_hand = []
+    possible_letters = []
 
-    while len(letters) <= 9:
-        random_int = random.randint(0, 25)
-        random_l =  possible_letters[random_int]
-        if not used_letters.get(random_l) == LETTER_POOL[random_l]:
-            if (not used_letters.get(random_l)):
-                used_letters[random_l] = 0 
-            used_letters[random_l] += 1
-            letters.append(random_l)
-        
-    return letters
+    #creates possible_letters list
+    for key, value in LETTER_POOL.items():
+        for i in range(value):
+            possible_letters.append(key)
 
+    #pull 10 letters
+    while len(letters_hand) <= 9:
+        random_int = random.randint(0,len(possible_letters)- 1)
+        chosen_letter = possible_letters[random_int]
+        letters_hand.append(chosen_letter)
+        possible_letters.remove(chosen_letter)
+    return letters_hand
 
 
 def uses_available_letters(word, letter_bank):
@@ -134,9 +135,9 @@ def get_highest_word_score(word_list):
             winning_word = word 
     
     #checks for tie breaker 
-    for word in score_dict:
-        if len(word) == len(winning_word):
-            winning_word = 
+    # for word in score_dict:
+    #     if len(word) == len(winning_word):
+    #         winning_word = 
 
 
 
