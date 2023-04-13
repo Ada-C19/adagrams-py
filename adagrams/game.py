@@ -121,20 +121,31 @@ def get_highest_word_score(word_list):
     input: word_list (list of strings)
     output: word string, and score of word (tuple) 
     """
+    word_scores_list_of_dicts = []
+    ten_letter_words = []
 
-    word_and_point_value_dict = {}
+    # creates list of dicts where each dict represents a word w/ two key-value pairs
+    for word in word_list:
+        word_scores_list_of_dicts.append({
+            "word": word,
+            "score": score_word(word)
+        })
 
-    # iterating through each element in word_list 
-    for element in word_list:
-        word_and_point_value_dict[element] = score_word(element)
+    # max only returns ONE dictionary, will use it to compare to other dicts later
+    # key (optional param for max) func where iterables are passed and comparison is performed based on its return value
+    best_word = max(word_scores_list_of_dicts, key=lambda word_dict: word_dict["score"])
 
-    # gets highest scoring word
-    highest_score = max(word_and_point_value_dict.values())
-    print(highest_score)
+    for word_dict in word_scores_list_of_dicts:
+        # handles word with length of 10 letters
+        if len(word_dict["word"]) == 10:
+            ten_letter_words.append(word_dict)
 
-    # gets word with the highest score
-    word_with_highest_score = max(word_and_point_value_dict, key=word_and_point_value_dict.get)
-    print(word_with_highest_score)
+        # handles tie logic 
+        if word_dict["score"] == best_word["score"]:
+            if len(word_dict["word"]) < len(best_word["word"]):
+                best_word = word_dict
+
+    if len(ten_letter_words) > 0:
+        best_word = ten_letter_words[0]
     
-
-    return tuple([word_with_highest_score, highest_score])
+    return tuple([best_word['word'], best_word['score']])
