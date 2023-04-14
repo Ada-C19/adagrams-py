@@ -115,16 +115,30 @@ def get_highest_word_score(word_list):
         scorez = score_word(word)
         score_dict[word] = scorez
     
-    # # assigns highest score to highest_score
+    # assigns highest_score & winning_word
     for word, scorez in score_dict.items():
         if scorez > highest_score:
             highest_score = scorez
             winning_word = word
-            winnerzzz = (winning_word, highest_score)
-        elif scorez == scorez:
-            
-    return winnerzzz
+        
+        elif scorez == highest_score:
+            if len(winning_word) == 10:
+                pass
+            elif len(word) == 10:
+                winning_word = word
+            elif len(word) < len(winning_word):
+                winning_word = word
+            elif len(word) == len(winning_word):
+                pass
+    return (winning_word, highest_score)
+        
     
+    
+
+
+        
+    
+    #indexing into a tuple
 
     # if 2 scorez are the same:
         # len of shortest word wins
