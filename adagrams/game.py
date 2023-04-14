@@ -115,25 +115,20 @@ def get_highest_word_score(word_list):
         scorez = score_word(word)
         score_dict[word] = scorez
     
-    # assigns highest score to highest_score
+    # # assigns highest score to highest_score
     for word, scorez in score_dict.items():
         if scorez > highest_score:
             highest_score = scorez
-            winning_word = word 
+            winning_word = word
+            winnerzzz = (winning_word, highest_score)
+        elif scorez == scorez:
+            
+    return winnerzzz
     
-    #checks for tie breaker 
-    for word in score_dict:
-        if len(word) == len(winning_word):
-            pass
 
-
-
-
-    
-    winner = (winning_word, highest_score)
-
-
-    return winner
-
-
-
+    # if 2 scorez are the same:
+        # len of shortest word wins
+    # elif len(word) == 10
+        # that word wins 
+    # elif if len(word) == len(word) and score ==score:
+        # pick the first occuring
