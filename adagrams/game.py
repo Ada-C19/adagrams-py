@@ -43,7 +43,7 @@ def draw_letters():
     #hand variable will storage all the 10 random letters
     hand = []
     random_letter = ""
-
+    #random_letter= random_selected_letter()
     #while loop to loop through both lists letters_alphabet and LETTERS_MAX_ALLOWED to make
     # sure we don't use more than the maximun amount allowed per letter
     # while loop stops when we have 10 letters appended  
@@ -87,20 +87,48 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
     #create dict_score to store letters that shares the same point value
-    dict_score = {1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
-                  2: ["D", "G"],
-                  3: ["B", "C", "M", "P"],
-                  4: ["F", "H", "V", "W", "Y"],
-                  5: ["K"],
-                  8: ["J", "X"],
-                  10: ["Q", "Z"]}
+    #dict_score = {1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+                #   2: ["D", "G"],
+                #   3: ["B", "C", "M", "P"],
+                #   4: ["F", "H", "V", "W", "Y"],
+                #   5: ["K"],
+                #   8: ["J", "X"],
+                #   10: ["Q", "Z"]}
+    dict_score = {
+    'A': 1, 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
+}
     #score variable to store the points earned
     result = 0
     #word_upper_case variable converts word variable elements into uppercase letters
     word_upper = word.upper()
     #for to loop through the elements in word_upper to give the right points per letter
     for letter in word_upper:
-        for score, letters in dict_score.items():
+        for letters, score in dict_score.items():
             if letter in letters:
                 result += score
             
@@ -124,16 +152,14 @@ def get_highest_word_score(word_list):
     value_high_score = max(score_dict.values())
     #append the words that share the same store into list_high_word
     list_high_word = [word for word, score in score_dict.items() if score == value_high_score]    
-    #if there are only one word with the max score no need to loop through the list
-    if len(list_high_word) == 1:
-        high_score_tuple = (list_high_word[0], value_high_score)
+
     #loop through list_high_word to get the word and value that should be stored in high_score_tuple
-    for word in range(len(list_high_word)):
-        last_word = list_high_word[word-1]
-        if len(list_high_word[word]) == 10:
-            high_score_tuple = (list_high_word[word], value_high_score)
+    best_word = list_high_word[0]
+    for word in list_high_word:
+        if len(word) == 10:
+            best_word = word
             break
-        elif len(list_high_word[word]) < len(last_word):
-            high_score_tuple = (list_high_word[word], value_high_score)
-               
+        elif len(word) < len(best_word):
+            best_word = word
+    high_score_tuple = (best_word, value_high_score)          
     return high_score_tuple
