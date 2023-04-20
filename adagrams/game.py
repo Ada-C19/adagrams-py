@@ -1,32 +1,33 @@
 import random
+
 LETTER_POOL = {
-    'A': 9, 
-    'B': 2, 
-    'C': 2, 
-    'D': 4, 
-    'E': 12, 
-    'F': 2, 
-    'G': 3, 
-    'H': 2, 
-    'I': 9, 
-    'J': 1, 
-    'K': 1, 
-    'L': 4, 
-    'M': 2, 
-    'N': 6, 
-    'O': 8, 
-    'P': 2, 
-    'Q': 1, 
-    'R': 6, 
-    'S': 4, 
-    'T': 6, 
-    'U': 4, 
-    'V': 2, 
-    'W': 2, 
-    'X': 1, 
-    'Y': 2, 
-    'Z': 1
-    }
+    "A": 9,
+    "B": 2,
+    "C": 2,
+    "D": 4,
+    "E": 12,
+    "F": 2,
+    "G": 3,
+    "H": 2,
+    "I": 9,
+    "J": 1,
+    "K": 1,
+    "L": 4,
+    "M": 2,
+    "N": 6,
+    "O": 8,
+    "P": 2,
+    "Q": 1,
+    "R": 6,
+    "S": 4,
+    "T": 6,
+    "U": 4,
+    "V": 2,
+    "W": 2,
+    "X": 1,
+    "Y": 2,
+    "Z": 1,
+}
 
 
 def draw_letters():
@@ -38,6 +39,7 @@ def draw_letters():
             hand.append(letter)
 
     return hand
+
 
 def uses_available_letters(word, letter_bank):
     letter_freq_in_word = {}
@@ -57,8 +59,9 @@ def uses_available_letters(word, letter_bank):
     for letter in word:
         if letter_freq_in_word[letter] > letter_freq_in_bank[letter]:
             return False
-        
+
     return True
+
 
 def score_word(word):
     score_board = {
@@ -68,7 +71,7 @@ def score_word(word):
         4: ["F", "H", "V", "W", "Y"],
         5: ["K"],
         8: ["J", "X"],
-        10: ["Q", "Z"]
+        10: ["Q", "Z"],
     }
 
     score = 0
@@ -96,7 +99,7 @@ def get_highest_word_score(word_list):
     dict_scores = {}
     list_ties = []
     highest_score = 0
-    
+
     # Get total score for each word in word_list
     for word in word_list:
         score = score_word(word)
@@ -107,7 +110,7 @@ def get_highest_word_score(word_list):
             highest_score = dict_scores[word]
         elif dict_scores[word] == highest_score:
             list_ties.append(word)
-    
+
     # Find top word amongst the words with the same high score
     top_word = list_ties[0]
 
