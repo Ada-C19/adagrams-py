@@ -63,17 +63,17 @@ def uses_available_letters(word, letter_bank):
             return False
         elif letter in hand:
             hand.remove(letter)
-            print(f"letter_bank: {letter_bank}")
-            print(f"hand: {hand}")
     return True
 
 def score_word(word):
-    pass
+    score = 0
+    for letter in word:
+        score += LETTERS_TUPLE[0][letter]
+    
+    return score
 
 def get_highest_word_score(word_list):
     pass
 
-print("")
-print("*** FUNCTION CALL BEGINS: draw_letters()")
 hand = draw_letters()
 uses_available_letters('sandwich', hand)
