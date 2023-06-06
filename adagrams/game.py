@@ -28,34 +28,46 @@ LETTER_POOL = {
     'Z': 1
 }
 
+def create_letter_list(LETTER_POOL):
+    letter_list = []
+    for key in LETTER_POOL:
+        letter_list.append((key)*(LETTER_POOL.get(key)))
+        tile_list = [i for ele in letter_list for i in ele]
+    
+    return tile_list
+    return letter_list
+
 
 def draw_letters():
-    letter_pool_list = ('A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 
-        'B', 'B', 
-        'C', 'C', 
-        'D', 'D', 'D', 'D', 
-        'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 
-        'F', 'F', 
-        'G', 'G', 'G', 
-        'H', 'H', 
-        'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 
-        'J', 
-        'K', 
-        'L', 'L', 'L', 'L', 
-        'M', 'M', 
-        'N', 'N', 'N', 'N', 'N', 'N',
-        'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 
-        'P', 'P', 
-        'Q', 
-        'R', 'R', 'R', 'R', 'R', 'R', 
-        'S', 'S', 'S', 'S', 
-        'T', 'T', 'T', 'T', 'T', 'T', 
-        'U', 'U', 'U', 'U', 
-        'V', 'V', 
-        'W', 'W', 
-        'X', 
-        'Y', 'Y', 
-        'Z')
+    # letter_pool_list = ('A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 
+    #     'B', 'B', 
+    #     'C', 'C', 
+    #     'D', 'D', 'D', 'D', 
+    #     'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 
+    #     'F', 'F', 
+    #     'G', 'G', 'G', 
+    #     'H', 'H', 
+    #     'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 
+    #     'J', 
+    #     'K', 
+    #     'L', 'L', 'L', 'L', 
+    #     'M', 'M', 
+    #     'N', 'N', 'N', 'N', 'N', 'N',
+    #     'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 
+    #     'P', 'P', 
+    #     'Q', 
+    #     'R', 'R', 'R', 'R', 'R', 'R', 
+    #     'S', 'S', 'S', 'S', 
+    #     'T', 'T', 'T', 'T', 'T', 'T', 
+    #     'U', 'U', 'U', 'U', 
+    #     'V', 'V', 
+    #     'W', 'W', 
+    #     'X', 
+    #     'Y', 'Y', 
+    #     'Z')
+    letter_pool_list = create_letter_list(LETTER_POOL)
+
+
     
     draw_letters = []
     
@@ -141,18 +153,20 @@ def get_highest_word_score(word_list):
     max_word_list = []
     word_len_10_list = []
     
-
+# calculate the score of each word in word_list
     for word in word_list:
         word_list_dict[word] = score_word(word)
         print(word_list_dict)
+# calculate the highest score of all of the words
         highest_word_score = max(word_list_dict.values())
+#append all words with the highest score to the highest word list
     for key, val in word_list_dict.items():
         if word_list_dict[key] == highest_word_score:
             max_word_list.append(key)
-
+#If there is more than one word with the highest score and if one of any of those words are 10 letters use that word.
     if len(max_word_list) > 1:
         if len(max(max_word_list, key = len)) == 10:
-
+#If more than one word is 10 letters use the first word in the lest of 10 letter words
             for word in max_word_list:
                 if len(word) == 10:
                     word_len_10_list.append(word)
@@ -160,9 +174,10 @@ def get_highest_word_score(word_list):
                         return tuple([word_len_10_list[0], highest_word_score])
                     else:
                         return tuple([word_len_10_list[0], highest_word_score])
-
+#if no 10 letter words use the shortest word 
         else:
             return tuple([(min(max_word_list, key = len)), highest_word_score])
+#if only one word in the highest score list, return that word
     else:
         return tuple([max(word_list_dict), highest_word_score ])
 
