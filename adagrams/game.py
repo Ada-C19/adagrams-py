@@ -43,13 +43,10 @@ def draw_letters():
         random_index = (random.randrange(len(letter_tiles)))
         hand.append(letter_tiles[random_index])
         letter_tiles.pop(random_index)
-        
+
     return hand
 
 def uses_available_letters(word, letter_bank):
-    # check uppercase
-    # check if letter is in letter_bank (copied to not modify original)
-    # remove letters used in word from letter_bank
     letter_bank_copy = []
     letter_bank_copy.extend(letter_bank)
     for letter in word.upper():
