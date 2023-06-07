@@ -39,27 +39,32 @@ def draw_letters():
       
       if copy_letter_pool[str_random_letter] > 0:
         hand.append(str_random_letter)
-        copy_letter_pool[str_random_letter] += -1
+        copy_letter_pool[str_random_letter] -= 1
     return hand
 
 def uses_available_letters(word, letter_bank):
-    quantity_available = {}
-    validate_enough_available = {}
-    for letter in letter_bank:
-        available_count = letter_bank.count(letter)
-        quantity_available[letter] = available_count
+    word_upper = word.upper()
+    for letter in word_upper:
+        if word_upper.count(letter) != letter_bank.count(letter):
+            return False
+    return True
+    # quantity_available = {}
+    # validate_enough_available = {}
+    # for letter in letter_bank:
+    #     available_count = letter_bank.count(letter)
+    #     quantity_available[letter] = available_count
 
-    for character in word.upper():
-        amount_needed_for_word = (word.upper()).count(character)
-        if character in quantity_available and (amount_needed_for_word <= quantity_available[character]):
-            validate_enough_available[character] = True
-        else:
-            validate_enough_available[character] = False
+    # for character in word.upper():
+    #     amount_needed_for_word = (word.upper()).count(character)
+    #     if character in quantity_available and (amount_needed_for_word <= quantity_available[character]):
+    #         validate_enough_available[character] = True
+    #     else:
+    #         validate_enough_available[character] = False
   
-    if False in validate_enough_available.values():
-        return False
-    else:
-        return True
+    # if False in validate_enough_available.values():
+    #     return False
+    # else:
+    #     return True
     
 def score_word(word):
     score = 0
@@ -100,24 +105,60 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    player_scores = {}
-    top_players = []
+    highest_score = 0
+    winner = None
+
     for word in word_list:
-      word_score = score_word(word)
-      player_scores[word] = word_score
-
-    highest_score = max(player_scores.values())
-    for key, value in player_scores.items():
-      if value >= highest_score:
-        top_players.append((key, value))
-
-    winner = top_players[0]
-    for word, score in top_players:
-        if len(word) >= 10:
-          winner = (word, score)
-          return winner
-        elif len(word) < len(winner[0]) and len(winner[0]) != 10:
-          winner = (word, score)
+        word_score = score_word(word)
+        if word_score > highest_score:
+            highest_score = word_score
+            winner = (word, word_score)
+        elif word_score == highest_score:
+            if len(word) == 10:
+                return (word, word_score)
+            elif len(word) < len(winner[0]):
+                winner = (word, word_score)
     return winner
+
+    # highest_score = 0
+    # top_players = None
+
+    # for word in word_list:
+    #   word_score = score_word(word)
+    #   if word_score > highest_score:
+    #     highest_score = word_score
+    #     top_players = [(word, word_score)]
+    #   if word_score == top_players[0][1]:
+    #     top_players.append((word, word_score))
+        
+    # winner = top_players[0]
+    # for word, score in top_players:
+    #   if len(word) == 10:
+    #     winner = (word, score)
+    #     return winner
+    #   if len(word) < len(winner[0]):
+    #     winner = (word, score)
+    # return winner
+
+
+    # player_scores = {}
+    # top_players = []
+    # for word in word_list:
+    #   word_score = score_word(word)
+    #   player_scores[word] = word_score
+
+    # highest_score = max(player_scores.values())
+    # for key, value in player_scores.items():
+    #   if value >= highest_score:
+    #     top_players.append((key, value))
+
+    # winner = top_players[0]
+    # for word, score in top_players:
+    #     if len(word) == 10:
+    #       winner = (word, score)
+    #       return winner
+    #     if len(word) < len(winner[0]):
+    #       winner = (word, score)
+    # return winner
     
       
