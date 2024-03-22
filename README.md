@@ -142,7 +142,7 @@ $ pytest
 $ pytest -s
 ```
 
-## Project Write-Up: How to Complete and Submit
+## Notes
 
 
 The goal of this project is to write code in `game.py` so each of the functions meet the requirements outlined in the Project Directions below. 
