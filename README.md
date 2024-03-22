@@ -22,9 +22,7 @@ In this version of _Adagrams_, we will only be working with the English alphabet
 Follow these directions once, at the beginning of your project:
 
 
-1. Navigate to your projects folder named `projects`.
-
-If you followed Ada's recommended file system structure from the Intro to Dev Environment lesson in Learn, you can navigate to your projects folder with the following command:
+1. Navigate to the folder where this project will be stored. The example below is named `projects`.
 
 ```bash
 $ cd ~/Developer/projects
