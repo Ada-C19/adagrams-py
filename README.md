@@ -2,7 +2,6 @@
 
 ## Skills Assessed
 
-- Following directions and reading comprehension
 - Reading tests
 - Using git to maintain code
 - Manipulating and processing data in lists and strings
