@@ -151,17 +151,8 @@ Go through the waves one-by-one and build the features of this game.
 
 You will use play-testing and unit tests to drive your development.
 
-At submission time, no matter where you are, submit the project via Learn.
-
-This will let us give feedback on what you've finished so that you can be better prepared for the next project.
 
 ## Project Directions
-
-### Get Familiar
-
-Take time to read through the Wave 1 implementation requirements and the tests for Wave 1. Write down your questions, and spend some time going through your understanding of the requirements and tests. Make sure you can run `$ pytest` and see the tests fail.
-
-If, after you have taken some time to think through the problem and would like direction for how to dissect the problem, or if you need clarity on the terms/vocabulary we used in this project, you can check out [a small hint we've provided](./project_docs/hints.md).
 
 ### Wave 1: draw_letters
 
