@@ -2,7 +2,6 @@
 
 ## Skills Assessed
 
-- Following directions and reading comprehension
 - Reading tests
 - Using git to maintain code
 - Manipulating and processing data in lists and strings
@@ -22,9 +21,7 @@ In this version of _Adagrams_, we will only be working with the English alphabet
 Follow these directions once, at the beginning of your project:
 
 
-1. Navigate to your projects folder named `projects`.
-
-If you followed Ada's recommended file system structure from the Intro to Dev Environment lesson in Learn, you can navigate to your projects folder with the following command:
+1. Navigate to your folder which where this project will be cloned. Example below is named projects.
 
 ```bash
 $ cd ~/Developer/projects
@@ -145,7 +142,7 @@ $ pytest
 $ pytest -s
 ```
 
-## Project Write-Up: How to Complete and Submit
+## Notes
 
 
 The goal of this project is to write code in `game.py` so each of the functions meet the requirements outlined in the Project Directions below. 
@@ -154,17 +151,8 @@ Go through the waves one-by-one and build the features of this game.
 
 You will use play-testing and unit tests to drive your development.
 
-At submission time, no matter where you are, submit the project via Learn.
-
-This will let us give feedback on what you've finished so that you can be better prepared for the next project.
 
 ## Project Directions
-
-### Get Familiar
-
-Take time to read through the Wave 1 implementation requirements and the tests for Wave 1. Write down your questions, and spend some time going through your understanding of the requirements and tests. Make sure you can run `$ pytest` and see the tests fail.
-
-If, after you have taken some time to think through the problem and would like direction for how to dissect the problem, or if you need clarity on the terms/vocabulary we used in this project, you can check out [a small hint we've provided](./project_docs/hints.md).
 
 ### Wave 1: draw_letters
 
